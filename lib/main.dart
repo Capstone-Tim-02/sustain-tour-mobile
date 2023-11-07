@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sustain_tour_mobile/style/font_weight_widget.dart';
 import 'package:sustain_tour_mobile/style/text_style_widget.dart';
 
 void main() {
@@ -109,7 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Text(
               'You have pushed the button this many times:',
-              style: TextStyleWidget.labelL3(fontWeight: FontWeightWidget.bold),
+              style: TextStyleWidget.labelL3(fontWeight: FontWeight.bold),
             ),
             Text(
               '$_counter',
