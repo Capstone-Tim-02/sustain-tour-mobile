@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 
-/// Sementara Belum Fix
 class ShadowStyle {
-  static BoxShadow primaryShadow = BoxShadow(
-    color: Colors.black.withOpacity(0.1),
-    spreadRadius: 2,
+  static BoxShadow shadowFix1 = BoxShadow(
+    color: Colors.black.withOpacity(0.18),
+    spreadRadius: 0,
     blurRadius: 10,
-    offset: const Offset(0, 4),
+    offset: const Offset(0, 0),
   );
 
-  static BoxShadow secondaryShadow = BoxShadow(
-    color: Colors.black.withOpacity(0.2),
-    spreadRadius: 3,
-    blurRadius: 15,
-    offset: const Offset(0, 6),
+  static BoxShadow shadowFix2 = BoxShadow(
+    color: Colors.black.withOpacity(0.1),
+    spreadRadius: 0,
+    blurRadius: 10,
+    offset: const Offset(0, 4),
   );
 }
