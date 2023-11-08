@@ -2,26 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:provider/provider.dart';
 import 'package:dots_indicator/dots_indicator.dart';
+import 'package:sustain_tour_mobile/screen/onboarding_screen/onboarding_provider.dart';
 import 'package:sustain_tour_mobile/style/color_theme_style.dart';
 import 'package:sustain_tour_mobile/style/font_weight_style.dart';
 import 'package:sustain_tour_mobile/style/text_style_widget.dart';
 import 'package:sustain_tour_mobile/widget/button_widget.dart';
-import 'onboarding_provider.dart';
 
-class CarouselPage extends StatefulWidget {
-  const CarouselPage({Key? key}) : super(key: key);
+class OnboardingScreen extends StatefulWidget {
+  const OnboardingScreen({Key? key}) : super(key: key);
 
   @override
-  State<CarouselPage> createState() => _CarouselPageState();
+  State<OnboardingScreen> createState() => _OnboardingScreenState();
 }
 
-class _CarouselPageState extends State<CarouselPage> {
+class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
         children: [
-          Consumer<CarouselProvider>(
+          Consumer<OnboardingProvider>(
             builder: (context, provider, child) {
               return Column(
                 children: [
@@ -54,7 +54,7 @@ class _CarouselPageState extends State<CarouselPage> {
                               width: 380,
                               child: Center(
                                 child: Text(
-                                  item.deskirsi,
+                                  item.deskripsi,
                                   style: TextStyleWidget.titleT2(
                                       fontWeight: FontWeightStyle.light),
                                   textAlign: TextAlign.center,
@@ -69,7 +69,7 @@ class _CarouselPageState extends State<CarouselPage> {
                       height: 565,
                       enlargeCenterPage: true,
                       autoPlay: true,
-                      autoPlayInterval: const Duration(seconds: 5),
+                      autoPlayInterval: const Duration(seconds: 7),
                       autoPlayAnimationDuration:
                           const Duration(milliseconds: 800),
                       autoPlayCurve: Curves.fastOutSlowIn,
@@ -89,12 +89,12 @@ class _CarouselPageState extends State<CarouselPage> {
                         activeColor: ColorThemeStyle.black100,
                         color: ColorThemeStyle.grey50),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 45,
                   ),
                   ButtonWidget.defaultContainer(
                       text: "Masuk", onPressed: () {}),
-                  SizedBox(
+                  const SizedBox(
                     height: 16,
                   ),
                   ButtonWidget.defaultOutline(

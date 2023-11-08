@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sustain_tour_mobile/screen/onboarding_screen/onboarding_screen.dart';
 import 'package:sustain_tour_mobile/style/font_weight_style.dart';
 import 'package:sustain_tour_mobile/style/text_style_widget.dart';
-import '../onboarding_screen.dart';
+
 import 'splash_screen_provider.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -20,9 +21,8 @@ class _SplashScreenState extends State<SplashScreen> {
       Provider.of<SplashScreenProvider>(context, listen: false)
           .loadDataSplasScreen()
           .then((_) {
-        // Navigasi ke halaman home screen saat pengambilan data selesai.
         Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => const CarouselPage()));
+            MaterialPageRoute(builder: (context) => const OnboardingScreen()));
       });
     });
   }
