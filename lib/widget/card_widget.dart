@@ -32,7 +32,7 @@ class CardWidget {
                     child: SizedBox(
                       height: 142,
                       child: Image.network(
-                        "",
+                        imageUrl ?? "",
                         fit: BoxFit.fitHeight,
                         errorBuilder: (context, error, stackTrace) {
                           return const Icon(Icons.image_not_supported_sharp);
