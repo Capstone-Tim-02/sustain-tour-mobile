@@ -9,10 +9,21 @@ class BottomNavigationBarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<BottomNavigationBarProvider>(context);
-    return SizedBox(
+    return Container(
       height: 80,
       width: 464,
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 10,
+            spreadRadius: 0,
+            offset: const Offset(0, -4),
+          ),
+        ],
+      ),
       child: BottomNavigationBar(
+        backgroundColor: ColorThemeStyle.white100,
         selectedItemColor: ColorThemeStyle.blue60, //ganti warna
         unselectedItemColor: ColorThemeStyle.grey80,
         showUnselectedLabels: true, // Menampilkan label selalu
