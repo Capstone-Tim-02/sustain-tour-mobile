@@ -11,6 +11,7 @@ class ColorThemeStyle {
   static const Color grey80 = Color(0xFFBEBEBE);
   static const Color grey50 = Color(0xFFE1E1E1);
   static const Color white100 = Color(0xFFFFFFFF);
+  static const Color black100 = Color(0xFF070707);
   static const Color red = Color(0xFFE10E0E);
   static const Color green = Color(0xFF4FD100);
 }
