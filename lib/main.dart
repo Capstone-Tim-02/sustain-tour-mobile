@@ -1,10 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sustain_tour_mobile/screen/main_screen/main_screen.dart';
 import 'package:sustain_tour_mobile/widget/bottom_navbar_widget/bottom_navbar_widget_provider.dart';
 
+import 'screen/onboarding_screen/onboarding_provider.dart';
+import 'screen/onboarding_screen/splash_screen/splash_screen.dart';
+import 'screen/onboarding_screen/splash_screen/splash_screen_provider.dart';
+
 void main() {
-  runApp(const MyApp());
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider<BottomNavigationBarProvider>(
+          create: (context) => BottomNavigationBarProvider()),
+      ChangeNotifierProvider<SplashScreenProvider>(
+          create: (context) => SplashScreenProvider()),
+      ChangeNotifierProvider<CarouselProvider>(
+          create: (context) => CarouselProvider()),
+    ],
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -12,21 +25,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider<BottomNavigationBarProvider>(
-          create: (context) => BottomNavigationBarProvider(),
-        ),
-      ],
-      child: MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFFfffbf5)),
-          useMaterial3: true,
-        ),
-        home: const MainScreen(),
-        // home: const HomeScreen(),
+    return MaterialApp(
+      title: 'Sustain Tour',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFFfffbf5)),
+        useMaterial3: true,
       ),
+      home: const SplashScreen(),
     );
   }
 }
