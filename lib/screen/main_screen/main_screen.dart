@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:sustain_tour_mobile/widget/bottom_navbar_widget/bottom_navbar_widget.dart';
+import 'package:sustain_tour_mobile/widget/bottom_navbar_widget/bottom_navbar_widget_provider.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
@@ -19,9 +22,13 @@ class MainScreen extends StatelessWidget {
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    final provider = Provider.of<BottomNavigationBarProvider>(context);
+
+    return Scaffold(
+      body: buildBody(provider.currentIndex),
+      bottomNavigationBar: const BottomNavigationBarWidget(),
+    );
   }
 }
