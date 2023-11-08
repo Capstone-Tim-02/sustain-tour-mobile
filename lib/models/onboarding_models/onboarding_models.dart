@@ -1,8 +1,8 @@
-class CarouselItem {
+class OnboardingModels {
   final String imagePath;
   final String title;
-  final String deskirsi;
+  final String deskripsi;
 
-  CarouselItem(
-      {required this.imagePath, required this.title, required this.deskirsi});
+  OnboardingModels(
+      {required this.imagePath, required this.title, required this.deskripsi});
 }

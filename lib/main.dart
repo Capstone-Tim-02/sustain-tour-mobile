@@ -13,8 +13,8 @@ void main() {
           create: (context) => BottomNavigationBarProvider()),
       ChangeNotifierProvider<SplashScreenProvider>(
           create: (context) => SplashScreenProvider()),
-      ChangeNotifierProvider<CarouselProvider>(
-          create: (context) => CarouselProvider()),
+      ChangeNotifierProvider<OnboardingProvider>(
+          create: (context) => OnboardingProvider()),
     ],
     child: const MyApp(),
   ));
