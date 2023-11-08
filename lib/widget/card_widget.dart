@@ -28,14 +28,16 @@ class CardWidget {
             children: [
               Stack(
                 children: [
-                  SizedBox(
-                    height: 142,
-                    child: Image.network(
-                      imageUrl ?? "",
-                      fit: BoxFit.fitHeight,
-                      errorBuilder: (context, error, stackTrace) {
-                        return const Icon(Icons.image_not_supported_sharp);
-                      }
+                  Center(
+                    child: SizedBox(
+                      height: 142,
+                      child: Image.network(
+                        "",
+                        fit: BoxFit.fitHeight,
+                        errorBuilder: (context, error, stackTrace) {
+                          return const Icon(Icons.image_not_supported_sharp);
+                        }
+                      ),
                     ),
                   ),
                   Padding(
@@ -76,7 +78,7 @@ class CardWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left : 11, right: 11, bottom: 2,top: 4),
+                    padding: const EdgeInsets.only(left : 11, right: 11, bottom: 2,top: 3),
                     child: Text(
                       title ?? "Title",
                       style: TextStyleWidget.titleT3(
@@ -253,20 +255,22 @@ class CardWidget {
           height: 224,
           color: ColorThemeStyle.white100,
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
-                height: 164,
-                width: 380,
-                child: Image.network(
-                  imageUrl ?? "",
-                  fit: BoxFit.fitWidth,
-                  errorBuilder: (context, error, stackTrace) {
-                    return const Icon(Icons.image_not_supported_sharp);
-                  }
+              Center(
+                child: SizedBox(
+                  height: 164,
+                  width: 380,
+                  child: Image.network(
+                    imageUrl ?? "",
+                    fit: BoxFit.fitWidth,
+                    errorBuilder: (context, error, stackTrace) {
+                      return const Icon(Icons.image_not_supported_sharp);
+                    }
+                  ),
                 ),
               ),
               Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(bottom: 8, left: 8, right: 8),
