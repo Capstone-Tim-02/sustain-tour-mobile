@@ -45,52 +45,52 @@ class BottomNavigationBarWidget extends StatelessWidget {
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
-              Assets.assetsIconsHomeFill2,
+              Assets.assetsIconsLocationFill2,
               width: 24,
               height: 24,
             ),
             label: 'Explore',
             activeIcon: SvgPicture.asset(
-              Assets.assetsIconsHome,
+              Assets.assetsIconsLocation,
               width: 24,
               height: 24,
             ),
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
-              Assets.assetsIconsHomeFill2,
+              Assets.assetsIconsPromo2,
               width: 24,
               height: 24,
             ),
             label: 'Promo',
             activeIcon: SvgPicture.asset(
-              Assets.assetsIconsHome,
+              Assets.assetsIconsTag,
               width: 24,
               height: 24,
             ),
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
-              Assets.assetsIconsHomeFill2,
+              Assets.assetsIconsTicketOn2,
               width: 24,
               height: 24,
             ),
             label: 'Ticket',
             activeIcon: SvgPicture.asset(
-              Assets.assetsIconsHome,
+              Assets.assetsIconsReceipt,
               width: 24,
               height: 24,
             ),
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
-              Assets.assetsIconsHomeFill2,
+              Assets.assetsIconsUsers2,
               width: 24,
               height: 24,
             ),
             label: 'Profile',
             activeIcon: SvgPicture.asset(
-              Assets.assetsIconsHome,
+              Assets.assetsIconsProfile,
               width: 24,
               height: 24,
             ),
