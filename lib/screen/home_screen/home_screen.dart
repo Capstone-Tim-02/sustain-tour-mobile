@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:sustain_tour_mobile/screen/main_screen/main_screen.dart';
 import 'package:sustain_tour_mobile/style/color_theme_style.dart';
 import 'package:sustain_tour_mobile/style/shadow_style.dart';
 import 'package:sustain_tour_mobile/style/text_style_widget.dart';
+import 'package:sustain_tour_mobile/widget/bottom_navbar_widget/bottom_navbar_widget_provider.dart';
 import 'package:sustain_tour_mobile/widget/card_widget.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -194,7 +197,18 @@ class HomeScreen extends StatelessWidget {
                   )
                 ),
                 GestureDetector(
-                  onTap: (){},
+                  onTap: (){
+                    //TODO : Navigasi menggunakan tombol Lihat Semua
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          Provider.of<BottomNavigationBarProvider>(context).onChangeIndex(1);
+                          return const MainScreen();
+                        }
+                      )
+                    );
+                  },
                   child: Text(
                     "Lihat semua",
                     style: TextStyleWidget.bodyB3(
@@ -206,28 +220,26 @@ class HomeScreen extends StatelessWidget {
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: GridView.builder(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 8,
-                mainAxisSpacing: 8
-              ),
-              shrinkWrap: true,
-              padding: const EdgeInsets.only(top: 15),
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: 10,
-              itemBuilder: (BuildContext context, int index) {
-                return CardWidget.small(
-                  imageUrl: "https://media.istockphoto.com/id/1432434937/photo/aerial-view-of-panama-canal-on-the-atlantic-side.webp?b=1&s=612x612&w=0&k=20&c=n48PbZKA0dFI7sLejIgu2mNZwH4KuIQktREwhKowa6g=",
-                  title: "Wisata alam",
-                  location: "Surabaya",
-                  subtitle: "Rp 200.000"
-                );
-              },
+          GridView.builder(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 8,
+              mainAxisSpacing: 8
             ),
+            shrinkWrap: true,
+            padding: const EdgeInsets.only(top: 15, left: 10, right: 10),
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: 10,
+            itemBuilder: (BuildContext context, int index) {
+              return CardWidget.small(
+                imageUrl: "https://upload.wikimedia.org/wikipedia/commons/e/e1/Pemandangan_Gunung_Bromo.jpg",
+                title: "Wisata alam",
+                location: "Surabaya",
+                subtitle: "Rp 200.000"
+              );
+            },
           ),
+          const SizedBox(height: 40)
         ],
       ),
     );
