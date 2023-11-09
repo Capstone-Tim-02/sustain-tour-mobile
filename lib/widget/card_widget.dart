@@ -12,7 +12,7 @@ class CardWidget {
   }) {
     return Container(
       decoration: BoxDecoration(
-        boxShadow: [ShadowStyle.shadowFix2],
+        boxShadow: [ShadowStyle.shadowFix1],
       ),
       child: Card(
         shape: RoundedRectangleBorder(
