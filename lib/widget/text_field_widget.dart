@@ -3,6 +3,8 @@ import 'package:sustain_tour_mobile/style/color_theme_style.dart';
 
 class TextFieldWidget extends StatelessWidget {
   final TextEditingController? controller;
+  final Function(String)? onChange;
+
   final String? labelText;
   final String? hintText;
   final String? errorText;
@@ -12,7 +14,8 @@ class TextFieldWidget extends StatelessWidget {
 
   const TextFieldWidget({
     super.key,
-    required this.controller,
+    this.controller,
+    this.onChange,
     required this.labelText,
     required this.hintText,
     required this.errorText,
@@ -31,6 +34,7 @@ class TextFieldWidget extends StatelessWidget {
         // membuat huruf pertama pada keyboard HP menjadi kapital
         keyboardType: keyboardType, //mengubah jenis keyboard
         controller: controller,
+        onChanged: onChange,
         decoration: InputDecoration(
           labelText: labelText,
           hintText: hintText,
