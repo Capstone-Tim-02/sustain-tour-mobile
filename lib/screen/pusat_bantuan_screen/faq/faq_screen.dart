@@ -132,12 +132,17 @@ class _FAQScreenState extends State<FAQScreen> {
                             );
                           },
                           child: Card(
-                            elevation: 2,
+                            elevation: 0.5,
                             margin: const EdgeInsets.symmetric(vertical: 8),
                             child: ListTile(
                               trailing:
                                   const Icon(Icons.arrow_forward_ios, size: 16),
-                              title: Text(_searchData[index].tittle),
+                              title: Text(
+                                _searchData[index].tittle,
+                                style: TextStyleWidget.bodyB3(
+                                  fontWeight: FontWeightStyle.medium,
+                                ),
+                              ),
                             ),
                           ),
                         );
@@ -159,12 +164,17 @@ class _FAQScreenState extends State<FAQScreen> {
                             );
                           },
                           child: Card(
-                            elevation: 2,
+                            elevation: 0.5,
                             margin: const EdgeInsets.symmetric(vertical: 8),
                             child: ListTile(
                               trailing:
                                   const Icon(Icons.arrow_forward_ios, size: 16),
-                              title: Text(_listfaq[index].tittle),
+                              title: Text(
+                                _listfaq[index].tittle,
+                                style: TextStyleWidget.bodyB3(
+                                  fontWeight: FontWeightStyle.medium,
+                                ),
+                              ),
                             ),
                           ),
                         );
