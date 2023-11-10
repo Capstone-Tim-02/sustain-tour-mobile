@@ -98,10 +98,6 @@ class Assets {
   /// assets/icons/TicketOn.svg
   static const String assetsIconsTicketOn = "assets/icons/TicketOn.svg";
 
-  /// Assets for assetsIconsTicketOn2
-  /// assets/icons/TicketOn2.svg
-  static const String assetsIconsTicketOn2 = "assets/icons/TicketOn2.svg";
-
   /// Assets for assetsIconsUsername
   /// assets/icons/Username.svg
   static const String assetsIconsUsername = "assets/icons/Username.svg";
@@ -138,7 +134,19 @@ class Assets {
   static const String assetsImagesLogoDestimate =
       "assets/images/logo_destimate.png";
 
-  /// Assets for assetsImagesOnboarding
-  /// assets/images/onboarding.png
-  static const String assetsImagesOnboarding = "assets/images/onboarding.png";
+  /// Assets for assetsImagesOnboarding1
+  /// assets/images/onboarding1.png
+  static const String assetsImagesOnboarding1 = "assets/images/onboarding1.png";
+
+  /// Assets for assetsImagesOnboarding2
+  /// assets/images/onboarding2.png
+  static const String assetsImagesOnboarding2 = "assets/images/onboarding2.png";
+
+  /// Assets for assetsImagesOnboarding4
+  /// assets/images/onboarding4.png
+  static const String assetsImagesOnboarding4 = "assets/images/onboarding4.png";
+
+  /// Assets for assetsImagesMatchmaking
+  /// assets/images/matchmaking.png
+  static const String assetsImagesMatchmaking = "assets/images/matchmaking.png";
 }
