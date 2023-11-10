@@ -30,7 +30,6 @@ class TextFieldWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: 380,
-      height: 106,
       child: TextFormField(
         textCapitalization: textCapitalization,
         // membuat huruf pertama pada keyboard HP menjadi kapital
