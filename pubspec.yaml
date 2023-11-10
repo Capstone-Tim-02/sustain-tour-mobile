@@ -38,6 +38,8 @@ dependencies:
   carousel_slider: ^4.2.1
   dots_indicator: ^3.0.0
   flutter_svg: ^2.0.9
+  dio: ^5.3.3
+  shared_preferences: ^2.2.2
 
 dev_dependencies:
   flutter_test:
@@ -66,12 +68,11 @@ flutter:
     - assets/icons/
     - assets/images/
 
-#UNTUK GENERATE IMAGE
-# flutter_assets:
-#   assets_path: assets/
-#   output_path: lib/constants/
-#   filename: assets_image.dart
-
+  #UNTUK GENERATE IMAGE
+  # flutter_assets:
+  #   assets_path: assets/
+  #   output_path: lib/constants/
+  #   filename: assets_image.dart
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

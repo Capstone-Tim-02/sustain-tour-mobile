@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:provider/provider.dart';
 import 'package:dots_indicator/dots_indicator.dart';
+import 'package:sustain_tour_mobile/screen/login_screen/login_screen.dart';
 import 'package:sustain_tour_mobile/screen/onboarding_screen/onboarding_provider.dart';
 import 'package:sustain_tour_mobile/style/color_theme_style.dart';
 import 'package:sustain_tour_mobile/style/font_weight_style.dart';
@@ -96,8 +97,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   ButtonWidget.defaultContainer(
                       text: "Masuk",
                       onPressed: () {
-                        // Navigator.of(context).push(MaterialPageRoute(
-                        //     builder: (context) => LoginScreen()));
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => LoginScreen()));
                       }),
                   const SizedBox(
                     height: 16,

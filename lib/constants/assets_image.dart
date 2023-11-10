@@ -98,6 +98,15 @@ class Assets {
   /// assets/icons/TicketOn.svg
   static const String assetsIconsTicketOn = "assets/icons/TicketOn.svg";
 
+  /// Assets for assetsIconsLock
+  /// assets/icons/Lock.svg
+  static const String assetsIconsLock = "assets/icons/lock.svg";
+
+  /// Assets for assetsIconsTicketOn
+  /// assets/icons/TicketOn.svg
+  static const String assetsIconsPersonOutline =
+      "assets/icons/PersonOutline.svg";
+
   /// Assets for assetsIconsTicketOn2
   /// assets/icons/TicketOn2.svg
   static const String assetsIconsTicketOn2 = "assets/icons/TicketOn2.svg";
