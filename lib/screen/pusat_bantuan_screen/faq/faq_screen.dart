@@ -13,6 +13,7 @@ class FAQScreen extends StatefulWidget {
 }
 
 class _FAQScreenState extends State<FAQScreen> {
+  TextEditingController quesController = TextEditingController();
   String valueSearch = '';
   final List<FaqModel> _searchData = [];
 
@@ -64,7 +65,57 @@ class _FAQScreenState extends State<FAQScreen> {
     ),
     FaqModel(
       tittle:
-          'Apakah promo yang tersedia bisa digunakan diseluruh tempat wisata?',
+          'Apakah promo yang tersedia bisa digunakan diseluruh tempat febi?',
+      detail:
+          'Untuk mendaftarkan wisata anda pada aplikasi destimate anda perlu menghubungi admin yang tertera pada halaman landing page yang kami miliki. Anda dapat mengakses halaman landing page tersebut dengan mengklik link dibawah \n www.destimate.com ',
+    ),
+    FaqModel(
+      tittle: 'Bagaimana cara mendaftar sebagai pemilik gabriel ?',
+      detail:
+          'Untuk mendaftarkan wisata anda pada aplikasi destimate anda perlu menghubungi admin yang tertera pada halaman landing page yang kami miliki. Anda dapat mengakses halaman landing page tersebut dengan mengklik link dibawah \n www.destimate.com ',
+    ),
+    FaqModel(
+      tittle:
+          'Apakah kita bisa meminta pengembalian dana jika tempat wisata tidak sesui dengan deskripsi?',
+      detail:
+          'Untuk mendaftarkan wisata anda pada aplikasi destimate anda perlu menghubungi admin yang tertera pada halaman landing page yang kami miliki. Anda dapat mengakses halaman landing page tersebut dengan mengklik link dibawah \n www.destimate.com ',
+    ),
+    FaqModel(
+      tittle:
+          'Apakah promo yang tersedia bisa digunakan diseluruh tempat febi?',
+      detail:
+          'Untuk mendaftarkan wisata anda pada aplikasi destimate anda perlu menghubungi admin yang tertera pada halaman landing page yang kami miliki. Anda dapat mengakses halaman landing page tersebut dengan mengklik link dibawah \n www.destimate.com ',
+    ),
+    FaqModel(
+      tittle: 'Bagaimana cara mendaftar sebagai pemilik gabriel ?',
+      detail:
+          'Untuk mendaftarkan wisata anda pada aplikasi destimate anda perlu menghubungi admin yang tertera pada halaman landing page yang kami miliki. Anda dapat mengakses halaman landing page tersebut dengan mengklik link dibawah \n www.destimate.com ',
+    ),
+    FaqModel(
+      tittle:
+          'Apakah kita bisa meminta pengembalian dana jika tempat wisata tidak sesui dengan deskripsi?',
+      detail:
+          'Untuk mendaftarkan wisata anda pada aplikasi destimate anda perlu menghubungi admin yang tertera pada halaman landing page yang kami miliki. Anda dapat mengakses halaman landing page tersebut dengan mengklik link dibawah \n www.destimate.com ',
+    ),
+    FaqModel(
+      tittle:
+          'Apakah promo yang tersedia bisa digunakan diseluruh tempat febi?',
+      detail:
+          'Untuk mendaftarkan wisata anda pada aplikasi destimate anda perlu menghubungi admin yang tertera pada halaman landing page yang kami miliki. Anda dapat mengakses halaman landing page tersebut dengan mengklik link dibawah \n www.destimate.com ',
+    ),
+    FaqModel(
+      tittle: 'Bagaimana cara mendaftar sebagai pemilik gabriel ?',
+      detail:
+          'Untuk mendaftarkan wisata anda pada aplikasi destimate anda perlu menghubungi admin yang tertera pada halaman landing page yang kami miliki. Anda dapat mengakses halaman landing page tersebut dengan mengklik link dibawah \n www.destimate.com ',
+    ),
+    FaqModel(
+      tittle:
+          'Apakah kita bisa meminta pengembalian dana jika tempat wisata tidak sesui dengan deskripsi?',
+      detail:
+          'Untuk mendaftarkan wisata anda pada aplikasi destimate anda perlu menghubungi admin yang tertera pada halaman landing page yang kami miliki. Anda dapat mengakses halaman landing page tersebut dengan mengklik link dibawah \n www.destimate.com ',
+    ),
+    FaqModel(
+      tittle: 'Pertanyaan terakhir?',
       detail:
           'Untuk mendaftarkan wisata anda pada aplikasi destimate anda perlu menghubungi admin yang tertera pada halaman landing page yang kami miliki. Anda dapat mengakses halaman landing page tersebut dengan mengklik link dibawah \n www.destimate.com ',
     ),
@@ -74,6 +125,7 @@ class _FAQScreenState extends State<FAQScreen> {
   Widget build(BuildContext context) {
     String? errorText;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text(
           'FAQ',
@@ -105,10 +157,17 @@ class _FAQScreenState extends State<FAQScreen> {
                 hintText: 'Apakah saya',
                 errorText: errorText,
                 prefixIcon: const Icon(Icons.search),
+                // controller: quesController,
                 onChange: (String value) {
                   searchFaq(value);
                 }),
           ),
+          // ElevatedButton(
+          //   onPressed: () {
+          //     searchFaq(quesController.text);
+          //   },
+          //   child: const Text('Search'),
+          // ),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.symmetric(
@@ -116,39 +175,61 @@ class _FAQScreenState extends State<FAQScreen> {
                 vertical: 32,
               ),
               child: _searchData.isNotEmpty || valueSearch.isNotEmpty
-                  ? ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: _searchData.length,
-                      itemBuilder: (context, index) {
-                        return GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => DetailFaqScreen(
-                                  faqModel: _searchData[index],
+                  ? Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Expanded(
+                          child: ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: _searchData.length,
+                            itemBuilder: (context, index) {
+                              return GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => DetailFaqScreen(
+                                        faqModel: _searchData[index],
+                                      ),
+                                    ),
+                                  );
+                                },
+                                child: Card(
+                                  elevation: 0.5,
+                                  margin:
+                                      const EdgeInsets.symmetric(vertical: 8),
+                                  child: ListTile(
+                                    trailing: const Icon(
+                                        Icons.arrow_forward_ios,
+                                        size: 16),
+                                    title: Text(
+                                      _searchData[index].tittle,
+                                      style: TextStyleWidget.bodyB3(
+                                        fontWeight: FontWeightStyle.medium,
+                                      ),
+                                    ),
+                                  ),
                                 ),
-                              ),
-                            );
-                          },
-                          child: Card(
-                            elevation: 0.5,
-                            margin: const EdgeInsets.symmetric(vertical: 8),
-                            child: ListTile(
-                              trailing:
-                                  const Icon(Icons.arrow_forward_ios, size: 16),
-                              title: Text(
-                                _searchData[index].tittle,
-                                style: TextStyleWidget.bodyB3(
-                                  fontWeight: FontWeightStyle.medium,
-                                ),
-                              ),
+                              );
+                            },
+                          ),
+                        ),
+                        SizedBox(
+                          height: 50,
+                          width: 340,
+                          child: Text(
+                            'Hubungi cp dibawah ini jika kamu tidak menemukan jawaban cpdetimate',
+                            textAlign: TextAlign.start,
+                            style: TextStyleWidget.bodyB3(
+                              fontWeight: FontWeightStyle.medium,
                             ),
                           ),
-                        );
-                      },
+                        ),
+                      ],
                     )
-                  : ListView.builder(
+                  :
+                  // Text('data kosong')
+                  ListView.builder(
                       shrinkWrap: true,
                       itemCount: _listfaq.length,
                       itemBuilder: (context, index) {
@@ -182,6 +263,17 @@ class _FAQScreenState extends State<FAQScreen> {
                     ),
             ),
           ),
+          // SizedBox(
+          //   height: 50,
+          //   width: 340,
+          //   child: Text(
+          //     'Hubungi cp dibawah ini jika kamu tidak menemukan jawaban cpdetimate',
+          //     textAlign: TextAlign.start,
+          //     style: TextStyleWidget.bodyB3(
+          //       fontWeight: FontWeightStyle.medium,
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );
