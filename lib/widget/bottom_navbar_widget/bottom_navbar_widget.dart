@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
+import 'package:sustain_tour_mobile/constants/assets_image.dart';
 import 'package:sustain_tour_mobile/style/color_theme_style.dart';
 import 'package:sustain_tour_mobile/widget/bottom_navbar_widget/bottom_navbar_widget_provider.dart';
 
@@ -27,26 +29,71 @@ class BottomNavigationBarWidget extends StatelessWidget {
         selectedItemColor: ColorThemeStyle.blue60, //ganti warna
         unselectedItemColor: ColorThemeStyle.grey80,
         showUnselectedLabels: true, // Menampilkan label selalu
-        items: const [
+        items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: SvgPicture.asset(
+              Assets.assetsIconsHomeFill2,
+              width: 24,
+              height: 24,
+            ),
             label: 'Home',
+            activeIcon: SvgPicture.asset(
+              Assets.assetsIconsHome,
+              width: 24,
+              height: 24,
+            ),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.location_on),
+            icon: SvgPicture.asset(
+              Assets.assetsIconsLocationFill2,
+              width: 24,
+              height: 24,
+            ),
             label: 'Explore',
+            activeIcon: SvgPicture.asset(
+              Assets.assetsIconsLocation,
+              width: 24,
+              height: 24,
+            ),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.tag),
+            icon: SvgPicture.asset(
+              Assets.assetsIconsPromo2,
+              width: 24,
+              height: 24,
+            ),
             label: 'Promo',
+            activeIcon: SvgPicture.asset(
+              Assets.assetsIconsTag,
+              width: 24,
+              height: 24,
+            ),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Tiket',
+            icon: SvgPicture.asset(
+              Assets.assetsIconsTicketOn2,
+              width: 24,
+              height: 24,
+            ),
+            label: 'Ticket',
+            activeIcon: SvgPicture.asset(
+              Assets.assetsIconsReceipt,
+              width: 24,
+              height: 24,
+            ),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
+            icon: SvgPicture.asset(
+              Assets.assetsIconsUsers2,
+              width: 24,
+              height: 24,
+            ),
             label: 'Profile',
+            activeIcon: SvgPicture.asset(
+              Assets.assetsIconsProfile,
+              width: 24,
+              height: 24,
+            ),
           ),
         ],
         currentIndex: provider.currentIndex,
