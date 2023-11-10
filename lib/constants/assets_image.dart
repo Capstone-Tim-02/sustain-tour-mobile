@@ -58,6 +58,10 @@ class Assets {
   static const String assetsIconsLocationFill2 =
       "assets/icons/LocationFill2.svg";
 
+  /// Assets for assetsIconsLock
+  /// assets/icons/lock.svg
+  static const String assetsIconsLock = "assets/icons/lock.svg";
+
   /// Assets for assetsIconsLogout
   /// assets/icons/Logout.svg
   static const String assetsIconsLogout = "assets/icons/Logout.svg";
@@ -65,6 +69,11 @@ class Assets {
   /// Assets for assetsIconsName
   /// assets/icons/Name.svg
   static const String assetsIconsName = "assets/icons/Name.svg";
+
+  /// Assets for assetsIconsPersonOutline
+  /// assets/icons/PersonOutline.svg
+  static const String assetsIconsPersonOutline =
+      "assets/icons/PersonOutline.svg";
 
   /// Assets for assetsIconsPhone
   /// assets/icons/Phone.svg
@@ -138,6 +147,14 @@ class Assets {
   static const String assetsImagesLogoDestimate =
       "assets/images/logo_destimate.png";
 
+  /// Assets for assetsImagesMatchmaking
+  /// assets/images/matchmaking.png
+  static const String assetsImagesMatchmaking = "assets/images/matchmaking.png";
+
+  /// Assets for assetsImagesOnboarding
+  /// assets/images/onboarding.png
+  static const String assetsImagesOnboarding = "assets/images/onboarding.png";
+
   /// Assets for assetsImagesOnboarding1
   /// assets/images/onboarding1.png
   static const String assetsImagesOnboarding1 = "assets/images/onboarding1.png";
@@ -150,7 +167,8 @@ class Assets {
   /// assets/images/onboarding4.png
   static const String assetsImagesOnboarding4 = "assets/images/onboarding4.png";
 
-  /// Assets for assetsImagesMatchmaking
-  /// assets/images/matchmaking.png
-  static const String assetsImagesMatchmaking = "assets/images/matchmaking.png";
+  /// Assets for assetsImagesPusatBantuan
+  /// assets/images/PusatBantuan.png
+  static const String assetsImagesPusatBantuan =
+      "assets/images/PusatBantuan.png";
 }
