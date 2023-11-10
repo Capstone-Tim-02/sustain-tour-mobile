@@ -19,6 +19,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Column(
         children: [
           Consumer<OnboardingProvider>(
@@ -37,7 +38,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             Center(
                               child: Image.asset(
                                 item.imagePath,
-                                height: 280,
+                                height: 270,
                                 width: 380,
                               ),
                             ),
@@ -73,7 +74,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       autoPlayAnimationDuration:
                           const Duration(milliseconds: 800),
                       autoPlayCurve: Curves.fastOutSlowIn,
-                      aspectRatio: 16 / 9,
+                      aspectRatio: 4 / 3,
                       viewportFraction: 1,
                       onPageChanged: (index, reason) {
                         setState(() {
@@ -93,7 +94,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     height: 45,
                   ),
                   ButtonWidget.defaultContainer(
-                      text: "Masuk", onPressed: () {}),
+                      text: "Masuk",
+                      onPressed: () {
+                        // Navigator.of(context).push(MaterialPageRoute(
+                        //     builder: (context) => LoginScreen()));
+                      }),
                   const SizedBox(
                     height: 16,
                   ),
