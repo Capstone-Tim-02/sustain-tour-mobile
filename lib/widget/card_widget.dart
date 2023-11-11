@@ -6,7 +6,7 @@ import 'package:sustain_tour_mobile/style/text_style_widget.dart';
 class CardWidget {
   static Container small({
     String? title,
-    String? subtitle,
+    int? price,
     String? location,
     String? imageUrl,
   }) {
@@ -30,15 +30,14 @@ class CardWidget {
                 flex: 3,
                 child: Stack(
                   children: [
-                    Center(
-                      child: SizedBox(
-                        child: Image.network(
-                          imageUrl ?? "",
-                          fit: BoxFit.fitHeight,
-                          errorBuilder: (context, error, stackTrace) {
-                            return const Icon(Icons.image_not_supported_sharp);
-                          }
-                        ),
+                    SizedBox(
+                      height: 146,
+                      child: Image.network(
+                        imageUrl ?? "",
+                        fit: BoxFit.fitHeight,
+                        errorBuilder: (context, error, stackTrace) {
+                          return const Center(child: Icon(Icons.image_not_supported_sharp,size: 60));
+                        }
                       ),
                     ),
                     Padding(
@@ -82,7 +81,7 @@ class CardWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 2),
+                      padding: const EdgeInsets.only(left: 11, bottom: 2, right: 11, top: 2),
                       child: Text(
                         title ?? "Title",
                         style: TextStyleWidget.titleT3(
@@ -95,7 +94,7 @@ class CardWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 11),
                       child: Text(
-                        subtitle ?? "Subtitle",
+                        "Rp. ${price?.toString() ?? "0"}",
                         style: TextStyleWidget.bodyB3(
                           color: ColorThemeStyle.black100,
                           fontWeight: FontWeight.w500
@@ -138,9 +137,9 @@ class CardWidget {
                 width: double.infinity,
                 child: Image.network(
                   imageUrl ?? "",
-                  fit: BoxFit.fitWidth,
+                  fit: BoxFit.fill,
                   errorBuilder: (context, error, stackTrace) {
-                    return const Icon(Icons.image_not_supported_sharp);
+                    return const Icon(Icons.image_not_supported_sharp, size: 60);
                   }
                 ),
               ),
@@ -195,7 +194,7 @@ class CardWidget {
                       imageUrl ?? "",
                       fit: BoxFit.fill,
                       errorBuilder: (context, error, stackTrace) {
-                        return const Icon(Icons.image_not_supported_sharp);
+                        return const Icon(Icons.image_not_supported_sharp, size: 60);
                       }
                     ),
                   ),
@@ -270,7 +269,7 @@ class CardWidget {
                     imageUrl ?? "",
                     fit: BoxFit.fitWidth,
                     errorBuilder: (context, error, stackTrace) {
-                      return const Icon(Icons.image_not_supported_sharp);
+                      return const Icon(Icons.image_not_supported_sharp, size: 60);
                     }
                   ),
                 ),
