@@ -30,14 +30,16 @@ class CardWidget {
                 flex: 3,
                 child: Stack(
                   children: [
-                    SizedBox(
-                      height: 146,
-                      child: Image.network(
-                        imageUrl ?? "",
-                        fit: BoxFit.fitHeight,
-                        errorBuilder: (context, error, stackTrace) {
-                          return const Center(child: Icon(Icons.image_not_supported_sharp,size: 60));
-                        }
+                    Center(
+                      child: SizedBox(
+                        height: 146,
+                        child: Image.network(
+                          imageUrl ?? "",
+                          fit: BoxFit.fitHeight,
+                          errorBuilder: (context, error, stackTrace) {
+                            return const Center(child: Icon(Icons.image_not_supported_sharp,size: 60));
+                          }
+                        ),
                       ),
                     ),
                     Padding(

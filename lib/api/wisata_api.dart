@@ -3,6 +3,7 @@ import 'package:sustain_tour_mobile/models/wisata_models/wisata_models.dart';
 
 class WisataApi {
   Future<List<Wisata>> getAllWisata({int? page, int? limit}) async {
+    // TODO Masih perlu fix
     List<Wisata> listWisata = [];
 
     final response = await Dio().get(
@@ -32,15 +33,11 @@ class WisataApi {
       ),
     );
 
-
     if(response.statusCode == 200){
       WisataModel responseModel = WisataModel.fromJson(response.data);
-      print(responseModel);
       for (var element in responseModel.wisatas) {
         listWisata.add(element);
       }
-    } else {
-      return listWisata = [];
     }
 
     return listWisata;

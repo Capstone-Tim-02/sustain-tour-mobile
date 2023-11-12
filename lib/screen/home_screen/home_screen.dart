@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sustain_tour_mobile/screen/home_screen/home_screen_provider.dart';
-import 'package:sustain_tour_mobile/screen/main_screen/main_screen.dart';
 import 'package:sustain_tour_mobile/style/color_theme_style.dart';
 import 'package:sustain_tour_mobile/style/shadow_style.dart';
 import 'package:sustain_tour_mobile/style/text_style_widget.dart';
+import 'package:sustain_tour_mobile/widget/badge_widget.dart';
 import 'package:sustain_tour_mobile/widget/bottom_navbar_widget/bottom_navbar_widget_provider.dart';
 import 'package:sustain_tour_mobile/widget/card_widget.dart';
 
@@ -21,9 +21,11 @@ class _HomeScreenState extends State<HomeScreen> {
     WidgetsBinding.instance.addPostFrameCallback(
       (_) => setState(
         () {
+          //TODO Gabungin sama auth
           final homeProvider = Provider.of<HomeScreenProvider>(context, listen: false);
-          homeProvider.getRekomendasiWisata(token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InN0ZXZlbiIsImV4cCI6MTY5OTc1MDU1OSwiaWF0IjoxNjk5NjY0MTU5fQ.VH70WgJZQb_AlEoF2jLawWc_iM_wJhvcuU-mzq6nQeg");
-          homeProvider.getPromo(token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InN0ZXZlbiIsImV4cCI6MTY5OTc1MDU1OSwiaWF0IjoxNjk5NjY0MTU5fQ.VH70WgJZQb_AlEoF2jLawWc_iM_wJhvcuU-mzq6nQeg");
+          homeProvider.getUserData(id: 33, token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InN0ZXZlbiIsImV4cCI6MTY5OTg1ODE4MSwiaWF0IjoxNjk5NzcxNzgxfQ.eYF06ejiaTGNA-JudNUpTYCTNc2o21zBA5jNRSKHBy0");
+          homeProvider.getPromo(token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InN0ZXZlbiIsImV4cCI6MTY5OTg1ODE4MSwiaWF0IjoxNjk5NzcxNzgxfQ.eYF06ejiaTGNA-JudNUpTYCTNc2o21zBA5jNRSKHBy0");
+          homeProvider.getRekomendasiWisata(token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InN0ZXZlbiIsImV4cCI6MTY5OTg1ODE4MSwiaWF0IjoxNjk5NzcxNzgxfQ.eYF06ejiaTGNA-JudNUpTYCTNc2o21zBA5jNRSKHBy0");
         },
       ),
     );
@@ -56,12 +58,16 @@ class _HomeScreenState extends State<HomeScreen> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          "Hi, Fulan",
-                          style: TextStyleWidget.titleT2(
-                            color: ColorThemeStyle.white100,
-                            fontWeight: FontWeight.w500
-                          ),
+                        Consumer<HomeScreenProvider>(
+                          builder: (context, homeScreenProvider, child) {
+                            return Text(
+                              "Hi, ${homeScreenProvider.userData?.name ?? " ........"}",
+                              style: TextStyleWidget.titleT2(
+                                color: ColorThemeStyle.white100,
+                                fontWeight: FontWeight.w500
+                              ),
+                            );
+                          },
                         ),
                         const SizedBox(height: 8),
                         Text(
@@ -73,23 +79,29 @@ class _HomeScreenState extends State<HomeScreen> {
                         )
                       ],
                     ),
-                    const CircleAvatar(
+                    CircleAvatar(
                       backgroundColor: ColorThemeStyle.white100,
                       radius: 28,
-                      child: Icon(
-                        Icons.notifications_active,
-                        color: ColorThemeStyle.black100,
-                        size: 32,
+                      child: IconButton(
+                        onPressed: (){
+                          //TODO : Navigasi ke page Notification
+
+                        },
+                        padding: const EdgeInsets.all(12),
+                        icon: const Icon(
+                          Icons.notifications_active,
+                          color: ColorThemeStyle.black100,
+                          size: 32,
+                        ),
                       ),
                     )
                   ],
                 ),
               ),
               Center(
-                //TODO Logic ke halaman poin
                 child: GestureDetector(
                   onTap: () {
-                    
+                    Provider.of<BottomNavigationBarProvider>(context, listen: false).onChangeIndex(1);
                   },
                   child: Container(
                     height: 136,
@@ -116,16 +128,22 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                           const SizedBox(height: 8),
-                          Text(
-                            "60 Desti poin",
-                            style: TextStyleWidget.headlineH2(
-                              color: ColorThemeStyle.black100,
-                              fontWeight: FontWeight.w700
-                            ),
+                          Consumer<HomeScreenProvider>(
+                            builder: (context, homeScreenProvider, child) {
+                              return Text(
+                                "${homeScreenProvider.userData?.points ?? "--"} Desti Poin",
+                                style: TextStyleWidget.headlineH2(
+                                  color: ColorThemeStyle.black100,
+                                  fontWeight: FontWeight.w700
+                                ),
+                              );
+                            },
                           ),
                           const SizedBox(height: 21),
                           GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              //TODO Navigasi ke Halaman Poin
+                            },
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -165,16 +183,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 GestureDetector(
                   onTap: (){
-                    //TODO : Navigasi menggunakan tombol Lihat Semua ke halaman promo
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) {
-                          Provider.of<BottomNavigationBarProvider>(context).onChangeIndex(1);
-                          return const MainScreen();
-                        }
-                      )
-                    );
+                    Provider.of<BottomNavigationBarProvider>(context, listen: false).onChangeIndex(1);
                   },
                   child: Text(
                     "Lihat semua",
@@ -191,24 +200,46 @@ class _HomeScreenState extends State<HomeScreen> {
             height: 130,
             child: Consumer<HomeScreenProvider>(
               builder: (context, homeScreenProvider, child) {
-                return homeScreenProvider.isLoading == true ?
+                return homeScreenProvider.isLoadingPromo == true ?
                 const Center(
                   child: CircularProgressIndicator()
                 ) :
-                ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: homeScreenProvider.listPromo.length,
-                  padding: const EdgeInsets.symmetric(horizontal: 6),
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 6),
-                      child: CardWidget.medium(
-                        imageUrl: homeScreenProvider.listPromo[index].imageVoucher,
-                        title: homeScreenProvider.listPromo[index].title
+                homeScreenProvider.isGetPromoSuccess ?
+                  ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: homeScreenProvider.listPromo.length,
+                    padding: const EdgeInsets.symmetric(horizontal: 6),
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 6),
+                        child: CardWidget.medium(
+                          imageUrl: homeScreenProvider.listPromo[index].imageVoucher,
+                          title: homeScreenProvider.listPromo[index].title
+                        ),
+                      );
+                    },
+                  ) :
+                  Column(
+                    children: [
+                      const SizedBox(height: 20),
+                      Text(
+                        "Terjadi kesalahan!",
+                        style: TextStyleWidget.titleT2(
+                          fontWeight: FontWeight.w700,
+                          color: ColorThemeStyle.red
+                        ),
                       ),
-                    );
-                  },
-                );
+                      const SizedBox(height: 16),
+                      BadgeWidget.container(
+                        onPressed: (){
+                          HomeScreenProvider().getPromo(
+                            token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InN0ZXZlbiIsImV4cCI6MTY5OTg1ODE4MSwiaWF0IjoxNjk5NzcxNzgxfQ.eYF06ejiaTGNA-JudNUpTYCTNc2o21zBA5jNRSKHBy0"
+                          );
+                        },
+                        label: "Muat ulang"
+                      )
+                    ],
+                  );
               },
             )
           ),
@@ -227,16 +258,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 GestureDetector(
                   onTap: (){
-                    //TODO : Navigasi menggunakan tombol Lihat Semua ke halaman explore
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) {
-                          Provider.of<BottomNavigationBarProvider>(context).onChangeIndex(1);
-                          return const MainScreen();
-                        }
-                      )
-                    );
+                    Provider.of<BottomNavigationBarProvider>(context, listen: false).onChangeIndex(1);
                   },
                   child: Text(
                     "Lihat semua",
@@ -251,32 +273,54 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           Consumer<HomeScreenProvider>(
             builder: (context, homeScreenProvider, child) {
-              return homeScreenProvider.isLoading == true ?
+              return homeScreenProvider.isLoadingWisata == true ?
                 const Padding(
                   padding: EdgeInsets.all(40),
                   child: Center(
                     child: CircularProgressIndicator()
                   ),
                 ) :
-                GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 8,
-                    mainAxisSpacing: 8
-                  ),
-                  shrinkWrap: true,
-                  padding: const EdgeInsets.only(top: 15, left: 10, right: 10),
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: homeScreenProvider.listWisata.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return CardWidget.small(
-                      imageUrl: homeScreenProvider.listWisata[index].photoWisata1,
-                      title: homeScreenProvider.listWisata[index].title,
-                      location: homeScreenProvider.listWisata[index].kota,
-                      price: homeScreenProvider.listWisata[index].price
-                    );
-                  },
-                );
+                homeScreenProvider.isGetWisataSuccess ?
+                  GridView.builder(
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 8,
+                      mainAxisSpacing: 8
+                    ),
+                    shrinkWrap: true,
+                    padding: const EdgeInsets.only(top: 15, left: 10, right: 10),
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: homeScreenProvider.listWisata.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return CardWidget.small(
+                        imageUrl: homeScreenProvider.listWisata[index].photoWisata1,
+                        title: homeScreenProvider.listWisata[index].title,
+                        location: homeScreenProvider.listWisata[index].kota,
+                        price: homeScreenProvider.listWisata[index].price
+                      );
+                    },
+                  ) :
+                  Column(
+                    children: [
+                      const SizedBox(height: 20),
+                      Text(
+                        "Terjadi kesalahan!",
+                        style: TextStyleWidget.titleT2(
+                          fontWeight: FontWeight.w700,
+                          color: ColorThemeStyle.red
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      BadgeWidget.container(
+                        onPressed: (){
+                          HomeScreenProvider().getRekomendasiWisata(
+                            token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InN0ZXZlbiIsImV4cCI6MTY5OTg1ODE4MSwiaWF0IjoxNjk5NzcxNzgxfQ.eYF06ejiaTGNA-JudNUpTYCTNc2o21zBA5jNRSKHBy0"
+                          );
+                        },
+                        label: "Muat ulang"
+                      )
+                    ],
+                  );
             },
           ),
           const SizedBox(height: 40)
