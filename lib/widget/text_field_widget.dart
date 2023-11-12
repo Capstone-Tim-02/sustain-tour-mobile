@@ -10,6 +10,8 @@ class TextFieldWidget extends StatelessWidget {
   final String? errorText;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
+  final Color? fillColor;
+  final bool? filled;
   final TextInputType? keyboardType;
   final TextCapitalization textCapitalization;
 
@@ -22,6 +24,8 @@ class TextFieldWidget extends StatelessWidget {
     this.errorText,
     this.prefixIcon,
     this.suffixIcon,
+    this.fillColor,
+    this.filled,
     this.keyboardType,
     this.textCapitalization = TextCapitalization.sentences,
   });
@@ -42,6 +46,8 @@ class TextFieldWidget extends StatelessWidget {
           errorText: errorText,
           prefixIcon: prefixIcon,
           suffix: suffixIcon,
+          fillColor: fillColor,
+          filled: filled,
           enabledBorder: OutlineInputBorder(
             // Garis border biasa
             borderRadius: BorderRadius.circular(10.0),
