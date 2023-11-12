@@ -22,24 +22,18 @@ class HomeScreenProvider with ChangeNotifier {
   User? _userData;
   User? get userData => _userData;
 
-  bool _isGetWisataSuccess = true;
+  bool _isGetWisataSuccess = false;
   bool get isGetWisataSuccess => _isGetWisataSuccess;
 
-  bool _isGetPromoSuccess = true;
+  bool _isGetPromoSuccess = false;
   bool get isGetPromoSuccess => _isGetPromoSuccess;
 
-  bool _isGetUserDataSuccess = true;
-  bool get isGetUserDataSuccess => _isGetUserDataSuccess;
-
   void getUserData({required int id, required String token}) async{
-    notifyListeners();
-
     try {
       _userData = await UserDataApi().getUserData(id: id, token: token);
-      _isGetUserDataSuccess = true;
       notifyListeners();
     } catch (e) {
-      _isGetUserDataSuccess = false;
+      notifyListeners();
       throw Exception(e);
     }
   }
@@ -54,8 +48,9 @@ class HomeScreenProvider with ChangeNotifier {
       _isLoadingWisata = false;
       notifyListeners();
     } catch (e) {
-      _isGetWisataSuccess = false;
       _isLoadingWisata = false;
+      _isGetWisataSuccess = false;
+      notifyListeners();
       throw Exception(e);
     }
   }
@@ -70,8 +65,9 @@ class HomeScreenProvider with ChangeNotifier {
       _isLoadingPromo = false;
       notifyListeners();
     } catch (e) {
-      _isGetPromoSuccess = false;
       _isLoadingPromo = false;
+      _isGetPromoSuccess = false;
+      notifyListeners();
       throw Exception(e);
     }
   }

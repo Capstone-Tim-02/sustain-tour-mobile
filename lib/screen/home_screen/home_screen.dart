@@ -200,7 +200,7 @@ class _HomeScreenState extends State<HomeScreen> {
             height: 130,
             child: Consumer<HomeScreenProvider>(
               builder: (context, homeScreenProvider, child) {
-                return homeScreenProvider.isLoadingPromo == true ?
+                return homeScreenProvider.isLoadingPromo ?
                 const Center(
                   child: CircularProgressIndicator()
                 ) :
@@ -232,9 +232,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       const SizedBox(height: 16),
                       BadgeWidget.container(
                         onPressed: (){
-                          HomeScreenProvider().getPromo(
-                            token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InN0ZXZlbiIsImV4cCI6MTY5OTg1ODE4MSwiaWF0IjoxNjk5NzcxNzgxfQ.eYF06ejiaTGNA-JudNUpTYCTNc2o21zBA5jNRSKHBy0"
-                          );
+                          didChangeDependencies();
                         },
                         label: "Muat ulang"
                       )
@@ -273,7 +271,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           Consumer<HomeScreenProvider>(
             builder: (context, homeScreenProvider, child) {
-              return homeScreenProvider.isLoadingWisata == true ?
+              return homeScreenProvider.isLoadingWisata ?
                 const Padding(
                   padding: EdgeInsets.all(40),
                   child: Center(
@@ -313,9 +311,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       const SizedBox(height: 16),
                       BadgeWidget.container(
                         onPressed: (){
-                          HomeScreenProvider().getRekomendasiWisata(
-                            token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InN0ZXZlbiIsImV4cCI6MTY5OTg1ODE4MSwiaWF0IjoxNjk5NzcxNzgxfQ.eYF06ejiaTGNA-JudNUpTYCTNc2o21zBA5jNRSKHBy0"
-                          );
+                          didChangeDependencies();
                         },
                         label: "Muat ulang"
                       )
