@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sustain_tour_mobile/api/ai_api/ai_screen.dart';
+import 'package:sustain_tour_mobile/screen/ai_screen/ai_screen2.dart';
+import 'package:sustain_tour_mobile/screen/ai_screen/cobagettoken.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/login_provider.dart';
 import 'package:sustain_tour_mobile/screen/main_screen/main_screen.dart';
+import 'package:sustain_tour_mobile/screen/onboarding_screen/splash_screen/splash_screen.dart';
 import 'package:sustain_tour_mobile/widget/bottom_navbar_widget/bottom_navbar_widget_provider.dart';
 
 import 'screen/onboarding_screen/onboarding_provider.dart';
@@ -35,7 +39,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFFfffbf5)),
         useMaterial3: true,
       ),
-      home: const MainScreen(),
+      home: const AiScreen(),
     );
   }
 }
