@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_svg/flutter_svg.dart';
 import '../style/color_theme_style.dart';
 import '../style/font_weight_style.dart';
 import '../style/text_style_widget.dart';
@@ -47,6 +47,7 @@ class ButtonWidget {
   static Widget defaultOutline({
     required String? text,
     required Function()? onPressed,
+    final String? svgIcon,
   }) {
     return SizedBox(
       height: 60,
@@ -85,10 +86,21 @@ class ButtonWidget {
                 },
               )),
           onPressed: onPressed,
-          child: Text(
-            text ?? 'Button',
-            style: TextStyleWidget.bodyB1(
-              fontWeight: FontWeightStyle.semiBold,
+          child: Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SvgPicture.asset(svgIcon.toString()),
+                const SizedBox(
+                  width: 10,
+                ),
+                Text(
+                  text ?? 'Button',
+                  style: TextStyleWidget.bodyB1(
+                    fontWeight: FontWeightStyle.semiBold,
+                  ),
+                ),
+              ],
             ),
           )),
     );

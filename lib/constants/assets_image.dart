@@ -142,6 +142,10 @@ class Assets {
   static const String assetsIconsWisataSejarah =
       "assets/icons/Wisata_Sejarah.svg";
 
+  /// Assets for assetsIconsGoogle
+  /// assets/icons/google.svg
+  static const String assetsIconsGoogle = "assets/icons/google.svg";
+
   /// Assets for assetsImagesLogoDestimate
   /// assets/images/logo_destimate.png
   static const String assetsImagesLogoDestimate =

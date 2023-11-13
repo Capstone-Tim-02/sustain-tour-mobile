@@ -11,7 +11,6 @@ import 'package:sustain_tour_mobile/style/font_weight_style.dart';
 import 'package:sustain_tour_mobile/style/text_style_widget.dart';
 import 'package:sustain_tour_mobile/widget/button_widget.dart';
 import 'package:sustain_tour_mobile/widget/text_field_widget.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -66,24 +65,26 @@ class LoginScreen extends StatelessWidget {
                 //     .isPasswordVisible,
                 errorText:
                     Provider.of<FormPasswordProvider>(context).passwordError,
-                suffixIcon: IconButton(
-                  icon: Icon(
+                suffixIcon: GestureDetector(
+                  child: Icon(
                     Provider.of<FormPasswordProvider>(context).isPasswordVisible
                         ? Icons.visibility
                         : Icons.visibility_off,
                   ),
-                  onPressed: () {
+                  onTap: () {
                     Provider.of<FormPasswordProvider>(context, listen: false)
                         .togglePasswordVisibility();
                   },
                 ),
                 prefixIcon: FractionallySizedBox(
-                  widthFactor: 0.06,
+                  widthFactor: 0.05,
                   child: SvgPicture.asset(
                     Assets.assetsIconsLock,
                     fit: BoxFit.contain,
                   ),
                 )),
+            // TextFieldWidget(
+            //    ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -149,6 +150,7 @@ class LoginScreen extends StatelessWidget {
               height: 8,
             ),
             ButtonWidget.defaultOutline(
+              svgIcon: Assets.assetsIconsGoogle,
               text: 'Daftar Pakai Google',
               onPressed: () {
                 LoginProvider yourProvider =
