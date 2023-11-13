@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 import 'package:sustain_tour_mobile/constants/assets_image.dart';
 
 import 'package:sustain_tour_mobile/screen/login_screen/login_provider.dart';
+import 'package:sustain_tour_mobile/screen/login_screen/validator/from_password_screns.dart';
+import 'package:sustain_tour_mobile/screen/login_screen/validator/from_username_screens.dart';
 import 'package:sustain_tour_mobile/screen/main_screen/main_screen.dart';
 import 'package:sustain_tour_mobile/style/font_weight_style.dart';
 import 'package:sustain_tour_mobile/style/text_style_widget.dart';
@@ -11,10 +13,7 @@ import 'package:sustain_tour_mobile/widget/button_widget.dart';
 import 'package:sustain_tour_mobile/widget/text_field_widget.dart';
 
 class LoginScreen extends StatelessWidget {
-  final TextEditingController _usernameController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-
-  LoginScreen({super.key});
+  const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -43,24 +42,40 @@ class LoginScreen extends StatelessWidget {
             TextFieldWidget(
                 labelText: 'Email',
                 hintText: 'Email',
-                errorText: null,
-                controller: _usernameController,
+                errorText:
+                    Provider.of<FromUsernameProvider>(context).emailError,
+                controller:
+                    Provider.of<FromUsernameProvider>(context).emailController,
                 prefixIcon: FractionallySizedBox(
                   widthFactor: 0.06,
                   child: SvgPicture.asset(
-                    Assets.assetsIconsPersonOutline,
+                    Assets.assetsIconsUsers,
                     fit: BoxFit.contain,
                   ),
                 )),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             TextFieldWidget(
-                controller: _passwordController,
+                controller: Provider.of<FormPasswordProvider>(context)
+                    .passwordController,
                 labelText: 'Password',
                 hintText: 'Pasword',
-                errorText: null,
-                suffixIcon: const Icon(Icons.visibility_off),
+                obscureText: !Provider.of<FormPasswordProvider>(context)
+                    .isPasswordVisible,
+                errorText:
+                    Provider.of<FormPasswordProvider>(context).passwordError,
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    Provider.of<FormPasswordProvider>(context).isPasswordVisible
+                        ? Icons.visibility
+                        : Icons.visibility_off,
+                  ),
+                  onPressed: () {
+                    Provider.of<FormPasswordProvider>(context, listen: false)
+                        .togglePasswordVisibility();
+                  },
+                ),
                 prefixIcon: FractionallySizedBox(
                   widthFactor: 0.06,
                   child: SvgPicture.asset(
@@ -84,8 +99,20 @@ class LoginScreen extends StatelessWidget {
             const SizedBox(height: 32),
             ButtonWidget.defaultContainer(
                 onPressed: () {
-                  String username = _usernameController.text;
-                  String password = _passwordController.text;
+                  // Memanggil validasi password
+                  Provider.of<FormPasswordProvider>(context, listen: false)
+                      .validatePassword();
+                  Provider.of<FromUsernameProvider>(context, listen: false)
+                      .validateEmail();
+                  String username =
+                      Provider.of<FromUsernameProvider>(context, listen: false)
+                          .emailController
+                          .text;
+                  String password =
+                      Provider.of<FormPasswordProvider>(context, listen: false)
+                          .passwordController
+                          .text;
+
                   if (username.isNotEmpty && password.isNotEmpty) {
                     LoginProvider authProvider =
                         Provider.of<LoginProvider>(context, listen: false);
@@ -133,7 +160,7 @@ class LoginScreen extends StatelessWidget {
             //   child: const Text('Logout'),
             // ),
             const SizedBox(
-              height: 134,
+              height: 190,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
