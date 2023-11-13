@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/component/profile_app_bar_component/profile_app_bar_component.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/profile_screen.dart';
+import 'package:sustain_tour_mobile/screen/explore_screen/explore_screen.dart';
+import 'package:sustain_tour_mobile/screen/home_screen/home_screen.dart';
 import 'package:sustain_tour_mobile/widget/bottom_navbar_widget/bottom_navbar_widget.dart';
 import 'package:sustain_tour_mobile/widget/bottom_navbar_widget/bottom_navbar_widget_provider.dart';
 
@@ -10,9 +12,9 @@ class MainScreen extends StatelessWidget {
   Widget buildBody(int currentIndex) {
     switch (currentIndex) {
       case 0:
-        return const Text('Halaman utama');
+        return const HomeScreen();
       case 1:
-        return const Text('Halaman kedua');
+        return const ExploreScreen();
       case 2:
         return const Text('Halaman ketiga');
       case 3:

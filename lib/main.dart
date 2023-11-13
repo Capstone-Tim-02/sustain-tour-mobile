@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:sustain_tour_mobile/constants/routes.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/component/profile_emission_component/profile_emission_provider.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/profile_provider.dart';
+import 'package:sustain_tour_mobile/screen/home_screen/home_screen_provider.dart';
 import 'package:sustain_tour_mobile/widget/bottom_navbar_widget/bottom_navbar_widget_provider.dart';
 
 import 'screen/onboarding_screen/onboarding_provider.dart';
@@ -21,6 +22,8 @@ void main() {
           create: (context) => ProfileProvider()),
       ChangeNotifierProvider<ProfileEmissionProvider>(
           create: (context) => ProfileEmissionProvider()),
+      ChangeNotifierProvider<HomeScreenProvider>(
+          create: (context) => HomeScreenProvider()),
     ],
     child: const MyApp(),
   ));
