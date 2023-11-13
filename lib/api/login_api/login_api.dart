@@ -43,4 +43,25 @@ class LoginApi {
       rethrow;
     }
   }
+
+  Future<LoginModels> initiateGoogleAuth() async {
+    try {
+      final response = await _dio.get('$baseUrl/auth/google/initiate');
+
+      if (response.statusCode == 200) {
+        return LoginModels.fromJson(response.data);
+      } else {
+        throw DioException(
+          response: response,
+          requestOptions: response.requestOptions,
+          error: 'Failed to initiate Google authentication',
+        );
+      }
+    } catch (error) {
+      throw DioException(
+        requestOptions: RequestOptions(path: '$baseUrl/auth/google/initiate'),
+        error: 'Error during HTTP request: $error',
+      );
+    }
+  }
 }

@@ -11,6 +11,7 @@ import 'package:sustain_tour_mobile/style/font_weight_style.dart';
 import 'package:sustain_tour_mobile/style/text_style_widget.dart';
 import 'package:sustain_tour_mobile/widget/button_widget.dart';
 import 'package:sustain_tour_mobile/widget/text_field_widget.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -61,8 +62,8 @@ class LoginScreen extends StatelessWidget {
                     .passwordController,
                 labelText: 'Password',
                 hintText: 'Pasword',
-                obscureText: !Provider.of<FormPasswordProvider>(context)
-                    .isPasswordVisible,
+                // obscureText: !Provider.of<FormPasswordProvider>(context)
+                //     .isPasswordVisible,
                 errorText:
                     Provider.of<FormPasswordProvider>(context).passwordError,
                 suffixIcon: IconButton(
@@ -148,7 +149,15 @@ class LoginScreen extends StatelessWidget {
               height: 8,
             ),
             ButtonWidget.defaultOutline(
-                text: 'Daftar Pakai Google', onPressed: () {}),
+              text: 'Daftar Pakai Google',
+              onPressed: () {
+                LoginProvider yourProvider =
+                    Provider.of<LoginProvider>(context, listen: false);
+
+                // Panggil metode launchUrl
+                yourProvider.loginDenganGogle();
+              },
+            ),
             // ElevatedButton(
             //   onPressed: () {
             //     LoginProvider authProvider =
