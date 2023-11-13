@@ -4,9 +4,9 @@ import 'package:provider/provider.dart';
 import 'package:sustain_tour_mobile/constants/assets_image.dart';
 
 import 'package:sustain_tour_mobile/screen/login_screen/login_provider.dart';
+import 'package:sustain_tour_mobile/screen/login_screen/matchmaking_question/matchmaking_1.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/validator/from_password_screns.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/validator/from_username_screens.dart';
-import 'package:sustain_tour_mobile/screen/main_screen/main_screen.dart';
 import 'package:sustain_tour_mobile/style/font_weight_style.dart';
 import 'package:sustain_tour_mobile/style/text_style_widget.dart';
 import 'package:sustain_tour_mobile/widget/button_widget.dart';
@@ -83,8 +83,6 @@ class LoginScreen extends StatelessWidget {
                     fit: BoxFit.contain,
                   ),
                 )),
-            // TextFieldWidget(
-            //    ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -127,7 +125,7 @@ class LoginScreen extends StatelessWidget {
                         );
 
                         Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            builder: (context) => const MainScreen()));
+                            builder: (context) => const Matchmaking1()));
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
@@ -160,16 +158,16 @@ class LoginScreen extends StatelessWidget {
                 yourProvider.loginDenganGogle();
               },
             ),
-            // ElevatedButton(
-            //   onPressed: () {
-            //     LoginProvider authProvider =
-            //         Provider.of<LoginProvider>(context, listen: false);
-            //     authProvider.logout();
-            //     // Navigasi kembali ke halaman login setelah logout
-            //     Navigator.of(context).pop();
-            //   },
-            //   child: const Text('Logout'),
-            // ),
+            ElevatedButton(
+              onPressed: () {
+                LoginProvider authProvider =
+                    Provider.of<LoginProvider>(context, listen: false);
+                authProvider.logout();
+                // Navigasi kembali ke halaman login setelah logout
+                Navigator.of(context).pop();
+              },
+              child: const Text('Logout'),
+            ),
             const SizedBox(
               height: 190,
             ),

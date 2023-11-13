@@ -18,29 +18,15 @@ class LoginApi {
         }),
       );
 
-      if (response.statusCode == 200) {
-        return LoginModels.fromJson(response.data);
-      } else if (response.statusCode == 401) {
+      return LoginModels.fromJson(response.data);
+    } on DioException catch (error) {
+      if (error.response?.statusCode == 401) {
         String errorMessage =
-            response.data['message'] ?? 'Invalid username or password';
-
-        throw DioException(
-          response: response,
-          requestOptions: response.requestOptions,
-          error: errorMessage,
-        );
+            error.response?.data['message'] ?? 'Invalid username or password';
+        throw errorMessage;
       } else {
-        String errorMessage1 =
-            response.data['message'] ?? 'Invalid username or password';
-
-        throw DioException(
-          response: response,
-          requestOptions: response.requestOptions,
-          error: errorMessage1,
-        );
+        throw 'Terjadi kesalahan';
       }
-    } catch (error) {
-      rethrow;
     }
   }
 

@@ -135,7 +135,7 @@ class ButtonWidget {
           onPressed: onPressed,
           child: Text(
             text ?? 'Button',
-            style: TextStyleWidget.headlineH3(
+            style: TextStyleWidget.titleT2(
               fontWeight: FontWeightStyle.semiBold,
               color: onPressed == null
                   ? ColorThemeStyle.grey100
@@ -187,7 +187,7 @@ class ButtonWidget {
           onPressed: onPressed,
           child: Text(
             text ?? 'Button',
-            style: TextStyleWidget.headlineH3(
+            style: TextStyleWidget.titleT2(
               fontWeight: FontWeightStyle.semiBold,
             ),
           )),
