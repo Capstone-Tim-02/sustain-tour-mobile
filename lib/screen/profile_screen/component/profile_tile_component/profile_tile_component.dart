@@ -27,26 +27,34 @@ class ProfileTileComponent extends StatelessWidget {
                   shape: BoxShape.circle,
                   color: ColorThemeStyle.greyBaru,
                 ),
-                child: ClipOval(
-                  child: Image.network(
-                    profileProvider.profileModel.user.photoProfil,
-                    width: 84,
-                    height: 84,
-                    fit: BoxFit
-                        .cover, // memastikan gambar pas dalam lingkaran tanpa distorsi
-                    errorBuilder: (BuildContext context, Object error,
-                        StackTrace? stackTrace) {
-                      // Menangani error, mengembalikan widget pengganti (misalnya ikon)
-                      return const Center(
+                child: profileProvider.user.photoProfil.isNotEmpty
+                    ? ClipOval(
+                        child: Image.network(
+                          profileProvider.user.photoProfil,
+                          width: 84,
+                          height: 84,
+                          fit: BoxFit
+                              .cover, // memastikan gambar pas dalam lingkaran tanpa distorsi
+                          errorBuilder: (BuildContext context, Object error,
+                              StackTrace? stackTrace) {
+                            // Menangani error, mengembalikan widget pengganti (misalnya ikon)
+                            return const Center(
+                              child: Icon(
+                                Icons.image,
+                                color: Colors.white,
+                                size: 50,
+                              ),
+                            );
+                          },
+                        ),
+                      )
+                    : const Center(
                         child: Icon(
                           Icons.image,
                           color: Colors.white,
                           size: 50,
                         ),
-                      );
-                    },
-                  ),
-                ),
+                      ),
               ),
               const SizedBox(
                 width: 16,
@@ -57,7 +65,7 @@ class ProfileTileComponent extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      profileProvider.profileModel.user.name,
+                      profileProvider.user.name,
                       style: TextStyleWidget.titleT2(
                         fontWeight: FontWeightStyle.semiBold,
                       ),
@@ -66,7 +74,7 @@ class ProfileTileComponent extends StatelessWidget {
                       height: 8,
                     ),
                     Text(
-                      profileProvider.profileModel.user.username,
+                      profileProvider.user.username,
                       style: TextStyleWidget.titleT3(
                         color: ColorThemeStyle.grey100,
                         fontWeight: FontWeightStyle.medium,

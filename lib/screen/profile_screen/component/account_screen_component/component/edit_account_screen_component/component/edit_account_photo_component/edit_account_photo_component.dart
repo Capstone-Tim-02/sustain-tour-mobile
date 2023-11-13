@@ -18,33 +18,40 @@ class EditAccountPhotoComponent extends StatelessWidget {
           alignment: Alignment.bottomRight,
           children: [
             Container(
-              height: 182,
-              width: 182,
-              decoration: const BoxDecoration(
-                color: ColorThemeStyle.greyBaru,
-                shape: BoxShape.circle,
-              ),
-              child: ClipOval(
-                child: Image.network(
-                  imageUrl,
-                  width: 182,
-                  height: 182,
-                  fit: BoxFit
-                      .fill, // memastikan gambar pas dalam lingkaran tanpa distorsi
-                  errorBuilder: (BuildContext context, Object error,
-                      StackTrace? stackTrace) {
-                    // Menangani error, mengembalikan widget pengganti (misalnya ikon)
-                    return const Center(
-                      child: Icon(
-                        Icons.image,
-                        color: Colors.white,
-                        size: 89,
-                      ),
-                    );
-                  },
+                height: 182,
+                width: 182,
+                decoration: const BoxDecoration(
+                  color: ColorThemeStyle.greyBaru,
+                  shape: BoxShape.circle,
                 ),
-              ),
-            ),
+                child: imageUrl.isNotEmpty
+                    ? ClipOval(
+                        child: Image.network(
+                          imageUrl,
+                          width: 182,
+                          height: 182,
+                          fit: BoxFit
+                              .fill, // memastikan gambar pas dalam lingkaran tanpa distorsi
+                          errorBuilder: (BuildContext context, Object error,
+                              StackTrace? stackTrace) {
+                            // Menangani error, mengembalikan widget pengganti (misalnya ikon)
+                            return const Center(
+                              child: Icon(
+                                Icons.image,
+                                color: Colors.white,
+                                size: 89,
+                              ),
+                            );
+                          },
+                        ),
+                      )
+                    : const Center(
+                        child: Icon(
+                          Icons.image,
+                          color: Colors.white,
+                          size: 89,
+                        ),
+                      )),
             GestureDetector(
               onTap: onTapEditPhoto,
               child: Container(

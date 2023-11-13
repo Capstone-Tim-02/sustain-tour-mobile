@@ -35,16 +35,15 @@ class AccountScreenComponent extends StatelessWidget {
               const SizedBox(
                 height: 40,
               ),
-              AccountPhotoComponent(
-                  imageUrl: profileProvider.profileModel.user.photoProfil),
+              AccountPhotoComponent(imageUrl: profileProvider.user.photoProfil),
               const SizedBox(
                 height: 32,
               ),
               AccountInfoComponent(
-                name: profileProvider.profileModel.user.name,
-                username: profileProvider.profileModel.user.username,
-                noHp: profileProvider.profileModel.user.phoneNumber,
-                email: profileProvider.profileModel.user.email,
+                name: profileProvider.user.name,
+                username: profileProvider.user.username,
+                noHp: profileProvider.user.phoneNumber,
+                email: profileProvider.user.email,
               ),
             ],
           );

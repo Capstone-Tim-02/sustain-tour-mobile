@@ -26,12 +26,12 @@ class MainScreen extends StatelessWidget {
     }
   }
 
-  AppBar buildAppBar(int currentIndex) {
+  AppBar? buildAppBar(int currentIndex) {
     switch (currentIndex) {
       case 0:
-        return AppBar();
+        return null;
       case 1:
-        return AppBar();
+        return null;
       case 2:
         return AppBar();
       case 3:
@@ -39,7 +39,7 @@ class MainScreen extends StatelessWidget {
       case 4:
         return ProfileAppBarComponent.profileAppBar;
       default:
-        return AppBar();
+        return null;
     }
   }
 

@@ -3,13 +3,11 @@ import 'package:sustain_tour_mobile/constants/api_base_url.dart';
 import 'package:sustain_tour_mobile/models/emission_model/emission_model.dart';
 
 class EmissionApi {
-  static Future<EmissionModel> getUserEmission() async {
+  static Future<EmissionModel> getUserEmission(
+      {required int userId, required String token}) async {
     final response = await Dio().get(
-      '$baseUrl/carbonfootprint/34',
-      options: Options(headers: {
-        'Authorization':
-            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImdhYnJpZWwxMjM0NSIsImV4cCI6MTY5OTc1NjkxNiwiaWF0IjoxNjk5NjcwNTE2fQ.QdURDLEfJZypxeef6ClgEmuwyLgvwZhWH6DS-0jJt9E'
-      }),
+      '$baseUrl/carbonfootprint/$userId',
+      options: Options(headers: {'Authorization': 'Bearer $token'}),
     );
 
     EmissionModel emissionModel = EmissionModel.fromJson(response.data);

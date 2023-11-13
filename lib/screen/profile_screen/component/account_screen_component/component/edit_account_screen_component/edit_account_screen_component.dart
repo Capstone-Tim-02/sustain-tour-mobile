@@ -33,15 +33,15 @@ class EditAccountScreenComponent extends StatelessWidget {
                 height: 40,
               ),
               EditAccountPhotoComponent(
-                  imageUrl: profileProvider.profileModel.user.photoProfil),
+                  imageUrl: profileProvider.user.photoProfil),
               const SizedBox(
                 height: 32,
               ),
               EditAccountInfoComponent(
-                name: profileProvider.profileModel.user.name,
-                username: profileProvider.profileModel.user.username,
-                noHp: profileProvider.profileModel.user.phoneNumber,
-                email: profileProvider.profileModel.user.email,
+                name: profileProvider.user.name,
+                username: profileProvider.user.username,
+                noHp: profileProvider.user.phoneNumber,
+                email: profileProvider.user.email,
               ),
             ],
           );

@@ -21,9 +21,15 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 3), () {
-      Provider.of<ProfileProvider>(context, listen: false).getProfile();
-      Provider.of<ProfileEmissionProvider>(context, listen: false)
-          .getUserEmission();
+      Provider.of<ProfileProvider>(context, listen: false).getUserData(
+        userId: 34,
+        token:
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImdhYnJpZWwxMjM0NSIsImV4cCI6MTY5OTkzNjcwOSwiaWF0IjoxNjk5ODUwMzA5fQ.KGnIylxm3qVeAL8Q2oIpV1C0QQDGu4-9M6_I0SsT4a0',
+      );
+      Provider.of<ProfileEmissionProvider>(context, listen: false).getUserEmission(
+          userId: 34,
+          token:
+              'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImdhYnJpZWwxMjM0NSIsImV4cCI6MTY5OTkzNjcwOSwiaWF0IjoxNjk5ODUwMzA5fQ.KGnIylxm3qVeAL8Q2oIpV1C0QQDGu4-9M6_I0SsT4a0');
       Provider.of<SplashScreenProvider>(context, listen: false)
           .loadDataSplasScreen()
           .then((_) {
