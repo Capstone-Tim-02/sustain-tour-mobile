@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sustain_tour_mobile/api/promo_api.dart';
-import 'package:sustain_tour_mobile/api/user_data_api.dart';
-import 'package:sustain_tour_mobile/api/wisata_api.dart';
+import 'package:sustain_tour_mobile/models/api/promo_api.dart';
+import 'package:sustain_tour_mobile/models/api/user_data_api.dart';
+import 'package:sustain_tour_mobile/models/api/wisata_api.dart';
 import 'package:sustain_tour_mobile/models/promo_models/promo_models.dart';
 import 'package:sustain_tour_mobile/models/user_data_models/user_data_models.dart';
 import 'package:sustain_tour_mobile/models/wisata_models/wisata_models.dart';
