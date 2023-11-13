@@ -15,7 +15,6 @@ class AiScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final aiProvider = context.read<AiScreenProvider>();
-    aiProvider.resetFields(aiProvider.messageController);
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -98,6 +97,8 @@ class AiScreen extends StatelessWidget {
                                   // aiProvider.resetFields(
                                   //     aiProvider.messageController);
                                   if (aiResponseData != null) {
+                                    aiProvider.resetFields(
+                                        aiProvider.messageController);
                                     Navigator.of(context).push(
                                       MaterialPageRoute(
                                         builder: (context) {
