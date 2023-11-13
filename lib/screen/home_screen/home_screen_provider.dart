@@ -19,24 +19,11 @@ class HomeScreenProvider with ChangeNotifier {
   List<Promo> _listPromo = [];
   List<Promo> get listPromo => _listPromo;
 
-  User? _userData;
-  User? get userData => _userData;
-
   bool _isGetWisataSuccess = false;
   bool get isGetWisataSuccess => _isGetWisataSuccess;
 
   bool _isGetPromoSuccess = false;
   bool get isGetPromoSuccess => _isGetPromoSuccess;
-
-  void getUserData({required int userId, required String token}) async {
-    try {
-      _userData = await UserDataApi().getUserData(userId: userId, token: token);
-      notifyListeners();
-    } catch (e) {
-      notifyListeners();
-      throw Exception(e);
-    }
-  }
 
   void getRekomendasiWisata({required String token}) async {
     _isLoadingWisata = true;
