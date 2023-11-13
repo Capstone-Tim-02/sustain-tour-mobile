@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sustain_tour_mobile/constants/assets_image.dart';
-import 'package:sustain_tour_mobile/screen/onboarding_screen/onboarding_screen.dart';
+import 'package:sustain_tour_mobile/constants/routes.dart';
+import 'package:sustain_tour_mobile/screen/profile_screen/component/profile_emission_component/profile_emission_provider.dart';
+import 'package:sustain_tour_mobile/screen/profile_screen/profile_provider.dart';
 import 'package:sustain_tour_mobile/style/font_weight_style.dart';
 import 'package:sustain_tour_mobile/style/text_style_widget.dart';
 
@@ -19,11 +21,14 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 3), () {
+      Provider.of<ProfileProvider>(context, listen: false).getProfile();
+      Provider.of<ProfileEmissionProvider>(context, listen: false)
+          .getUserEmission();
       Provider.of<SplashScreenProvider>(context, listen: false)
           .loadDataSplasScreen()
           .then((_) {
-        Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => const OnboardingScreen()));
+        Navigator.pushNamedAndRemoveUntil(
+            context, Routes.mainScreen, (route) => false);
       });
     });
   }

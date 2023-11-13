@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sustain_tour_mobile/constants/assets_image.dart';
+import 'package:sustain_tour_mobile/constants/routes.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/component/profile_option_component/component/list_tile_widget.dart';
 
 class ProfileOptionComponent extends StatelessWidget {
@@ -13,7 +14,9 @@ class ProfileOptionComponent extends StatelessWidget {
           title: 'Akun',
           subtitle: 'Mengganti nama, username, password dll',
           iconSvgString: Assets.assetsIconsAccountCircleFill,
-          onTap: () {},
+          onTap: () {
+            Navigator.pushNamed(context, Routes.accountScreen);
+          },
         ),
         ListTileWidget(
           title: 'Pusat Bantuan',
@@ -24,7 +27,7 @@ class ProfileOptionComponent extends StatelessWidget {
         ListTileWidget(
           title: 'Term & Condition',
           subtitle: 'Lorem ipsum dolot sit amet',
-          iconSvgString: Assets.assetsIconsAccountCircleFill,
+          iconSvgString: Assets.assetsIconsInfo,
           onTap: () {},
         ),
         ListTileWidget(

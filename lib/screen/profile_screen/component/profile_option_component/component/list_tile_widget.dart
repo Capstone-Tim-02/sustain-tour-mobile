@@ -8,13 +8,18 @@ class ListTileWidget extends StatelessWidget {
   final String title;
   final String subtitle;
   final String iconSvgString;
-  final void Function() onTap;
-  const ListTileWidget(
-      {super.key,
-      required this.title,
-      required this.subtitle,
-      required this.iconSvgString,
-      required this.onTap});
+  final double? iconSize;
+  final Widget? trailing;
+  final void Function()? onTap;
+  const ListTileWidget({
+    super.key,
+    required this.title,
+    required this.subtitle,
+    required this.iconSvgString,
+    this.onTap,
+    this.iconSize,
+    this.trailing,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +28,8 @@ class ListTileWidget extends StatelessWidget {
       child: ListTile(
         leading: SvgPicture.asset(
           iconSvgString,
-          width: 34,
-          height: 34,
+          width: iconSize ?? 34,
+          height: iconSize ?? 34,
         ),
         title: Padding(
           padding: const EdgeInsets.only(
@@ -50,6 +55,7 @@ class ListTileWidget extends StatelessWidget {
             ),
           ),
         ),
+        trailing: trailing,
       ),
     );
   }
