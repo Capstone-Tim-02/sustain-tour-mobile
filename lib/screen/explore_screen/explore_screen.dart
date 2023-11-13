@@ -3,7 +3,6 @@ import 'package:sustain_tour_mobile/style/color_theme_style.dart';
 import 'package:sustain_tour_mobile/style/text_style_widget.dart';
 import 'package:sustain_tour_mobile/widget/badge_widget.dart';
 import 'package:sustain_tour_mobile/widget/card_widget.dart';
-import 'package:sustain_tour_mobile/widget/text_field_widget.dart';
 
 class ExploreScreen extends StatefulWidget {
   const ExploreScreen({super.key});
@@ -35,20 +34,21 @@ class _ExploreScreenState extends State<ExploreScreen> {
 
             //TODO : Logic toggle button
             const SizedBox(height: 20),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  const SizedBox(width: 10),
-                  for(int i=0;i<5;i++)
-                  Padding(
+            SizedBox(
+              height: 40,
+              child: ListView.builder(
+                itemCount: 5,
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  return Padding(
                     padding: const EdgeInsets.only(left: 8),
-                    child: isButtonSelected[i] ?
+                    child: isButtonSelected[index] ?
                       BadgeWidget.container(
                         onPressed: (){
                           print('Button Pressed disable!');
                           setState(() {
-                            isButtonSelected[i] = false;
+                            isButtonSelected[index] = false;
                           });
                         }
                       ) :
@@ -56,12 +56,12 @@ class _ExploreScreenState extends State<ExploreScreen> {
                         onPressed: (){
                           print('Button Pressed enable!');
                           setState(() {
-                            isButtonSelected[i] = true;
+                            isButtonSelected[index] = true;
                           });
                         }
-                      ),
-                  )
-                ],
+                      )
+                    );
+                },
               ),
             ),
             const SizedBox(height: 10),
@@ -80,7 +80,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                   imageUrl: "https://upload.wikimedia.org/wikipedia/commons/e/e1/Pemandangan_Gunung_Bromo.jpg",
                   title: "Wisata alam",
                   location: "Surabaya",
-                  subtitle: "Rp 200.000"
+                  price: 200000
                 );
               },
             ),
