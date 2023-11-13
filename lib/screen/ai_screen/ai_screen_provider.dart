@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sustain_tour_mobile/api/ai_api/ai_api.dart';
 import 'package:sustain_tour_mobile/models/ai_models/ai_models.dart';
 
-class OpenAiViewModel extends ChangeNotifier {
+class AiScreenProvider extends ChangeNotifier {
   bool _isLoadingAnswer = false;
   bool get isLoadingAnswer => _isLoadingAnswer;
 

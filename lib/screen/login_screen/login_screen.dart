@@ -122,16 +122,16 @@ class LoginScreen extends StatelessWidget {
             ),
             ButtonWidget.defaultOutline(
                 text: 'Daftar Pakai Google', onPressed: () {}),
-            // ElevatedButton(
-            //   onPressed: () {
-            //     LoginProvider authProvider =
-            //         Provider.of<LoginProvider>(context, listen: false);
-            //     authProvider.logout();
-            //     // Navigasi kembali ke halaman login setelah logout
-            //     Navigator.of(context).pop();
-            //   },
-            //   child: const Text('Logout'),
-            // ),
+            ElevatedButton(
+              onPressed: () {
+                LoginProvider authProvider =
+                    Provider.of<LoginProvider>(context, listen: false);
+                authProvider.logout();
+                // Navigasi kembali ke halaman login setelah logout
+                Navigator.of(context).pop();
+              },
+              child: const Text('Logout'),
+            ),
             const SizedBox(
               height: 134,
             ),
