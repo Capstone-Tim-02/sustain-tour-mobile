@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sustain_tour_mobile/api/ai_api/result_screen.dart';
+import 'package:sustain_tour_mobile/screen/ai_screen/result_screen.dart';
 import 'package:sustain_tour_mobile/constants/assets_image.dart';
 import 'package:sustain_tour_mobile/screen/ai_screen/ai_screen_provider.dart';
 import 'package:sustain_tour_mobile/style/color_theme_style.dart';
@@ -105,8 +105,6 @@ class AiScreen extends StatelessWidget {
                                     final aiResponseData =
                                         aiProvider.openAiAnswer;
 
-                                    // aiProvider.resetFields(
-                                    //     aiProvider.messageController);
                                     if (aiResponseData != null) {
                                       aiProvider.resetFields(
                                           aiProvider.messageController);

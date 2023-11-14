@@ -32,7 +32,7 @@ class ResultScreen extends StatelessWidget {
             color: Colors.amberAccent,
             child: Text(question),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Container(

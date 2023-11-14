@@ -131,7 +131,7 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-      flutter_web_plugins:
+  flutter_web_plugins:
     dependency: transitive
     description: flutter
     source: sdk
@@ -232,15 +232,7 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.4.0"
-    popover:
-    dependency: "direct main"
-    description:
-      name: popover
-      sha256: "59f4a55ebb484d012c8aaa273ad58eee571945231b71fb938c5a69f63b5a94d4"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.2.8+2"
-      platform:
+  platform:
     dependency: transitive
     description:
       name: platform
@@ -260,10 +252,10 @@ packages:
     dependency: "direct main"
     description:
       name: provider
-      sha256: cdbe7530b12ecd9eb455bdaa2fcb8d4dad22e80b8afb4798b41479d5ce26847f
+      sha256: "9a96a0a19b594dbc5bf0f1f27d2bc67d5f95957359b461cd9feb44ed6ae75096"
       url: "https://pub.dev"
     source: hosted
-    version: "6.0.5"
+    version: "6.1.1"
   shared_preferences:
     dependency: "direct main"
     description:
@@ -373,7 +365,7 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.6.0"
-    typed_data:
+  typed_data:
     dependency: transitive
     description:
       name: typed_data
