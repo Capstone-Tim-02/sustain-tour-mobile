@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sustain_tour_mobile/constants/routes.dart';
+import 'package:sustain_tour_mobile/screen/explore_screen/explore_screen_provider.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/component/profile_emission_component/profile_emission_provider.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/profile_provider.dart';
 import 'package:sustain_tour_mobile/screen/home_screen/home_screen_provider.dart';
@@ -24,6 +25,8 @@ void main() {
           create: (context) => ProfileEmissionProvider()),
       ChangeNotifierProvider<HomeScreenProvider>(
           create: (context) => HomeScreenProvider()),
+      ChangeNotifierProvider<ExploreScreenProvider>(
+          create: (context) => ExploreScreenProvider()),
     ],
     child: const MyApp(),
   ));

@@ -27,10 +27,10 @@ class _HomeScreenState extends State<HomeScreen> {
               Provider.of<HomeScreenProvider>(context, listen: false);
           homeProvider.getPromo(
               token:
-                  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImdhYnJpZWwxMjM0NSIsImV4cCI6MTY5OTkzNjcwOSwiaWF0IjoxNjk5ODUwMzA5fQ.KGnIylxm3qVeAL8Q2oIpV1C0QQDGu4-9M6_I0SsT4a0");
+                  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InN0ZXZlbiIsImV4cCI6MTcwMTE1OTQ3MywiaWF0IjoxNjk5OTQ5ODczfQ.5w05Lp7p6OZGqIQ58loDttAzKj33roHDTDBAfvTh3JQ");
           homeProvider.getRekomendasiWisata(
               token:
-                  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImdhYnJpZWwxMjM0NSIsImV4cCI6MTY5OTkzNjcwOSwiaWF0IjoxNjk5ODUwMzA5fQ.KGnIylxm3qVeAL8Q2oIpV1C0QQDGu4-9M6_I0SsT4a0");
+                  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InN0ZXZlbiIsImV4cCI6MTcwMTE1OTQ3MywiaWF0IjoxNjk5OTQ5ODczfQ.5w05Lp7p6OZGqIQ58loDttAzKj33roHDTDBAfvTh3JQ");
         },
       ),
     );

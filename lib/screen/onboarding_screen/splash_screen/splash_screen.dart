@@ -22,14 +22,14 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     Future.delayed(const Duration(seconds: 3), () {
       Provider.of<ProfileProvider>(context, listen: false).getUserData(
-        userId: 34,
+        userId: 33,
         token:
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImdhYnJpZWwxMjM0NSIsImV4cCI6MTY5OTkzNjcwOSwiaWF0IjoxNjk5ODUwMzA5fQ.KGnIylxm3qVeAL8Q2oIpV1C0QQDGu4-9M6_I0SsT4a0',
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InN0ZXZlbiIsImV4cCI6MTcwMTE1OTQ3MywiaWF0IjoxNjk5OTQ5ODczfQ.5w05Lp7p6OZGqIQ58loDttAzKj33roHDTDBAfvTh3JQ',
       );
       Provider.of<ProfileEmissionProvider>(context, listen: false).getUserEmission(
-          userId: 34,
+          userId: 33,
           token:
-              'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImdhYnJpZWwxMjM0NSIsImV4cCI6MTY5OTkzNjcwOSwiaWF0IjoxNjk5ODUwMzA5fQ.KGnIylxm3qVeAL8Q2oIpV1C0QQDGu4-9M6_I0SsT4a0');
+              'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InN0ZXZlbiIsImV4cCI6MTcwMTE1OTQ3MywiaWF0IjoxNjk5OTQ5ODczfQ.5w05Lp7p6OZGqIQ58loDttAzKj33roHDTDBAfvTh3JQ');
       Provider.of<SplashScreenProvider>(context, listen: false)
           .loadDataSplasScreen()
           .then((_) {
