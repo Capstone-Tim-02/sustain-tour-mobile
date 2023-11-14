@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sustain_tour_mobile/models/api/promo_api.dart';
-import 'package:sustain_tour_mobile/models/api/user_data_api.dart';
 import 'package:sustain_tour_mobile/models/api/wisata_api.dart';
 import 'package:sustain_tour_mobile/models/promo_models/promo_models.dart';
-import 'package:sustain_tour_mobile/models/user_data_models/user_data_models.dart';
 import 'package:sustain_tour_mobile/models/wisata_models/wisata_models.dart';
 
 class HomeScreenProvider with ChangeNotifier {
@@ -19,31 +17,18 @@ class HomeScreenProvider with ChangeNotifier {
   List<Promo> _listPromo = [];
   List<Promo> get listPromo => _listPromo;
 
-  User? _userData;
-  User? get userData => _userData;
-
   bool _isGetWisataSuccess = false;
   bool get isGetWisataSuccess => _isGetWisataSuccess;
 
   bool _isGetPromoSuccess = false;
   bool get isGetPromoSuccess => _isGetPromoSuccess;
 
-  void getUserData({required int id, required String token}) async{
-    try {
-      _userData = await UserDataApi().getUserData(id: id, token: token);
-      notifyListeners();
-    } catch (e) {
-      notifyListeners();
-      throw Exception(e);
-    }
-  }
-
-  void getRekomendasiWisata({required String token}) async{
+  void getRekomendasiWisata({required String token}) async {
     _isLoadingWisata = true;
     notifyListeners();
 
     try {
-      _listWisata = await WisataApi().getWisataByUserPrederences(token : token);
+      _listWisata = await WisataApi().getWisataByUserPrederences(token: token);
       _isGetWisataSuccess = true;
       _isLoadingWisata = false;
       notifyListeners();
@@ -55,12 +40,12 @@ class HomeScreenProvider with ChangeNotifier {
     }
   }
 
-  void getPromo({required String token}) async{
+  void getPromo({required String token}) async {
     _isLoadingPromo = true;
     notifyListeners();
 
     try {
-      _listPromo = await PromoApi().getUserPromo(token : token);
+      _listPromo = await PromoApi().getUserPromo(token: token);
       _isGetPromoSuccess = true;
       _isLoadingPromo = false;
       notifyListeners();
