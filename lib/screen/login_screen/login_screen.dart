@@ -151,11 +151,11 @@ class LoginScreen extends StatelessWidget {
               svgIcon: Assets.assetsIconsGoogle,
               text: 'Daftar Pakai Google',
               onPressed: () {
-                LoginProvider yourProvider =
-                    Provider.of<LoginProvider>(context, listen: false);
+                // LoginProvider yourProvider =
+                //     Provider.of<LoginProvider>(context, listen: false);
 
-                // Panggil metode launchUrl
-                yourProvider.loginDenganGogle();
+                // // Panggil metode launchUrl
+                // yourProvider.loginDenganGogle();
               },
             ),
             ElevatedButton(

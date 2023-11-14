@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:sustain_tour_mobile/api/login_api/login_api.dart';
+import 'package:sustain_tour_mobile/models/api/login_api/login_api.dart';
 import 'package:sustain_tour_mobile/models/login_models/login_models.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class LoginProvider with ChangeNotifier {
   final LoginApi _apiProvider = LoginApi();
@@ -18,20 +17,19 @@ class LoginProvider with ChangeNotifier {
     loadToken();
     loadUserId();
   }
-  Future<void> loginDenganGogle() async {
-    Uri url =
-        Uri.parse('https://destimate.uc.r.appspot.com/auth/google/initiate');
+  // Future<void> loginDenganGogle() async {
+  //   Uri url =
+  //       Uri.parse('https://destimate.uc.r.appspot.com/auth/google/initiate');
 
-    try {
-      if (await canLaunchUrl(url)) {
-        await launchUrl(url);
-      } else {
-        throw Exception('Could not launch $url');
-      }
-    } catch (e) {
-      print('Error: $e');
-    }
-  }
+  //   try {
+  //     if (await canLaunchUrl(url)) {
+  //       await launchUrl(url);
+  //     } else {
+  //       throw Exception('Could not launch $url');
+  //     }
+  //   } catch (e) {
+  //   }
+  // }
 
   Future<void> loadToken() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
