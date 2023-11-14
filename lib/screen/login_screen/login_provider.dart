@@ -6,40 +6,21 @@ import 'package:sustain_tour_mobile/models/login_models/login_models.dart';
 class LoginProvider with ChangeNotifier {
   final LoginApi _apiProvider = LoginApi();
   String? _token;
-  String? _userId;
+  int? _userId;
   String? _message;
 
   String get message => _message ?? '-';
   String? get token => _token;
-  String? get userId => _userId;
+  int? get userId => _userId;
 
   LoginProvider() {
-    loadToken();
-    loadUserId();
+    loadData();
   }
-  // Future<void> loginDenganGogle() async {
-  //   Uri url =
-  //       Uri.parse('https://destimate.uc.r.appspot.com/auth/google/initiate');
 
-  //   try {
-  //     if (await canLaunchUrl(url)) {
-  //       await launchUrl(url);
-  //     } else {
-  //       throw Exception('Could not launch $url');
-  //     }
-  //   } catch (e) {
-  //   }
-  // }
-
-  Future<void> loadToken() async {
+  Future<void> loadData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     _token = prefs.getString('token');
-    notifyListeners();
-  }
-
-  Future<void> loadUserId() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    _userId = prefs.getString('id');
+    _userId = prefs.getInt('id');
     notifyListeners();
   }
 
@@ -50,10 +31,10 @@ class LoginProvider with ChangeNotifier {
       if (response.code == 200) {
         _message = response.message;
         _token = response.token;
-        _userId = response.id.toString();
+        _userId = response.id;
         SharedPreferences prefs = await SharedPreferences.getInstance();
         await prefs.setString('token', _token!);
-        await prefs.setString('id', _userId!);
+        await prefs.setInt('id', _userId!);
         notifyListeners();
       }
       return true;
