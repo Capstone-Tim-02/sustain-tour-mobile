@@ -55,7 +55,7 @@ class AiScreen extends StatelessWidget {
                 const SizedBox(height: 8),
                 Center(
                   child: Text(
-                    'Tanyakan pertanyaan, nanti aku jawab',
+                    'Virtual Asistent ini hanya menjawab mengenai pertanyaan terkait destinasi wisata',
                     style: TextStyleWidget.bodyB3(
                       fontWeight: FontWeightStyle.medium,
                     ),
