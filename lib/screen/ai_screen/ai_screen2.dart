@@ -15,6 +15,7 @@ class AiScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final aiProvider = context.read<AiScreenProvider>();
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -25,113 +26,125 @@ class AiScreen extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
+      body: Stack(
+        children: [
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 71,
+                  bottom: 16,
+                ),
+                child: Image.asset(
+                  Assets.assetsImagesChatBot,
+                  height: 186,
+                  width: 232,
+                ),
+              ),
+              Center(
+                child: Text(
+                  'Haloo Aku DeBot',
+                  style: TextStyleWidget.titleT2(
+                    fontWeight: FontWeightStyle.semiBold,
+                  ),
+                ),
+              ),
+              Center(
+                child: Padding(
                   padding: const EdgeInsets.only(
-                    left: 71,
-                    top: 192,
-                    bottom: 16,
+                    left: 72,
+                    right: 72,
+                    top: 8,
                   ),
-                  child: Image.asset(
-                    Assets.assetsImagesChatBot,
-                    height: 186,
-                    width: 232,
-                  ),
-                ),
-                Center(
-                  child: Text(
-                    'Haloo Aku DeBot',
-                    style: TextStyleWidget.titleT2(
-                      fontWeight: FontWeightStyle.semiBold,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Center(
                   child: Text(
                     'Virtual Asistent ini hanya menjawab mengenai pertanyaan terkait destinasi wisata',
+                    textAlign: TextAlign.center,
                     style: TextStyleWidget.bodyB3(
                       fontWeight: FontWeightStyle.medium,
                     ),
                   ),
                 ),
+              ),
+            ],
+          ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SizedBox(
+                      width: 300,
+                      height: 62,
+                      child: TextFieldWidget(
+                        controller: aiProvider.messageController,
+                        hintText: 'Apa yang ingin kamu tanyakan',
+                        fillColor: ColorThemeStyle.grey50,
+                        filled: true,
+                      ),
+                    ),
+                    const SizedBox(width: 16),
+                    Consumer<AiScreenProvider>(
+                      builder: (context, aiProvider, child) {
+                        if (aiProvider.isLoadingAnswer) {
+                          return const Center(
+                              child: CircularProgressIndicator());
+                        } else {
+                          return SizedBox(
+                            width: 64,
+                            height: 60,
+                            child: ButtonWidget.iconContainer(
+                              onPressed: () {
+                                aiProvider.getRecommendation().then(
+                                  (_) {
+                                    final aiResponseData =
+                                        aiProvider.openAiAnswer;
+
+                                    // aiProvider.resetFields(
+                                    //     aiProvider.messageController);
+                                    if (aiResponseData != null) {
+                                      aiProvider.resetFields(
+                                          aiProvider.messageController);
+                                      Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                          builder: (context) {
+                                            return ResultScreen(
+                                              gptResponseData: aiResponseData,
+                                              question: aiProvider
+                                                  .messageController.text,
+                                            );
+                                          },
+                                        ),
+                                      );
+                                    } else {
+                                      const snackBar = SnackBar(
+                                        content: Text(
+                                          'perompak somalia sedang meretas device anda',
+                                        ),
+                                      );
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(snackBar);
+                                    }
+                                  },
+                                );
+                              },
+                            ),
+                          );
+                        }
+                      },
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 40),
               ],
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 242),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  SizedBox(
-                    width: 300,
-                    height: 62,
-                    child: TextFieldWidget(
-                      controller: aiProvider.messageController,
-                      hintText: 'Apa yang ingin kamu tanyakan',
-                      fillColor: ColorThemeStyle.grey50,
-                      filled: true,
-                    ),
-                  ),
-                  const SizedBox(width: 16),
-                  Consumer<AiScreenProvider>(
-                    builder: (context, aiProvider, child) {
-                      if (aiProvider.isLoadingAnswer) {
-                        return const Center(child: CircularProgressIndicator());
-                      } else {
-                        return SizedBox(
-                          width: 64,
-                          height: 60,
-                          child: ButtonWidget.iconContainer(
-                            onPressed: () {
-                              aiProvider.getRecommendation().then(
-                                (_) {
-                                  final aiResponseData =
-                                      aiProvider.openAiAnswer;
-
-                                  // aiProvider.resetFields(
-                                  //     aiProvider.messageController);
-                                  if (aiResponseData != null) {
-                                    aiProvider.resetFields(
-                                        aiProvider.messageController);
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                        builder: (context) {
-                                          return ResultScreen(
-                                            gptResponseData: aiResponseData,
-                                            question: aiProvider
-                                                .messageController.text,
-                                          );
-                                        },
-                                      ),
-                                    );
-                                  } else {
-                                    const snackBar = SnackBar(
-                                      content: Text(
-                                        'perompak somalia sedang meretas device anda',
-                                      ),
-                                    );
-                                    ScaffoldMessenger.of(context)
-                                        .showSnackBar(snackBar);
-                                  }
-                                },
-                              );
-                            },
-                          ),
-                        );
-                      }
-                    },
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
