@@ -128,10 +128,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                 fontWeight: FontWeight.w400),
                           ),
                           const SizedBox(height: 8),
-                          Consumer<HomeScreenProvider>(
-                            builder: (context, homeScreenProvider, child) {
+                          Consumer<ProfileProvider>(
+                            builder: (context, profileProvider, child) {
                               return Text(
-                                "${homeScreenProvider.userData?.points ?? "--"} Desti Poin",
+                                "${profileProvider.user.points} Desti Poin",
                                 style: TextStyleWidget.headlineH2(
                                     color: ColorThemeStyle.black100,
                                     fontWeight: FontWeight.w700),

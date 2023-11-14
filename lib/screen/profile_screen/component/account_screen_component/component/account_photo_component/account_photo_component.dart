@@ -13,8 +13,8 @@ class AccountPhotoComponent extends StatelessWidget {
         Container(
           height: 182,
           width: 182,
-          decoration: const BoxDecoration(
-            color: ColorThemeStyle.greyBaru,
+          decoration: BoxDecoration(
+            color: ColorThemeStyle.lightPurple.withOpacity(0.54),
             shape: BoxShape.circle,
           ),
           child: imageUrl.isNotEmpty
