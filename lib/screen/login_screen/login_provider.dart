@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:sustain_tour_mobile/models/api/login_api/login_api.dart';
+import 'package:sustain_tour_mobile/models/api/login_api.dart';
 import 'package:sustain_tour_mobile/models/login_models/login_models.dart';
 
 class LoginProvider with ChangeNotifier {
