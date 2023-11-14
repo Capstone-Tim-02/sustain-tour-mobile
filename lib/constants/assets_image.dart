@@ -49,6 +49,11 @@ class Assets {
   /// assets/icons/location.svg
   static const String assetsIconsLocation = "assets/icons/location.svg";
 
+  /// Assets for assetsIconsAccountCircleFill
+  /// assets/icons/AccountCircleFill.svg
+  static const String assetsIconsAccountCircleFill =
+      "assets/icons/AccountCircleFill.svg";
+
   /// Assets for assetsIconsLocationFill
   /// assets/icons/LocationFill.svg
   static const String assetsIconsLocationFill = "assets/icons/LocationFill.svg";
@@ -141,6 +146,10 @@ class Assets {
   /// assets/icons/Wisata_Sejarah.svg
   static const String assetsIconsWisataSejarah =
       "assets/icons/Wisata_Sejarah.svg";
+
+  /// Assets for assetsIconsGoogle
+  /// assets/icons/google.svg
+  static const String assetsIconsGoogle = "assets/icons/google.svg";
 
   /// Assets for assetsImagesLogoDestimate
   /// assets/images/logo_destimate.png

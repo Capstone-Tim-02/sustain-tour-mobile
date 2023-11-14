@@ -92,7 +92,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         color: ColorThemeStyle.grey50),
                   ),
                   const SizedBox(
-                    height: 45,
+                    height: 120,
                   ),
                   ButtonWidget.defaultContainer(
                       text: "Masuk",

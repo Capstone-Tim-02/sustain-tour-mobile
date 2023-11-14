@@ -1,7 +1,6 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:sustain_tour_mobile/api/login_api/login_api.dart';
+import 'package:sustain_tour_mobile/models/api/login_api.dart';
 import 'package:sustain_tour_mobile/models/login_models/login_models.dart';
 
 class LoginProvider with ChangeNotifier {
@@ -16,8 +15,21 @@ class LoginProvider with ChangeNotifier {
 
   LoginProvider() {
     loadToken();
-    loadUserId(); // Load user ID during initialization
+    loadUserId();
   }
+  // Future<void> loginDenganGogle() async {
+  //   Uri url =
+  //       Uri.parse('https://destimate.uc.r.appspot.com/auth/google/initiate');
+
+  //   try {
+  //     if (await canLaunchUrl(url)) {
+  //       await launchUrl(url);
+  //     } else {
+  //       throw Exception('Could not launch $url');
+  //     }
+  //   } catch (e) {
+  //   }
+  // }
 
   Future<void> loadToken() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -43,20 +55,10 @@ class LoginProvider with ChangeNotifier {
         await prefs.setString('token', _token!);
         await prefs.setString('id', _userId!);
         notifyListeners();
-        return true;
-      } else if (response.code == 401) {
-        _message = response.message;
-        notifyListeners();
-        return false;
-      } else {
-        _message = 'Error Server';
-        notifyListeners();
-        return false;
       }
-    } on DioException catch (error) {
-      if (error.response!.statusCode == 401) {
-        _message = 'Invalid Username or Password';
-      }
+      return true;
+    } catch (error) {
+      _message = error.toString();
       notifyListeners();
       return false;
     }
