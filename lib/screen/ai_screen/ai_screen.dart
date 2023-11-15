@@ -14,8 +14,7 @@ class AiScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final aiProvider = context.read<AiScreenProvider>();
-
+    final aiScreenProvider = context.read<AiScreenProvider>();
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -82,7 +81,7 @@ class AiScreen extends StatelessWidget {
                       width: 300,
                       height: 62,
                       child: TextFieldWidget(
-                        controller: aiProvider.messageController,
+                        controller: aiScreenProvider.messageController,
                         hintText: 'Apa yang ingin kamu tanyakan',
                         fillColor: ColorThemeStyle.grey50,
                         filled: true,
@@ -101,16 +100,12 @@ class AiScreen extends StatelessWidget {
                             height: 60,
                             child: ButtonWidget.iconContainer(
                               onPressed: () {
+
                                 aiProvider.getRecommendation().then(
                                   (_) {
                                     final aiResponseData =
                                         aiProvider.openAiAnswer;
-
-                                    // aiProvider.resetFields(
-                                    //     aiProvider.messageController);
                                     if (aiResponseData != null) {
-                                      // aiProvider.resetFields(
-                                      //     aiProvider.messageController);
                                       Navigator.of(context).push(
                                         MaterialPageRoute(
                                           builder: (context) {
@@ -121,6 +116,9 @@ class AiScreen extends StatelessWidget {
                                             );
                                           },
                                         ),
+                                      ).then(
+                                        (value) => aiProvider.resetFields(
+                                            aiProvider.messageController),
                                       );
                                     } else {
                                       const snackBar = SnackBar(

@@ -13,6 +13,7 @@ class AiScreenProvider extends ChangeNotifier {
   AiModels? get openAiAnswer => _openAiAnswer;
 
   Future<void> getRecommendation() async {
+    _openAiAnswer = null;
     try {
       _isLoadingAnswer = true;
       notifyListeners();
