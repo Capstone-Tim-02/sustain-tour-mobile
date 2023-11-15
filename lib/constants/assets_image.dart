@@ -103,6 +103,15 @@ class Assets {
   /// assets/icons/TicketOn.svg
   static const String assetsIconsTicketOn = "assets/icons/TicketOn.svg";
 
+  /// Assets for assetsIconsLock
+  /// assets/icons/Lock.svg
+  static const String assetsIconsLock = "assets/icons/lock.svg";
+
+  /// Assets for assetsIconsTicketOn
+  /// assets/icons/TicketOn.svg
+  static const String assetsIconsPersonOutline =
+      "assets/icons/PersonOutline.svg";
+
   /// Assets for assetsIconsTicketOn2
   /// assets/icons/TicketOn2.svg
   static const String assetsIconsTicketOn2 = "assets/icons/TicketOn2.svg";
@@ -137,6 +146,10 @@ class Assets {
   /// assets/icons/Wisata_Sejarah.svg
   static const String assetsIconsWisataSejarah =
       "assets/icons/Wisata_Sejarah.svg";
+
+  /// Assets for assetsIconsGoogle
+  /// assets/icons/google.svg
+  static const String assetsIconsGoogle = "assets/icons/google.svg";
 
   /// Assets for assetsImagesLogoDestimate
   /// assets/images/logo_destimate.png
