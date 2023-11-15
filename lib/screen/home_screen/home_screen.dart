@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sustain_tour_mobile/constants/assets_image.dart';
 import 'package:sustain_tour_mobile/screen/home_screen/home_screen_provider.dart';
-import 'package:sustain_tour_mobile/screen/onboarding_screen/splash_screen/splash_screen_provider.dart';
+import 'package:sustain_tour_mobile/screen/login_screen/login_provider.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/profile_provider.dart';
 import 'package:sustain_tour_mobile/style/color_theme_style.dart';
 import 'package:sustain_tour_mobile/style/shadow_style.dart';
@@ -21,25 +21,31 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
-    HomeScreenProvider homeScreenProvider = Provider.of<HomeScreenProvider>(context, listen: false);
-    SplashScreenProvider splashScreenProvider = Provider.of<SplashScreenProvider>(context, listen: false);
-    ProfileProvider profileProvider = Provider.of<ProfileProvider>(context, listen: false);
+    HomeScreenProvider homeScreenProvider =
+        Provider.of<HomeScreenProvider>(context, listen: false);
+    LoginProvider loginProvider =
+        Provider.of<LoginProvider>(context, listen: false);
+    ProfileProvider profileProvider =
+        Provider.of<ProfileProvider>(context, listen: false);
     super.initState();
-    homeScreenProvider
-      .getRekomendasiWisata(token: splashScreenProvider.hasToken);
+    homeScreenProvider.getRekomendasiWisata(
+        token: loginProvider.token.toString());
 
-    homeScreenProvider
-      .getPromo(token: splashScreenProvider.hasToken);
-    
-    profileProvider
-    .getUserData(userId: splashScreenProvider.hasId, token: splashScreenProvider.hasToken);
+    homeScreenProvider.getPromo(token: loginProvider.token.toString());
+
+    profileProvider.getUserData(
+        userId: loginProvider.userId ?? 0,
+        token: loginProvider.token.toString());
   }
 
   @override
   Widget build(BuildContext context) {
-    SplashScreenProvider splashScreenProvider = Provider.of<SplashScreenProvider>(context, listen: false);
-    ProfileProvider profileProvider = Provider.of<ProfileProvider>(context, listen: false);
-    BottomNavigationBarProvider bottomNavigationBarProvider = Provider.of<BottomNavigationBarProvider>(context,listen: false);
+    LoginProvider loginProvider =
+        Provider.of<LoginProvider>(context, listen: false);
+    ProfileProvider profileProvider =
+        Provider.of<ProfileProvider>(context, listen: false);
+    BottomNavigationBarProvider bottomNavigationBarProvider =
+        Provider.of<BottomNavigationBarProvider>(context, listen: false);
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -64,19 +70,19 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: [
                         Consumer<ProfileProvider>(
                           builder: (context, profileProvider, child) {
-                            return profileProvider.isLoading ?
-                            Text(
-                              "Loading ....",
-                              style: TextStyleWidget.titleT2(
-                                  color: ColorThemeStyle.white100,
-                                  fontWeight: FontWeight.w500),
-                            ) :
-                            Text(
-                              "Hi, ${profileProvider.user.name}",
-                              style: TextStyleWidget.titleT2(
-                                  color: ColorThemeStyle.white100,
-                                  fontWeight: FontWeight.w500),
-                            );
+                            return profileProvider.isLoading
+                                ? Text(
+                                    "Loading ....",
+                                    style: TextStyleWidget.titleT2(
+                                        color: ColorThemeStyle.white100,
+                                        fontWeight: FontWeight.w500),
+                                  )
+                                : Text(
+                                    "Hi, ${profileProvider.user.name}",
+                                    style: TextStyleWidget.titleT2(
+                                        color: ColorThemeStyle.white100,
+                                        fontWeight: FontWeight.w500),
+                                  );
                           },
                         ),
                         const SizedBox(height: 8),
@@ -119,9 +125,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         const EdgeInsets.only(top: 158, left: 16, right: 16),
                     decoration: BoxDecoration(
                       image: const DecorationImage(
-                        image: AssetImage(Assets.assetsImagesPointBackground),
-                        fit: BoxFit.fill
-                      ),
+                          image: AssetImage(Assets.assetsImagesPointBackground),
+                          fit: BoxFit.fill),
                       borderRadius: BorderRadius.circular(10),
                       boxShadow: [ShadowStyle.shadowFix1],
                     ),
@@ -143,20 +148,20 @@ class _HomeScreenState extends State<HomeScreen> {
                             children: [
                               Consumer<ProfileProvider>(
                                 builder: (context, profileProvider, child) {
-                                  return profileProvider.isLoading ?
-                                    Text(
-                                      "-- \nDesti Poin",
-                                      style: TextStyleWidget.headlineH2(
-                                          color: ColorThemeStyle.blue100,
-                                          fontWeight: FontWeight.w600),
-                                    ) :
-                                    Text(
-                                      "${profileProvider.user.points} \nDesti Poin",
-                                      style: TextStyleWidget.headlineH2(
-                                          color: ColorThemeStyle.blue100,
-                                          fontWeight: FontWeight.w600),
-                                    );
-                                  },
+                                  return profileProvider.isLoading
+                                      ? Text(
+                                          "-- \nDesti Poin",
+                                          style: TextStyleWidget.headlineH2(
+                                              color: ColorThemeStyle.blue100,
+                                              fontWeight: FontWeight.w600),
+                                        )
+                                      : Text(
+                                          "${profileProvider.user.points} \nDesti Poin",
+                                          style: TextStyleWidget.headlineH2(
+                                              color: ColorThemeStyle.blue100,
+                                              fontWeight: FontWeight.w600),
+                                        );
+                                },
                               ),
                               const CircleAvatar(
                                 backgroundColor: ColorThemeStyle.blue100,
@@ -240,15 +245,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                 BadgeWidget.container(
                                     onPressed: () {
                                       profileProvider.getUserData(
-                                        userId: splashScreenProvider.hasId,
-                                        token: splashScreenProvider.hasToken
-                                      );
+                                          userId: loginProvider.userId ?? 0,
+                                          token:
+                                              loginProvider.token.toString());
                                       homeScreenProvider.getRekomendasiWisata(
-                                        token: splashScreenProvider.hasToken
-                                      );
+                                          token:
+                                              loginProvider.token.toString());
                                       homeScreenProvider.getPromo(
-                                        token: splashScreenProvider.hasToken
-                                      );
+                                          token:
+                                              loginProvider.token.toString());
                                     },
                                     label: "Muat ulang")
                               ],
@@ -323,15 +328,12 @@ class _HomeScreenState extends State<HomeScreen> {
                             BadgeWidget.container(
                                 onPressed: () {
                                   profileProvider.getUserData(
-                                    userId: splashScreenProvider.hasId,
-                                    token: splashScreenProvider.hasToken
-                                  );
+                                      userId: loginProvider.userId ?? 0,
+                                      token: loginProvider.token.toString());
                                   homeScreenProvider.getRekomendasiWisata(
-                                    token: splashScreenProvider.hasToken
-                                  );
+                                      token: loginProvider.token.toString());
                                   homeScreenProvider.getPromo(
-                                    token: splashScreenProvider.hasToken
-                                  );
+                                      token: loginProvider.token.toString());
                                 },
                                 label: "Muat ulang")
                           ],
