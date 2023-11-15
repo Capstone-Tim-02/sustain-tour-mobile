@@ -99,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     height: 136,
                     width: 380,
                     margin:
-                        const EdgeInsets.only(top: 165, left: 16, right: 16),
+                        const EdgeInsets.only(top: 158, left: 16, right: 16),
                     decoration: BoxDecoration(
                       image: const DecorationImage(
                         image: AssetImage(Assets.assetsImagesPointBackground),
