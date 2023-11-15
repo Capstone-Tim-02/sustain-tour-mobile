@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sustain_tour_mobile/constants/assets_image.dart';
+import 'package:sustain_tour_mobile/screen/home_screen/home_screen_provider.dart';
 import 'package:sustain_tour_mobile/screen/main_screen/main_screen.dart';
 import 'package:sustain_tour_mobile/screen/onboarding_screen/onboarding_screen.dart';
 import 'package:sustain_tour_mobile/style/font_weight_style.dart';
@@ -35,6 +36,12 @@ class _SplashScreenState extends State<SplashScreen> {
 
           Provider.of<ProfileEmissionProvider>(context, listen: false)
               .getUserEmission(userId: id, token: token);
+
+          Provider.of<HomeScreenProvider>(context, listen: false)
+              .getRekomendasiWisata(token: token);
+
+          Provider.of<HomeScreenProvider>(context, listen: false)
+              .getPromo(token: token);
 
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (context) => const MainScreen()),
