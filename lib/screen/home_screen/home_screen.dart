@@ -18,26 +18,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   @override
-  void didChangeDependencies() {
-    WidgetsBinding.instance.addPostFrameCallback(
-      (_) => setState(
-        () {
-          //TODO Gabungin sama auth
-          final homeProvider =
-              Provider.of<HomeScreenProvider>(context, listen: false);
-          homeProvider.getPromo(
-              token:
-                  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImdhYnJpZWwxMjM0NSIsImV4cCI6MTY5OTkzNjcwOSwiaWF0IjoxNjk5ODUwMzA5fQ.KGnIylxm3qVeAL8Q2oIpV1C0QQDGu4-9M6_I0SsT4a0");
-          homeProvider.getRekomendasiWisata(
-              token:
-                  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImdhYnJpZWwxMjM0NSIsImV4cCI6MTY5OTkzNjcwOSwiaWF0IjoxNjk5ODUwMzA5fQ.KGnIylxm3qVeAL8Q2oIpV1C0QQDGu4-9M6_I0SsT4a0");
-        },
-      ),
-    );
-    super.didChangeDependencies();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
@@ -63,7 +43,14 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: [
                         Consumer<ProfileProvider>(
                           builder: (context, profileProvider, child) {
-                            return Text(
+                            return profileProvider.isLoading ?
+                            Text(
+                              "Loading ....",
+                              style: TextStyleWidget.titleT2(
+                                  color: ColorThemeStyle.white100,
+                                  fontWeight: FontWeight.w500),
+                            ) :
+                            Text(
                               "Hi, ${profileProvider.user.name}",
                               style: TextStyleWidget.titleT2(
                                   color: ColorThemeStyle.white100,
@@ -101,6 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Center(
                 child: GestureDetector(
                   onTap: () {
+                    //TODO Navigasi ke halaman poin
                     Provider.of<BottomNavigationBarProvider>(context,
                             listen: false)
                         .onChangeIndex(1);
@@ -130,13 +118,20 @@ class _HomeScreenState extends State<HomeScreen> {
                           const SizedBox(height: 8),
                           Consumer<ProfileProvider>(
                             builder: (context, profileProvider, child) {
-                              return Text(
-                                "${profileProvider.user.points} Desti Poin",
-                                style: TextStyleWidget.headlineH2(
-                                    color: ColorThemeStyle.black100,
-                                    fontWeight: FontWeight.w700),
-                              );
-                            },
+                              return profileProvider.isLoading ?
+                                Text(
+                                  "-- Desti Poin",
+                                  style: TextStyleWidget.headlineH2(
+                                      color: ColorThemeStyle.black100,
+                                      fontWeight: FontWeight.w700),
+                                ) :
+                                Text(
+                                  "${profileProvider.user.points} Desti Poin",
+                                  style: TextStyleWidget.headlineH2(
+                                      color: ColorThemeStyle.black100,
+                                      fontWeight: FontWeight.w700),
+                                );
+                              },
                           ),
                           const SizedBox(height: 21),
                           GestureDetector(
@@ -231,7 +226,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 const SizedBox(height: 16),
                                 BadgeWidget.container(
                                     onPressed: () {
-                                      didChangeDependencies();
+                                       //TODO Logic Refresh
                                     },
                                     label: "Muat ulang")
                               ],
@@ -307,7 +302,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             const SizedBox(height: 16),
                             BadgeWidget.container(
                                 onPressed: () {
-                                  didChangeDependencies();
+                                  //TODO Logic Refresh;
                                 },
                                 label: "Muat ulang")
                           ],
