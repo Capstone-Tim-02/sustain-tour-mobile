@@ -63,7 +63,7 @@ class LoginScreen extends StatelessWidget {
             const SizedBox(
               height: 8,
             ),
-            const ButtonMasukGoogle(),
+            ButtonMasukGoogle(),
             // ElevatedButton(
             //   onPressed: () {
             //     LoginProvider authProvider =
