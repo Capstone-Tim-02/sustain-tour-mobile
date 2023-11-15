@@ -20,7 +20,26 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   @override
+  void initState() {
+    HomeScreenProvider homeScreenProvider = Provider.of<HomeScreenProvider>(context, listen: false);
+    SplashScreenProvider splashScreenProvider = Provider.of<SplashScreenProvider>(context, listen: false);
+    ProfileProvider profileProvider = Provider.of<ProfileProvider>(context, listen: false);
+    super.initState();
+    homeScreenProvider
+      .getRekomendasiWisata(token: splashScreenProvider.hasToken);
+
+    homeScreenProvider
+      .getPromo(token: splashScreenProvider.hasToken);
+    
+    profileProvider
+    .getUserData(userId: splashScreenProvider.hasId, token: splashScreenProvider.hasToken);
+  }
+
+  @override
   Widget build(BuildContext context) {
+    SplashScreenProvider splashScreenProvider = Provider.of<SplashScreenProvider>(context, listen: false);
+    ProfileProvider profileProvider = Provider.of<ProfileProvider>(context, listen: false);
+    BottomNavigationBarProvider bottomNavigationBarProvider = Provider.of<BottomNavigationBarProvider>(context,listen: false);
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -91,9 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: GestureDetector(
                   onTap: () {
                     //TODO Navigasi ke halaman poin
-                    Provider.of<BottomNavigationBarProvider>(context,
-                            listen: false)
-                        .onChangeIndex(1);
+                    bottomNavigationBarProvider.onChangeIndex(1);
                   },
                   child: Container(
                     height: 136,
@@ -174,9 +191,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Provider.of<BottomNavigationBarProvider>(context,
-                            listen: false)
-                        .onChangeIndex(1);
+                    bottomNavigationBarProvider.onChangeIndex(1);
                   },
                   child: Text(
                     "Lihat semua",
@@ -224,15 +239,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                 const SizedBox(height: 16),
                                 BadgeWidget.container(
                                     onPressed: () {
-                                      Provider.of<ProfileProvider>(context, listen: false).getUserData(
-                                        userId: Provider.of<SplashScreenProvider>(context,listen: false).hasId,
-                                        token: Provider.of<SplashScreenProvider>(context,listen: false).hasToken
+                                      profileProvider.getUserData(
+                                        userId: splashScreenProvider.hasId,
+                                        token: splashScreenProvider.hasToken
                                       );
-                                      Provider.of<HomeScreenProvider>(context,listen: false).getRekomendasiWisata(
-                                        token: Provider.of<SplashScreenProvider>(context,listen: false).hasToken
+                                      homeScreenProvider.getRekomendasiWisata(
+                                        token: splashScreenProvider.hasToken
                                       );
-                                      Provider.of<HomeScreenProvider>(context,listen: false).getPromo(
-                                        token: Provider.of<SplashScreenProvider>(context,listen: false).hasToken
+                                      homeScreenProvider.getPromo(
+                                        token: splashScreenProvider.hasToken
                                       );
                                     },
                                     label: "Muat ulang")
@@ -252,9 +267,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         fontWeight: FontWeight.w600)),
                 GestureDetector(
                   onTap: () {
-                    Provider.of<BottomNavigationBarProvider>(context,
-                            listen: false)
-                        .onChangeIndex(1);
+                    bottomNavigationBarProvider.onChangeIndex(1);
                   },
                   child: Text(
                     "Lihat semua",
@@ -309,15 +322,15 @@ class _HomeScreenState extends State<HomeScreen> {
                             const SizedBox(height: 16),
                             BadgeWidget.container(
                                 onPressed: () {
-                                  Provider.of<ProfileProvider>(context, listen: false).getUserData(
-                                    userId: Provider.of<SplashScreenProvider>(context,listen: false).hasId,
-                                    token: Provider.of<SplashScreenProvider>(context,listen: false).hasToken
+                                  profileProvider.getUserData(
+                                    userId: splashScreenProvider.hasId,
+                                    token: splashScreenProvider.hasToken
                                   );
-                                  Provider.of<HomeScreenProvider>(context,listen: false).getRekomendasiWisata(
-                                    token: Provider.of<SplashScreenProvider>(context,listen: false).hasToken
+                                  homeScreenProvider.getRekomendasiWisata(
+                                    token: splashScreenProvider.hasToken
                                   );
-                                  Provider.of<HomeScreenProvider>(context,listen: false).getPromo(
-                                    token: Provider.of<SplashScreenProvider>(context,listen: false).hasToken
+                                  homeScreenProvider.getPromo(
+                                    token: splashScreenProvider.hasToken
                                   );
                                 },
                                 label: "Muat ulang")
