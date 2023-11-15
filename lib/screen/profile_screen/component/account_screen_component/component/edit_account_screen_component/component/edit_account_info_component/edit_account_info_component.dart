@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sustain_tour_mobile/constants/assets_image.dart';
+import 'package:sustain_tour_mobile/screen/login_screen/login_provider.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/component/account_screen_component/component/edit_account_screen_component/component/edit_account_info_component/component/edit_text_field_component_widget/edit_text_field_component_widget.dart';
+import 'package:sustain_tour_mobile/screen/profile_screen/component/account_screen_component/component/edit_account_screen_component/edit_account_provider.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/component/profile_option_component/component/list_tile_widget.dart';
+import 'package:sustain_tour_mobile/screen/profile_screen/profile_provider.dart';
 import 'package:sustain_tour_mobile/style/font_weight_style.dart';
 import 'package:sustain_tour_mobile/style/text_style_widget.dart';
 
@@ -46,7 +50,15 @@ class EditAccountInfoComponent extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          const EditTextFieldComponentWidget(),
+                          Consumer<EditAccountProvider>(
+                              builder: (context, editAccountProvider, child) {
+                            return EditTextFieldComponentWidget(
+                              label: 'Name',
+                              onChanged: (nameValue) {
+                                editAccountProvider.setName(name: nameValue);
+                              },
+                            );
+                          }),
                           const SizedBox(
                             height: 8,
                           ),
@@ -67,7 +79,29 @@ class EditAccountInfoComponent extends StatelessWidget {
                                 width: 54,
                               ),
                               GestureDetector(
-                                onTap: () {},
+                                onTap: () {
+                                  String token = Provider.of<LoginProvider>(
+                                              context,
+                                              listen: false)
+                                          .token ??
+                                      '';
+                                  int userId = Provider.of<LoginProvider>(
+                                              context,
+                                              listen: false)
+                                          .userId ??
+                                      -1;
+                                  String newName =
+                                      Provider.of<EditAccountProvider>(context,
+                                              listen: false)
+                                          .currentName;
+                                  print(newName);
+                                  Provider.of<ProfileProvider>(context,
+                                          listen: false)
+                                      .updateName(
+                                          userId: userId,
+                                          token: token,
+                                          newName: newName);
+                                },
                                 child: Text(
                                   'Simpan',
                                   style: TextStyleWidget.titleT3(

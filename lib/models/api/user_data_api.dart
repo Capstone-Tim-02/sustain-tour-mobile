@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:sustain_tour_mobile/constants/api_base_url.dart';
 import 'package:sustain_tour_mobile/models/user_data_models/user_data_models.dart';
 
 class UserDataApi {
@@ -27,5 +28,51 @@ class UserDataApi {
     }
 
     return userData;
+  }
+
+  Future<bool> updateName(
+      {required int userId,
+      required String token,
+      required String newName}) async {
+    try {
+      await Dio().put('$baseUrl/user/$userId',
+          options: Options(
+            headers: {
+              "authorization": "Bearer $token",
+              'Content-Type': 'multipart/form-data',
+            },
+          ),
+          data: FormData.fromMap({
+            'name': newName,
+          }));
+
+      return true;
+    } on DioException catch (e) {
+      print(e);
+      return false;
+    }
+  }
+
+  Future<bool> updateUsername(
+      {required int userId,
+      required String token,
+      required String newUsername}) async {
+    try {
+      await Dio().put('$baseUrl/user/$userId',
+          options: Options(
+            headers: {
+              "authorization": "Bearer $token",
+              'Content-Type': 'multipart/form-data',
+            },
+          ),
+          data: FormData.fromMap({
+            'username': newUsername,
+          }));
+
+      return true;
+    } on DioException catch (e) {
+      print(e);
+      return false;
+    }
   }
 }

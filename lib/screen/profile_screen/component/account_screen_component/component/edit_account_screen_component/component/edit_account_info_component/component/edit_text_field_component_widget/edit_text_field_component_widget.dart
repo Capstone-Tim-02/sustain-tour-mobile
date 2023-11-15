@@ -4,13 +4,19 @@ import 'package:sustain_tour_mobile/style/font_weight_style.dart';
 import 'package:sustain_tour_mobile/style/text_style_widget.dart';
 
 class EditTextFieldComponentWidget extends StatelessWidget {
-  const EditTextFieldComponentWidget({super.key});
+  final bool? autofocus;
+  final TextEditingController? controller;
+  final String? label;
+  final void Function(String)? onChanged;
+  const EditTextFieldComponentWidget(
+      {super.key, this.autofocus, this.controller, this.label, this.onChanged});
 
   @override
   Widget build(BuildContext context) {
     return TextField(
-      autofocus: true,
-      controller: TextEditingController(text: 'Gebi'),
+      autofocus: autofocus ?? true,
+      controller: controller,
+      cursorColor: ColorThemeStyle.blue100,
       style: TextStyleWidget.titleT2(
           fontWeight: FontWeight.w500, color: Colors.black),
       decoration: InputDecoration(
@@ -21,13 +27,13 @@ class EditTextFieldComponentWidget extends StatelessWidget {
           width: 2,
         )),
         label: Text(
-          'Nama',
+          label ?? '',
           style: TextStyleWidget.titleT3(
               fontWeight: FontWeightStyle.medium, color: Colors.black),
         ),
         floatingLabelBehavior: FloatingLabelBehavior.auto,
       ),
-      keyboardAppearance: Brightness.dark,
+      onChanged: onChanged,
     );
   }
 }
