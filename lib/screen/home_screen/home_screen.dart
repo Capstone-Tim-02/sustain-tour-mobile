@@ -106,7 +106,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         fit: BoxFit.fill
                       ),
                       borderRadius: BorderRadius.circular(10),
-                      boxShadow: [ShadowStyle.shadowFix2],
+                      boxShadow: [ShadowStyle.shadowFix1],
                     ),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
