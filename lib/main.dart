@@ -5,8 +5,8 @@ import 'package:sustain_tour_mobile/screen/profile_screen/component/profile_emis
 import 'package:sustain_tour_mobile/screen/profile_screen/profile_provider.dart';
 import 'package:sustain_tour_mobile/screen/home_screen/home_screen_provider.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/login_provider.dart';
-import 'package:sustain_tour_mobile/screen/login_screen/validator/from_password_screns.dart';
-import 'package:sustain_tour_mobile/screen/login_screen/validator/from_username_screens.dart';
+import 'package:sustain_tour_mobile/screen/login_screen/component/from_password_screns.dart';
+import 'package:sustain_tour_mobile/screen/login_screen/component/from_username_screens.dart';
 import 'package:sustain_tour_mobile/widget/bottom_navbar_widget/bottom_navbar_widget_provider.dart';
 
 import 'screen/onboarding_screen/onboarding_provider.dart';

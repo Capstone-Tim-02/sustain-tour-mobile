@@ -171,4 +171,28 @@ class Assets {
   /// Assets for assetsImagesMatchmaking
   /// assets/images/matchmaking.png
   static const String assetsImagesMatchmaking = "assets/images/matchmaking.png";
+
+  /// Assets for assetsImagesWisataalam
+  /// assets/images/wisataalam.png
+  static const String assetsImagesWisataAlam = "assets/images/wisataalam.png";
+
+  /// Assets for assetsImagesWisatahiburan
+  /// assets/images/wisatahiburan.png
+  static const String assetsImagesWisataHiburan =
+      "assets/images/wisatahiburan.png";
+
+  /// Assets for assetsImagesWisatasejarah
+  /// assets/images/wisatasejarah.png
+  static const String assetsImagesWisataSejarah =
+      "assets/images/wisatasejarah.png";
+
+  /// Assets for assetsImagesWisataBudaya
+  /// assets/images/wisataBudaya.png
+  static const String assetsImagesWisataBudaya =
+      "assets/images/wisatabudaya.png";
+
+  /// Assets for assetsImagesSelamatDatang
+  /// assets/images/selamatdatang.png
+  static const String assetsImagesSelamatDatang =
+      "assets/images/selamatdatang.png";
 }
