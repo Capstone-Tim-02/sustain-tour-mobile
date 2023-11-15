@@ -37,12 +37,6 @@ class _SplashScreenState extends State<SplashScreen> {
           Provider.of<ProfileEmissionProvider>(context, listen: false)
               .getUserEmission(userId: id, token: token);
 
-          Provider.of<HomeScreenProvider>(context, listen: false)
-              .getRekomendasiWisata(token: token);
-
-          Provider.of<HomeScreenProvider>(context, listen: false)
-              .getPromo(token: token);
-
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (context) => const MainScreen()),
           );
