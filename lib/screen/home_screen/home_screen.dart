@@ -79,7 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         padding: const EdgeInsets.all(12),
                         icon: const Icon(
                           Icons.notifications_active,
-                          color: ColorThemeStyle.black100,
+                          color: ColorThemeStyle.blue100,
                           size: 32,
                         ),
                       ),
