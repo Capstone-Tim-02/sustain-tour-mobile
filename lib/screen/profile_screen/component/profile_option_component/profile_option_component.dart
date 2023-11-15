@@ -22,7 +22,9 @@ class ProfileOptionComponent extends StatelessWidget {
           title: 'Pusat Bantuan',
           subtitle: 'FAQ dan Virtual Asistent',
           iconSvgString: Assets.assetsIconsHelp,
-          onTap: () {},
+          onTap: () {
+            Navigator.pushNamed(context, Routes.aiScreen);
+          },
         ),
         ListTileWidget(
           title: 'Term & Condition',

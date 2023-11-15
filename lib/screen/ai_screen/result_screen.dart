@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:sustain_tour_mobile/constants/assets_image.dart';
 import 'package:sustain_tour_mobile/models/ai_models/ai_models.dart';
+import 'package:sustain_tour_mobile/screen/profile_screen/profile_provider.dart';
+import 'package:sustain_tour_mobile/style/color_theme_style.dart';
+import 'package:sustain_tour_mobile/style/font_weight_style.dart';
+import 'package:sustain_tour_mobile/style/text_style_widget.dart';
 
 class ResultScreen extends StatelessWidget {
   final AiModels gptResponseData;
@@ -12,35 +18,103 @@ class ResultScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Solution'),
+        title: Text(
+          'Virtual Assistant',
+          style: TextStyleWidget.titleT2(
+            fontWeight: FontWeightStyle.semiBold,
+          ),
+        ),
+        leading: const SizedBox(),
+        centerTitle: true,
       ),
       body: ListView(
-        padding: const EdgeInsets.all(20),
         children: [
-          // const Padding(
-          //   padding: EdgeInsets.all(16),
-          //   child: Text(
-          //     'Solution for your question',
-          //     style: TextStyle(
-          //       fontWeight: FontWeight.bold,
-          //     ),
-          //   ),
-          // ),
-
           Container(
-            width: double.infinity,
-            color: Colors.amberAccent,
-            child: Text(question),
-          ),
-          const SizedBox(
-            height: 20,
+            color: Colors.white,
+            child: ListTile(
+              leading: Consumer<ProfileProvider>(
+                builder: (context, profileProvider, child) {
+                  if (!profileProvider.isLoading) {
+                    return Container(
+                      width: 48,
+                      height: 48,
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: ColorThemeStyle.grey50,
+                      ),
+                      child: Image.network(
+                        profileProvider.user.photoProfil,
+                        errorBuilder: (BuildContext context, Object error,
+                            StackTrace? stackTrace) {
+                          // Menangani error, mengembalikan widget pengganti (misalnya ikon)
+                          return const Center(
+                            child: Icon(Icons.image),
+                            // Image.asset(Assets.assetsKepalaChatBot),
+                          );
+                        },
+                      ),
+                    );
+                  } else {
+                    return const Icon(Icons.image);
+                  }
+                },
+              ),
+              title: Text(
+                question,
+                textAlign: TextAlign.left,
+                style: TextStyleWidget.bodyB3(
+                  fontWeight: FontWeightStyle.regular,
+                  color: ColorThemeStyle.black100,
+                ),
+              ),
+            ),
           ),
           Container(
-            width: double.infinity,
-            color: Colors.amberAccent,
-            child: Text(
-              gptResponseData.data.toString(),
-              textAlign: TextAlign.justify,
+            color: ColorThemeStyle.blue20,
+            child: ListTile(
+              leading: Container(
+                width: 48,
+                height: 48,
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: ColorThemeStyle.white100,
+                ),
+                child: Image.asset(
+                  Assets.assetsKepalaChatBot,
+                ),
+              ),
+              title: Text(
+                gptResponseData.data.toString(),
+                textAlign: TextAlign.left,
+                style: TextStyleWidget.bodyB3(
+                  fontWeight: FontWeightStyle.regular,
+                  color: ColorThemeStyle.black100,
+                ),
+              ),
+              isThreeLine: true,
+              subtitle: const Text(''),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 16,
+              vertical: 30,
+            ),
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: ColorThemeStyle.blue100,
+                fixedSize: const Size.fromHeight(60),
+              ),
+              child: Text(
+                'Oke',
+                style: TextStyleWidget.titleT2(
+                  fontWeight: FontWeightStyle.semiBold,
+                  color: ColorThemeStyle.white100,
+                ),
+              ),
             ),
           ),
         ],

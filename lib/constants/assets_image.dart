@@ -175,4 +175,8 @@ class Assets {
   /// Assets for assetsImagesChatBot
   /// assets/images/ChatBot.png
   static const String assetsImagesChatBot = "assets/images/ChatBot.png";
+
+  /// Assets for assetsKepalaChatBot
+  /// assets/images/KepalaChatBot.png
+  static const String assetsKepalaChatBot = "assets/images/KepalaChatBot.png";
 }

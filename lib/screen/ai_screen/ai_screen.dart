@@ -86,6 +86,7 @@ class AiScreen extends StatelessWidget {
                         hintText: 'Apa yang ingin kamu tanyakan',
                         fillColor: ColorThemeStyle.grey50,
                         filled: true,
+                        textCapitalization: TextCapitalization.sentences,
                       ),
                     ),
                     const SizedBox(width: 16),
@@ -105,9 +106,11 @@ class AiScreen extends StatelessWidget {
                                     final aiResponseData =
                                         aiProvider.openAiAnswer;
 
+                                    // aiProvider.resetFields(
+                                    //     aiProvider.messageController);
                                     if (aiResponseData != null) {
-                                      aiProvider.resetFields(
-                                          aiProvider.messageController);
+                                      // aiProvider.resetFields(
+                                      //     aiProvider.messageController);
                                       Navigator.of(context).push(
                                         MaterialPageRoute(
                                           builder: (context) {
