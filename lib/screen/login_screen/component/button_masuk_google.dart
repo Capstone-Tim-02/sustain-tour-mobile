@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:sustain_tour_mobile/constants/assets_image.dart';
 import 'package:sustain_tour_mobile/widget/button_widget.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ButtonMasukGoogle extends StatelessWidget {
-  const ButtonMasukGoogle({Key? key}) : super(key: key);
+  ButtonMasukGoogle({Key? key}) : super(key: key);
+  final Uri _url =
+      Uri.parse('https://destimate.uc.r.appspot.com/auth/google/initiate');
+  Future<void> _launchUrl() async {
+    if (!await launchUrl(_url)) {
+      throw Exception('Could not launch $_url');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,11 +23,7 @@ class ButtonMasukGoogle extends StatelessWidget {
           svgIcon: Assets.assetsIconsGoogle,
           text: 'Daftar Pakai Google',
           onPressed: () {
-            // LoginProvider yourProvider =
-            //     Provider.of<LoginProvider>(context, listen: false);
-
-            // // Panggil metode launchUrl
-            // yourProvider.loginDenganGogle();
+            _launchUrl();
           },
         ),
       ],
