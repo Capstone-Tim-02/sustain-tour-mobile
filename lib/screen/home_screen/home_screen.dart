@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sustain_tour_mobile/constants/assets_image.dart';
 import 'package:sustain_tour_mobile/screen/home_screen/home_screen_provider.dart';
+import 'package:sustain_tour_mobile/screen/onboarding_screen/splash_screen/splash_screen_provider.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/profile_provider.dart';
 import 'package:sustain_tour_mobile/style/color_theme_style.dart';
 import 'package:sustain_tour_mobile/style/shadow_style.dart';
@@ -99,13 +101,16 @@ class _HomeScreenState extends State<HomeScreen> {
                     margin:
                         const EdgeInsets.only(top: 165, left: 16, right: 16),
                     decoration: BoxDecoration(
-                      color: ColorThemeStyle.white100,
+                      image: const DecorationImage(
+                        image: AssetImage(Assets.assetsImagesPointBackground),
+                        fit: BoxFit.fill
+                      ),
                       borderRadius: BorderRadius.circular(10),
                       boxShadow: [ShadowStyle.shadowFix2],
                     ),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 16, vertical: 10),
+                          horizontal: 16, vertical: 18),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -113,47 +118,40 @@ class _HomeScreenState extends State<HomeScreen> {
                             "Poin dimiliki saat ini",
                             style: TextStyleWidget.bodyB2(
                                 color: ColorThemeStyle.black100,
-                                fontWeight: FontWeight.w400),
+                                fontWeight: FontWeight.w500),
                           ),
                           const SizedBox(height: 8),
-                          Consumer<ProfileProvider>(
-                            builder: (context, profileProvider, child) {
-                              return profileProvider.isLoading ?
-                                Text(
-                                  "-- Desti Poin",
-                                  style: TextStyleWidget.headlineH2(
-                                      color: ColorThemeStyle.black100,
-                                      fontWeight: FontWeight.w700),
-                                ) :
-                                Text(
-                                  "${profileProvider.user.points} Desti Poin",
-                                  style: TextStyleWidget.headlineH2(
-                                      color: ColorThemeStyle.black100,
-                                      fontWeight: FontWeight.w700),
-                                );
-                              },
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Consumer<ProfileProvider>(
+                                builder: (context, profileProvider, child) {
+                                  return profileProvider.isLoading ?
+                                    Text(
+                                      "-- \nDesti Poin",
+                                      style: TextStyleWidget.headlineH2(
+                                          color: ColorThemeStyle.blue100,
+                                          fontWeight: FontWeight.w600),
+                                    ) :
+                                    Text(
+                                      "${profileProvider.user.points} \nDesti Poin",
+                                      style: TextStyleWidget.headlineH2(
+                                          color: ColorThemeStyle.blue100,
+                                          fontWeight: FontWeight.w600),
+                                    );
+                                  },
+                              ),
+                              const CircleAvatar(
+                                backgroundColor: ColorThemeStyle.blue100,
+                                maxRadius: 27.5,
+                                child: Icon(
+                                  Icons.navigate_next,
+                                  color: ColorThemeStyle.white100,
+                                  size: 40,
+                                ),
+                              )
+                            ],
                           ),
-                          const SizedBox(height: 21),
-                          GestureDetector(
-                            onTap: () {
-                              //TODO Navigasi ke Halaman Poin
-                            },
-                            child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    "Selengkapnya",
-                                    style: TextStyleWidget.titleT3(
-                                        color: ColorThemeStyle.black100,
-                                        fontWeight: FontWeight.w600),
-                                  ),
-                                  const Icon(
-                                    Icons.navigate_next,
-                                    size: 24,
-                                  )
-                                ]),
-                          )
                         ],
                       ),
                     ),
@@ -226,7 +224,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                 const SizedBox(height: 16),
                                 BadgeWidget.container(
                                     onPressed: () {
-                                       //TODO Logic Refresh
+                                      Provider.of<ProfileProvider>(context, listen: false).getUserData(
+                                        userId: Provider.of<SplashScreenProvider>(context,listen: false).hasId,
+                                        token: Provider.of<SplashScreenProvider>(context,listen: false).hasToken
+                                      );
+                                      Provider.of<HomeScreenProvider>(context,listen: false).getRekomendasiWisata(
+                                        token: Provider.of<SplashScreenProvider>(context,listen: false).hasToken
+                                      );
+                                      Provider.of<HomeScreenProvider>(context,listen: false).getPromo(
+                                        token: Provider.of<SplashScreenProvider>(context,listen: false).hasToken
+                                      );
                                     },
                                     label: "Muat ulang")
                               ],
@@ -302,7 +309,16 @@ class _HomeScreenState extends State<HomeScreen> {
                             const SizedBox(height: 16),
                             BadgeWidget.container(
                                 onPressed: () {
-                                  //TODO Logic Refresh;
+                                  Provider.of<ProfileProvider>(context, listen: false).getUserData(
+                                    userId: Provider.of<SplashScreenProvider>(context,listen: false).hasId,
+                                    token: Provider.of<SplashScreenProvider>(context,listen: false).hasToken
+                                  );
+                                  Provider.of<HomeScreenProvider>(context,listen: false).getRekomendasiWisata(
+                                    token: Provider.of<SplashScreenProvider>(context,listen: false).hasToken
+                                  );
+                                  Provider.of<HomeScreenProvider>(context,listen: false).getPromo(
+                                    token: Provider.of<SplashScreenProvider>(context,listen: false).hasToken
+                                  );
                                 },
                                 label: "Muat ulang")
                           ],
