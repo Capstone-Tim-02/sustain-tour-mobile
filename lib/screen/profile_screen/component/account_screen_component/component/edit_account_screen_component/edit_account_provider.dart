@@ -1,25 +1,161 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 
 class EditAccountProvider extends ChangeNotifier {
-  final TextEditingController _nameController = TextEditingController();
-  TextEditingController get nameController => _nameController;
+  final TextEditingController _controller = TextEditingController();
+  TextEditingController get controller => _controller;
+
+  String _errorText = '';
+  String get errorText => _errorText;
+
+  String _errorTextCurrentPassword = '';
+  String get errorTextCurrentPassword => _errorTextCurrentPassword;
+
+  String _errorTextNewPassword = '';
+  String get errorTextNewPassword => _errorTextNewPassword;
 
   String _currentName = '';
   String get currentName => _currentName;
 
-  void setNameContollerText({required String text}) {
-    _nameController.text = text;
-    notifyListeners();
+  String _currentUsername = '';
+  String get currentUsername => _currentUsername;
+
+  String _currentNoHp = '';
+  String get currentNoHp => _currentNoHp;
+
+  String _currentEmail = '';
+  String get currentEmail => _currentEmail;
+
+  String _currentPassword = '';
+  String get currentPassword => _currentPassword;
+
+  String _newPassword = '';
+  String get newPassword => _newPassword;
+
+  void setName({required String name, bool listen = true}) {
+    _currentName = name;
+    if (listen) {
+      notifyListeners();
+    }
   }
 
-  void setName({required String name}) {
-    _currentName = name;
-    notifyListeners();
+  void setUsername({required String username, bool listen = true}) {
+    _currentUsername = username;
+    if (listen) {
+      notifyListeners();
+    }
+  }
+
+  void setNoHandphone({required String noHp, bool listen = true}) {
+    _currentNoHp = noHp;
+    if (listen) {
+      notifyListeners();
+    }
+  }
+
+  void setEmail({required String email, bool listen = true}) {
+    _currentEmail = email;
+    if (listen) {
+      notifyListeners();
+    }
+  }
+
+  void setCurrentPassword(
+      {required String currentPasswordVal, bool listen = true}) {
+    _currentPassword = currentPasswordVal;
+    if (listen) {
+      notifyListeners();
+    }
+  }
+
+  void setNewPassword({required String newPasswordVal, bool listen = true}) {
+    _newPassword = newPasswordVal;
+    if (listen) {
+      notifyListeners();
+    }
+  }
+
+  void errorTextName() {
+    if (_currentName.isEmpty) {
+      _errorText = 'Nama tidak boleh kosong!';
+    } else if (_currentName.length < 3) {
+      _errorText = 'Nama minimal 3 karakter';
+    } else {
+      _errorText = '';
+    }
+  }
+
+  void errorTextCurrentPasswordSetter() {
+    if (_currentPassword.isEmpty) {
+      _errorTextCurrentPassword = 'Field ini tidak boleh kosong!';
+    } else {
+      _errorTextCurrentPassword = '';
+    }
+  }
+
+  void errorTextNewPasswordSetter() {
+    RegExp regex = RegExp(r'^(?=.*\d)(?=.*[^\d])');
+    if (_newPassword.isEmpty) {
+      _errorTextNewPassword = 'Password tidak boleh kosong!';
+    } else if (_newPassword.length < 8) {
+      _errorTextNewPassword = 'Password minimal 8 karakter';
+    } else if (!regex.hasMatch(_newPassword)) {
+      _errorTextNewPassword = 'Password harus ada huruf dan angka';
+    } else {
+      _errorTextNewPassword = '';
+    }
+  }
+
+  void errorTextUsername() {
+    if (_currentUsername.isEmpty) {
+      _errorText = 'Username tidak boleh kosong!';
+    } else if (_currentUsername.length < 5) {
+      _errorText = 'Username minimal 5 karakter';
+    } else {
+      _errorText = '';
+    }
+  }
+
+  void errorTextNoHp() {
+    RegExp regExp = RegExp(r'^0[0-9]*$');
+    if (_currentNoHp.isEmpty) {
+      _errorText = 'No Handphone tidak boleh kosong';
+    } else if (!regExp.hasMatch(_currentNoHp)) {
+      _errorText = 'No Handphone hanya boleh angka dan di awali 0';
+    } else if (_currentNoHp.length < 10) {
+      _errorText = 'No Handphone minimal 10 digit';
+    } else if (_currentNoHp.length > 16) {
+      _errorText = 'No Handphone maksimal 16 digit';
+    } else {
+      _errorText = '';
+    }
+  }
+
+  void errorTextEmail() {
+    if (_currentEmail.isEmpty) {
+      _errorText = 'Email tidak boloh kosong';
+    } else if (!EmailValidator.validate(_currentEmail)) {
+      _errorText = 'Email tidak valid';
+    } else {
+      _errorText = '';
+    }
+  }
+
+  void clearErrorText() {
+    _errorText = '';
+  }
+
+  void clearErrorTextCurrentPassword() {
+    _errorTextCurrentPassword = '';
+  }
+
+  void clearErrorTextNewPassword() {
+    _errorTextNewPassword = '';
   }
 
   @override
   void dispose() {
-    _nameController.dispose();
+    controller.dispose();
     super.dispose();
   }
 }

@@ -48,17 +48,16 @@ class UserDataApi {
 
       return true;
     } on DioException catch (e) {
-      print(e);
-      return false;
+      throw '${e.response?.data['message']}';
     }
   }
 
-  Future<bool> updateUsername(
+  Future<String> updateUsername(
       {required int userId,
       required String token,
       required String newUsername}) async {
     try {
-      await Dio().put('$baseUrl/user/$userId',
+      final response = await Dio().put('$baseUrl/user/$userId',
           options: Options(
             headers: {
               "authorization": "Bearer $token",
@@ -69,10 +68,79 @@ class UserDataApi {
             'username': newUsername,
           }));
 
+      String newToken = response.data['token'];
+
+      return newToken;
+    } on DioException catch (e) {
+      throw '${e.response?.data['message']}';
+    }
+  }
+
+  Future<bool> updateNoHandphone(
+      {required int userId,
+      required String token,
+      required String newNoHp}) async {
+    try {
+      await Dio().put('$baseUrl/user/$userId',
+          options: Options(
+            headers: {
+              "authorization": "Bearer $token",
+              'Content-Type': 'multipart/form-data',
+            },
+          ),
+          data: FormData.fromMap({
+            'phone_number': newNoHp,
+          }));
+
       return true;
     } on DioException catch (e) {
-      print(e);
-      return false;
+      throw '${e.response?.data['message']}';
+    }
+  }
+
+  Future<bool> updateEmail(
+      {required int userId,
+      required String token,
+      required String newEmail}) async {
+    try {
+      await Dio().put('$baseUrl/user/$userId',
+          options: Options(
+            headers: {
+              "authorization": "Bearer $token",
+              'Content-Type': 'multipart/form-data',
+            },
+          ),
+          data: FormData.fromMap({
+            'email': newEmail,
+          }));
+
+      return true;
+    } on DioException catch (e) {
+      throw '${e.response?.data['message']}';
+    }
+  }
+
+  Future<bool> updatePassword({
+    required int userId,
+    required String token,
+    required String currentPassword,
+    required String newPassword,
+  }) async {
+    try {
+      await Dio().put('$baseUrl/user/change-password/$userId',
+          options: Options(
+            headers: {
+              "authorization": "Bearer $token",
+            },
+          ),
+          data: {
+            "currentPassword": currentPassword,
+            "newPassword": newPassword
+          });
+
+      return true;
+    } on DioException catch (e) {
+      throw '${e.response?.data['message']}';
     }
   }
 }

@@ -7,9 +7,15 @@ class EditTextFieldComponentWidget extends StatelessWidget {
   final bool? autofocus;
   final TextEditingController? controller;
   final String? label;
+  final String? errorText;
   final void Function(String)? onChanged;
   const EditTextFieldComponentWidget(
-      {super.key, this.autofocus, this.controller, this.label, this.onChanged});
+      {super.key,
+      this.autofocus,
+      this.controller,
+      this.label,
+      this.onChanged,
+      this.errorText});
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +26,7 @@ class EditTextFieldComponentWidget extends StatelessWidget {
       style: TextStyleWidget.titleT2(
           fontWeight: FontWeight.w500, color: Colors.black),
       decoration: InputDecoration(
+        errorText: errorText,
         contentPadding: const EdgeInsets.only(bottom: -8),
         focusedBorder: const UnderlineInputBorder(
             borderSide: BorderSide(
@@ -31,7 +38,7 @@ class EditTextFieldComponentWidget extends StatelessWidget {
           style: TextStyleWidget.titleT3(
               fontWeight: FontWeightStyle.medium, color: Colors.black),
         ),
-        floatingLabelBehavior: FloatingLabelBehavior.auto,
+        floatingLabelBehavior: FloatingLabelBehavior.always,
       ),
       onChanged: onChanged,
     );
