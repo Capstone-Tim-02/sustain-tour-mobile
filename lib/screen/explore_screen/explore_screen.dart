@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sustain_tour_mobile/screen/explore_screen/explore_screen_provider.dart';
+import 'package:sustain_tour_mobile/screen/login_screen/login_provider.dart';
 import 'package:sustain_tour_mobile/style/color_theme_style.dart';
 import 'package:sustain_tour_mobile/style/text_style_widget.dart';
 import 'package:sustain_tour_mobile/widget/badge_widget.dart';
@@ -16,26 +17,23 @@ class ExploreScreen extends StatefulWidget {
 }
 
 class _ExploreScreenState extends State<ExploreScreen> {
+
   @override
-  void didChangeDependencies() {
-    WidgetsBinding.instance.addPostFrameCallback(
-      (_) => setState(
-        () {
-          //TODO Gabungin sama auth
-          final exploreProvider =
-              Provider.of<ExploreScreenProvider>(context, listen: false);
-          exploreProvider.getAllWisataByPageInitPage(
-            token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InN0ZXZlbiIsImV4cCI6MTcwMTE1ODEzOCwiaWF0IjoxNjk5OTQ4NTM4fQ.t3tDVgqfxmo8WXeb0dkdgCt1_higOytf0CLmbWpx310"
-            );
-        },
-      ),
-    );
-    super.didChangeDependencies();
+  void initState() {
+    super.initState();
+    ExploreScreenProvider exploreScreenProvider = Provider.of<ExploreScreenProvider>(context, listen: false);
+    LoginProvider loginProvider = Provider.of<LoginProvider>(context, listen: false);
+      exploreScreenProvider.getWisataInit(
+        token: loginProvider.token.toString());
+      exploreScreenProvider.getAllKota(
+        token: loginProvider.token.toString());
   }
 
   @override
   Widget build(BuildContext context) {
     TextEditingController searchController = TextEditingController();
+    ExploreScreenProvider exploreScreenProvider = Provider.of<ExploreScreenProvider>(context, listen: false);
+    LoginProvider loginProvider = Provider.of<LoginProvider>(context, listen: false);
     return SingleChildScrollView(
       child: Center(
         child: Column(
@@ -82,28 +80,51 @@ class _ExploreScreenState extends State<ExploreScreen> {
                         Expanded(
                           child: Consumer<ExploreScreenProvider>(
                             builder: (context, exploreScreenProvider, child) {
-                              return GridView.builder(
-                                itemCount: exploreScreenProvider.listKota.length,
-                                padding: const EdgeInsets.symmetric(horizontal: 18),
-                                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 3,
-                                  crossAxisSpacing: 8,
-                                  mainAxisSpacing: 16,
-                                  childAspectRatio: 10/4
+                              return Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 10),
+                                child: SingleChildScrollView(
+                                  child: Wrap(
+                                    spacing: 8,
+                                    runSpacing: 16,
+                                    children: [
+                                      for(int i = 0; i < exploreScreenProvider.listKota.length;i++)
+                                      i == exploreScreenProvider.kotaIndex ?
+                                      BadgeWidget.container(
+                                        onPressed: (){},
+                                        label: exploreScreenProvider.listKota[i]
+                                      ) :
+                                      BadgeWidget.outline(
+                                        onPressed: (){
+                                          exploreScreenProvider.setKotaIndex(i);
+                                        },
+                                        label: exploreScreenProvider.listKota[i]
+                                      )
+                                    ],
+                                  ),
                                 ),
-                                itemBuilder: (context, index) {
-                                  return BadgeWidget.outline(
-                                    onPressed: (){
-                                      //TODO Logic Toggle kota
-                                    },
-                                    label: exploreScreenProvider.listKota[index]
-                                  );
-                                },
                               );
                             },
                           )
                         ),
-                        const SizedBox(height: 20)
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            ElevatedButton(
+                              onPressed: (){
+                                Navigator.pop(context);
+                              },
+                              child: const Text("Batal")
+                            ),
+                            ElevatedButton(
+                              onPressed: (){
+                                //TODO logic Simpan kota yang sudah dipilih
+                                Navigator.pop(context);
+                              },
+                              child: const Text("Simpan")
+                            )
+                          ],
+                        ),
+                        const SizedBox(height: 45)
                       ],
                     );
                   }
@@ -128,19 +149,23 @@ class _ExploreScreenState extends State<ExploreScreen> {
                             BadgeWidget.container(
                               label: exploreScreenProvider.wisataCategory.keys.elementAt(index),
                               onPressed: (){
-                                print('Button Pressed disable!');
-                                setState(() {
-                                  exploreScreenProvider.toggleButton(index: index);
-                                });
+                                exploreScreenProvider.toggleButtonCategory(index: index);
+                                exploreScreenProvider.setPage(1);
+                                exploreScreenProvider.setListWisataToEmpty();
+                                exploreScreenProvider.getWisataByPage(
+                                  token: loginProvider.token.toString(),
+                                );
                               }
                             ) :
                             BadgeWidget.outline(
                               label: exploreScreenProvider.wisataCategory.keys.elementAt(index),
                               onPressed: (){
-                                print('Button Pressed enable!');
-                                setState(() {
-                                  exploreScreenProvider.toggleButton(index: index);
-                                });
+                                exploreScreenProvider.toggleButtonCategory(index: index);
+                                exploreScreenProvider.setPage(1);
+                                exploreScreenProvider.setListWisataToEmpty();
+                                exploreScreenProvider.getWisataByPage(
+                                  token: loginProvider.token.toString(),
+                                );
                               }
                             )
                           );
@@ -188,7 +213,12 @@ class _ExploreScreenState extends State<ExploreScreen> {
                       const SizedBox(height: 16),
                       BadgeWidget.container(
                           onPressed: () {
-                            didChangeDependencies();
+                            exploreScreenProvider.getWisataInit(
+                              token: loginProvider.token.toString()
+                            );
+                            exploreScreenProvider.getAllKota(
+                              token: loginProvider.token.toString()
+                            );
                           },
                           label: "Muat ulang")
                     ],
@@ -208,7 +238,9 @@ class _ExploreScreenState extends State<ExploreScreen> {
             ButtonWidget.defaultContainer(
               text: "Load more",
               onPressed: (){
-                Provider.of<ExploreScreenProvider>(context, listen: false).getAllWisataByPage(token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InN0ZXZlbiIsImV4cCI6MTcwMTE1ODEzOCwiaWF0IjoxNjk5OTQ4NTM4fQ.t3tDVgqfxmo8WXeb0dkdgCt1_higOytf0CLmbWpx310");
+                exploreScreenProvider.getWisataByPage(
+                  token: loginProvider.token.toString()
+                );
               }
             )
           ],

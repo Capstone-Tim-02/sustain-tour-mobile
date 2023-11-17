@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sustain_tour_mobile/style/color_theme_style.dart';
 
 class ShadowStyle {
   static BoxShadow shadowFix1 = BoxShadow(
@@ -13,5 +14,12 @@ class ShadowStyle {
     spreadRadius: 0,
     blurRadius: 10,
     offset: const Offset(0, 4),
+  );
+
+  static BoxShadow emissionShadow = BoxShadow(
+    color: ColorThemeStyle.lightPurple.withOpacity(0.54),
+    spreadRadius: 0,
+    blurRadius: 10,
+    offset: const Offset(0, 0),
   );
 }

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sustain_tour_mobile/constants/assets_image.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/component/profile_emission_component/profile_emission_provider.dart';
-import 'package:sustain_tour_mobile/style/color_theme_style.dart';
 import 'package:sustain_tour_mobile/style/font_weight_style.dart';
+import 'package:sustain_tour_mobile/style/shadow_style.dart';
 import 'package:sustain_tour_mobile/style/text_style_widget.dart';
 
 class DetailEmissionComponent extends StatelessWidget {
@@ -12,9 +13,17 @@ class DetailEmissionComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 32),
+      padding: const EdgeInsets.symmetric(vertical: 13, horizontal: 32),
       decoration: BoxDecoration(
-        color: ColorThemeStyle.greyBaru,
+        boxShadow: [
+          ShadowStyle.emissionShadow,
+        ],
+        image: const DecorationImage(
+          image: AssetImage(
+            Assets.assetsImagesEmissionBg,
+          ),
+          fit: BoxFit.cover,
+        ),
         borderRadius: BorderRadius.circular(10),
       ),
       child: Column(

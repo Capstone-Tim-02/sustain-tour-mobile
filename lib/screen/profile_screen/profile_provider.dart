@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sustain_tour_mobile/models/api/user_data_api.dart';
 import 'package:sustain_tour_mobile/models/user_data_models/user_data_models.dart';
 
@@ -9,11 +10,135 @@ class ProfileProvider extends ChangeNotifier {
   bool _isLoading = true;
   bool get isLoading => _isLoading;
 
+  String _message = '';
+  String get message => _message;
+
   Future<void> getUserData({required int userId, required String token}) async {
     _isLoading = true;
     notifyListeners();
     _user = await UserDataApi().getUserData(userId: userId, token: token);
     _isLoading = false;
     notifyListeners();
+  }
+
+  Future<void> updateName({
+    required int userId,
+    required String token,
+    required String newName,
+  }) async {
+    bool isDoneUpdate = false;
+
+    try {
+      isDoneUpdate = await UserDataApi().updateName(
+        userId: userId,
+        token: token,
+        newName: newName,
+      );
+
+      if (isDoneUpdate) {
+        _message = 'Berhasil update nama';
+        await getUserData(userId: userId, token: token);
+      }
+    } catch (e) {
+      _message = e.toString();
+    }
+  }
+
+  Future<void> updateUsername({
+    required int userId,
+    required String token,
+    required String newUsername,
+  }) async {
+    try {
+      String newToken = await UserDataApi().updateUsername(
+        userId: userId,
+        token: token,
+        newUsername: newUsername,
+      );
+
+      // simpan token baru di local
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setString('token', newToken);
+
+      _message = 'Berhasil update username';
+      await getUserData(userId: userId, token: newToken);
+    } catch (e) {
+      _message = e.toString();
+    }
+  }
+
+  Future<void> updateNoHandphone({
+    required int userId,
+    required String token,
+    required String newNoHp,
+  }) async {
+    bool isDoneUpdate = false;
+
+    try {
+      isDoneUpdate = await UserDataApi().updateNoHandphone(
+        userId: userId,
+        token: token,
+        newNoHp: newNoHp,
+      );
+
+      if (isDoneUpdate) {
+        _message = 'Berhasil update no hp';
+        await getUserData(userId: userId, token: token);
+      }
+    } catch (e) {
+      _message = e.toString();
+    }
+  }
+
+  Future<void> updateEmail({
+    required int userId,
+    required String token,
+    required String newEmail,
+  }) async {
+    bool isDoneUpdate = false;
+
+    try {
+      isDoneUpdate = await UserDataApi().updateEmail(
+        userId: userId,
+        token: token,
+        newEmail: newEmail,
+      );
+
+      if (isDoneUpdate) {
+        _message = 'Berhasil update email';
+        await getUserData(userId: userId, token: token);
+      }
+    } catch (e) {
+      _message = e.toString();
+    }
+  }
+
+  void clearMessage() {
+    _message = '';
+  }
+
+  Future<void> updatePassword({
+    required int userId,
+    required String token,
+    required String currentPassword,
+    required String newPassword,
+  }) async {
+    bool isDoneUpdate = false;
+
+    try {
+      isDoneUpdate = await UserDataApi().updatePassword(
+        userId: userId,
+        token: token,
+        currentPassword: currentPassword,
+        newPassword: newPassword,
+      );
+
+      if (isDoneUpdate) {
+        _message = 'Berhasil ganti password';
+        await getUserData(userId: userId, token: token);
+      }
+    } catch (e) {
+      _message = e.toString();
+    }
   }
 }
