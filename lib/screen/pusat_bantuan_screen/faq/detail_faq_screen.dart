@@ -27,6 +27,7 @@ class DetailFaqScreen extends StatelessWidget {
               vertical: 32,
             ),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   faqModel.tittle,
@@ -37,6 +38,21 @@ class DetailFaqScreen extends StatelessWidget {
                 const SizedBox(height: 32),
                 Text(
                   faqModel.detail,
+                  style: TextStyleWidget.labelL1(
+                    fontWeight: FontWeightStyle.medium,
+                  ),
+                ),
+                Text(
+                  faqModel.link,
+                  style: const TextStyle(
+                    decoration: TextDecoration.underline,
+                    decorationColor: Colors.black,
+                    decorationThickness: 1.5,
+                  ),
+                ),
+                const SizedBox(height: 16),
+                Text(
+                  faqModel.additional,
                   style: TextStyleWidget.labelL1(
                     fontWeight: FontWeightStyle.medium,
                   ),

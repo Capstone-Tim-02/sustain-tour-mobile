@@ -8,103 +8,30 @@ class FaqScreenProvider with ChangeNotifier {
     FaqModel(
       tittle: 'Bagaimana cara mendaftar sebagai pemilik wisata ?',
       detail:
-          'Untuk mendaftarkan wisata anda pada aplikasi destimate anda perlu menghubungi admin yang tertera pada halaman landing page yang kami miliki. Anda dapat mengakses halaman landing page tersebut dengan mengklik link dibawah \n www.destimate.com ',
+          'Untuk mendaftarkan wisata anda pada aplikasi destimate anda perlu menghubungi admin yang tertera pada halaman landing page yang kami miliki. Anda dapat mengakses halaman landing page tersebut dengan mengklik link dibawah',
+      link: "www.destimate.com",
+      additional:
+          'Adapun alur dari pendaftarannya adalah \n1. Pemilik tempat wisata mengakses website destimate \n2. Pemilik wisata mengklik tombol ‘Daftar Sekarang’ sehingga akan dialihkan menuju google form untuk menginputkan data yang dibutuhkan',
     ),
     FaqModel(
       tittle:
-          'Apakah kita bisa meminta pengembalian dana jika tempat wisata tidak sesui dengan deskripsi?',
-      detail:
-          'Untuk mendaftarkan wisata anda pada aplikasi destimate anda perlu menghubungi admin yang tertera pada halaman landing page yang kami miliki. Anda dapat mengakses halaman landing page tersebut dengan mengklik link dibawah \n www.destimate.com ',
+          'Apakah kita bisa meminta pengembalian dana jika tempat wisata tidak sesuai dengan deskripsi?',
+      detail: '',
+      link: 'www.destimate.com',
+      additional: '',
     ),
     FaqModel(
       tittle:
           'Apakah promo yang tersedia bisa digunakan diseluruh tempat wisata?',
-      detail:
-          'Untuk mendaftarkan wisata anda pada aplikasi destimate anda perlu menghubungi admin yang tertera pada halaman landing page yang kami miliki. Anda dapat mengakses halaman landing page tersebut dengan mengklik link dibawah \n www.destimate.com ',
+      detail: '',
+      link: 'www.destimate.com',
+      additional: '',
     ),
     FaqModel(
-      tittle: 'Bagaimana cara mendaftar sebagai pemilik wisata ?',
-      detail:
-          'Untuk mendaftarkan wisata anda pada aplikasi destimate anda perlu menghubungi admin yang tertera pada halaman landing page yang kami miliki. Anda dapat mengakses halaman landing page tersebut dengan mengklik link dibawah \n www.destimate.com ',
-    ),
-    FaqModel(
-      tittle:
-          'Apakah kita bisa meminta pengembalian dana jika tempat wisata tidak sesui dengan deskripsi?',
-      detail:
-          'Untuk mendaftarkan wisata anda pada aplikasi destimate anda perlu menghubungi admin yang tertera pada halaman landing page yang kami miliki. Anda dapat mengakses halaman landing page tersebut dengan mengklik link dibawah \n www.destimate.com ',
-    ),
-    FaqModel(
-      tittle:
-          'Apakah promo yang tersedia bisa digunakan diseluruh tempat febi?',
-      detail:
-          'Untuk mendaftarkan wisata anda pada aplikasi destimate anda perlu menghubungi admin yang tertera pada halaman landing page yang kami miliki. Anda dapat mengakses halaman landing page tersebut dengan mengklik link dibawah \n www.destimate.com ',
-    ),
-    FaqModel(
-      tittle: 'Bagaimana cara mendaftar sebagai pemilik gabriel ?',
-      detail:
-          'Untuk mendaftarkan wisata anda pada aplikasi destimate anda perlu menghubungi admin yang tertera pada halaman landing page yang kami miliki. Anda dapat mengakses halaman landing page tersebut dengan mengklik link dibawah \n www.destimate.com ',
-    ),
-    FaqModel(
-      tittle:
-          'Apakah kita bisa meminta pengembalian dana jika tempat wisata tidak sesui dengan deskripsi?',
-      detail:
-          'Untuk mendaftarkan wisata anda pada aplikasi destimate anda perlu menghubungi admin yang tertera pada halaman landing page yang kami miliki. Anda dapat mengakses halaman landing page tersebut dengan mengklik link dibawah \n www.destimate.com ',
-    ),
-    FaqModel(
-      tittle:
-          'Apakah promo yang tersedia bisa digunakan diseluruh tempat febi?',
-      detail:
-          'Untuk mendaftarkan wisata anda pada aplikasi destimate anda perlu menghubungi admin yang tertera pada halaman landing page yang kami miliki. Anda dapat mengakses halaman landing page tersebut dengan mengklik link dibawah \n www.destimate.com ',
-    ),
-    FaqModel(
-      tittle: 'Bagaimana cara mendaftar sebagai pemilik gabriel ?',
-      detail:
-          'Untuk mendaftarkan wisata anda pada aplikasi destimate anda perlu menghubungi admin yang tertera pada halaman landing page yang kami miliki. Anda dapat mengakses halaman landing page tersebut dengan mengklik link dibawah \n www.destimate.com ',
-    ),
-    FaqModel(
-      tittle:
-          'Apakah kita bisa meminta pengembalian dana jika tempat wisata tidak sesui dengan deskripsi?',
-      detail:
-          'Untuk mendaftarkan wisata anda pada aplikasi destimate anda perlu menghubungi admin yang tertera pada halaman landing page yang kami miliki. Anda dapat mengakses halaman landing page tersebut dengan mengklik link dibawah \n www.destimate.com ',
-    ),
-    FaqModel(
-      tittle:
-          'Apakah promo yang tersedia bisa digunakan diseluruh tempat febi?',
-      detail:
-          'Untuk mendaftarkan wisata anda pada aplikasi destimate anda perlu menghubungi admin yang tertera pada halaman landing page yang kami miliki. Anda dapat mengakses halaman landing page tersebut dengan mengklik link dibawah \n www.destimate.com ',
-    ),
-    FaqModel(
-      tittle: 'Bagaimana cara mendaftar sebagai pemilik gabriel ?',
-      detail:
-          'Untuk mendaftarkan wisata anda pada aplikasi destimate anda perlu menghubungi admin yang tertera pada halaman landing page yang kami miliki. Anda dapat mengakses halaman landing page tersebut dengan mengklik link dibawah \n www.destimate.com ',
-    ),
-    FaqModel(
-      tittle:
-          'Apakah kita bisa meminta pengembalian dana jika tempat wisata tidak sesui dengan deskripsi?',
-      detail:
-          'Untuk mendaftarkan wisata anda pada aplikasi destimate anda perlu menghubungi admin yang tertera pada halaman landing page yang kami miliki. Anda dapat mengakses halaman landing page tersebut dengan mengklik link dibawah \n www.destimate.com ',
-    ),
-    FaqModel(
-      tittle:
-          'Apakah promo yang tersedia bisa digunakan diseluruh tempat febi?',
-      detail:
-          'Untuk mendaftarkan wisata anda pada aplikasi destimate anda perlu menghubungi admin yang tertera pada halaman landing page yang kami miliki. Anda dapat mengakses halaman landing page tersebut dengan mengklik link dibawah \n www.destimate.com ',
-    ),
-    FaqModel(
-      tittle: 'Bagaimana cara mendaftar sebagai pemilik gabriel ?',
-      detail:
-          'Untuk mendaftarkan wisata anda pada aplikasi destimate anda perlu menghubungi admin yang tertera pada halaman landing page yang kami miliki. Anda dapat mengakses halaman landing page tersebut dengan mengklik link dibawah \n www.destimate.com ',
-    ),
-    FaqModel(
-      tittle:
-          'Apakah kita bisa meminta pengembalian dana jika tempat wisata tidak sesui dengan deskripsi?',
-      detail:
-          'Untuk mendaftarkan wisata anda pada aplikasi destimate anda perlu menghubungi admin yang tertera pada halaman landing page yang kami miliki. Anda dapat mengakses halaman landing page tersebut dengan mengklik link dibawah \n www.destimate.com ',
-    ),
-    FaqModel(
-      tittle: 'Pertanyaan terakhir?',
-      detail:
-          'Untuk mendaftarkan wisata anda pada aplikasi destimate anda perlu menghubungi admin yang tertera pada halaman landing page yang kami miliki. Anda dapat mengakses halaman landing page tersebut dengan mengklik link dibawah \n www.destimate.com ',
+      tittle: 'Apakah bisa melakukan pembatalan tiket?',
+      detail: '',
+      link: 'www.destimate.com',
+      additional: '',
     ),
   ];
 
