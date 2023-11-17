@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sustain_tour_mobile/constants/routes.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/component/account_screen_component/component/edit_account_screen_component/edit_account_provider.dart';
+import 'package:sustain_tour_mobile/screen/profile_screen/component/profile_emission_component/component/detail_emission_screen_component/component/travel_history_component/travel_history_provider.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/component/profile_emission_component/profile_emission_provider.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/profile_provider.dart';
 import 'package:sustain_tour_mobile/screen/home_screen/home_screen_provider.dart';
@@ -36,6 +37,8 @@ void main() {
           create: (context) => FormPasswordProvider()),
       ChangeNotifierProvider<EditAccountProvider>(
           create: (context) => EditAccountProvider()),
+      ChangeNotifierProvider<TravelHistoryProvider>(
+          create: (context) => TravelHistoryProvider()),
     ],
     child: const MyApp(),
   ));

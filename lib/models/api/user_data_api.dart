@@ -143,4 +143,28 @@ class UserDataApi {
       throw '${e.response?.data['message']}';
     }
   }
+
+  Future<bool> updatePhotoProfile({
+    required int userId,
+    required String token,
+    required String currentPassword,
+    required String newPassword,
+  }) async {
+    try {
+      await Dio().put('$baseUrl/user/change-password/$userId',
+          options: Options(
+            headers: {
+              "authorization": "Bearer $token",
+            },
+          ),
+          data: {
+            "currentPassword": currentPassword,
+            "newPassword": newPassword
+          });
+
+      return true;
+    } on DioException catch (e) {
+      throw '${e.response?.data['message']}';
+    }
+  }
 }
