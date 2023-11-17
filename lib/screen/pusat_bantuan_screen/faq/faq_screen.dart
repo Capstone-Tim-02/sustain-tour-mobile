@@ -165,12 +165,23 @@ class FaqScreen extends StatelessWidget {
                               left: 38,
                               right: 38,
                             ),
-                            child: Text(
-                              'Hubungi cp dibawah ini jika kamu tidak menemukan jawaban cpdetimate',
-                              textAlign: TextAlign.center,
-                              style: TextStyleWidget.bodyB3(
-                                fontWeight: FontWeightStyle.medium,
-                              ),
+                            child: Column(
+                              children: [
+                                Text(
+                                  'Hubungi cp dibawah ini jika kamu tidak menemukan jawaban cpdetimate',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyleWidget.bodyB3(
+                                    fontWeight: FontWeightStyle.medium,
+                                  ),
+                                ),
+                                Text(
+                                  'Klik Disini',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyleWidget.bodyB3(
+                                    fontWeight: FontWeightStyle.bold,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ],
