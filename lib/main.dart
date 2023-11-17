@@ -7,6 +7,7 @@ import 'package:sustain_tour_mobile/screen/home_screen/home_screen_provider.dart
 import 'package:sustain_tour_mobile/screen/login_screen/login_provider.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/validator/from_password_screns.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/validator/from_username_screens.dart';
+import 'package:sustain_tour_mobile/screen/register_screen/register_screen.dart';
 import 'package:sustain_tour_mobile/widget/bottom_navbar_widget/bottom_navbar_widget_provider.dart';
 
 import 'screen/onboarding_screen/onboarding_provider.dart';
@@ -50,8 +51,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFFfffbf5)),
         useMaterial3: true,
       ),
-      initialRoute: Routes.splashScreen,
-      routes: Routes.routeMap,
+      home: const RegisterScreen(),
     );
   }
 }

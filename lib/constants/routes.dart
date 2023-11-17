@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sustain_tour_mobile/screen/register_screen/register_screen.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/login_screen.dart';
 import 'package:sustain_tour_mobile/screen/main_screen/main_screen.dart';
 import 'package:sustain_tour_mobile/screen/onboarding_screen/onboarding_screen.dart';
@@ -11,6 +12,7 @@ class Routes {
   static const String splashScreen = '/';
   static const String onboardingScreen = '/onboarding';
   static const String loginScreen = '/loginscreen';
+  static const String registerScreen = '/registerscreen';
 
   static const String mainScreen = '/main';
   static const String accountScreen = '/main/profile/account';
@@ -21,6 +23,7 @@ class Routes {
     splashScreen: (context) => const SplashScreen(),
     onboardingScreen: (context) => const OnboardingScreen(),
     loginScreen: (context) => const LoginScreen(),
+    registerScreen: (context) => const RegisterScreen(),
     mainScreen: (context) => const MainScreen(),
     accountScreen: (context) => const AccountScreenComponent(),
     detailEmissionScreen: (context) => const DetailEmissionScreenComponent(),
