@@ -19,9 +19,13 @@ class LoginProvider with ChangeNotifier {
 
   Future<void> loadData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    _token = prefs.getString('token');
-    _userId = prefs.getInt('id');
-    notifyListeners();
+    try {
+      _token = prefs.getString('token');
+      _userId = prefs.getInt('id');
+      notifyListeners();
+    } catch (e) {
+      e.toString();
+    }
   }
 
   Future<bool> loginUser(String username, String password) async {

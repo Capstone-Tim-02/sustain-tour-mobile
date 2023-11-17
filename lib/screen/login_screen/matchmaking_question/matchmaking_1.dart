@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sustain_tour_mobile/constants/assets_image.dart';
+import 'package:sustain_tour_mobile/constants/routes.dart';
 import 'package:sustain_tour_mobile/style/font_weight_style.dart';
 import 'package:sustain_tour_mobile/style/text_style_widget.dart';
 import 'package:sustain_tour_mobile/widget/button_widget.dart';
@@ -45,19 +46,26 @@ class Matchmaking1 extends StatelessWidget {
               )
             ],
           )),
-          SizedBox(
+          const SizedBox(
             height: 140,
           ),
           SizedBox(
               child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              ButtonWidget.smallOutline(text: 'Lewati', onPressed: () {}),
-              SizedBox(
+              ButtonWidget.smallOutline(
+                  text: 'Lewati',
+                  onPressed: () {
+                    Navigator.pushNamed(context, Routes.mainScreen);
+                  }),
+              const SizedBox(
                 width: 16,
               ),
               ButtonWidget.smallContainer(
-                  text: 'Isi Pertanyaan', onPressed: () {})
+                  text: 'Isi Pertanyaan',
+                  onPressed: () {
+                    Navigator.pushNamed(context, Routes.matchmaking2Screen);
+                  })
             ],
           )),
         ],
