@@ -21,13 +21,15 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
-    HomeScreenProvider homeScreenProvider =
-        Provider.of<HomeScreenProvider>(context, listen: false);
+    super.initState();
     LoginProvider loginProvider =
         Provider.of<LoginProvider>(context, listen: false);
+
+    HomeScreenProvider homeScreenProvider =
+        Provider.of<HomeScreenProvider>(context, listen: false);
     ProfileProvider profileProvider =
         Provider.of<ProfileProvider>(context, listen: false);
-    super.initState();
+
     homeScreenProvider.getRekomendasiWisata(
         token: loginProvider.token.toString());
 

@@ -23,9 +23,9 @@ class ProfileTileComponent extends StatelessWidget {
               Container(
                 width: 84,
                 height: 84,
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: ColorThemeStyle.greyBaru,
+                  color: ColorThemeStyle.lightPurple.withOpacity(0.54),
                 ),
                 child: profileProvider.user.photoProfil.isNotEmpty
                     ? ClipOval(
@@ -91,9 +91,9 @@ class ProfileTileComponent extends StatelessWidget {
               Container(
                 width: 84,
                 height: 84,
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: ColorThemeStyle.grey80,
+                  color: ColorThemeStyle.lightPurple.withOpacity(0.54),
                 ),
                 child: ClipOval(
                   child: Image.network(
@@ -108,7 +108,7 @@ class ProfileTileComponent extends StatelessWidget {
                       return const Center(
                         child: Icon(
                           Icons.image,
-                          color: Colors.white,
+                          color: ColorThemeStyle.white100,
                           size: 50,
                         ),
                       );
