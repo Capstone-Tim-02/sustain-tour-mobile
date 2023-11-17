@@ -177,6 +177,10 @@ class Assets {
   static const String assetsImagesPointBackground =
       "assets/images/point_background.png";
 
+  /// Assets for assetsImagesEmissionBg
+  /// assets/images/emission_bg.png
+  static const String assetsImagesEmissionBg = "assets/images/emission_bg.png";
+
   /// Assets for assetsImagesWisataalam
   /// assets/images/wisataalam.png
   static const String assetsImagesWisataAlam = "assets/images/wisataalam.png";

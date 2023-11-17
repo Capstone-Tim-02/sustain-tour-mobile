@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sustain_tour_mobile/constants/routes.dart';
+import 'package:sustain_tour_mobile/screen/profile_screen/component/account_screen_component/component/edit_account_screen_component/edit_account_provider.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/matchmaking_question/matchmaking_kesukaan_provider.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/matchmaking_question/matchmaking_provider.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/component/profile_emission_component/profile_emission_provider.dart';
@@ -35,6 +36,8 @@ void main() {
           create: (context) => FromUsernameProvider()),
       ChangeNotifierProvider<FormPasswordProvider>(
           create: (context) => FormPasswordProvider()),
+      ChangeNotifierProvider<EditAccountProvider>(
+          create: (context) => EditAccountProvider()),
       ChangeNotifierProvider<CategoryProvider>(
           create: (context) => CategoryProvider()),
       ChangeNotifierProvider<CategoryKesukaanProvider>(
