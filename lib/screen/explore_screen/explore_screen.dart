@@ -72,7 +72,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                       "https://upload.wikimedia.org/wikipedia/commons/e/e1/Pemandangan_Gunung_Bromo.jpg",
                   title: "Wisata alam",
                   location: "Surabaya",
-                  // subtitle: "Rp 200.000"
+                  price : 200000
                 );
               },
             ),

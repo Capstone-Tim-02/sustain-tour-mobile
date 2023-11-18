@@ -21,4 +21,5 @@ class ColorThemeStyle {
   static const Color correctBar = Color(0xFF4EB878);
   static const Color warningBar = Color(0xFFE4B200);
   static const Color disabledsBar = Color(0xFFDDDDDD);
+  static const Color lightPurple = Color(0xFFBEB5FF);
 }

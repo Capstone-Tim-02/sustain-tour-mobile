@@ -43,8 +43,8 @@ class BookingHistoryComponent extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10),
                         boxShadow: [
                           BoxShadow(
-                            blurRadius: 5,
-                            color: Colors.black.withOpacity(0.18),
+                            blurRadius: 10,
+                            color: Colors.black.withOpacity(0.1),
                           )
                         ]),
                     child: Row(

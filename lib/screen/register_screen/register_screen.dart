@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:sustain_tour_mobile/constants/assets_image.dart';
 
 import 'package:sustain_tour_mobile/screen/login_screen/validator/from_password_screns.dart';
-import 'package:sustain_tour_mobile/screen/login_screen/validator/from_username_screens.dart';
+import 'package:sustain_tour_mobile/screen/login_screen/component/from_username_screens.dart';
 import 'package:sustain_tour_mobile/screen/register_screen/register_provider.dart';
 import 'package:sustain_tour_mobile/screen/register_screen/register_sheet.dart';
 import 'package:sustain_tour_mobile/screen/register_screen/validator/form_confirm_password_screens.dart';
