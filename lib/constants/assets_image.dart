@@ -171,4 +171,6 @@ class Assets {
   /// Assets for assetsImagesMatchmaking
   /// assets/images/matchmaking.png
   static const String assetsImagesMatchmaking = "assets/images/matchmaking.png";
+
+  static const String assetsImagesSelamatDatang = "assets/images/selamat_datang.png";
 }
