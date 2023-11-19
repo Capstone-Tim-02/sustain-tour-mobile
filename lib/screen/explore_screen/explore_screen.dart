@@ -31,7 +31,8 @@ class _ExploreScreenState extends State<ExploreScreen> {
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController searchController = TextEditingController();
+    TextEditingController searchWisataController = TextEditingController();
+    TextEditingController searchKotaController = TextEditingController();
     ExploreScreenProvider exploreScreenProvider = Provider.of<ExploreScreenProvider>(context, listen: false);
     LoginProvider loginProvider = Provider.of<LoginProvider>(context, listen: false);
     return SingleChildScrollView(
@@ -47,14 +48,17 @@ class _ExploreScreenState extends State<ExploreScreen> {
                     fontWeight: FontWeight.w600),
               ),
             ),
-            //TODO : Menunggu Search Local Component
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 21, vertical: 16),
               child: SearchWidget(
-                controller: searchController,
+                controller: searchWisataController,
                 label: "Test",
                 onSubmit: (value){
-                  //TODO isi dengan Logika search provider
+                  exploreScreenProvider.onSearchWisata();
+                  exploreScreenProvider.getWisataData(
+                    token: loginProvider.token.toString(),
+                    searchQuery: searchWisataController.text
+                  );
                 },
                 key: null,
               ),
@@ -65,6 +69,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                   context: context,
                   backgroundColor: ColorThemeStyle.white100,
                   builder: (context) {
+                    exploreScreenProvider.onBottomSheetOpened();
                     return Column(
                       children: [
                         Padding(
@@ -72,9 +77,9 @@ class _ExploreScreenState extends State<ExploreScreen> {
                           child: SearchWidget(
                             label: "Search",
                             onSubmit: (value){
-                              //TODO Logic search kota
+                              exploreScreenProvider.searchKota(query: searchKotaController.text);
                             },
-                            controller: TextEditingController()
+                            controller: searchKotaController
                           ),
                         ),
                         Expanded(
@@ -87,18 +92,18 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                     spacing: 8,
                                     runSpacing: 16,
                                     children: [
-                                      for(int i = 0; i < exploreScreenProvider.listKota.length;i++)
-                                      i == exploreScreenProvider.kotaIndex ?
-                                      BadgeWidget.container(
-                                        onPressed: (){},
-                                        label: exploreScreenProvider.listKota[i]
-                                      ) :
-                                      BadgeWidget.outline(
-                                        onPressed: (){
-                                          exploreScreenProvider.setKotaIndex(i);
-                                        },
-                                        label: exploreScreenProvider.listKota[i]
-                                      )
+                                      for(int i = 0; i < exploreScreenProvider.listSearchedKota.length;i++)
+                                      i == exploreScreenProvider.kotaIndex
+                                      ? BadgeWidget.container(
+                                          onPressed: (){},
+                                          label: exploreScreenProvider.listSearchedKota[i]
+                                        )
+                                      : BadgeWidget.outline(
+                                          onPressed: (){
+                                            exploreScreenProvider.selectKota(i);
+                                          },
+                                          label: exploreScreenProvider.listSearchedKota[i]
+                                        )
                                     ],
                                   ),
                                 ),
@@ -115,12 +120,21 @@ class _ExploreScreenState extends State<ExploreScreen> {
                               },
                               child: const Text("Batal")
                             ),
-                            ElevatedButton(
-                              onPressed: (){
-                                //TODO logic Simpan kota yang sudah dipilih
-                                Navigator.pop(context);
-                              },
-                              child: const Text("Simpan")
+                            Consumer<ExploreScreenProvider>(
+                              builder: (context, exploreScreenProvider, child) {
+                                return ElevatedButton(
+                                  onPressed: exploreScreenProvider.kotaIndex != -1
+                                    ? (){
+                                      exploreScreenProvider.onSubmitKota();
+                                      exploreScreenProvider.getWisataData(
+                                        token: loginProvider.token.toString(),
+                                        searchQuery: searchWisataController.text
+                                      );
+                                      Navigator.pop(context);
+                                    } : null,
+                                  child: const Text("Simpan")
+                                );
+                              }
                             )
                           ],
                         ),
@@ -150,10 +164,9 @@ class _ExploreScreenState extends State<ExploreScreen> {
                               label: exploreScreenProvider.wisataCategory.keys.elementAt(index),
                               onPressed: (){
                                 exploreScreenProvider.toggleButtonCategory(index: index);
-                                exploreScreenProvider.setPage(1);
-                                exploreScreenProvider.setListWisataToEmpty();
-                                exploreScreenProvider.getWisataByPage(
+                                exploreScreenProvider.getWisataData(
                                   token: loginProvider.token.toString(),
+                                  searchQuery: searchWisataController.text
                                 );
                               }
                             ) :
@@ -161,10 +174,9 @@ class _ExploreScreenState extends State<ExploreScreen> {
                               label: exploreScreenProvider.wisataCategory.keys.elementAt(index),
                               onPressed: (){
                                 exploreScreenProvider.toggleButtonCategory(index: index);
-                                exploreScreenProvider.setPage(1);
-                                exploreScreenProvider.setListWisataToEmpty();
-                                exploreScreenProvider.getWisataByPage(
+                                exploreScreenProvider.getWisataData(
                                   token: loginProvider.token.toString(),
+                                  searchQuery: searchWisataController.text
                                 );
                               }
                             )
@@ -178,52 +190,52 @@ class _ExploreScreenState extends State<ExploreScreen> {
             Consumer<ExploreScreenProvider>(
               builder: (context, exploreScreenProvider, child) {
                 return exploreScreenProvider.isGetWisataSuccess
-                ? GridView.builder(
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            crossAxisSpacing: 8,
-                            mainAxisSpacing: 8),
-                    shrinkWrap: true,
-                    padding: const EdgeInsets.only(
-                        top: 15, left: 10, right: 10),
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: exploreScreenProvider.listWisata.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return CardWidget.small(
-                          imageUrl: exploreScreenProvider
-                              .listWisata[index].photoWisata1,
-                          title:
-                              exploreScreenProvider.listWisata[index].title,
-                          location:
-                              exploreScreenProvider.listWisata[index].kota,
-                          price:
-                              exploreScreenProvider.listWisata[index].price);
-                    },
-                  )
-                : Column(
-                    children: [
-                      const SizedBox(height: 20),
-                      Text(
-                        "Terjadi kesalahan!",
-                        style: TextStyleWidget.titleT2(
-                            fontWeight: FontWeight.w700,
-                            color: ColorThemeStyle.red),
-                      ),
-                      const SizedBox(height: 16),
-                      BadgeWidget.container(
-                          onPressed: () {
-                            exploreScreenProvider.getWisataInit(
-                              token: loginProvider.token.toString()
-                            );
-                            exploreScreenProvider.getAllKota(
-                              token: loginProvider.token.toString()
-                            );
-                          },
-                          label: "Muat ulang")
-                    ],
-                  );
-              }
+                  ? GridView.builder(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              crossAxisSpacing: 8,
+                              mainAxisSpacing: 8),
+                      shrinkWrap: true,
+                      padding: const EdgeInsets.only(
+                          top: 15, left: 10, right: 10),
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: exploreScreenProvider.listWisata.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return CardWidget.small(
+                            imageUrl: exploreScreenProvider
+                                .listWisata[index].photoWisata1,
+                            title:
+                                exploreScreenProvider.listWisata[index].title,
+                            location:
+                                exploreScreenProvider.listWisata[index].kota,
+                            price:
+                                exploreScreenProvider.listWisata[index].price);
+                      },
+                    )
+                  : Column(
+                      children: [
+                        const SizedBox(height: 20),
+                        Text(
+                          "Terjadi kesalahan!",
+                          style: TextStyleWidget.titleT2(
+                              fontWeight: FontWeight.w700,
+                              color: ColorThemeStyle.red),
+                        ),
+                        const SizedBox(height: 16),
+                        BadgeWidget.container(
+                            onPressed: () {
+                              exploreScreenProvider.getWisataData(
+                                token: loginProvider.token.toString()
+                              );
+                              exploreScreenProvider.getAllKota(
+                                token: loginProvider.token.toString()
+                              );
+                            },
+                            label: "Muat ulang")
+                      ],
+                    );
+                }
             ),
             Consumer<ExploreScreenProvider>(
               builder: (context, exploreScreenProvider, child) {
@@ -238,8 +250,9 @@ class _ExploreScreenState extends State<ExploreScreen> {
             ButtonWidget.defaultContainer(
               text: "Load more",
               onPressed: (){
-                exploreScreenProvider.getWisataByPage(
-                  token: loginProvider.token.toString()
+                exploreScreenProvider.getWisataData(
+                  token: loginProvider.token.toString(),
+                  searchQuery: searchWisataController.text
                 );
               }
             )
