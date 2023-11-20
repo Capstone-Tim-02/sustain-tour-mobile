@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sustain_tour_mobile/screen/register_screen/register_screen.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/login_screen.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/matchmaking_question/matchmaking_2.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/matchmaking_question/matchmaking_3.dart';
@@ -13,6 +14,7 @@ class Routes {
   static const String splashScreen = '/';
   static const String onboardingScreen = '/onboarding';
   static const String loginScreen = '/loginscreen';
+  static const String registerScreen = '/registerscreen';
   static const String matchmaking2Screen = '/loginscreen/matchmaking2';
   static const String matchmaking3Screen = '/loginscreen/matchmaking3';
 
@@ -25,6 +27,7 @@ class Routes {
     splashScreen: (context) => const SplashScreen(),
     onboardingScreen: (context) => const OnboardingScreen(),
     loginScreen: (context) => const LoginScreen(),
+    registerScreen: (context) => const RegisterScreen(),
     matchmaking2Screen: (context) => const Matchmaking2(),
     matchmaking3Screen: (context) => const Matchmaking3(),
     mainScreen: (context) => const MainScreen(),
