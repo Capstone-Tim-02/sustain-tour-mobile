@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:sustain_tour_mobile/constants/assets_image.dart';
-
-import 'package:sustain_tour_mobile/screen/login_screen/validator/from_password_screns.dart';
+import 'package:sustain_tour_mobile/screen/login_screen/component/from_password_screns.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/component/from_username_screens.dart';
 import 'package:sustain_tour_mobile/screen/register_screen/register_provider.dart';
 import 'package:sustain_tour_mobile/screen/register_screen/register_sheet.dart';

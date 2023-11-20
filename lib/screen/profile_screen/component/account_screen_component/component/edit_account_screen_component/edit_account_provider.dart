@@ -107,10 +107,13 @@ class EditAccountProvider extends ChangeNotifier {
   }
 
   void errorTextUsername() {
+    RegExp regex = RegExp(r'^[a-zA-Z0-9]+$');
     if (_currentUsername.isEmpty) {
       _errorText = 'Username tidak boleh kosong!';
     } else if (_currentUsername.length < 5) {
       _errorText = 'Username minimal 5 karakter';
+    } else if (!regex.hasMatch(_currentUsername)) {
+      _errorText = 'Hanya boleh menggunakan angka dan huruf';
     } else {
       _errorText = '';
     }
@@ -124,8 +127,8 @@ class EditAccountProvider extends ChangeNotifier {
       _errorText = 'No Handphone hanya boleh angka dan di awali 0';
     } else if (_currentNoHp.length < 10) {
       _errorText = 'No Handphone minimal 10 digit';
-    } else if (_currentNoHp.length > 16) {
-      _errorText = 'No Handphone maksimal 16 digit';
+    } else if (_currentNoHp.length > 12) {
+      _errorText = 'No Handphone maksimal 12 digit';
     } else {
       _errorText = '';
     }

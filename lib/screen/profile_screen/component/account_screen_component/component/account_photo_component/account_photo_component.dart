@@ -25,6 +25,12 @@ class AccountPhotoComponent extends StatelessWidget {
                     height: 182,
                     fit: BoxFit
                         .fill, // memastikan gambar pas dalam lingkaran tanpa distorsi
+                    loadingBuilder: (context, child, loadingProgress) {
+                      if (loadingProgress == null) return child;
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    },
                     errorBuilder: (BuildContext context, Object error,
                         StackTrace? stackTrace) {
                       // Menangani error, mengembalikan widget pengganti (misalnya ikon)

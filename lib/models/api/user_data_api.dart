@@ -174,4 +174,24 @@ class UserDataApi {
       throw '${e.response?.data['message']}';
     }
   }
+
+  Future<bool> deleteProfileImage({
+    required int userId,
+    required String token,
+  }) async {
+    try {
+      await Dio().delete(
+        '$baseUrl/user/photo/$userId',
+        options: Options(
+          headers: {
+            "authorization": "Bearer $token",
+          },
+        ),
+      );
+
+      return true;
+    } on DioException catch (e) {
+      throw '${e.response?.data['message']}';
+    }
+  }
 }

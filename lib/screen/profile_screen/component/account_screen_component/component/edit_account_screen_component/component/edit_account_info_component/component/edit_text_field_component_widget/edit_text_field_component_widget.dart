@@ -9,13 +9,15 @@ class EditTextFieldComponentWidget extends StatelessWidget {
   final String? label;
   final String? errorText;
   final void Function(String)? onChanged;
+  final TextInputType? keyboarType;
   const EditTextFieldComponentWidget(
       {super.key,
       this.autofocus,
       this.controller,
       this.label,
       this.onChanged,
-      this.errorText});
+      this.errorText,
+      this.keyboarType});
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +25,7 @@ class EditTextFieldComponentWidget extends StatelessWidget {
       autofocus: autofocus ?? true,
       controller: controller,
       cursorColor: ColorThemeStyle.blue100,
+      keyboardType: keyboarType,
       style: TextStyleWidget.titleT2(
           fontWeight: FontWeight.w500, color: Colors.black),
       decoration: InputDecoration(

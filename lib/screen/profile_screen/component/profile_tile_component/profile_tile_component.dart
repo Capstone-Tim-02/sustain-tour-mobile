@@ -53,6 +53,15 @@ class ProfileTileComponent extends StatelessWidget {
                             height: 60,
                             fit: BoxFit
                                 .cover, // memastikan gambar pas dalam lingkaran tanpa distorsi
+                            loadingBuilder: (context, child, loadingProgress) {
+                              if (loadingProgress == null) return child;
+                              return const Center(
+                                child: SizedBox(
+                                    width: 15,
+                                    height: 15,
+                                    child: CircularProgressIndicator()),
+                              );
+                            },
                             errorBuilder: (BuildContext context, Object error,
                                 StackTrace? stackTrace) {
                               // Menangani error, mengembalikan widget pengganti (misalnya ikon)
@@ -112,33 +121,19 @@ class ProfileTileComponent extends StatelessWidget {
                 width: 8,
               ),
               Container(
-                width: 60,
-                height: 60,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: ColorThemeStyle.grey50,
-                ),
-                child: ClipOval(
-                  child: Image.network(
-                    '',
-                    width: 60,
-                    height: 60,
-                    fit: BoxFit
-                        .cover, // memastikan gambar pas dalam lingkaran tanpa distorsi
-                    errorBuilder: (BuildContext context, Object error,
-                        StackTrace? stackTrace) {
-                      // Menangani error, mengembalikan widget pengganti (misalnya ikon)
-                      return const Center(
-                        child: Icon(
-                          Icons.broken_image_outlined,
-                          color: ColorThemeStyle.grey100,
-                          size: 30,
-                        ),
-                      );
-                    },
+                  width: 60,
+                  height: 60,
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: ColorThemeStyle.grey50,
                   ),
-                ),
-              ),
+                  child: const Center(
+                    child: Icon(
+                      Icons.broken_image_outlined,
+                      color: ColorThemeStyle.grey100,
+                      size: 30,
+                    ),
+                  )),
               const SizedBox(
                 width: 16,
               ),

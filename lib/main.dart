@@ -9,9 +9,7 @@ import 'package:sustain_tour_mobile/screen/profile_screen/component/profile_emis
 import 'package:sustain_tour_mobile/screen/profile_screen/profile_provider.dart';
 import 'package:sustain_tour_mobile/screen/home_screen/home_screen_provider.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/login_provider.dart';
-
 import 'package:sustain_tour_mobile/screen/register_screen/register_provider.dart';
-import 'package:sustain_tour_mobile/screen/register_screen/register_screen.dart';
 import 'package:sustain_tour_mobile/screen/register_screen/validator/form_confirm_password_screens.dart';
 import 'package:sustain_tour_mobile/screen/register_screen/validator/form_email_register_screens.dart';
 import 'package:sustain_tour_mobile/screen/register_screen/validator/form_full_name_screens.dart';
@@ -21,7 +19,6 @@ import 'package:sustain_tour_mobile/screen/login_screen/component/from_password_
 import 'package:sustain_tour_mobile/screen/login_screen/component/from_username_screens.dart';
 import 'package:sustain_tour_mobile/style/color_theme_style.dart';
 import 'package:sustain_tour_mobile/widget/bottom_navbar_widget/bottom_navbar_widget_provider.dart';
-
 import 'screen/onboarding_screen/onboarding_provider.dart';
 import 'screen/onboarding_screen/splash_screen/splash_screen_provider.dart';
 
@@ -83,7 +80,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: ColorThemeStyle.blue100),
         useMaterial3: true,
       ),
-      home: const RegisterScreen(),
+      initialRoute: Routes.splashScreen,
+      routes: Routes.routeMap,
     );
   }
 }

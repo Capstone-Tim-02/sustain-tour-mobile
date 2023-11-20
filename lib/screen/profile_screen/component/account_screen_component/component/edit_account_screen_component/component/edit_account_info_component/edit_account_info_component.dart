@@ -112,7 +112,7 @@ class EditAccountInfoComponent extends StatelessWidget {
   }) {
     showModalBottomSheet(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(0),
+          borderRadius: BorderRadius.circular(10),
         ),
         isScrollControlled: true,
         backgroundColor: Colors.white,
@@ -121,6 +121,7 @@ class EditAccountInfoComponent extends StatelessWidget {
           final editProvider =
               Provider.of<EditAccountProvider>(context, listen: false);
           editProvider.clearErrorText();
+          TextInputType? keyboardType;
           switch (label) {
             case 'Name':
               editProvider.controller.text = name ?? '';
@@ -133,10 +134,12 @@ class EditAccountInfoComponent extends StatelessWidget {
             case 'No Handphone':
               editProvider.controller.text = noHp ?? '';
               editProvider.setNoHandphone(noHp: noHp ?? '', listen: false);
+              keyboardType = TextInputType.number;
               break;
             case 'Email':
               editProvider.controller.text = email ?? '';
               editProvider.setEmail(email: email ?? '', listen: false);
+              keyboardType = TextInputType.emailAddress;
               break;
             default:
           }
@@ -155,9 +158,10 @@ class EditAccountInfoComponent extends StatelessWidget {
                     return EditTextFieldComponentWidget(
                       controller: editAccountProvider.controller,
                       label: label,
+                      keyboarType: keyboardType,
                       errorText: editAccountProvider.errorText.isEmpty
                           ? null
-                          : editAccountProvider.errorText,
+                          : '\u274C  ${editAccountProvider.errorText}',
                       onChanged: (value) {
                         switch (label) {
                           case 'Name':
@@ -321,7 +325,7 @@ class EditAccountInfoComponent extends StatelessWidget {
   }) {
     showModalBottomSheet(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(0),
+          borderRadius: BorderRadius.circular(10),
         ),
         isScrollControlled: true,
         backgroundColor: Colors.white,

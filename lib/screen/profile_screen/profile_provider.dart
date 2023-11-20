@@ -167,6 +167,26 @@ class ProfileProvider extends ChangeNotifier {
     }
   }
 
+  Future<void> deleteProfileImage({
+    required int userId,
+    required String token,
+  }) async {
+    bool isDoneUpdate = false;
+
+    try {
+      isDoneUpdate = await UserDataApi().deleteProfileImage(
+        userId: userId,
+        token: token,
+      );
+      if (isDoneUpdate) {
+        _message = 'Berhasil delete profile image';
+        await getUserData(userId: userId, token: token);
+      }
+    } catch (e) {
+      _message = e.toString();
+    }
+  }
+
   Future<XFile?> getImageFromGallery() async {
     final ImagePicker picker = ImagePicker();
     XFile? image = await picker.pickImage(source: ImageSource.gallery);
