@@ -18,12 +18,26 @@ class DeleteAccountPhotoComponent extends StatelessWidget {
         final loginProvider =
             Provider.of<LoginProvider>(context, listen: false);
 
+        showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (context) {
+              return const AlertDialog(
+                backgroundColor: Colors.white,
+                content: SizedBox(
+                  height: 100,
+                  child: Center(child: CircularProgressIndicator()),
+                ),
+              );
+            });
+
         await profileProvider.deleteProfileImage(
             userId: loginProvider.userId ?? -1,
             token: loginProvider.token ?? '');
 
         if (!context.mounted) return;
 
+        Navigator.pop(context);
         Navigator.pop(context);
 
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
