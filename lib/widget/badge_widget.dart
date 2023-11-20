@@ -153,6 +153,7 @@ class BadgeWidget {
       height: 40,
       child: ElevatedButton.icon(
         icon: icon ?? const Icon(Icons.add),
+        
         style: ButtonStyle(
           padding: MaterialStateProperty.all(
             const EdgeInsets.symmetric(

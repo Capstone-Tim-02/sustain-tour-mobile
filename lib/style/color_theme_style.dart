@@ -15,6 +15,7 @@ class ColorThemeStyle {
   static const Color black100 = Color(0xFF070707);
   static const Color red = Color(0xFFE10E0E);
   static const Color green = Color(0xFF4FD100);
+  static const Color green100 = Color(0xFF36B734);
   static const Color errorBar = Color(0xFFE10E0E);
   static const Color correctMessage = Color(0xFF13A04B);
   static const Color warning = Color(0xFFEB9009);

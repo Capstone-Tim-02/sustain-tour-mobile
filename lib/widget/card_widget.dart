@@ -97,7 +97,7 @@ class CardWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 11),
                       child: Text(
-                        "Rp. ${MoneyFormatter(amount: price?.toDouble() ?? 0).output.withoutFractionDigits.toString()}",
+                        "Rp. ${MoneyFormatter(amount: price?.toDouble() ?? 0).output.withoutFractionDigits.toString().replaceAll(",", ".")}",
                         style: TextStyleWidget.bodyB3(
                           color: ColorThemeStyle.black100,
                           fontWeight: FontWeight.w500
@@ -227,7 +227,7 @@ class CardWidget {
                   ),
                   const SizedBox(height: 16),
                   Text(
-                    "Rp. ${MoneyFormatter(amount: price?.toDouble() ?? 0).output.withoutFractionDigits.toString()}",
+                    "Rp. ${MoneyFormatter(amount: price?.toDouble() ?? 0).output.withoutFractionDigits.toString().replaceAll(",", ".")}",
                     style: TextStyleWidget.titleT2(
                       color: ColorThemeStyle.black100,
                       fontWeight: FontWeight.w600

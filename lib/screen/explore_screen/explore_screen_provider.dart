@@ -30,7 +30,7 @@ class ExploreScreenProvider with ChangeNotifier {
   List<String> _listSearchedKota = [];
   List<String> get listSearchedKota => _listSearchedKota;
 
-  String _selectedKota = "";
+  String _selectedKota = "Semua Lokasi";
   String get selectedKota => _selectedKota;
 
   int _kotaIndex = 0;
@@ -40,6 +40,7 @@ class ExploreScreenProvider with ChangeNotifier {
   bool get isGetKotaSuccess => _isGetKotaSuccess;
 
   void onBottomSheetOpened(){
+    _listSearchedKota = _listAllKota;
     _kotaIndex = _listSearchedKota.indexWhere((element) => element == selectedKota);
   }
 
@@ -63,6 +64,26 @@ class ExploreScreenProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  void searchKota({required String query}) {
+    _listSearchedKota = [];
+    _kotaIndex = -1;
+    notifyListeners();
+
+    for(int i = 0; i<_listAllKota.length;i++){
+      if(_listAllKota[i].toLowerCase().contains(query.toLowerCase())){
+        _listSearchedKota.add(_listAllKota[i]);
+      }
+    }
+
+    for(int i = 0; i<_listSearchedKota.length;i++){
+      if(_listSearchedKota[i].contains("Semua Lokasi") && query != ""){
+        _listSearchedKota.remove(_listSearchedKota[i]);
+      }
+    }
+
+    notifyListeners();
+  }
+
   void onSearchWisata() {
     _currentPage = 1;
     _listWisata = [];
@@ -72,6 +93,7 @@ class ExploreScreenProvider with ChangeNotifier {
   void getWisataInit({required String token}) async {
     _currentPage = 1;
     _listWisata = [];
+    _selectedKota = "Semua Lokasi";
     _wisataCategory = {
       "Wisata Alam" : false,
       "Wisata Lifestyle" : false,
@@ -149,26 +171,5 @@ class ExploreScreenProvider with ChangeNotifier {
       notifyListeners();
       throw Exception(e);
     }
-  }
-
-  void searchKota({required String query}) {
-    _listSearchedKota = [];
-    _kotaIndex = -1;
-    _selectedKota = "";
-    notifyListeners();
-
-    for(int i = 0; i<_listAllKota.length;i++){
-      if(_listAllKota[i].toLowerCase().contains(query.toLowerCase())){
-        _listSearchedKota.add(_listAllKota[i]);
-      }
-    }
-
-    for(int i = 0; i<_listSearchedKota.length;i++){
-      if(_listSearchedKota[i].contains("Semua Lokasi") && query != ""){
-        _listSearchedKota.remove(_listSearchedKota[i]);
-      }
-    }
-
-    notifyListeners();
   }
 }
