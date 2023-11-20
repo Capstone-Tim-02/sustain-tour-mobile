@@ -76,14 +76,17 @@ class TextStyleWidget {
   }
 
   static TextStyle titleT1(
-      {Color? color, FontWeight? fontWeight, FontStyle? fontStyle}) {
+      {Color? color,
+      FontWeight? fontWeight,
+      FontStyle? fontStyle,
+      double? height}) {
     return TextStyle(
       fontFamily: Fonts.poppins,
       fontWeight: fontWeight,
       color: color,
       fontStyle: fontStyle,
       fontSize: 22,
-      height: 1.27,
+      height: height ?? 1.27,
     );
   }
 

@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sustain_tour_mobile/models/api/user_data_api.dart';
 import 'package:sustain_tour_mobile/models/user_data_models/user_data_models.dart';
@@ -123,22 +126,50 @@ class ProfileProvider extends ChangeNotifier {
     required String currentPassword,
     required String newPassword,
   }) async {
-    bool isDoneUpdate = false;
+    bool isDoneUpload = false;
 
     try {
-      isDoneUpdate = await UserDataApi().updatePassword(
+      isDoneUpload = await UserDataApi().updatePassword(
         userId: userId,
         token: token,
         currentPassword: currentPassword,
         newPassword: newPassword,
       );
 
-      if (isDoneUpdate) {
+      if (isDoneUpload) {
         _message = 'Berhasil ganti password';
         await getUserData(userId: userId, token: token);
       }
     } catch (e) {
       _message = e.toString();
     }
+  }
+
+  Future<void> uploadProfileImage({
+    required int userId,
+    required String token,
+    required File image,
+  }) async {
+    bool isDoneUpdate = false;
+
+    try {
+      isDoneUpdate = await UserDataApi().uploadProfileImage(
+        userId: userId,
+        token: token,
+        image: image,
+      );
+      if (isDoneUpdate) {
+        _message = 'Berhasil upload profile image';
+        await getUserData(userId: userId, token: token);
+      }
+    } catch (e) {
+      _message = e.toString();
+    }
+  }
+
+  Future<XFile?> getImageFromGallery() async {
+    final ImagePicker picker = ImagePicker();
+    XFile? image = await picker.pickImage(source: ImageSource.gallery);
+    return image;
   }
 }

@@ -11,6 +11,7 @@ import 'package:sustain_tour_mobile/screen/home_screen/home_screen_provider.dart
 import 'package:sustain_tour_mobile/screen/login_screen/login_provider.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/component/from_password_screns.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/component/from_username_screens.dart';
+import 'package:sustain_tour_mobile/style/color_theme_style.dart';
 import 'package:sustain_tour_mobile/widget/bottom_navbar_widget/bottom_navbar_widget_provider.dart';
 
 import 'screen/onboarding_screen/onboarding_provider.dart';
@@ -59,7 +60,7 @@ class MyApp extends StatelessWidget {
       title: 'Sustain Tour',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFFfffbf5)),
+        colorScheme: ColorScheme.fromSeed(seedColor: ColorThemeStyle.blue100),
         useMaterial3: true,
       ),
       initialRoute: Routes.splashScreen,

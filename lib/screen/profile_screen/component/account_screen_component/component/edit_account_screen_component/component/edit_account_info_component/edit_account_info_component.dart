@@ -6,8 +6,10 @@ import 'package:sustain_tour_mobile/screen/profile_screen/component/account_scre
 import 'package:sustain_tour_mobile/screen/profile_screen/component/account_screen_component/component/edit_account_screen_component/edit_account_provider.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/component/profile_option_component/component/list_tile_widget.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/profile_provider.dart';
+import 'package:sustain_tour_mobile/style/color_theme_style.dart';
 import 'package:sustain_tour_mobile/style/font_weight_style.dart';
 import 'package:sustain_tour_mobile/style/text_style_widget.dart';
+import 'package:sustain_tour_mobile/widget/badge_widget.dart';
 
 class EditAccountInfoComponent extends StatelessWidget {
   final String? name;
@@ -27,9 +29,11 @@ class EditAccountInfoComponent extends StatelessWidget {
           subtitle: name ?? '-',
           iconSvgString: Assets.assetsIconsName,
           iconSize: 30,
+          isUsingBottomBorder: true,
           trailing: IconButton(
             icon: const Icon(
-              Icons.edit,
+              Icons.mode_edit_outlined,
+              color: ColorThemeStyle.blue100,
               size: 24,
             ),
             onPressed: () => _buildBottomSheet(context: context, label: 'Name'),
@@ -40,9 +44,11 @@ class EditAccountInfoComponent extends StatelessWidget {
           subtitle: username ?? '-',
           iconSvgString: Assets.assetsIconsUsername,
           iconSize: 30,
+          isUsingBottomBorder: true,
           trailing: IconButton(
             icon: const Icon(
-              Icons.edit,
+              Icons.mode_edit_outlined,
+              color: ColorThemeStyle.blue100,
               size: 24,
             ),
             onPressed: () =>
@@ -54,9 +60,11 @@ class EditAccountInfoComponent extends StatelessWidget {
           subtitle: noHp ?? '-',
           iconSvgString: Assets.assetsIconsPhone,
           iconSize: 30,
+          isUsingBottomBorder: true,
           trailing: IconButton(
             icon: const Icon(
-              Icons.edit,
+              Icons.mode_edit_outlined,
+              color: ColorThemeStyle.blue100,
               size: 24,
             ),
             onPressed: () =>
@@ -68,9 +76,11 @@ class EditAccountInfoComponent extends StatelessWidget {
           subtitle: email ?? '-',
           iconSvgString: Assets.assetsIconsEmail,
           iconSize: 30,
+          isUsingBottomBorder: true,
           trailing: IconButton(
             icon: const Icon(
-              Icons.edit,
+              Icons.mode_edit_outlined,
+              color: ColorThemeStyle.blue100,
               size: 24,
             ),
             onPressed: () =>
@@ -82,9 +92,11 @@ class EditAccountInfoComponent extends StatelessWidget {
           subtitle: '***********',
           iconSvgString: Assets.assetsIconsKey,
           iconSize: 30,
+          isUsingBottomBorder: true,
           trailing: IconButton(
             icon: const Icon(
-              Icons.edit,
+              Icons.mode_edit_outlined,
+              color: ColorThemeStyle.blue100,
               size: 24,
             ),
             onPressed: () => _buildBottomSheetPassword(context: context),
@@ -171,25 +183,27 @@ class EditAccountInfoComponent extends StatelessWidget {
                   },
                 ),
                 const SizedBox(
-                  height: 8,
+                  height: 18,
                 ),
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: Text(
-                        'Batal',
-                        style: TextStyleWidget.titleT3(
-                          color: Colors.black,
-                          fontWeight: FontWeightStyle.semiBold,
-                        ),
-                      ),
-                    ),
+                    BadgeWidget.container(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        label: 'Batal',
+                        backgroundColor: Colors.red,
+                        overlayColor: Colors.red,
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 24, vertical: 6),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(4.0),
+                        ))),
                     const SizedBox(
-                      width: 54,
+                      width: 16,
                     ),
                     Consumer<EditAccountProvider>(
                         builder: (context, editProvider, child) {
@@ -213,85 +227,86 @@ class EditAccountInfoComponent extends StatelessWidget {
                           break;
                         default:
                       }
-                      return GestureDetector(
-                        onTap: isEnabled
-                            ? () async {
-                                final loginProvider =
-                                    Provider.of<LoginProvider>(
-                                  context,
-                                  listen: false,
-                                );
+                      return BadgeWidget.container(
+                          onPressed: isEnabled
+                              ? () async {
+                                  final loginProvider =
+                                      Provider.of<LoginProvider>(
+                                    context,
+                                    listen: false,
+                                  );
 
-                                final profileProvider =
-                                    Provider.of<ProfileProvider>(
-                                  context,
-                                  listen: false,
-                                );
+                                  final profileProvider =
+                                      Provider.of<ProfileProvider>(
+                                    context,
+                                    listen: false,
+                                  );
 
-                                String token = loginProvider.token ?? '';
-                                int userId = loginProvider.userId ?? -1;
+                                  String token = loginProvider.token ?? '';
+                                  int userId = loginProvider.userId ?? -1;
 
-                                switch (label) {
-                                  case 'Name':
-                                    String value = editProvider.currentName;
-                                    await profileProvider.updateName(
-                                      userId: userId,
-                                      token: token,
-                                      newName: value,
-                                    );
-                                    break;
-                                  case 'Username':
-                                    String value = editProvider.currentUsername;
-                                    await profileProvider.updateUsername(
-                                      userId: userId,
-                                      token: token,
-                                      newUsername: value,
-                                    );
-                                    break;
-                                  case 'No Handphone':
-                                    String value = editProvider.currentNoHp;
-                                    await profileProvider.updateNoHandphone(
-                                      userId: userId,
-                                      token: token,
-                                      newNoHp: value,
-                                    );
-                                    break;
-                                  case 'Email':
-                                    String value = editProvider.currentEmail;
-                                    await profileProvider.updateEmail(
-                                      userId: userId,
-                                      token: token,
-                                      newEmail: value,
-                                    );
-                                    break;
-                                  default:
+                                  switch (label) {
+                                    case 'Name':
+                                      String value = editProvider.currentName;
+                                      await profileProvider.updateName(
+                                        userId: userId,
+                                        token: token,
+                                        newName: value,
+                                      );
+                                      break;
+                                    case 'Username':
+                                      String value =
+                                          editProvider.currentUsername;
+                                      await profileProvider.updateUsername(
+                                        userId: userId,
+                                        token: token,
+                                        newUsername: value,
+                                      );
+                                      break;
+                                    case 'No Handphone':
+                                      String value = editProvider.currentNoHp;
+                                      await profileProvider.updateNoHandphone(
+                                        userId: userId,
+                                        token: token,
+                                        newNoHp: value,
+                                      );
+                                      break;
+                                    case 'Email':
+                                      String value = editProvider.currentEmail;
+                                      await profileProvider.updateEmail(
+                                        userId: userId,
+                                        token: token,
+                                        newEmail: value,
+                                      );
+                                      break;
+                                    default:
+                                  }
+
+                                  if (!context.mounted) return;
+
+                                  Provider.of<LoginProvider>(context,
+                                          listen: false)
+                                      .loadData();
+
+                                  Navigator.pop(context);
+
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(SnackBar(
+                                          content: Text(
+                                    profileProvider.message,
+                                  )));
+
+                                  profileProvider.clearMessage();
                                 }
-
-                                if (!context.mounted) return;
-
-                                Provider.of<LoginProvider>(context,
-                                        listen: false)
-                                    .loadData();
-
-                                Navigator.pop(context);
-
-                                ScaffoldMessenger.of(context)
-                                    .showSnackBar(SnackBar(
-                                        content: Text(
-                                  profileProvider.message,
-                                )));
-
-                                profileProvider.clearMessage();
-                              }
-                            : null,
-                        child: Text(
-                          'Simpan',
-                          style: TextStyleWidget.titleT3(
-                            color: isEnabled ? Colors.black : Colors.grey,
-                            fontWeight: FontWeightStyle.semiBold,
-                          ),
-                        ),
-                      );
+                              : null,
+                          label: 'Simpan',
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 24, vertical: 6),
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(4.0),
+                          )));
                     }),
                   ],
                 ),

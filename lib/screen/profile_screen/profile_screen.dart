@@ -16,7 +16,7 @@ class ProfileScreen extends StatelessWidget {
         ),
         ProfileTileComponent(),
         SizedBox(
-          height: 32,
+          height: 24,
         ),
         ProfileEmissionComponent(),
         SizedBox(

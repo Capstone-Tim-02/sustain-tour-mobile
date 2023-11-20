@@ -56,7 +56,7 @@ class TravelHistoryListComponent extends StatelessWidget {
                             width: 82,
                             height: 65,
                             decoration: const BoxDecoration(
-                                color: ColorThemeStyle.lightPurple,
+                                color: ColorThemeStyle.blue40,
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10))),
                             child: ClipRRect(

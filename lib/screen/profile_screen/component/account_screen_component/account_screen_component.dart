@@ -30,7 +30,7 @@ class AccountScreenComponent extends StatelessWidget {
       body:
           Consumer<ProfileProvider>(builder: (context, profileProvider, child) {
         if (!profileProvider.isLoading) {
-          return Column(
+          return ListView(
             children: [
               const SizedBox(
                 height: 40,

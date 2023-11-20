@@ -35,8 +35,9 @@ class EditTextFieldComponentWidget extends StatelessWidget {
         )),
         label: Text(
           label ?? '',
-          style: TextStyleWidget.titleT3(
-              fontWeight: FontWeightStyle.medium, color: Colors.black),
+          style: TextStyleWidget.titleT2(
+              fontWeight: FontWeightStyle.semiBold,
+              color: ColorThemeStyle.blue100),
         ),
         floatingLabelBehavior: FloatingLabelBehavior.always,
       ),

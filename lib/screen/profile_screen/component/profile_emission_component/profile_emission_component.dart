@@ -3,8 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:sustain_tour_mobile/constants/assets_image.dart';
 import 'package:sustain_tour_mobile/constants/routes.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/component/profile_emission_component/profile_emission_provider.dart';
+import 'package:sustain_tour_mobile/style/color_theme_style.dart';
 import 'package:sustain_tour_mobile/style/font_weight_style.dart';
-import 'package:sustain_tour_mobile/style/shadow_style.dart';
 import 'package:sustain_tour_mobile/style/text_style_widget.dart';
 
 class ProfileEmissionComponent extends StatelessWidget {
@@ -22,12 +22,13 @@ class ProfileEmissionComponent extends StatelessWidget {
         ),
         padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 28),
         decoration: BoxDecoration(
-          boxShadow: [
-            ShadowStyle.emissionShadow,
-          ],
+          color: ColorThemeStyle.blue100,
+          // boxShadow: [
+          //   ShadowStyle.emissionShadow,
+          // ],
           image: const DecorationImage(
             image: AssetImage(
-              Assets.assetsImagesEmissionBg,
+              Assets.assetsImagesEmissionRealBg,
             ),
             fit: BoxFit.cover,
           ),
@@ -47,6 +48,7 @@ class ProfileEmissionComponent extends StatelessWidget {
                       '${emissionProvider.emissionModel.roundedTotalCarbonFootprint}',
                       style: TextStyleWidget.displayD3(
                         fontWeight: FontWeightStyle.semiBold,
+                        color: Colors.white,
                       ),
                     );
                   } else {
@@ -54,6 +56,7 @@ class ProfileEmissionComponent extends StatelessWidget {
                       '0',
                       style: TextStyleWidget.displayD3(
                         fontWeight: FontWeightStyle.semiBold,
+                        color: Colors.white,
                       ),
                     );
                   }
@@ -65,6 +68,7 @@ class ProfileEmissionComponent extends StatelessWidget {
                   'CO2',
                   style: TextStyleWidget.bodyB3(
                     fontWeight: FontWeightStyle.semiBold,
+                    color: Colors.white,
                   ),
                 ),
               ],
@@ -77,6 +81,7 @@ class ProfileEmissionComponent extends StatelessWidget {
               textAlign: TextAlign.center,
               style: TextStyleWidget.labelL3(
                 fontWeight: FontWeightStyle.regular,
+                color: Colors.white,
               ),
             )
           ],
