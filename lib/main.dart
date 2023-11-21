@@ -4,13 +4,12 @@ import 'package:sustain_tour_mobile/constants/routes.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/component/account_screen_component/component/edit_account_screen_component/edit_account_provider.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/matchmaking_question/matchmaking_kesukaan_provider.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/matchmaking_question/matchmaking_provider.dart';
+import 'package:sustain_tour_mobile/screen/profile_screen/component/profile_emission_component/component/detail_emission_screen_component/component/travel_history_component/travel_history_provider.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/component/profile_emission_component/profile_emission_provider.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/profile_provider.dart';
 import 'package:sustain_tour_mobile/screen/home_screen/home_screen_provider.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/login_provider.dart';
-
 import 'package:sustain_tour_mobile/screen/register_screen/register_provider.dart';
-import 'package:sustain_tour_mobile/screen/register_screen/register_screen.dart';
 import 'package:sustain_tour_mobile/screen/register_screen/validator/form_confirm_password_screens.dart';
 import 'package:sustain_tour_mobile/screen/register_screen/validator/form_email_register_screens.dart';
 import 'package:sustain_tour_mobile/screen/register_screen/validator/form_full_name_screens.dart';
@@ -18,8 +17,8 @@ import 'package:sustain_tour_mobile/screen/register_screen/validator/form_phone_
 import 'package:sustain_tour_mobile/screen/register_screen/validator/form_username_register_screens.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/component/from_password_screns.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/component/from_username_screens.dart';
+import 'package:sustain_tour_mobile/style/color_theme_style.dart';
 import 'package:sustain_tour_mobile/widget/bottom_navbar_widget/bottom_navbar_widget_provider.dart';
-
 import 'screen/onboarding_screen/onboarding_provider.dart';
 import 'screen/onboarding_screen/splash_screen/splash_screen_provider.dart';
 
@@ -62,6 +61,8 @@ void main() {
           create: (context) => CategoryProvider()),
       ChangeNotifierProvider<CategoryKesukaanProvider>(
           create: (context) => CategoryKesukaanProvider()),
+      ChangeNotifierProvider<TravelHistoryProvider>(
+          create: (context) => TravelHistoryProvider()),
     ],
     child: const MyApp(),
   ));
@@ -76,10 +77,11 @@ class MyApp extends StatelessWidget {
       title: 'Sustain Tour',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFFfffbf5)),
+        colorScheme: ColorScheme.fromSeed(seedColor: ColorThemeStyle.blue100),
         useMaterial3: true,
       ),
-      home: const RegisterScreen(),
+      initialRoute: Routes.splashScreen,
+      routes: Routes.routeMap,
     );
   }
 }

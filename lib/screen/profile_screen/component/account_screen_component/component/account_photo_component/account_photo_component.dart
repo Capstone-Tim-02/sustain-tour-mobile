@@ -13,8 +13,8 @@ class AccountPhotoComponent extends StatelessWidget {
         Container(
           height: 182,
           width: 182,
-          decoration: BoxDecoration(
-            color: ColorThemeStyle.lightPurple.withOpacity(0.54),
+          decoration: const BoxDecoration(
+            color: ColorThemeStyle.grey50,
             shape: BoxShape.circle,
           ),
           child: imageUrl.isNotEmpty
@@ -25,14 +25,20 @@ class AccountPhotoComponent extends StatelessWidget {
                     height: 182,
                     fit: BoxFit
                         .fill, // memastikan gambar pas dalam lingkaran tanpa distorsi
+                    loadingBuilder: (context, child, loadingProgress) {
+                      if (loadingProgress == null) return child;
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    },
                     errorBuilder: (BuildContext context, Object error,
                         StackTrace? stackTrace) {
                       // Menangani error, mengembalikan widget pengganti (misalnya ikon)
                       return const Center(
                         child: Icon(
-                          Icons.image,
-                          color: Colors.white,
-                          size: 89,
+                          Icons.broken_image_outlined,
+                          color: ColorThemeStyle.grey100,
+                          size: 80,
                         ),
                       );
                     },
@@ -40,9 +46,9 @@ class AccountPhotoComponent extends StatelessWidget {
                 )
               : const Center(
                   child: Icon(
-                    Icons.image,
-                    color: Colors.white,
-                    size: 89,
+                    Icons.broken_image_outlined,
+                    color: ColorThemeStyle.grey100,
+                    size: 80,
                   ),
                 ),
         ),

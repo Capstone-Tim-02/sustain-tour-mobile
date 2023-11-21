@@ -3,7 +3,7 @@ import 'package:sustain_tour_mobile/style/color_theme_style.dart';
 
 class ShadowStyle {
   static BoxShadow shadowFix1 = BoxShadow(
-    color: Colors.black.withOpacity(0.18),
+    color: Colors.black.withOpacity(0.1),
     spreadRadius: 0,
     blurRadius: 10,
     offset: const Offset(0, 0),

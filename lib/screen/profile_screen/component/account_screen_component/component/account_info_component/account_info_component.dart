@@ -20,6 +20,7 @@ class AccountInfoComponent extends StatelessWidget {
           subtitle: name ?? '-',
           iconSvgString: Assets.assetsIconsName,
           iconSize: 30,
+          isUsingBottomBorder: true,
           onTap: () {},
         ),
         ListTileWidget(
@@ -27,13 +28,15 @@ class AccountInfoComponent extends StatelessWidget {
           subtitle: username ?? '-',
           iconSvgString: Assets.assetsIconsUsername,
           iconSize: 30,
+          isUsingBottomBorder: true,
           onTap: () {},
         ),
         ListTileWidget(
           title: 'No Handphone',
-          subtitle: noHp ?? '-',
+          subtitle: noHp == null ? '-' : '+62$noHp',
           iconSvgString: Assets.assetsIconsPhone,
           iconSize: 30,
+          isUsingBottomBorder: true,
           onTap: () {},
         ),
         ListTileWidget(
@@ -41,6 +44,7 @@ class AccountInfoComponent extends StatelessWidget {
           subtitle: email ?? '-',
           iconSvgString: Assets.assetsIconsEmail,
           iconSize: 30,
+          isUsingBottomBorder: true,
           onTap: () {},
         ),
         ListTileWidget(
@@ -48,6 +52,7 @@ class AccountInfoComponent extends StatelessWidget {
           subtitle: '**********',
           iconSvgString: Assets.assetsIconsKey,
           iconSize: 30,
+          isUsingBottomBorder: true,
           onTap: () {},
         ),
       ],

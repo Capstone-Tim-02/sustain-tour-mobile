@@ -20,27 +20,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   @override
-  void initState() {
-    super.initState();
-    LoginProvider loginProvider =
-        Provider.of<LoginProvider>(context, listen: false);
-
-    HomeScreenProvider homeScreenProvider =
-        Provider.of<HomeScreenProvider>(context, listen: false);
-    ProfileProvider profileProvider =
-        Provider.of<ProfileProvider>(context, listen: false);
-
-    homeScreenProvider.getRekomendasiWisata(
-        token: loginProvider.token.toString());
-
-    homeScreenProvider.getPromo(token: loginProvider.token.toString());
-
-    profileProvider.getUserData(
-        userId: loginProvider.userId ?? 0,
-        token: loginProvider.token.toString());
-  }
-
-  @override
   Widget build(BuildContext context) {
     LoginProvider loginProvider =
         Provider.of<LoginProvider>(context, listen: false);

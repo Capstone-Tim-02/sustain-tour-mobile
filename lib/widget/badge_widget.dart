@@ -4,28 +4,41 @@ import 'package:sustain_tour_mobile/style/font_weight_style.dart';
 import 'package:sustain_tour_mobile/style/text_style_widget.dart';
 
 class BadgeWidget {
-  static SizedBox container(
-      {required void Function()? onPressed, String? label}) {
+  static SizedBox container({
+    required void Function()? onPressed,
+    String? label,
+    double? width,
+    double? height,
+    Color? backgroundColor,
+    Color? overlayColor,
+    EdgeInsetsGeometry? padding,
+    MaterialStateProperty<OutlinedBorder?>? shape,
+  }) {
     return SizedBox(
-      // width: 86,
-      height: 40,
+      width: width,
+      height: height ?? 40,
       child: ElevatedButton(
         style: ButtonStyle(
-          // atur background
-          backgroundColor: onPressed == null
-              ? null
-              : MaterialStateProperty.all(ColorThemeStyle.blue100),
+            // atur background
+            backgroundColor: onPressed == null
+                ? null
+                : MaterialStateProperty.all(
+                    backgroundColor ?? ColorThemeStyle.blue100),
 
-          // atur background saat di press
-          overlayColor: MaterialStateProperty.resolveWith<Color?>(
-            (Set<MaterialState> states) {
-              if (states.contains(MaterialState.pressed)) {
-                return ColorThemeStyle.blue60; //<-- SEE HERE
-              }
-              return null; // Defer to the widget's default.
-            },
-          ),
-        ),
+            // atur background saat di press
+            overlayColor: MaterialStateProperty.resolveWith<Color?>(
+              (Set<MaterialState> states) {
+                if (states.contains(MaterialState.pressed)) {
+                  return overlayColor ?? ColorThemeStyle.blue60; //<-- SEE HERE
+                }
+                return null; // Defer to the widget's default.
+              },
+            ),
+            shape: shape,
+            padding: MaterialStateProperty.resolveWith<EdgeInsetsGeometry>(
+                (states) =>
+                    padding ??
+                    const EdgeInsets.symmetric(horizontal: 24, vertical: 8))),
         onPressed: onPressed,
         child: Text(
           label ?? 'Label',
@@ -40,11 +53,20 @@ class BadgeWidget {
     );
   }
 
-  static SizedBox outline(
-      {required void Function()? onPressed, String? label}) {
+  static SizedBox outline({
+    required void Function()? onPressed,
+    String? label,
+    double? width,
+    double? height,
+    Color? foregroundColor,
+    Color? overlayColor,
+    Color? borderColor,
+    EdgeInsetsGeometry? padding,
+    MaterialStateProperty<OutlinedBorder?>? shape,
+  }) {
     return SizedBox(
-      // width: 86,
-      height: 40,
+      width: width,
+      height: height ?? 40,
       child: ElevatedButton(
         style: ButtonStyle(
           elevation: MaterialStateProperty.all(0),
@@ -60,7 +82,7 @@ class BadgeWidget {
                       return ColorThemeStyle.white100;
                     }
                     // Warna teks dalam keadaan normal
-                    return ColorThemeStyle.blue100;
+                    return foregroundColor ?? ColorThemeStyle.blue100;
                   },
                 ),
 
@@ -69,8 +91,8 @@ class BadgeWidget {
               ? MaterialStateProperty.all(const BorderSide(
                   color: ColorThemeStyle.grey100,
                   width: 2)) // warna border saat disable
-              : MaterialStateProperty.all(const BorderSide(
-                  color: ColorThemeStyle.blue100,
+              : MaterialStateProperty.all(BorderSide(
+                  color: borderColor ?? ColorThemeStyle.blue100,
                   width: 2)), // warna border saat enable
 
           // atur background
@@ -81,7 +103,7 @@ class BadgeWidget {
           overlayColor: MaterialStateProperty.resolveWith<Color?>(
             (Set<MaterialState> states) {
               if (states.contains(MaterialState.pressed)) {
-                return ColorThemeStyle.blue40; //<-- SEE HERE
+                return overlayColor ?? ColorThemeStyle.blue40; //<-- SEE HERE
               }
               return null; // Defer to the widget's default.
             },

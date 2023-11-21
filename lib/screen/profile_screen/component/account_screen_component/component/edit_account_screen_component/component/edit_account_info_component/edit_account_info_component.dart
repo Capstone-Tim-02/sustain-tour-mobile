@@ -6,8 +6,11 @@ import 'package:sustain_tour_mobile/screen/profile_screen/component/account_scre
 import 'package:sustain_tour_mobile/screen/profile_screen/component/account_screen_component/component/edit_account_screen_component/edit_account_provider.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/component/profile_option_component/component/list_tile_widget.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/profile_provider.dart';
+import 'package:sustain_tour_mobile/style/color_theme_style.dart';
 import 'package:sustain_tour_mobile/style/font_weight_style.dart';
 import 'package:sustain_tour_mobile/style/text_style_widget.dart';
+import 'package:sustain_tour_mobile/widget/badge_widget.dart';
+import 'package:sustain_tour_mobile/widget/snack_bar_widget.dart';
 
 class EditAccountInfoComponent extends StatelessWidget {
   final String? name;
@@ -27,9 +30,11 @@ class EditAccountInfoComponent extends StatelessWidget {
           subtitle: name ?? '-',
           iconSvgString: Assets.assetsIconsName,
           iconSize: 30,
+          isUsingBottomBorder: true,
           trailing: IconButton(
             icon: const Icon(
-              Icons.edit,
+              Icons.mode_edit_outlined,
+              color: ColorThemeStyle.blue100,
               size: 24,
             ),
             onPressed: () => _buildBottomSheet(context: context, label: 'Name'),
@@ -40,9 +45,11 @@ class EditAccountInfoComponent extends StatelessWidget {
           subtitle: username ?? '-',
           iconSvgString: Assets.assetsIconsUsername,
           iconSize: 30,
+          isUsingBottomBorder: true,
           trailing: IconButton(
             icon: const Icon(
-              Icons.edit,
+              Icons.mode_edit_outlined,
+              color: ColorThemeStyle.blue100,
               size: 24,
             ),
             onPressed: () =>
@@ -51,12 +58,14 @@ class EditAccountInfoComponent extends StatelessWidget {
         ),
         ListTileWidget(
           title: 'No Handphone',
-          subtitle: noHp ?? '-',
+          subtitle: noHp == null ? '-' : '+62$noHp',
           iconSvgString: Assets.assetsIconsPhone,
           iconSize: 30,
+          isUsingBottomBorder: true,
           trailing: IconButton(
             icon: const Icon(
-              Icons.edit,
+              Icons.mode_edit_outlined,
+              color: ColorThemeStyle.blue100,
               size: 24,
             ),
             onPressed: () =>
@@ -68,9 +77,11 @@ class EditAccountInfoComponent extends StatelessWidget {
           subtitle: email ?? '-',
           iconSvgString: Assets.assetsIconsEmail,
           iconSize: 30,
+          isUsingBottomBorder: true,
           trailing: IconButton(
             icon: const Icon(
-              Icons.edit,
+              Icons.mode_edit_outlined,
+              color: ColorThemeStyle.blue100,
               size: 24,
             ),
             onPressed: () =>
@@ -82,9 +93,11 @@ class EditAccountInfoComponent extends StatelessWidget {
           subtitle: '***********',
           iconSvgString: Assets.assetsIconsKey,
           iconSize: 30,
+          isUsingBottomBorder: true,
           trailing: IconButton(
             icon: const Icon(
-              Icons.edit,
+              Icons.mode_edit_outlined,
+              color: ColorThemeStyle.blue100,
               size: 24,
             ),
             onPressed: () => _buildBottomSheetPassword(context: context),
@@ -100,7 +113,7 @@ class EditAccountInfoComponent extends StatelessWidget {
   }) {
     showModalBottomSheet(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(0),
+          borderRadius: BorderRadius.circular(10),
         ),
         isScrollControlled: true,
         backgroundColor: Colors.white,
@@ -109,6 +122,8 @@ class EditAccountInfoComponent extends StatelessWidget {
           final editProvider =
               Provider.of<EditAccountProvider>(context, listen: false);
           editProvider.clearErrorText();
+          TextInputType? keyboardType;
+          Widget? prefix;
           switch (label) {
             case 'Name':
               editProvider.controller.text = name ?? '';
@@ -121,10 +136,17 @@ class EditAccountInfoComponent extends StatelessWidget {
             case 'No Handphone':
               editProvider.controller.text = noHp ?? '';
               editProvider.setNoHandphone(noHp: noHp ?? '', listen: false);
+              keyboardType = TextInputType.number;
+              prefix = Text('+62 ',
+                  style: TextStyleWidget.titleT2(
+                    color: ColorThemeStyle.grey100,
+                    fontWeight: FontWeightStyle.medium,
+                  ));
               break;
             case 'Email':
               editProvider.controller.text = email ?? '';
               editProvider.setEmail(email: email ?? '', listen: false);
+              keyboardType = TextInputType.emailAddress;
               break;
             default:
           }
@@ -143,9 +165,11 @@ class EditAccountInfoComponent extends StatelessWidget {
                     return EditTextFieldComponentWidget(
                       controller: editAccountProvider.controller,
                       label: label,
+                      keyboarType: keyboardType,
+                      prefix: prefix,
                       errorText: editAccountProvider.errorText.isEmpty
                           ? null
-                          : editAccountProvider.errorText,
+                          : '\u274C  ${editAccountProvider.errorText}',
                       onChanged: (value) {
                         switch (label) {
                           case 'Name':
@@ -171,25 +195,27 @@ class EditAccountInfoComponent extends StatelessWidget {
                   },
                 ),
                 const SizedBox(
-                  height: 8,
+                  height: 18,
                 ),
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: Text(
-                        'Batal',
-                        style: TextStyleWidget.titleT3(
-                          color: Colors.black,
-                          fontWeight: FontWeightStyle.semiBold,
-                        ),
-                      ),
-                    ),
+                    BadgeWidget.container(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        label: 'Batal',
+                        backgroundColor: ColorThemeStyle.red,
+                        overlayColor: ColorThemeStyle.red,
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 24, vertical: 6),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(4.0),
+                        ))),
                     const SizedBox(
-                      width: 54,
+                      width: 16,
                     ),
                     Consumer<EditAccountProvider>(
                         builder: (context, editProvider, child) {
@@ -213,85 +239,85 @@ class EditAccountInfoComponent extends StatelessWidget {
                           break;
                         default:
                       }
-                      return GestureDetector(
-                        onTap: isEnabled
-                            ? () async {
-                                final loginProvider =
-                                    Provider.of<LoginProvider>(
-                                  context,
-                                  listen: false,
-                                );
+                      return BadgeWidget.container(
+                          onPressed: isEnabled
+                              ? () async {
+                                  final loginProvider =
+                                      Provider.of<LoginProvider>(
+                                    context,
+                                    listen: false,
+                                  );
 
-                                final profileProvider =
-                                    Provider.of<ProfileProvider>(
-                                  context,
-                                  listen: false,
-                                );
+                                  final profileProvider =
+                                      Provider.of<ProfileProvider>(
+                                    context,
+                                    listen: false,
+                                  );
 
-                                String token = loginProvider.token ?? '';
-                                int userId = loginProvider.userId ?? -1;
+                                  String token = loginProvider.token ?? '';
+                                  int userId = loginProvider.userId ?? -1;
 
-                                switch (label) {
-                                  case 'Name':
-                                    String value = editProvider.currentName;
-                                    await profileProvider.updateName(
-                                      userId: userId,
-                                      token: token,
-                                      newName: value,
-                                    );
-                                    break;
-                                  case 'Username':
-                                    String value = editProvider.currentUsername;
-                                    await profileProvider.updateUsername(
-                                      userId: userId,
-                                      token: token,
-                                      newUsername: value,
-                                    );
-                                    break;
-                                  case 'No Handphone':
-                                    String value = editProvider.currentNoHp;
-                                    await profileProvider.updateNoHandphone(
-                                      userId: userId,
-                                      token: token,
-                                      newNoHp: value,
-                                    );
-                                    break;
-                                  case 'Email':
-                                    String value = editProvider.currentEmail;
-                                    await profileProvider.updateEmail(
-                                      userId: userId,
-                                      token: token,
-                                      newEmail: value,
-                                    );
-                                    break;
-                                  default:
+                                  switch (label) {
+                                    case 'Name':
+                                      String value = editProvider.currentName;
+                                      await profileProvider.updateName(
+                                        userId: userId,
+                                        token: token,
+                                        newName: value,
+                                      );
+                                      break;
+                                    case 'Username':
+                                      String value =
+                                          editProvider.currentUsername;
+                                      await profileProvider.updateUsername(
+                                        userId: userId,
+                                        token: token,
+                                        newUsername: value,
+                                      );
+                                      break;
+                                    case 'No Handphone':
+                                      String value = editProvider.currentNoHp;
+                                      await profileProvider.updateNoHandphone(
+                                        userId: userId,
+                                        token: token,
+                                        newNoHp: value,
+                                      );
+                                      break;
+                                    case 'Email':
+                                      String value = editProvider.currentEmail;
+                                      await profileProvider.updateEmail(
+                                        userId: userId,
+                                        token: token,
+                                        newEmail: value,
+                                      );
+                                      break;
+                                    default:
+                                  }
+
+                                  if (!context.mounted) return;
+
+                                  Provider.of<LoginProvider>(context,
+                                          listen: false)
+                                      .loadData();
+
+                                  Navigator.pop(context);
+
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBarWidget.snackBarWidget(
+                                        message: profileProvider.message),
+                                  );
+
+                                  profileProvider.clearMessage();
                                 }
-
-                                if (!context.mounted) return;
-
-                                Provider.of<LoginProvider>(context,
-                                        listen: false)
-                                    .loadData();
-
-                                Navigator.pop(context);
-
-                                ScaffoldMessenger.of(context)
-                                    .showSnackBar(SnackBar(
-                                        content: Text(
-                                  profileProvider.message,
-                                )));
-
-                                profileProvider.clearMessage();
-                              }
-                            : null,
-                        child: Text(
-                          'Simpan',
-                          style: TextStyleWidget.titleT3(
-                            color: isEnabled ? Colors.black : Colors.grey,
-                            fontWeight: FontWeightStyle.semiBold,
-                          ),
-                        ),
-                      );
+                              : null,
+                          label: 'Simpan',
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 24, vertical: 6),
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(4.0),
+                          )));
                     }),
                   ],
                 ),
@@ -306,7 +332,7 @@ class EditAccountInfoComponent extends StatelessWidget {
   }) {
     showModalBottomSheet(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(0),
+          borderRadius: BorderRadius.circular(10),
         ),
         isScrollControlled: true,
         backgroundColor: Colors.white,
@@ -317,8 +343,11 @@ class EditAccountInfoComponent extends StatelessWidget {
           editProvider.setCurrentPassword(
               currentPasswordVal: '', listen: false);
           editProvider.setNewPassword(newPasswordVal: '', listen: false);
+          editProvider.setConfirmNewPassword(
+              confirmNewPasswordVal: '', listen: false);
           editProvider.clearErrorTextCurrentPassword();
           editProvider.clearErrorTextNewPassword();
+          editProvider.clearErrorTextConfirmNewPassword();
 
           return Container(
             width: double.infinity,
@@ -332,7 +361,7 @@ class EditAccountInfoComponent extends StatelessWidget {
                 Consumer<EditAccountProvider>(
                   builder: (context, editAccountProvider, child) {
                     return EditTextFieldComponentWidget(
-                      label: 'Current Password',
+                      label: 'Password Sekarang',
                       errorText:
                           editAccountProvider.errorTextCurrentPassword.isEmpty
                               ? null
@@ -352,7 +381,7 @@ class EditAccountInfoComponent extends StatelessWidget {
                 Consumer<EditAccountProvider>(
                   builder: (context, editAccountProvider, child) {
                     return EditTextFieldComponentWidget(
-                      label: 'New Password',
+                      label: 'Password Baru',
                       errorText:
                           editAccountProvider.errorTextNewPassword.isEmpty
                               ? null
@@ -362,6 +391,27 @@ class EditAccountInfoComponent extends StatelessWidget {
                           newPasswordVal: value,
                         );
                         editAccountProvider.errorTextNewPasswordSetter();
+                        editAccountProvider.errorTextConfirmNewPasswordSetter();
+                      },
+                    );
+                  },
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Consumer<EditAccountProvider>(
+                  builder: (context, editAccountProvider, child) {
+                    return EditTextFieldComponentWidget(
+                      label: 'Konfirmasi Password Baru',
+                      errorText: editAccountProvider
+                              .errorTextConfirmNewPassword.isEmpty
+                          ? null
+                          : editAccountProvider.errorTextConfirmNewPassword,
+                      onChanged: (value) {
+                        editAccountProvider.setConfirmNewPassword(
+                          confirmNewPasswordVal: value,
+                        );
+                        editAccountProvider.errorTextConfirmNewPasswordSetter();
                       },
                     );
                   },
@@ -372,30 +422,42 @@ class EditAccountInfoComponent extends StatelessWidget {
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: Text(
-                        'Batal',
-                        style: TextStyleWidget.titleT3(
-                          color: Colors.black,
-                          fontWeight: FontWeightStyle.semiBold,
-                        ),
-                      ),
-                    ),
+                    BadgeWidget.container(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        label: 'Batal',
+                        backgroundColor: ColorThemeStyle.red,
+                        overlayColor: ColorThemeStyle.red,
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 24, vertical: 6),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(4.0),
+                        ))),
                     const SizedBox(
-                      width: 54,
+                      width: 16,
                     ),
                     Consumer<EditAccountProvider>(
                         builder: (context, editProvider, child) {
-                      bool isEnabled =
-                          editProvider.errorTextCurrentPassword.isEmpty &&
-                              editProvider.errorTextNewPassword.isEmpty &&
-                              editProvider.currentPassword.isNotEmpty &&
-                              editProvider.newPassword.isNotEmpty;
-                      return GestureDetector(
-                        onTap: isEnabled
+                      bool isEnabled = editProvider
+                              .errorTextCurrentPassword.isEmpty &&
+                          editProvider.errorTextNewPassword.isEmpty &&
+                          editProvider.errorTextConfirmNewPassword.isEmpty &&
+                          editProvider.currentPassword.isNotEmpty &&
+                          editProvider.confirmNewPassword.isNotEmpty &&
+                          editProvider.newPassword.isNotEmpty;
+                      return BadgeWidget.container(
+                        label: 'Simpan',
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 24, vertical: 6),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(4.0),
+                        )),
+                        onPressed: isEnabled
                             ? () async {
                                 final loginProvider =
                                     Provider.of<LoginProvider>(
@@ -417,28 +479,22 @@ class EditAccountInfoComponent extends StatelessWidget {
                                   token: token,
                                   currentPassword: editProvider.currentPassword,
                                   newPassword: editProvider.newPassword,
+                                  confirmNewPassword:
+                                      editProvider.confirmNewPassword,
                                 );
 
                                 if (!context.mounted) return;
 
                                 Navigator.pop(context);
 
-                                ScaffoldMessenger.of(context)
-                                    .showSnackBar(SnackBar(
-                                        content: Text(
-                                  profileProvider.message,
-                                )));
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBarWidget.snackBarWidget(
+                                      message: profileProvider.message),
+                                );
 
                                 profileProvider.clearMessage();
                               }
                             : null,
-                        child: Text(
-                          'Simpan',
-                          style: TextStyleWidget.titleT3(
-                            color: isEnabled ? Colors.black : Colors.grey,
-                            fontWeight: FontWeightStyle.semiBold,
-                          ),
-                        ),
                       );
                     }),
                   ],

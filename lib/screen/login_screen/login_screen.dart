@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sustain_tour_mobile/constants/routes.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/component/button_masuk.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/component/button_masuk_google.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/component/textfield_password.dart';
@@ -84,7 +85,10 @@ class LoginScreen extends StatelessWidget {
                   children: [
                     const Text('Belum Punya Akun?'),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushReplacementNamed(
+                            context, Routes.registerScreen);
+                      },
                       child: const Text('Daftar'),
                     )
                   ],
