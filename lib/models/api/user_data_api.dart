@@ -156,6 +156,7 @@ class UserDataApi {
     required String token,
     required String currentPassword,
     required String newPassword,
+    required String confirmNewPassword,
   }) async {
     try {
       await Dio().put('$baseUrl/user/change-password/$userId',
@@ -166,7 +167,8 @@ class UserDataApi {
           ),
           data: {
             "currentPassword": currentPassword,
-            "newPassword": newPassword
+            "newPassword": newPassword,
+            "confirmPassword": confirmNewPassword,
           });
 
       return true;

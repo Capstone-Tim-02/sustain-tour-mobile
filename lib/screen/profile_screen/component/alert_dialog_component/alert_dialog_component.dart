@@ -53,8 +53,8 @@ class AlertDialogComponent extends StatelessWidget {
         ),
         BadgeWidget.outline(
           onPressed: onPressedYesButton,
-          borderColor: Colors.red,
-          foregroundColor: Colors.red,
+          borderColor: ColorThemeStyle.red,
+          foregroundColor: ColorThemeStyle.red,
           overlayColor: const Color.fromARGB(255, 235, 124, 116),
           label: 'Iya',
           width: 110,

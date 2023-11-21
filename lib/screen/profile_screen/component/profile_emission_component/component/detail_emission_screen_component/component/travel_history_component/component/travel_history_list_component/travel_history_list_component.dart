@@ -95,6 +95,7 @@ class TravelHistoryListComponent extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 FittedBox(
+                                  fit: BoxFit.scaleDown,
                                   child: Text(
                                     ticket.wisataName,
                                     overflow: TextOverflow.ellipsis,

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:sustain_tour_mobile/constants/assets_image.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/component/account_screen_component/component/edit_account_screen_component/component/edit_account_photo_component/component/edit_account_photo_option_component/component/delete_account_photo_component/delete_account_photo_component.dart';
+import 'package:sustain_tour_mobile/screen/profile_screen/component/account_screen_component/component/edit_account_screen_component/component/edit_account_photo_component/component/edit_account_photo_option_component/component/edit_account_photo_from_camera/edit_account_photo_from_camera.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/component/account_screen_component/component/edit_account_screen_component/component/edit_account_photo_component/component/edit_account_photo_option_component/component/edit_account_photo_from_gallery/edit_account_photo_from_gallery.dart';
-import 'package:sustain_tour_mobile/screen/profile_screen/component/account_screen_component/component/edit_account_screen_component/component/edit_account_photo_component/component/edit_account_photo_option_component/component/edit_account_photo_option_item_component/edit_account_photo_option_item_component.dart';
 import 'package:sustain_tour_mobile/style/color_theme_style.dart';
 
 class EditAccountPhotoOptionComponent extends StatelessWidget {
@@ -38,15 +36,7 @@ class EditAccountPhotoOptionComponent extends StatelessWidget {
           const SizedBox(
             height: 24,
           ),
-          EditAccountPhotoOptionItemComponent(
-            icon: SvgPicture.asset(
-              Assets.assetsIconsCamera,
-              width: 35,
-              colorFilter:
-                  const ColorFilter.mode(Colors.white, BlendMode.srcIn),
-            ),
-            text: 'Ambil Foto',
-          ),
+          const EditAccountPhotoFromCamera(),
           const SizedBox(
             height: 16,
           ),

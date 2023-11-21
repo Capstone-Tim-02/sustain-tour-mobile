@@ -125,6 +125,7 @@ class ProfileProvider extends ChangeNotifier {
     required String token,
     required String currentPassword,
     required String newPassword,
+    required String confirmNewPassword,
   }) async {
     bool isDoneUpload = false;
 
@@ -134,6 +135,7 @@ class ProfileProvider extends ChangeNotifier {
         token: token,
         currentPassword: currentPassword,
         newPassword: newPassword,
+        confirmNewPassword: confirmNewPassword,
       );
 
       if (isDoneUpload) {
@@ -190,6 +192,12 @@ class ProfileProvider extends ChangeNotifier {
   Future<XFile?> getImageFromGallery() async {
     final ImagePicker picker = ImagePicker();
     XFile? image = await picker.pickImage(source: ImageSource.gallery);
+    return image;
+  }
+
+  Future<XFile?> getImageFromCamera() async {
+    final ImagePicker picker = ImagePicker();
+    XFile? image = await picker.pickImage(source: ImageSource.camera);
     return image;
   }
 }

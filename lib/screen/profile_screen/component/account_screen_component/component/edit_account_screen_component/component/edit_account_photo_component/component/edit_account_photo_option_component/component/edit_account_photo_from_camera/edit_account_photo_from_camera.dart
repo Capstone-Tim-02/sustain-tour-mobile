@@ -10,8 +10,8 @@ import 'package:sustain_tour_mobile/screen/profile_screen/component/account_scre
 import 'package:sustain_tour_mobile/screen/profile_screen/profile_provider.dart';
 import 'package:sustain_tour_mobile/widget/snack_bar_widget.dart';
 
-class EditAccountPhotoFromGallery extends StatelessWidget {
-  const EditAccountPhotoFromGallery({super.key});
+class EditAccountPhotoFromCamera extends StatelessWidget {
+  const EditAccountPhotoFromCamera({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class EditAccountPhotoFromGallery extends StatelessWidget {
       onTap: () async {
         final profileProvider =
             Provider.of<ProfileProvider>(context, listen: false);
-        XFile? image = await profileProvider.getImageFromGallery();
+        XFile? image = await profileProvider.getImageFromCamera();
 
         if (image != null) {
           if (!context.mounted) return;
@@ -58,16 +58,12 @@ class EditAccountPhotoFromGallery extends StatelessWidget {
         }
       },
       child: EditAccountPhotoOptionItemComponent(
-        icon: Padding(
-          padding: const EdgeInsets.only(left: 3),
-          child: SvgPicture.asset(
-            Assets.assetsIconsGallery,
-            width: 30,
-            // height: 36,
-            colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
-          ),
+        icon: SvgPicture.asset(
+          Assets.assetsIconsCamera,
+          width: 35,
+          colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
         ),
-        text: 'Ambil dari galeri',
+        text: 'Ambil Foto',
       ),
     );
   }

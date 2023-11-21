@@ -10,6 +10,10 @@ class EditTextFieldComponentWidget extends StatelessWidget {
   final String? errorText;
   final void Function(String)? onChanged;
   final TextInputType? keyboarType;
+  final Widget? prefixIcon;
+  final Widget? prefix;
+  final bool obscureText;
+
   const EditTextFieldComponentWidget(
       {super.key,
       this.autofocus,
@@ -17,7 +21,10 @@ class EditTextFieldComponentWidget extends StatelessWidget {
       this.label,
       this.onChanged,
       this.errorText,
-      this.keyboarType});
+      this.keyboarType,
+      this.prefixIcon,
+      this.prefix,
+      this.obscureText = false});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +35,10 @@ class EditTextFieldComponentWidget extends StatelessWidget {
       keyboardType: keyboarType,
       style: TextStyleWidget.titleT2(
           fontWeight: FontWeight.w500, color: Colors.black),
+      obscureText: obscureText,
       decoration: InputDecoration(
+        prefixIcon: prefixIcon,
+        prefix: prefix,
         errorText: errorText,
         contentPadding: const EdgeInsets.only(bottom: -8),
         focusedBorder: const UnderlineInputBorder(

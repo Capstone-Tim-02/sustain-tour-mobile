@@ -33,7 +33,7 @@ class AccountInfoComponent extends StatelessWidget {
         ),
         ListTileWidget(
           title: 'No Handphone',
-          subtitle: noHp ?? '-',
+          subtitle: noHp == null ? '-' : '+62$noHp',
           iconSvgString: Assets.assetsIconsPhone,
           iconSize: 30,
           isUsingBottomBorder: true,
