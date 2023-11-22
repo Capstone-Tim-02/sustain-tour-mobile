@@ -362,6 +362,7 @@ class EditAccountInfoComponent extends StatelessWidget {
                   builder: (context, editAccountProvider, child) {
                     return EditTextFieldComponentWidget(
                       label: 'Password Sekarang',
+                      obscureText: true,
                       errorText:
                           editAccountProvider.errorTextCurrentPassword.isEmpty
                               ? null
@@ -382,6 +383,7 @@ class EditAccountInfoComponent extends StatelessWidget {
                   builder: (context, editAccountProvider, child) {
                     return EditTextFieldComponentWidget(
                       label: 'Password Baru',
+                      obscureText: true,
                       errorText:
                           editAccountProvider.errorTextNewPassword.isEmpty
                               ? null
@@ -403,6 +405,7 @@ class EditAccountInfoComponent extends StatelessWidget {
                   builder: (context, editAccountProvider, child) {
                     return EditTextFieldComponentWidget(
                       label: 'Konfirmasi Password Baru',
+                      obscureText: true,
                       errorText: editAccountProvider
                               .errorTextConfirmNewPassword.isEmpty
                           ? null
