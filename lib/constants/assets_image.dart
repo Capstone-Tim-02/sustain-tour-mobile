@@ -1,6 +1,6 @@
 class Assets {
   Assets._();
-
+  
   /// Assets for assetsCardImagesCard1
   /// assets/card_images/Card1.png
   static const String assetsCardImagesCard1 = "assets/card_images/Card1.png";
@@ -13,6 +13,10 @@ class Assets {
   /// assets/card_images/Card3.png
   static const String assetsCardImagesCard3 = "assets/card_images/Card3.png";
 
+  /// Assets for assetsIconsAccountCircleFill
+  /// assets/icons/AccountCircleFill.svg
+  static const String assetsIconsAccountCircleFill = "assets/icons/AccountCircleFill.svg";
+
   /// Assets for assetsIconsCamera
   /// assets/icons/camera.svg
   static const String assetsIconsCamera = "assets/icons/camera.svg";
@@ -20,6 +24,14 @@ class Assets {
   /// Assets for assetsIconsEmail
   /// assets/icons/Email.svg
   static const String assetsIconsEmail = "assets/icons/Email.svg";
+
+  /// Assets for assetsIconsGallery
+  /// assets/icons/gallery.svg
+  static const String assetsIconsGallery = "assets/icons/gallery.svg";
+
+  /// Assets for assetsIconsGoogle
+  /// assets/icons/google.svg
+  static const String assetsIconsGoogle = "assets/icons/google.svg";
 
   /// Assets for assetsIconsHelp
   /// assets/icons/Help.svg
@@ -49,19 +61,17 @@ class Assets {
   /// assets/icons/location.svg
   static const String assetsIconsLocation = "assets/icons/location.svg";
 
-  /// Assets for assetsIconsAccountCircleFill
-  /// assets/icons/AccountCircleFill.svg
-  static const String assetsIconsAccountCircleFill =
-      "assets/icons/AccountCircleFill.svg";
-
   /// Assets for assetsIconsLocationFill
   /// assets/icons/LocationFill.svg
   static const String assetsIconsLocationFill = "assets/icons/LocationFill.svg";
 
   /// Assets for assetsIconsLocationFill2
   /// assets/icons/LocationFill2.svg
-  static const String assetsIconsLocationFill2 =
-      "assets/icons/LocationFill2.svg";
+  static const String assetsIconsLocationFill2 = "assets/icons/LocationFill2.svg";
+
+  /// Assets for assetsIconsLock
+  /// assets/icons/lock.svg
+  static const String assetsIconsLock = "assets/icons/lock.svg";
 
   /// Assets for assetsIconsLogout
   /// assets/icons/Logout.svg
@@ -70,6 +80,10 @@ class Assets {
   /// Assets for assetsIconsName
   /// assets/icons/Name.svg
   static const String assetsIconsName = "assets/icons/Name.svg";
+
+  /// Assets for assetsIconsPersonOutline
+  /// assets/icons/PersonOutline.svg
+  static const String assetsIconsPersonOutline = "assets/icons/PersonOutline.svg";
 
   /// Assets for assetsIconsPhone
   /// assets/icons/Phone.svg
@@ -103,18 +117,13 @@ class Assets {
   /// assets/icons/TicketOn.svg
   static const String assetsIconsTicketOn = "assets/icons/TicketOn.svg";
 
-  /// Assets for assetsIconsLock
-  /// assets/icons/Lock.svg
-  static const String assetsIconsLock = "assets/icons/lock.svg";
-
-  /// Assets for assetsIconsTicketOn
-  /// assets/icons/TicketOn.svg
-  static const String assetsIconsPersonOutline =
-      "assets/icons/PersonOutline.svg";
-
   /// Assets for assetsIconsTicketOn2
   /// assets/icons/TicketOn2.svg
   static const String assetsIconsTicketOn2 = "assets/icons/TicketOn2.svg";
+
+  /// Assets for assetsIconsTrashBasket
+  /// assets/icons/trash_basket.svg
+  static const String assetsIconsTrashBasket = "assets/icons/trash_basket.svg";
 
   /// Assets for assetsIconsUsername
   /// assets/icons/Username.svg
@@ -134,27 +143,35 @@ class Assets {
 
   /// Assets for assetsIconsWisataBudaya
   /// assets/icons/Wisata_Budaya.svg
-  static const String assetsIconsWisataBudaya =
-      "assets/icons/Wisata_Budaya.svg";
+  static const String assetsIconsWisataBudaya = "assets/icons/Wisata_Budaya.svg";
 
   /// Assets for assetsIconsWisataHiburan
   /// assets/icons/Wisata_Hiburan.svg
-  static const String assetsIconsWisataHiburan =
-      "assets/icons/Wisata_Hiburan.svg";
+  static const String assetsIconsWisataHiburan = "assets/icons/Wisata_Hiburan.svg";
 
   /// Assets for assetsIconsWisataSejarah
   /// assets/icons/Wisata_Sejarah.svg
-  static const String assetsIconsWisataSejarah =
-      "assets/icons/Wisata_Sejarah.svg";
+  static const String assetsIconsWisataSejarah = "assets/icons/Wisata_Sejarah.svg";
 
-  /// Assets for assetsIconsGoogle
-  /// assets/icons/google.svg
-  static const String assetsIconsGoogle = "assets/icons/google.svg";
+  /// Assets for assetsImagesEmissionBg
+  /// assets/images/emission_bg.png
+  static const String assetsImagesEmissionBg = "assets/images/emission_bg.png";
+
+  /// Assets for assetsImagesEmissionRealBg
+  /// assets/images/emission_real_bg.png
+  static const String assetsImagesEmissionRealBg = "assets/images/emission_real_bg.png";
 
   /// Assets for assetsImagesLogoDestimate
   /// assets/images/logo_destimate.png
-  static const String assetsImagesLogoDestimate =
-      "assets/images/logo_destimate.png";
+  static const String assetsImagesLogoDestimate = "assets/images/logo_destimate.png";
+
+  /// Assets for assetsImagesMatchmaking
+  /// assets/images/matchmaking.png
+  static const String assetsImagesMatchmaking = "assets/images/matchmaking.png";
+
+  /// Assets for assetsImagesOnboarding
+  /// assets/images/onboarding.png
+  static const String assetsImagesOnboarding = "assets/images/onboarding.png";
 
   /// Assets for assetsImagesOnboarding1
   /// assets/images/onboarding1.png
@@ -168,18 +185,29 @@ class Assets {
   /// assets/images/onboarding4.png
   static const String assetsImagesOnboarding4 = "assets/images/onboarding4.png";
 
-  /// Assets for assetsImagesMatchmaking
-  /// assets/images/matchmaking.png
-  static const String assetsImagesMatchmaking = "assets/images/matchmaking.png";
-
   /// Assets for assetsImagesPointBackground
-  /// assets/images/matchmaking.png
-  static const String assetsImagesPointBackground =
-      "assets/images/point_background.png";
+  /// assets/images/point_background.png
+  static const String assetsImagesPointBackground = "assets/images/point_background.png";
 
-  /// Assets for assetsImagesEmissionBg
-  /// assets/images/emission_bg.png
-  static const String assetsImagesEmissionBg = "assets/images/emission_bg.png";
+  /// Assets for assetsImagesSelamatDatang
+  /// assets/images/selamat_datang.png
+  static const String assetsImagesSelamatDatang = "assets/images/selamat_datang.png";
+
+  /// Assets for assetsImagesWisataAlam
+  /// assets/images/wisata_alam.png
+  static const String assetsImagesWisataAlam = "assets/images/wisata_alam.png";
+
+  /// Assets for assetsImagesWisataBudaya
+  /// assets/images/wisata_budaya.png
+  static const String assetsImagesWisataBudaya = "assets/images/wisata_budaya.png";
+
+  /// Assets for assetsImagesWisataHiburan
+  /// assets/images/wisata_hiburan.png
+  static const String assetsImagesWisataHiburan = "assets/images/wisata_hiburan.png";
+
+  /// Assets for assetsImagesWisataSejarah
+  /// assets/images/wisata_sejarah.png
+  static const String assetsImagesWisataSejarah = "assets/images/wisata_sejarah.png";
 
   /// Assets for assetsImagesNotFoundWisata
   /// assets/images/not_found_wisata.png

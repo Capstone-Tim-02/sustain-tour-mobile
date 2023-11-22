@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:provider/provider.dart';
 import 'package:dots_indicator/dots_indicator.dart';
+import 'package:sustain_tour_mobile/constants/routes.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/login_screen.dart';
 import 'package:sustain_tour_mobile/screen/onboarding_screen/onboarding_provider.dart';
 import 'package:sustain_tour_mobile/style/color_theme_style.dart';
@@ -104,7 +105,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     height: 16,
                   ),
                   ButtonWidget.defaultOutline(
-                      text: "Belum Punya Akun? Daftar dulu", onPressed: () {})
+                      text: "Belum Punya Akun? Daftar dulu",
+                      onPressed: () {
+                        Navigator.pushReplacementNamed(
+                            context, Routes.registerScreen);
+                      })
                 ],
               );
             },

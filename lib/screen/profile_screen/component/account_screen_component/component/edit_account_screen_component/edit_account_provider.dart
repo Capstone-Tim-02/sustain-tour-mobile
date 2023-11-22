@@ -14,6 +14,9 @@ class EditAccountProvider extends ChangeNotifier {
   String _errorTextNewPassword = '';
   String get errorTextNewPassword => _errorTextNewPassword;
 
+  String _errorTextConfirmNewPassword = '';
+  String get errorTextConfirmNewPassword => _errorTextConfirmNewPassword;
+
   String _currentName = '';
   String get currentName => _currentName;
 
@@ -31,6 +34,9 @@ class EditAccountProvider extends ChangeNotifier {
 
   String _newPassword = '';
   String get newPassword => _newPassword;
+
+  String _confirmNewPassword = '';
+  String get confirmNewPassword => _confirmNewPassword;
 
   void setName({required String name, bool listen = true}) {
     _currentName = name;
@@ -75,6 +81,14 @@ class EditAccountProvider extends ChangeNotifier {
     }
   }
 
+  void setConfirmNewPassword(
+      {required String confirmNewPasswordVal, bool listen = true}) {
+    _confirmNewPassword = confirmNewPasswordVal;
+    if (listen) {
+      notifyListeners();
+    }
+  }
+
   void errorTextName() {
     if (_currentName.isEmpty) {
       _errorText = 'Nama tidak boleh kosong!';
@@ -106,26 +120,37 @@ class EditAccountProvider extends ChangeNotifier {
     }
   }
 
+  void errorTextConfirmNewPasswordSetter() {
+    if (_newPassword != _confirmNewPassword) {
+      _errorTextConfirmNewPassword = 'Password tidak sama';
+    } else {
+      _errorTextConfirmNewPassword = '';
+    }
+  }
+
   void errorTextUsername() {
+    RegExp regex = RegExp(r'^[a-zA-Z0-9]+$');
     if (_currentUsername.isEmpty) {
       _errorText = 'Username tidak boleh kosong!';
     } else if (_currentUsername.length < 5) {
       _errorText = 'Username minimal 5 karakter';
+    } else if (!regex.hasMatch(_currentUsername)) {
+      _errorText = 'Hanya boleh menggunakan angka dan huruf';
     } else {
       _errorText = '';
     }
   }
 
   void errorTextNoHp() {
-    RegExp regExp = RegExp(r'^0[0-9]*$');
+    RegExp regExp = RegExp(r'^[0-9]+$');
     if (_currentNoHp.isEmpty) {
       _errorText = 'No Handphone tidak boleh kosong';
     } else if (!regExp.hasMatch(_currentNoHp)) {
-      _errorText = 'No Handphone hanya boleh angka dan di awali 0';
+      _errorText = 'No Handphone hanya boleh angka';
     } else if (_currentNoHp.length < 10) {
       _errorText = 'No Handphone minimal 10 digit';
-    } else if (_currentNoHp.length > 16) {
-      _errorText = 'No Handphone maksimal 16 digit';
+    } else if (_currentNoHp.length > 12) {
+      _errorText = 'No Handphone maksimal 12 digit';
     } else {
       _errorText = '';
     }
@@ -151,6 +176,10 @@ class EditAccountProvider extends ChangeNotifier {
 
   void clearErrorTextNewPassword() {
     _errorTextNewPassword = '';
+  }
+
+  void clearErrorTextConfirmNewPassword() {
+    _errorTextConfirmNewPassword = '';
   }
 
   @override

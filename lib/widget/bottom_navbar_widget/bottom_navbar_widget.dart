@@ -28,6 +28,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
         backgroundColor: ColorThemeStyle.white100,
         selectedItemColor: ColorThemeStyle.blue60, //ganti warna
         unselectedItemColor: ColorThemeStyle.grey80,
+        type: BottomNavigationBarType.fixed,
         showUnselectedLabels: true, // Menampilkan label selalu
         items: [
           BottomNavigationBarItem(
