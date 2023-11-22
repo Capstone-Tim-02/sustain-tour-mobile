@@ -39,6 +39,12 @@ class ExploreScreenProvider with ChangeNotifier {
   bool _isGetKotaSuccess = true;
   bool get isGetKotaSuccess => _isGetKotaSuccess;
 
+  bool _showSearchPage = false;
+  bool get showSearchPage => _showSearchPage;
+
+  List<String> _historySearch = ["Alam", "Pantai Kuta", "Museum", "test", "test test"];
+  List<String> get historySearch => _historySearch;
+
   void onBottomSheetOpened(){
     _listSearchedKota = _listAllKota;
     _kotaIndex = _listSearchedKota.indexWhere((element) => element == selectedKota);
@@ -90,6 +96,16 @@ class ExploreScreenProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  void onSearchTap(){
+    _showSearchPage = true;
+    notifyListeners();
+  }
+
+  void onClearTap(){
+    _showSearchPage = false;
+    notifyListeners();
+  }
+
   void getWisataInit({required String token}) async {
     _currentPage = 1;
     _listWisata = [];
@@ -100,6 +116,7 @@ class ExploreScreenProvider with ChangeNotifier {
       "Wisata Air" : false,
       "Wisata Sejarah" : false,
     };
+    _showSearchPage = false;
     _kotaIndex = 0;
     _isLoadingWisata = true;
     notifyListeners();
@@ -119,7 +136,7 @@ class ExploreScreenProvider with ChangeNotifier {
     }
   }
 
-  void getWisataData({required String token, String? searchQuery}) async {
+  void getWisataDataByFilter({required String token}) async {
     _isLoadingWisata = true;
     notifyListeners();
 
@@ -132,18 +149,50 @@ class ExploreScreenProvider with ChangeNotifier {
     }
 
     try {
-      if(selectedCategory.isEmpty && _selectedKota == "" && searchQuery == null){
+      if(selectedCategory.isEmpty && _selectedKota == "Semua Lokasi"){
         _listWisata = await WisataApi().getAllWisata(page: _currentPage, token: token, listWisata: _listWisata);
       } else {
-        _listWisata = await WisataApi().getWisataByParameters(
+        _listWisata = await WisataApi().getWisataByFilter(
           page: _currentPage,
           token: token,
           listWisata: _listWisata,
           category: selectedCategory,
           kota: _selectedKota == "Semua Lokasi" ? "" : _selectedKota,
-          title: searchQuery,
         );
       }
+
+      _currentPage +=1;
+
+      _isGetWisataSuccess = true;
+      _isLoadingWisata = false;
+      notifyListeners();
+    } catch (e) {
+      _isLoadingWisata = false;
+      _isGetWisataSuccess = false;
+      notifyListeners();
+      throw Exception(e);
+    }
+  }
+
+  void getWisataDataBySearch({required String token, required String searchQuery}) async {
+    _isLoadingWisata = true;
+    notifyListeners();
+
+    List<String> selectedCategory = [];
+
+    for(int i = 0; i < _wisataCategory.length; i++){
+      if(_wisataCategory.values.elementAt(i) == true){
+        selectedCategory.add(_wisataCategory.keys.elementAt(i));
+      }
+    }
+
+    try {
+      _listWisata = await WisataApi().getWisataBySearch(
+        page: _currentPage,
+        token: token,
+        listWisata: _listWisata,
+        title: searchQuery
+      );
 
       _currentPage +=1;
 

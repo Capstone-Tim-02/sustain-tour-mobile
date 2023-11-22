@@ -17,7 +17,6 @@ class ExploreScreen extends StatefulWidget {
 }
 
 class _ExploreScreenState extends State<ExploreScreen> {
-
   @override
   void initState() {
     super.initState();
@@ -30,14 +29,22 @@ class _ExploreScreenState extends State<ExploreScreen> {
   }
 
   @override
+  void dispose() {
+    searchWisataController.dispose();
+    searchKotaController.dispose();
+    super.dispose();
+  }
+
+  TextEditingController searchWisataController = TextEditingController();
+  TextEditingController searchKotaController = TextEditingController();
+
+  @override
   Widget build(BuildContext context) {
-    TextEditingController searchWisataController = TextEditingController();
-    TextEditingController searchKotaController = TextEditingController();
     ExploreScreenProvider exploreScreenProvider = Provider.of<ExploreScreenProvider>(context, listen: false);
     LoginProvider loginProvider = Provider.of<LoginProvider>(context, listen: false);
     return RefreshIndicator(
       onRefresh: () async{
-        exploreScreenProvider.getWisataInit(
+        exploreScreenProvider.getWisataDataByFilter(
           token: loginProvider.token.toString());
         exploreScreenProvider.getAllKota(
           token: loginProvider.token.toString());
@@ -64,10 +71,13 @@ class _ExploreScreenState extends State<ExploreScreen> {
                   ),
                   onSubmit: (value){
                     exploreScreenProvider.onSearchWisata();
-                    exploreScreenProvider.getWisataData(
+                    exploreScreenProvider.getWisataDataBySearch(
                       token: loginProvider.token.toString(),
                       searchQuery: searchWisataController.text
                     );
+                  },
+                  onTap: (){
+                    exploreScreenProvider.onSearchTap();
                   },
                   label: "Search",
                   controller: searchWisataController,
@@ -77,173 +87,190 @@ class _ExploreScreenState extends State<ExploreScreen> {
                   ),
                   suffixIcon: Consumer<ExploreScreenProvider>(
                     builder: (context, exploreScreenProvider, child) {
-                      return Container(
-                        margin: const EdgeInsets.symmetric(vertical: 11, horizontal: 13),
-                        decoration: BoxDecoration(
-                          color: ColorThemeStyle.blue100,
-                          borderRadius: BorderRadiusDirectional.circular(20)
-                        ),
-                        child: InkWell(
-                          borderRadius: BorderRadius.circular(20),
-                          onTap: (){
-                            exploreScreenProvider.onBottomSheetOpened();
-                            showModalBottomSheet(
-                              context: context,
-                              backgroundColor: ColorThemeStyle.white100,
-                              builder: (context) {
-                                return Column(
-                                  children: [
-                                    const SizedBox(height: 3),
-                                    const Divider(
-                                      color: ColorThemeStyle.grey80,
-                                      indent: 130,
-                                      endIndent: 130,
-                                      thickness: 5,
-                                    ),
-                                      Padding(
-                                      padding: const EdgeInsets.only(top: 35, bottom: 18, left: 20, right: 20),
-                                      child: SearchWidget(
-                                        style: TextStyleWidget.titleT2(
-                                          color: ColorThemeStyle.grey100
-                                        ),
-                                        onSubmit : (value){
-                                          exploreScreenProvider.searchKota(query: searchKotaController.text);
-                                        },
-                                        controller: searchKotaController,
-                                        prefixIcon: const Icon(
-                                          Icons.search,
-                                          size: 24,
-                                        ),
-                                        label: "Search",
+                      return exploreScreenProvider.showSearchPage == true
+                      ? Padding(
+                          padding: const EdgeInsets.all(16),
+                          child: InkWell(
+                            onTap: (){
+                              exploreScreenProvider.onClearTap();
+                              searchWisataController.clear();
+                            },
+                            child: const Icon(
+                              Icons.clear,
+                              size: 24
+                            ),
+                          )
+                        )
+                      : Container(
+                          margin: const EdgeInsets.symmetric(vertical: 11, horizontal: 13),
+                          decoration: BoxDecoration(
+                            color: ColorThemeStyle.blue100,
+                            borderRadius: BorderRadiusDirectional.circular(20)
+                          ),
+                          child: InkWell(
+                            borderRadius: BorderRadius.circular(20),
+                            onTap: (){
+                              exploreScreenProvider.onBottomSheetOpened();
+                              showModalBottomSheet(
+                                context: context,
+                                backgroundColor: ColorThemeStyle.white100,
+                                builder: (context) {
+                                  return Column(
+                                    children: [
+                                      const SizedBox(height: 3),
+                                      const Divider(
+                                        color: ColorThemeStyle.grey80,
+                                        indent: 130,
+                                        endIndent: 130,
+                                        thickness: 5,
                                       ),
-                                    ),
-                                    Expanded(
-                                      child: Consumer<ExploreScreenProvider>(
-                                        builder: (context, exploreScreenProvider, child) {
-                                          return Padding(
-                                            padding: const EdgeInsets.symmetric(horizontal: 10),
-                                            child: SingleChildScrollView(
-                                              child: Wrap(
-                                                spacing: 8,
-                                                runSpacing: 16,
-                                                children: [
-                                                  for(int i = 0; i < exploreScreenProvider.listSearchedKota.length;i++)
-                                                  i == exploreScreenProvider.kotaIndex
-                                                  ? BadgeWidget.containerWithIcon(
-                                                      icon: const Icon(Icons.clear),
-                                                      onPressed: (){},
-                                                      label: exploreScreenProvider.listSearchedKota[i]
-                                                    )
-                                                  : BadgeWidget.outline(
-                                                      onPressed: (){
-                                                        exploreScreenProvider.selectKota(i);
-                                                      },
-                                                      label: exploreScreenProvider.listSearchedKota[i]
-                                                    )
-                                                ],
+                                        Padding(
+                                        padding: const EdgeInsets.only(top: 35, bottom: 18, left: 20, right: 20),
+                                        child: SearchWidget(
+                                          style: TextStyleWidget.titleT2(
+                                            color: ColorThemeStyle.grey100
+                                          ),
+                                          onSubmit : (value){
+                                            exploreScreenProvider.searchKota(query: searchKotaController.text);
+                                          },
+                                          controller: searchKotaController,
+                                          prefixIcon: const Icon(
+                                            Icons.search,
+                                            size: 24,
+                                          ),
+                                          label: "Search",
+                                        ),
+                                      ),
+                                      Expanded(
+                                        child: Consumer<ExploreScreenProvider>(
+                                          builder: (context, exploreScreenProvider, child) {
+                                            return Padding(
+                                              padding: const EdgeInsets.symmetric(horizontal: 18),
+                                              child: SingleChildScrollView(
+                                                child: Wrap(
+                                                  spacing: 8,
+                                                  runSpacing: 16,
+                                                  children: [
+                                                    for(int i = 0; i < exploreScreenProvider.listSearchedKota.length;i++)
+                                                    i == exploreScreenProvider.kotaIndex
+                                                    ? BadgeWidget.containerWithIcon(
+                                                        icon: const Icon(Icons.clear),
+                                                        onPressed: (){
+                                                          exploreScreenProvider.selectKota(-1);
+                                                        },
+                                                        label: exploreScreenProvider.listSearchedKota[i]
+                                                      )
+                                                    : BadgeWidget.outline(
+                                                        onPressed: (){
+                                                          exploreScreenProvider.selectKota(i);
+                                                        },
+                                                        label: exploreScreenProvider.listSearchedKota[i]
+                                                      )
+                                                  ],
+                                                ),
                                               ),
-                                            ),
-                                          );
-                                        },
-                                      )
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 14),
-                                      child: Consumer<ExploreScreenProvider>(
-                                        builder: (context, exploreScreenProvider, child) {
-                                          return Row(
-                                            mainAxisAlignment: MainAxisAlignment.end,
-                                            children: [
-                                              ElevatedButton(
-                                                style: ElevatedButton.styleFrom(
-                                                  shape: RoundedRectangleBorder(
-                                                    borderRadius: BorderRadius.circular(8),
-                                                    side: const BorderSide(
+                                            );
+                                          },
+                                        )
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 14),
+                                        child: Consumer<ExploreScreenProvider>(
+                                          builder: (context, exploreScreenProvider, child) {
+                                            return Row(
+                                              mainAxisAlignment: MainAxisAlignment.end,
+                                              children: [
+                                                ElevatedButton(
+                                                  style: ElevatedButton.styleFrom(
+                                                    shape: RoundedRectangleBorder(
+                                                      borderRadius: BorderRadius.circular(8),
+                                                      side: const BorderSide(
+                                                        color: ColorThemeStyle.red,
+                                                        width: 1
+                                                      ),
+                                                    )
+                                                  ),
+                                                  onPressed: (){
+                                                    Navigator.pop(context);
+                                                  },
+                                                  child: Text(
+                                                    "Batal",
+                                                    style: TextStyleWidget.titleT2(
                                                       color: ColorThemeStyle.red,
-                                                      width: 1
+                                                      fontWeight: FontWeight.w500
                                                     ),
                                                   )
                                                 ),
-                                                onPressed: (){
-                                                  Navigator.pop(context);
-                                                },
-                                                child: Text(
-                                                  "Batal",
-                                                  style: TextStyleWidget.titleT2(
-                                                    color: ColorThemeStyle.red,
-                                                    fontWeight: FontWeight.w500
+                                                const SizedBox(width: 16),
+                                                ElevatedButton(
+                                                  style: ElevatedButton.styleFrom(
+                                                    shape: RoundedRectangleBorder(
+                                                      borderRadius: BorderRadius.circular(8),
+                                                    ),
+                                                    disabledForegroundColor: ColorThemeStyle.blue100.withOpacity(0.6),
+                                                    disabledBackgroundColor: ColorThemeStyle.blue100.withOpacity(0.6),
+                                                    backgroundColor: ColorThemeStyle.blue100
                                                   ),
+                                                  onPressed: exploreScreenProvider.kotaIndex != -1
+                                                    ? (){
+                                                      exploreScreenProvider.onSubmitKota();
+                                                      exploreScreenProvider.getWisataDataByFilter(
+                                                        token: loginProvider.token.toString(),
+                                                      );
+                                                      Navigator.pop(context);
+                                                    } : null,
+                                                  child: Text(
+                                                    "Simpan",
+                                                    style: TextStyleWidget.titleT2(
+                                                      color: ColorThemeStyle.white100,
+                                                      fontWeight: FontWeight.w500
+                                                    ),
+                                                  )
                                                 )
-                                              ),
-                                              const SizedBox(width: 16),
-                                              ElevatedButton(
-                                                style: ElevatedButton.styleFrom(
-                                                  shape: RoundedRectangleBorder(
-                                                    borderRadius: BorderRadius.circular(8),
-                                                  ),
-                                                  disabledForegroundColor: ColorThemeStyle.blue100.withOpacity(0.6),
-                                                  disabledBackgroundColor: ColorThemeStyle.blue100.withOpacity(0.6),
-                                                  backgroundColor: ColorThemeStyle.blue100
-                                                ),
-                                                onPressed: exploreScreenProvider.kotaIndex != -1
-                                                  ? (){
-                                                    exploreScreenProvider.onSubmitKota();
-                                                    exploreScreenProvider.getWisataData(
-                                                      token: loginProvider.token.toString(),
-                                                      searchQuery: searchWisataController.text
-                                                    );
-                                                    Navigator.pop(context);
-                                                  } : null,
-                                                child: Text(
-                                                  "Simpan",
-                                                  style: TextStyleWidget.titleT2(
-                                                    color: ColorThemeStyle.white100,
-                                                    fontWeight: FontWeight.w500
-                                                  ),
-                                                )
-                                              )
-                                            ]
-                                          );
-                                        },
+                                              ]
+                                            );
+                                          },
+                                        ),
                                       ),
-                                    ),
-                                  ],
-                                );
-                              }
-                            );
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                const Icon(
-                                  Icons.location_on_rounded,
-                                  color: ColorThemeStyle.white100,
-                                  size: 18,
-                                ),
-                                const SizedBox(width: 8),
-                                Text(
-                                  exploreScreenProvider.selectedKota,
-                                  style: TextStyleWidget.labelL2(
+                                    ],
+                                  );
+                                }
+                              );
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  const Icon(
+                                    Icons.location_on_rounded,
                                     color: ColorThemeStyle.white100,
-                                    fontWeight: FontWeight.w600
+                                    size: 18,
                                   ),
-                                )
-                              ],
+                                  const SizedBox(width: 8),
+                                  Text(
+                                    exploreScreenProvider.selectedKota,
+                                    style: TextStyleWidget.labelL2(
+                                      color: ColorThemeStyle.white100,
+                                      fontWeight: FontWeight.w600
+                                    ),
+                                  )
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                      );
+                        );
                     }
                   )
                 )
               ),
-              SizedBox(
-                height: 40,
-                child: Consumer<ExploreScreenProvider>(
-                    builder: (context, exploreScreenProvider, child) {
-                      return ListView.builder(
+              Consumer<ExploreScreenProvider>(
+                builder: (context, exploreScreenProvider, child) {
+                  return exploreScreenProvider.showSearchPage
+                  ? const SizedBox()
+                  : SizedBox(
+                      height: 40,
+                      child: ListView.builder(
                         itemCount: exploreScreenProvider.wisataCategory.length,
                         shrinkWrap: true,
                         scrollDirection: Axis.horizontal,
@@ -257,9 +284,8 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                 label: exploreScreenProvider.wisataCategory.keys.elementAt(index),
                                 onPressed: (){
                                   exploreScreenProvider.toggleButtonCategory(index: index);
-                                  exploreScreenProvider.getWisataData(
+                                  exploreScreenProvider.getWisataDataByFilter(
                                     token: loginProvider.token.toString(),
-                                    searchQuery: searchWisataController.text
                                   );
                                 }
                               ) :
@@ -267,17 +293,16 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                 label: exploreScreenProvider.wisataCategory.keys.elementAt(index),
                                 onPressed: (){
                                   exploreScreenProvider.toggleButtonCategory(index: index);
-                                  exploreScreenProvider.getWisataData(
+                                  exploreScreenProvider.getWisataDataByFilter(
                                     token: loginProvider.token.toString(),
-                                    searchQuery: searchWisataController.text
                                   );
                                 }
                               )
                             );
                         },
-                      );
-                    },
-                  )
+                      ),
+                    );
+                },
               ),
               const SizedBox(height: 10),
               Consumer<ExploreScreenProvider>(
@@ -318,7 +343,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                           const SizedBox(height: 16),
                           BadgeWidget.container(
                               onPressed: () {
-                                exploreScreenProvider.getWisataData(
+                                exploreScreenProvider.getWisataDataByFilter(
                                   token: loginProvider.token.toString()
                                 );
                                 exploreScreenProvider.getAllKota(
@@ -346,10 +371,15 @@ class _ExploreScreenState extends State<ExploreScreen> {
                 child: ButtonWidget.defaultContainer(
                   text: "Load more",
                   onPressed: (){
-                    exploreScreenProvider.getWisataData(
-                      token: loginProvider.token.toString(),
-                      searchQuery: searchWisataController.text
-                    );
+                    //TODO masukin ternary kalo misal halaman search
+                    exploreScreenProvider.showSearchPage
+                    ? exploreScreenProvider.getWisataDataBySearch(
+                        token: loginProvider.token.toString(),
+                        searchQuery: searchWisataController.text
+                      )
+                    : exploreScreenProvider.getWisataDataByFilter(
+                        token: loginProvider.token.toString(),
+                      );
                   }
                 ),
               )

@@ -10,6 +10,7 @@ class SearchWidget extends StatefulWidget {
       this.prefixIcon,
       this.style,
       this.suffixIcon,
+      this.onTap,
       Key? key})
       : super(key: key);
 
@@ -19,6 +20,7 @@ class SearchWidget extends StatefulWidget {
       final TextStyle? style;
       final Icon? prefixIcon;
       final Widget? suffixIcon;
+      final Function()? onTap;
 
   @override
   _SearchWidgetState createState() => _SearchWidgetState();
@@ -58,12 +60,22 @@ class _SearchWidgetState extends State<SearchWidget> {
               }
                 return ColorThemeStyle.grey100;
             }),
+            suffixIconColor: MaterialStateColor.resolveWith((Set<MaterialState> states) {
+              if (states.contains(MaterialState.focused)) {
+                return ColorThemeStyle.blue100;
+              }
+              if (states.contains(MaterialState.error)) {
+                return ColorThemeStyle.red;
+              }
+                return ColorThemeStyle.grey100;
+            }),
             hintText: widget.label,
             prefixIcon: widget.prefixIcon ?? const Icon(
               Icons.search,
             ),
             suffixIcon: widget.suffixIcon
           ),
+          onTap: widget.onTap,
         )
       ],),
     );
