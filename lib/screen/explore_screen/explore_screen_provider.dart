@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:sustain_tour_mobile/models/api/cities_api.dart';
 import 'package:sustain_tour_mobile/models/api/wisata_api.dart';
+import 'package:sustain_tour_mobile/models/search_history_models/search_history_models.dart';
 import 'package:sustain_tour_mobile/models/wisata_models/wisata_models.dart';
+import 'package:sustain_tour_mobile/utils/database_helper.dart';
 
 class ExploreScreenProvider with ChangeNotifier {
-  bool _isLoadingWisata = true;
-  bool get isLoadingWisata => _isLoadingWisata;
-
   List<Wisata> _listWisata = [];
   List<Wisata> get listWisata => _listWisata;
+
+  bool _hasMoreWisata = false;
+  bool get hasMoreWisata => _hasMoreWisata;
 
   bool _isGetWisataSuccess = true;
   bool get isGetWisataSuccess => _isGetWisataSuccess;
@@ -42,8 +44,13 @@ class ExploreScreenProvider with ChangeNotifier {
   bool _showSearchPage = false;
   bool get showSearchPage => _showSearchPage;
 
-  List<String> _historySearch = ["Alam", "Pantai Kuta", "Museum", "test", "test test"];
-  List<String> get historySearch => _historySearch;
+  bool _showSearchHistory = false;
+  bool get showSearchHistory => _showSearchHistory;
+
+  List<SearchHistoryModel> _searchHistoryList = [];
+  List<SearchHistoryModel> get searchHistoryList => _searchHistoryList;
+
+  late DatabaseHelper dbHelper = DatabaseHelper();
 
   void onBottomSheetOpened(){
     _listSearchedKota = _listAllKota;
@@ -86,23 +93,53 @@ class ExploreScreenProvider with ChangeNotifier {
         _listSearchedKota.remove(_listSearchedKota[i]);
       }
     }
-
     notifyListeners();
   }
 
-  void onSearchWisata() {
+  void getSearchHistory({required int userId}) async{
+    _searchHistoryList = await dbHelper.getHistory(userId: userId);
+    notifyListeners();
+  }
+
+  void addSearchHistory({required int userId, required String query}) async{
+    int highestId = await dbHelper.getHighestId();
+
+    await dbHelper.addHistory(
+      searchHistoryModel: SearchHistoryModel(
+        id: highestId + 1,
+        userId: userId,
+        query: query
+      )
+    );
+
+    _searchHistoryList = await dbHelper.getHistory(userId: userId);
+    notifyListeners();
+  }
+
+  void deleteSearchHistory({required int id, required int userId}) async{
+    await dbHelper.deleteHistory(id: id);
+
+    _searchHistoryList = await dbHelper.getHistory(userId: userId);
+    notifyListeners();
+  }
+
+  void onSearchWisataSubmit() {
     _currentPage = 1;
     _listWisata = [];
+    _showSearchHistory = false;
     notifyListeners();
   }
 
-  void onSearchTap(){
+  void onSearchWisataTap(){
+    _showSearchHistory = true;
     _showSearchPage = true;
+    _hasMoreWisata = false;
     notifyListeners();
   }
 
-  void onClearTap(){
+  void onSearchWisataClear(){
     _showSearchPage = false;
+    _showSearchHistory = false;
     notifyListeners();
   }
 
@@ -117,27 +154,34 @@ class ExploreScreenProvider with ChangeNotifier {
       "Wisata Sejarah" : false,
     };
     _showSearchPage = false;
+    _showSearchHistory = false;
     _kotaIndex = 0;
-    _isLoadingWisata = true;
+    _hasMoreWisata = true;
     notifyListeners();
 
     try {
       _listWisata = await WisataApi().getAllWisata(page: currentPage, token: token, listWisata: listWisata);
+      _isGetWisataSuccess = true;
+
+      if(_listWisata.length < _currentPage * 6){
+        _hasMoreWisata = false;
+      } else {
+        _hasMoreWisata = true;
+      }
+
       _currentPage +=1;
 
-      _isGetWisataSuccess = true;
-      _isLoadingWisata = false;
       notifyListeners();
     } catch (e) {
-      _isLoadingWisata = false;
       _isGetWisataSuccess = false;
+      _hasMoreWisata = false;
       notifyListeners();
       throw Exception(e);
     }
   }
 
   void getWisataDataByFilter({required String token}) async {
-    _isLoadingWisata = true;
+    _hasMoreWisata = true;
     notifyListeners();
 
     List<String> selectedCategory = [];
@@ -160,22 +204,27 @@ class ExploreScreenProvider with ChangeNotifier {
           kota: _selectedKota == "Semua Lokasi" ? "" : _selectedKota,
         );
       }
+      _isGetWisataSuccess = true;
+
+      if(_listWisata.length < _currentPage * 6){
+        _hasMoreWisata = false;
+      } else {
+        _hasMoreWisata = true;
+      }
 
       _currentPage +=1;
 
-      _isGetWisataSuccess = true;
-      _isLoadingWisata = false;
       notifyListeners();
     } catch (e) {
-      _isLoadingWisata = false;
       _isGetWisataSuccess = false;
+      _hasMoreWisata = false;
       notifyListeners();
       throw Exception(e);
     }
   }
 
   void getWisataDataBySearch({required String token, required String searchQuery}) async {
-    _isLoadingWisata = true;
+    _hasMoreWisata = true;
     notifyListeners();
 
     List<String> selectedCategory = [];
@@ -193,15 +242,20 @@ class ExploreScreenProvider with ChangeNotifier {
         listWisata: _listWisata,
         title: searchQuery
       );
+      _isGetWisataSuccess = true;
+
+      if(_listWisata.length < _currentPage * 6){
+        _hasMoreWisata = false;
+      } else {
+        _hasMoreWisata = true;
+      }
 
       _currentPage +=1;
 
-      _isGetWisataSuccess = true;
-      _isLoadingWisata = false;
       notifyListeners();
     } catch (e) {
-      _isLoadingWisata = false;
       _isGetWisataSuccess = false;
+      _hasMoreWisata = false;
       notifyListeners();
       throw Exception(e);
     }

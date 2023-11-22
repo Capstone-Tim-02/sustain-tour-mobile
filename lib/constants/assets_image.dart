@@ -180,4 +180,8 @@ class Assets {
   /// Assets for assetsImagesEmissionBg
   /// assets/images/emission_bg.png
   static const String assetsImagesEmissionBg = "assets/images/emission_bg.png";
+
+  /// Assets for assetsImagesNotFoundWisata
+  /// assets/images/not_found_wisata.png
+  static const String assetsImagesNotFoundWisata = "assets/images/not_found_wisata.png";
 }
