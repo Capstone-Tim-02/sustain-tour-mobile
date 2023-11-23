@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sustain_tour_mobile/style/color_theme_style.dart';
 import 'package:sustain_tour_mobile/style/shadow_style.dart';
 import 'package:sustain_tour_mobile/style/text_style_widget.dart';
+import 'package:money_formatter/money_formatter.dart';
 
 class CardWidget {
   static Container small({
@@ -96,7 +97,7 @@ class CardWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 11),
                       child: Text(
-                        "Rp. ${price?.toString() ?? "0"}",
+                        "Rp. ${MoneyFormatter(amount: price?.toDouble() ?? 0).output.withoutFractionDigits.toString().replaceAll(",", ".")}",
                         style: TextStyleWidget.bodyB3(
                           color: ColorThemeStyle.black100,
                           fontWeight: FontWeight.w500
@@ -167,7 +168,7 @@ class CardWidget {
     String? title,
     String? subtitle,
     String? imageUrl,
-    String? price
+    int? price
   }) {
     return Container(
       decoration: BoxDecoration(
@@ -226,7 +227,7 @@ class CardWidget {
                   ),
                   const SizedBox(height: 16),
                   Text(
-                    price ?? "Price",
+                    "Rp. ${MoneyFormatter(amount: price?.toDouble() ?? 0).output.withoutFractionDigits.toString().replaceAll(",", ".")}",
                     style: TextStyleWidget.titleT2(
                       color: ColorThemeStyle.black100,
                       fontWeight: FontWeight.w600

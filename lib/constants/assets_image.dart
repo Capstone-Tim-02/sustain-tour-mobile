@@ -212,4 +212,8 @@ class Assets {
   /// Assets for assetsImagesWisataSejarah
   /// assets/images/wisata_sejarah.png
   static const String assetsImagesWisataSejarah = "assets/images/wisata_sejarah.png";
+
+  /// Assets for assetsImagesNotFoundWisata
+  /// assets/images/not_found_wisata.png
+  static const String assetsImagesNotFoundWisata = "assets/images/not_found_wisata.png";
 }
