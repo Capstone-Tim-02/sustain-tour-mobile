@@ -33,6 +33,8 @@ void main() {
           create: (context) => SplashScreenProvider()),
       ChangeNotifierProvider<OnboardingProvider>(
           create: (context) => OnboardingProvider()),
+      ChangeNotifierProvider<FaqScreenProvider>(
+          create: (context) => FaqScreenProvider()),
       ChangeNotifierProvider<ProfileProvider>(
           create: (context) => ProfileProvider()),
       ChangeNotifierProvider<ProfileEmissionProvider>(
