@@ -11,6 +11,7 @@ class SearchWidget extends StatefulWidget {
       this.style,
       this.suffixIcon,
       this.onTap,
+      this.focusNode,
       Key? key})
       : super(key: key);
 
@@ -21,6 +22,7 @@ class SearchWidget extends StatefulWidget {
       final Icon? prefixIcon;
       final Widget? suffixIcon;
       final Function()? onTap;
+      final FocusNode? focusNode;
 
   @override
   _SearchWidgetState createState() => _SearchWidgetState();
@@ -37,6 +39,7 @@ class _SearchWidgetState extends State<SearchWidget> {
           onFieldSubmitted: widget.onSubmit,
           controller: widget.controller,
           cursorColor: ColorThemeStyle.blue100,
+          focusNode: widget.focusNode,
           decoration: InputDecoration(
             contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 13),
             enabledBorder: const OutlineInputBorder(

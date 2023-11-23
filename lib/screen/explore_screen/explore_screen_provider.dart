@@ -50,6 +50,12 @@ class ExploreScreenProvider with ChangeNotifier {
   List<SearchHistoryModel> _searchHistoryList = [];
   List<SearchHistoryModel> get searchHistoryList => _searchHistoryList;
 
+  final TextEditingController _searchWisataController = TextEditingController();
+  TextEditingController get searchWisataController => _searchWisataController;
+
+  final TextEditingController _searchKotaController = TextEditingController();
+  TextEditingController get searchKotaController => _searchKotaController;
+
   late DatabaseHelper dbHelper = DatabaseHelper();
 
   void onBottomSheetOpened(){
@@ -274,5 +280,12 @@ class ExploreScreenProvider with ChangeNotifier {
       notifyListeners();
       throw Exception(e);
     }
+  }
+
+  @override
+  void dispose() {
+    _searchWisataController.dispose();
+    _searchKotaController.dispose();
+    super.dispose();
   }
 }
