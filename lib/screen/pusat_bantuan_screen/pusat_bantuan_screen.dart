@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sustain_tour_mobile/constants/assets_image.dart';
+import 'package:sustain_tour_mobile/screen/ai_screen/ai_screen.dart';
 import 'package:sustain_tour_mobile/screen/pusat_bantuan_screen/faq/faq_screen.dart';
 import 'package:sustain_tour_mobile/style/color_theme_style.dart';
 import 'package:sustain_tour_mobile/style/font_weight_style.dart';
@@ -96,11 +97,11 @@ class PusatBantuanScreen extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              // Navigator.of(context).push(
-              //   MaterialPageRoute(
-              //     builder: (context) => const FaqScreen(),
-              //   ),
-              // );
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const AiScreen(),
+                ),
+              );
             },
             child: ListTile(
               leading: const Icon(

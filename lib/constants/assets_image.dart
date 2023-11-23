@@ -159,6 +159,10 @@ class Assets {
   static const String assetsIconsWisataSejarah =
       "assets/icons/Wisata_Sejarah.svg";
 
+  /// Assets for assetsImagesChatBot
+  /// assets/images/ChatBot.png
+  static const String assetsImagesChatBot = "assets/images/ChatBot.png";
+
   /// Assets for assetsImagesEmissionBg
   /// assets/images/emission_bg.png
   static const String assetsImagesEmissionBg = "assets/images/emission_bg.png";
@@ -173,6 +177,11 @@ class Assets {
   static const String assetsImagesEmissionRealBgWhite =
       "assets/images/emission_real_bgWhite.png";
 
+  /// Assets for assetsImagesKepalaChatBot
+  /// assets/images/KepalaChatBot.png
+  static const String assetsImagesKepalaChatBot =
+      "assets/images/KepalaChatBot.png";
+
   /// Assets for assetsImagesLogoDestimate
   /// assets/images/logo_destimate.png
   static const String assetsImagesLogoDestimate =
@@ -181,6 +190,11 @@ class Assets {
   /// Assets for assetsImagesMatchmaking
   /// assets/images/matchmaking.png
   static const String assetsImagesMatchmaking = "assets/images/matchmaking.png";
+
+  /// Assets for assetsImagesNotFoundWisata
+  /// assets/images/not_found_wisata.png
+  static const String assetsImagesNotFoundWisata =
+      "assets/images/not_found_wisata.png";
 
   /// Assets for assetsImagesOnboarding
   /// assets/images/onboarding.png
@@ -198,8 +212,37 @@ class Assets {
   /// assets/images/onboarding4.png
   static const String assetsImagesOnboarding4 = "assets/images/onboarding4.png";
 
+  /// Assets for assetsImagesPointBackground
+  /// assets/images/point_background.png
+  static const String assetsImagesPointBackground =
+      "assets/images/point_background.png";
+
   /// Assets for assetsImagesPusatBantuan
   /// assets/images/PusatBantuan.png
   static const String assetsImagesPusatBantuan =
       "assets/images/PusatBantuan.png";
+
+  /// Assets for assetsImagesSelamatDatang
+  /// assets/images/selamat_datang.png
+  static const String assetsImagesSelamatDatang =
+      "assets/images/selamat_datang.png";
+
+  /// Assets for assetsImagesWisataAlam
+  /// assets/images/wisata_alam.png
+  static const String assetsImagesWisataAlam = "assets/images/wisata_alam.png";
+
+  /// Assets for assetsImagesWisataBudaya
+  /// assets/images/wisata_budaya.png
+  static const String assetsImagesWisataBudaya =
+      "assets/images/wisata_budaya.png";
+
+  /// Assets for assetsImagesWisataHiburan
+  /// assets/images/wisata_hiburan.png
+  static const String assetsImagesWisataHiburan =
+      "assets/images/wisata_hiburan.png";
+
+  /// Assets for assetsImagesWisataSejarah
+  /// assets/images/wisata_sejarah.png
+  static const String assetsImagesWisataSejarah =
+      "assets/images/wisata_sejarah.png";
 }

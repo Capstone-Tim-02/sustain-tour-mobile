@@ -42,16 +42,19 @@ class ResultScreen extends StatelessWidget {
                         shape: BoxShape.circle,
                         color: ColorThemeStyle.grey50,
                       ),
-                      child: Image.network(
-                        profileProvider.user.photoProfil,
-                        errorBuilder: (BuildContext context, Object error,
-                            StackTrace? stackTrace) {
-                          // Menangani error, mengembalikan widget pengganti (misalnya ikon)
-                          return const Center(
-                            child: Icon(Icons.image),
-                            // Image.asset(Assets.assetsKepalaChatBot),
-                          );
-                        },
+                      child: ClipOval(
+                        child: Image.network(
+                          fit: BoxFit.cover,
+                          profileProvider.user.photoProfil,
+                          errorBuilder: (BuildContext context, Object error,
+                              StackTrace? stackTrace) {
+                            // Menangani error, mengembalikan widget pengganti (misalnya ikon)
+                            return const Center(
+                              child: Icon(Icons.image),
+                              // Image.asset(Assets.assetsKepalaChatBot),
+                            );
+                          },
+                        ),
                       ),
                     );
                   } else {
@@ -80,7 +83,7 @@ class ResultScreen extends StatelessWidget {
                   color: ColorThemeStyle.white100,
                 ),
                 child: Image.asset(
-                  Assets.assetsKepalaChatBot,
+                  Assets.assetsImagesKepalaChatBot,
                 ),
               ),
               title: Text(

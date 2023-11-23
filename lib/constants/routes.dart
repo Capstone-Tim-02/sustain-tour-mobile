@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sustain_tour_mobile/screen/ai_screen/ai_screen.dart';
 import 'package:sustain_tour_mobile/screen/home_screen/components/desti_point_screen/desti_point_screen.dart';
+import 'package:sustain_tour_mobile/screen/pusat_bantuan_screen/pusat_bantuan_screen.dart';
 import 'package:sustain_tour_mobile/screen/register_screen/register_screen.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/login_screen.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/matchmaking_question/matchmaking_2.dart';
@@ -25,6 +26,7 @@ class Routes {
   static const String accountScreen = '/main/profile/account';
   static const String detailEmissionScreen = '/main/profile/detail-emission';
   static const String editAccountScreen = 'main/profile/account/edit';
+  static const String pusatBantuan = 'main/profile/pusatBantuan';
 
   static const String destiPointScreen = 'main/home/destiPoint';
 
@@ -41,5 +43,6 @@ class Routes {
     detailEmissionScreen: (context) => const DetailEmissionScreenComponent(),
     editAccountScreen: (context) => const EditAccountScreenComponent(),
     destiPointScreen: (context) => const DestiPointScreen(),
+    pusatBantuan: (context) => const PusatBantuanScreen(),
   };
 }
