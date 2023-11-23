@@ -12,6 +12,7 @@ class TextFieldWidget extends StatelessWidget {
   final Widget? suffixIcon;
   final Color? fillColor;
   final bool? filled;
+  final bool? obscureText;
   final TextInputType? keyboardType;
   final TextCapitalization textCapitalization;
 
@@ -28,6 +29,7 @@ class TextFieldWidget extends StatelessWidget {
     this.filled,
     this.keyboardType,
     this.textCapitalization = TextCapitalization.sentences,
+    this.obscureText,
   });
 
   @override
@@ -40,6 +42,7 @@ class TextFieldWidget extends StatelessWidget {
         keyboardType: keyboardType, //mengubah jenis keyboard
         controller: controller,
         onChanged: onChange,
+        obscureText: obscureText ?? false,
         decoration: InputDecoration(
           labelText: labelText,
           hintText: hintText,
