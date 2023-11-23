@@ -161,6 +161,10 @@ class Assets {
   /// assets/images/emission_real_bg.png
   static const String assetsImagesEmissionRealBg = "assets/images/emission_real_bg.png";
 
+  /// Assets for assetsImagesEmissionRealBgWhite
+  /// assets/images/emission_real_bgWhite.png
+  static const String assetsImagesEmissionRealBgWhite = "assets/images/emission_real_bgWhite.png";
+
   /// Assets for assetsImagesLogoDestimate
   /// assets/images/logo_destimate.png
   static const String assetsImagesLogoDestimate = "assets/images/logo_destimate.png";
