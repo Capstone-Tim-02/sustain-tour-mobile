@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sustain_tour_mobile/screen/ai_screen/ai_screen.dart';
 import 'package:sustain_tour_mobile/screen/home_screen/components/desti_point_screen/desti_point_screen.dart';
 import 'package:sustain_tour_mobile/screen/register_screen/register_screen.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/login_screen.dart';
@@ -15,6 +16,7 @@ class Routes {
   static const String splashScreen = '/';
   static const String onboardingScreen = '/onboarding';
   static const String loginScreen = '/loginscreen';
+  static const String aiScreen = '/aiscreen';
   static const String registerScreen = '/registerscreen';
   static const String matchmaking2Screen = '/loginscreen/matchmaking2';
   static const String matchmaking3Screen = '/loginscreen/matchmaking3';
@@ -30,6 +32,7 @@ class Routes {
     splashScreen: (context) => const SplashScreen(),
     onboardingScreen: (context) => const OnboardingScreen(),
     loginScreen: (context) => const LoginScreen(),
+    aiScreen: (context) => const AiScreen(),
     registerScreen: (context) => const RegisterScreen(),
     matchmaking2Screen: (context) => const Matchmaking2(),
     matchmaking3Screen: (context) => const Matchmaking3(),

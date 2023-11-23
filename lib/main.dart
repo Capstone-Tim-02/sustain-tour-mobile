@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sustain_tour_mobile/screen/ai_screen/ai_screen_provider.dart';
+import 'package:sustain_tour_mobile/screen/login_screen/login_provider.dart';
 import 'package:sustain_tour_mobile/constants/routes.dart';
 import 'package:sustain_tour_mobile/screen/explore_screen/explore_screen_provider.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/matchmaking_question/matchmaking_kesukaan_provider.dart';
@@ -9,7 +11,6 @@ import 'package:sustain_tour_mobile/screen/profile_screen/component/profile_emis
 import 'package:sustain_tour_mobile/screen/profile_screen/component/profile_emission_component/profile_emission_provider.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/profile_provider.dart';
 import 'package:sustain_tour_mobile/screen/home_screen/home_screen_provider.dart';
-import 'package:sustain_tour_mobile/screen/login_screen/login_provider.dart';
 import 'package:sustain_tour_mobile/screen/register_screen/register_provider.dart';
 import 'package:sustain_tour_mobile/screen/register_screen/validator/form_confirm_password_screens.dart';
 import 'package:sustain_tour_mobile/screen/register_screen/validator/form_email_register_screens.dart';
@@ -44,6 +45,8 @@ void main() {
           create: (context) => FromUsernameProvider()),
       ChangeNotifierProvider<FormPasswordProvider>(
           create: (context) => FormPasswordProvider()),
+      ChangeNotifierProvider<AiScreenProvider>(
+          create: (context) => AiScreenProvider()),
       ChangeNotifierProvider<RegisterProvider>(
           create: (context) => RegisterProvider()),
       ChangeNotifierProvider<FormFullNameProvider>(

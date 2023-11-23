@@ -216,4 +216,12 @@ class Assets {
   /// Assets for assetsImagesNotFoundWisata
   /// assets/images/not_found_wisata.png
   static const String assetsImagesNotFoundWisata = "assets/images/not_found_wisata.png";
+
+  /// Assets for assetsImagesChatBot
+  /// assets/images/ChatBot.png
+  static const String assetsImagesChatBot = "assets/images/ChatBot.png";
+
+  /// Assets for assetsKepalaChatBot
+  /// assets/images/KepalaChatBot.png
+  static const String assetsKepalaChatBot = "assets/images/KepalaChatBot.png";
 }
