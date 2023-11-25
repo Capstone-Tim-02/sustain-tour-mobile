@@ -35,6 +35,7 @@ class SWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      textInputAction: TextInputAction.search,
       textCapitalization: textCapitalization,
       // membuat huruf pertama pada keyboard HP menjadi kapital
       keyboardType: keyboardType, //mengubah jenis keyboard

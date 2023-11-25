@@ -48,7 +48,7 @@ class FaqScreen extends StatelessWidget {
             const SizedBox(height: 32),
             // const TextFieldPassword(),
             SizedBox(
-              height: 60,
+              height: 66,
               width: 374,
               child: SWidget(
                 hintText: 'Cari Pertanyaan',
