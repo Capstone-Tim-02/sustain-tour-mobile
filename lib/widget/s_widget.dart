@@ -34,54 +34,53 @@ class SWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 380,
-      child: TextFormField(
-        textCapitalization: textCapitalization,
-        // membuat huruf pertama pada keyboard HP menjadi kapital
-        keyboardType: keyboardType, //mengubah jenis keyboard
-        controller: controller,
-        onChanged: onChange,
-        obscureText: obscureText ?? false,
-        decoration: InputDecoration(
-          labelText: labelText,
-          hintText: hintText,
-          errorText: errorText,
-          prefixIcon: prefixIcon,
-          suffixIcon: suffixIcon,
-          fillColor: fillColor,
-          filled: filled,
-          enabledBorder: OutlineInputBorder(
-            // Garis border biasa
-            borderRadius: BorderRadius.circular(50.0),
-            borderSide: const BorderSide(
-              color: ColorThemeStyle.blue100, // Warna garis
-              width: 2.0, // Ketebalan garis
-            ),
+    return TextFormField(
+      textCapitalization: textCapitalization,
+      // membuat huruf pertama pada keyboard HP menjadi kapital
+      keyboardType: keyboardType, //mengubah jenis keyboard
+      controller: controller,
+      onChanged: onChange,
+      obscureText: obscureText ?? false,
+      style: const TextStyle(color: ColorThemeStyle.blue100),
+      decoration: InputDecoration(
+        labelText: labelText,
+        hintText: hintText,
+        errorText: errorText,
+        prefixIcon: prefixIcon,
+        suffixIcon: suffixIcon,
+        fillColor: fillColor,
+        filled: filled,
+        hintStyle: const TextStyle(color: ColorThemeStyle.blue100),
+        enabledBorder: OutlineInputBorder(
+          // Garis border biasa
+          borderRadius: BorderRadius.circular(50.0),
+          borderSide: const BorderSide(
+            color: ColorThemeStyle.blue100, // Warna garis
+            width: 2.0, // Ketebalan garis
           ),
-          focusedBorder: OutlineInputBorder(
-            // Garis border saat difokuskan
-            borderRadius: BorderRadius.circular(50.0),
-            borderSide: const BorderSide(
-              color: ColorThemeStyle.blue100, // Warna garis
-              width: 2.0, // Ketebalan garis
-            ),
+        ),
+        focusedBorder: OutlineInputBorder(
+          // Garis border saat difokuskan
+          borderRadius: BorderRadius.circular(50.0),
+          borderSide: const BorderSide(
+            color: ColorThemeStyle.blue100, // Warna garis
+            width: 2.0, // Ketebalan garis
           ),
-          errorBorder: OutlineInputBorder(
-            // Garis border saat terjadi kesalahan penginputan data
-            borderRadius: BorderRadius.circular(50.0),
-            borderSide: const BorderSide(
-              color: ColorThemeStyle.red, // Warna garis
-              width: 2.0, // Ketebalan garis
-            ),
+        ),
+        errorBorder: OutlineInputBorder(
+          // Garis border saat terjadi kesalahan penginputan data
+          borderRadius: BorderRadius.circular(50.0),
+          borderSide: const BorderSide(
+            color: ColorThemeStyle.red, // Warna garis
+            width: 2.0, // Ketebalan garis
           ),
-          focusedErrorBorder: OutlineInputBorder(
-            // Garis border saat terjadi kesalahan penginputan data
-            borderRadius: BorderRadius.circular(50.0),
-            borderSide: const BorderSide(
-              color: ColorThemeStyle.red, // Warna garis
-              width: 2.0, // Ketebalan garis
-            ),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          // Garis border saat terjadi kesalahan penginputan data
+          borderRadius: BorderRadius.circular(50.0),
+          borderSide: const BorderSide(
+            color: ColorThemeStyle.red, // Warna garis
+            width: 2.0, // Ketebalan garis
           ),
         ),
       ),

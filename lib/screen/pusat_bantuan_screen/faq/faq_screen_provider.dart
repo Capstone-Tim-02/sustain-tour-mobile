@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:sustain_tour_mobile/models/faq_model/faq_model.dart';
 
 class FaqScreenProvider with ChangeNotifier {
-  final String _valueSearch = '';
+  String _valueSearch = "";
+  bool _isIconVisible = false;
+
   final List<FaqModel> _searchData = [];
   final List<FaqModel> _listfaq = [
     FaqModel(
@@ -48,12 +50,27 @@ class FaqScreenProvider with ChangeNotifier {
   ];
 
   String get valueSearch => _valueSearch;
+  bool get isIconVisible => _isIconVisible;
+
   List<FaqModel> get searchData => _searchData;
   List<FaqModel> get listFaq => _listfaq;
+
+  // fungsi untuk mengatur visibilitas ikon pada suffixIcon
+  void setSuffixIconVisible(bool isVisible) {
+    _isIconVisible = isVisible;
+    notifyListeners();
+  }
+
+  void clearSearch() {
+    _valueSearch = '';
+    _searchData.clear();
+    notifyListeners();
+  }
 
   void searchFaq(String value) {
     _searchData.clear();
     if (value.isEmpty) {
+      setSuffixIconVisible(false); // Atur visibilitas ikon pada suffixIcon
       notifyListeners();
       return;
     }
@@ -63,6 +80,8 @@ class FaqScreenProvider with ChangeNotifier {
         _searchData.add(element);
       }
     }
+
+    setSuffixIconVisible(true); // Atur visibilitas ikon pada suffixIcon
     notifyListeners();
   }
 }

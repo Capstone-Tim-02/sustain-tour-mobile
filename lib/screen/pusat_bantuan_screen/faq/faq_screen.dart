@@ -46,14 +46,35 @@ class FaqScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 32),
+            // const TextFieldPassword(),
             SizedBox(
               height: 60,
               width: 374,
               child: SWidget(
-                labelText: 'Search',
-                hintText: 'Apakah saya',
+                hintText: 'Cari Pertanyaan',
                 errorText: errorText,
-                prefixIcon: const Icon(Icons.search),
+                suffixIcon: Consumer<FaqScreenProvider>(
+                  builder: (context, faqScreenProvider, child) {
+                    return faqScreenProvider.isIconVisible
+                        ? IconButton(
+                            onPressed: () {
+                              faqScreenProvider.clearSearch();
+                            },
+                            icon: const Icon(
+                              Icons.clear,
+                              color: ColorThemeStyle.blue100,
+                            ),
+                          )
+                        : const SizedBox(
+                            width: 6,
+                            height: 6,
+                          );
+                  },
+                ),
+                prefixIcon: const Icon(
+                  Icons.search,
+                  color: ColorThemeStyle.blue100,
+                ),
                 // controller: quesController,
                 onChange: (String value) {
                   faqProvider.searchFaq(value);
