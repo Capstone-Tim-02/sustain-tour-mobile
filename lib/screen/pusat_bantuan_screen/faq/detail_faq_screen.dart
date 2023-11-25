@@ -42,13 +42,14 @@ class DetailFaqScreen extends StatelessWidget {
                     fontWeight: FontWeightStyle.medium,
                   ),
                 ),
+                const SizedBox(height: 8),
                 Text(
                   faqModel.link,
                   style: const TextStyle(
-                    decoration: TextDecoration.underline,
-                    decorationColor: Colors.black,
-                    decorationThickness: 1.5,
-                  ),
+                      decoration: TextDecoration.underline,
+                      decorationColor: Colors.black,
+                      decorationThickness: 1.5,
+                      fontWeight: FontWeight.w700),
                 ),
                 const SizedBox(height: 16),
                 Text(

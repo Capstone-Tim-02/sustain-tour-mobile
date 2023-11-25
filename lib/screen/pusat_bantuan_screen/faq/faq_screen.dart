@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sustain_tour_mobile/screen/pusat_bantuan_screen/faq/detail_faq_screen.dart';
 import 'package:sustain_tour_mobile/screen/pusat_bantuan_screen/faq/faq_screen_provider.dart';
+import 'package:sustain_tour_mobile/style/color_theme_style.dart';
 import 'package:sustain_tour_mobile/style/font_weight_style.dart';
 import 'package:sustain_tour_mobile/style/text_style_widget.dart';
+import 'package:sustain_tour_mobile/widget/s_widget.dart';
 import 'package:sustain_tour_mobile/widget/text_field_widget.dart';
 
 class FaqScreen extends StatelessWidget {
@@ -48,7 +50,7 @@ class FaqScreen extends StatelessWidget {
             SizedBox(
               height: 60,
               width: 374,
-              child: TextFieldWidget(
+              child: SWidget(
                 labelText: 'Search',
                 hintText: 'Apakah saya',
                 errorText: errorText,
@@ -59,6 +61,20 @@ class FaqScreen extends StatelessWidget {
                 },
               ),
             ),
+            // SizedBox(
+            //   height: 60,
+            //   width: 374,
+            //   child: TextFieldWidget(
+            //     labelText: 'Search',
+            //     hintText: 'Apakah saya',
+            //     errorText: errorText,
+            //     prefixIcon: const Icon(Icons.search),
+            //     // controller: quesController,
+            //     onChange: (String value) {
+            //       faqProvider.searchFaq(value);
+            //     },
+            //   ),
+            // ),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.symmetric(
@@ -106,17 +122,6 @@ class FaqScreen extends StatelessWidget {
                               },
                             ),
                           ),
-                          // SizedBox(
-                          //   height: 50,
-                          //   width: 340,
-                          //   child: Text(
-                          //     'Hubungi cp dibawah ini jika kamu tidak menemukan jawaban cpdetimate',
-                          //     textAlign: TextAlign.start,
-                          //     style: TextStyleWidget.bodyB3(
-                          //       fontWeight: FontWeightStyle.medium,
-                          //     ),
-                          //   ),
-                          // ),
                         ],
                       )
                     :
@@ -168,18 +173,18 @@ class FaqScreen extends StatelessWidget {
                             child: Column(
                               children: [
                                 Text(
-                                  'Hubungi cp dibawah ini jika kamu tidak menemukan jawaban cpdetimate',
+                                  'Jika kamu tidak menemukan jawaban hubungi contact person kami dengan ',
                                   textAlign: TextAlign.center,
                                   style: TextStyleWidget.bodyB3(
-                                    fontWeight: FontWeightStyle.medium,
+                                    fontWeight: FontWeightStyle.semiBold,
                                   ),
                                 ),
                                 Text(
-                                  'Klik Disini',
+                                  'klik disini wa.me/828181711',
                                   textAlign: TextAlign.center,
                                   style: TextStyleWidget.bodyB3(
-                                    fontWeight: FontWeightStyle.bold,
-                                  ),
+                                      fontWeight: FontWeightStyle.semiBold,
+                                      color: ColorThemeStyle.blue100),
                                 ),
                               ],
                             ),

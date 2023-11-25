@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sustain_tour_mobile/constants/assets_image.dart';
 import 'package:sustain_tour_mobile/screen/ai_screen/ai_screen.dart';
+import 'package:sustain_tour_mobile/screen/profile_screen/component/profile_option_component/component/list_tile_widget.dart';
 import 'package:sustain_tour_mobile/screen/pusat_bantuan_screen/faq/faq_screen.dart';
-import 'package:sustain_tour_mobile/style/color_theme_style.dart';
 import 'package:sustain_tour_mobile/style/font_weight_style.dart';
 import 'package:sustain_tour_mobile/style/text_style_widget.dart';
 
@@ -21,109 +21,91 @@ class PusatBantuanScreen extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(
-              right: 16,
-              left: 16,
-              top: 32,
-              bottom: 16,
-            ),
-            child: Center(
-              child: SizedBox(
-                width: 280,
-                height: 268,
-                child: Column(
-                  children: [
-                    Image.asset(
-                      Assets.assetsImagesPusatBantuan,
-                      height: 166,
-                      width: 280,
-                    ),
-                    const SizedBox(height: 16),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 12),
-                      child: Text(
-                        'Ada yang perlu ditanyakan?',
-                        style: TextStyleWidget.titleT2(
-                          fontWeight: FontWeightStyle.semiBold,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(
+                right: 16,
+                left: 16,
+                top: 32,
+                bottom: 16,
+              ),
+              child: Center(
+                child: SizedBox(
+                  width: 280,
+                  height: 268,
+                  child: Column(
+                    children: [
+                      Image.asset(
+                        Assets.assetsImagesPusatBantuan,
+                        height: 166,
+                        width: 280,
+                      ),
+                      const SizedBox(height: 16),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        child: Text(
+                          'Ada yang perlu ditanyakan?',
+                          style: TextStyleWidget.titleT2(
+                            fontWeight: FontWeightStyle.medium,
+                          ),
                         ),
                       ),
-                    ),
-                    const SizedBox(height: 8),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 12),
-                      child: Text(
-                        'Kami menyediakan dua fitur yang dapat anda gunakan mengenai permasalahan di Destimate',
-                        textAlign: TextAlign.center,
-                        style: TextStyleWidget.bodyB3(
-                          fontWeight: FontWeightStyle.medium,
+                      const SizedBox(height: 8),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        child: Text(
+                          'Kami menyediakan dua fitur yang dapat anda gunakan mengenai permasalahan di Destimate',
+                          textAlign: TextAlign.center,
+                          style: TextStyleWidget.bodyB3(
+                            fontWeight: FontWeightStyle.regular,
+                          ),
                         ),
                       ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 16, left: 16, right: 16),
+              child: ListTileWidget(
+                isUsingShadow: true,
+                title: 'FAQ',
+                subtitle: 'Pertanyaan yang telah kami sediakan',
+                iconSvgString: Assets.assetsIconsHelp,
+                borderRadius: const BorderRadius.all(Radius.circular(10)),
+                trailing: const Icon(Icons.navigate_next),
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const FaqScreen(),
                     ),
-                  ],
-                ),
+                  );
+                },
               ),
             ),
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => const FaqScreen(),
-                ),
-              );
-            },
-            child: ListTile(
-              leading: const Icon(
-                Icons.account_circle_rounded,
-                color: ColorThemeStyle.black100,
-                size: 34,
-              ),
-              title: Text(
-                'FAQ',
-                style: TextStyleWidget.titleT3(
-                  fontWeight: FontWeightStyle.medium,
-                ),
-              ),
-              subtitle: Text(
-                'Pertanyaan yang telah kami sediakan',
-                style: TextStyleWidget.bodyB3(
-                  fontWeight: FontWeightStyle.medium,
-                ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 16, left: 16, right: 16),
+              child: ListTileWidget(
+                isUsingShadow: true,
+                title: 'Virtual Asistant',
+                subtitle: 'Bertanyalah kepada Chatbot kami',
+                iconSvgString: Assets.assetsIconsAccountCircleFill,
+                borderRadius: const BorderRadius.all(Radius.circular(10)),
+                trailing: const Icon(Icons.navigate_next),
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const AiScreen(),
+                    ),
+                  );
+                },
               ),
             ),
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => const AiScreen(),
-                ),
-              );
-            },
-            child: ListTile(
-              leading: const Icon(
-                Icons.live_help_rounded,
-                color: ColorThemeStyle.black100,
-                size: 34,
-              ),
-              title: Text(
-                'Virtual Asistent',
-                style: TextStyleWidget.titleT3(
-                  fontWeight: FontWeightStyle.medium,
-                ),
-              ),
-              subtitle: Text(
-                'Bertanyalah kepada Chatbot kami',
-                style: TextStyleWidget.bodyB3(
-                  fontWeight: FontWeightStyle.medium,
-                ),
-              ),
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

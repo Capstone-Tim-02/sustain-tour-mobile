@@ -16,22 +16,34 @@ class FaqScreenProvider with ChangeNotifier {
     FaqModel(
       tittle:
           'Apakah kita bisa meminta pengembalian dana jika tempat wisata tidak sesuai dengan deskripsi?',
-      detail: '',
-      link: 'www.destimate.com',
-      additional: '',
+      detail:
+          'Maaf, namun kami tidak dapat memproses pengembalian dana melalui metode pembayaran. Hal ini karena, Anda hanya melakukan pembayaran langsung di lokasi wisata yang Anda tuju.',
+      link: '',
+      additional:
+          'Untuk memberikan gambaran yang lebih jelas tentang pengalaman di tempat wisata, kami telah menyediakan deskripsi rinci beserta foto dan video. Kami yakin Anda akan menikmati melihat semua informasi menarik yang telah kami sediakan untuk membuat perjalanan Anda semakin berkesan!',
     ),
     FaqModel(
       tittle:
           'Apakah promo yang tersedia bisa digunakan diseluruh tempat wisata?',
+      detail:
+          'Kami menyediakan dua kategori promo yang dapat meningkatkan pengalaman liburan Anda. \n \n \n Pertama, terdapat promo yang berlaku di seluruh destinasi wisata yang kami tawarkan. Sedangkan yang kedua, terdapat promo khusus yang hanya dapat digunakan di destinasi wisata tertentu. Untuk memudahkan pemilihan, informasi terkait kategori promo (umum atau khusus) telah kami sertakan pada setiap penawaran.',
+      link: '',
+      additional:
+          'Kami harap ini membantu Anda menentukan pilihan yang sesuai dengan keinginan dan rencana liburan Anda.🌟🎉',
+    ),
+    FaqModel(
+      tittle: 'Apakah jika pembayaran berhasil maka tiket akan diterbitkan?',
       detail: '',
       link: 'www.destimate.com',
       additional: '',
     ),
     FaqModel(
-      tittle: 'Apakah bisa melakukan pembatalan tiket?',
-      detail: '',
-      link: 'www.destimate.com',
-      additional: '',
+      tittle: 'Apakah bisa melakukan pembatalan tiket?',
+      detail:
+          'Untuk memudahkan proses pembatalan tiket, Anda dapat mengikuti langkah-langkah berikut: \n \n \n1.Buka halaman tiket. \n2. Pilih tiket yang ingin Anda batalkan. \n3.Setelah masuk ke halaman invoice, temukan tombol pembatalan yang disediakan.',
+      link: '',
+      additional:
+          'Namun, perlu diingat bahwa pembatalan tiket akan mengakibatkan kehilangan poin yang telah terakumulasi sebelumnya. Silakan lakukan pembatalan dengan bijak sesuai kebutuhan Anda. Jika ada pertanyaan lebih lanjut, tim kami siap membantu!',
     ),
   ];
 

@@ -72,6 +72,7 @@ class ResultScreen extends StatelessWidget {
               ),
             ),
           ),
+          const SizedBox(height: 8),
           Container(
             color: ColorThemeStyle.blue20,
             child: ListTile(
