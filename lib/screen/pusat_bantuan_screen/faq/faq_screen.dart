@@ -6,7 +6,6 @@ import 'package:sustain_tour_mobile/style/color_theme_style.dart';
 import 'package:sustain_tour_mobile/style/font_weight_style.dart';
 import 'package:sustain_tour_mobile/style/text_style_widget.dart';
 import 'package:sustain_tour_mobile/widget/s_widget.dart';
-import 'package:sustain_tour_mobile/widget/text_field_widget.dart';
 
 class FaqScreen extends StatelessWidget {
   const FaqScreen({super.key});
