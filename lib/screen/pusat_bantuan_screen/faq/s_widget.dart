@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sustain_tour_mobile/style/color_theme_style.dart';
+import 'package:sustain_tour_mobile/style/font_weight_style.dart';
+import 'package:sustain_tour_mobile/style/text_style_widget.dart';
 
 class SWidget extends StatelessWidget {
   final TextEditingController? controller;
@@ -42,7 +44,10 @@ class SWidget extends StatelessWidget {
       controller: controller,
       onChanged: onChange,
       obscureText: obscureText ?? false,
-      style: const TextStyle(color: ColorThemeStyle.blue100),
+      style: TextStyleWidget.bodyB2(
+        fontWeight: FontWeightStyle.regular,
+        color: ColorThemeStyle.blue100,
+      ),
       decoration: InputDecoration(
         labelText: labelText,
         hintText: hintText,
@@ -51,7 +56,10 @@ class SWidget extends StatelessWidget {
         suffixIcon: suffixIcon,
         fillColor: fillColor,
         filled: filled,
-        hintStyle: const TextStyle(color: ColorThemeStyle.blue100),
+        hintStyle: TextStyleWidget.bodyB2(
+          fontWeight: FontWeightStyle.regular,
+          color: ColorThemeStyle.blue100,
+        ),
         enabledBorder: OutlineInputBorder(
           // Garis border biasa
           borderRadius: BorderRadius.circular(50.0),

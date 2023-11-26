@@ -81,6 +81,41 @@ class AiScreen extends StatelessWidget {
                       width: 300,
                       height: 62,
                       child: TextFieldWidget(
+                        textInputAction: TextInputAction.search,
+                        onFieldSubmitted: (p0) {
+                          aiScreenProvider.getRecommendation().then(
+                            (_) {
+                              final aiResponseData =
+                                  aiScreenProvider.openAiAnswer;
+                              if (aiResponseData != null) {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) {
+                                      return ResultScreen(
+                                        gptResponseData: aiResponseData,
+                                        question: aiScreenProvider
+                                            .messageController.text,
+                                      );
+                                    },
+                                  ),
+                                ).then(
+                                  (value) => aiScreenProvider.resetFields(
+                                    aiScreenProvider.messageController,
+                                  ),
+                                );
+                              } else {
+                                // Menambahkan penutup kurung pada metode SnackBar
+                                const snackBar = SnackBar(
+                                  content: Text(
+                                    'perompak somalia sedang meretas device anda',
+                                  ),
+                                );
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(snackBar);
+                              }
+                            },
+                          );
+                        },
                         controller: aiScreenProvider.messageController,
                         hintText: 'Apa yang ingin kamu tanyakan',
                         fillColor: ColorThemeStyle.grey50,
@@ -100,7 +135,6 @@ class AiScreen extends StatelessWidget {
                             height: 60,
                             child: ButtonWidget.iconContainer(
                               onPressed: () {
-
                                 aiProvider.getRecommendation().then(
                                   (_) {
                                     final aiResponseData =

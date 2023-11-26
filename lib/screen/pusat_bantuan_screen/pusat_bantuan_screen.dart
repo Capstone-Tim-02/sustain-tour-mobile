@@ -80,7 +80,7 @@ class PusatBantuanScreen extends StatelessWidget {
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => const FaqScreen(),
+                      builder: (context) => FaqScreen(),
                     ),
                   );
                 },

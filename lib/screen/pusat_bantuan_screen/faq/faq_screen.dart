@@ -5,10 +5,17 @@ import 'package:sustain_tour_mobile/screen/pusat_bantuan_screen/faq/faq_screen_p
 import 'package:sustain_tour_mobile/style/color_theme_style.dart';
 import 'package:sustain_tour_mobile/style/font_weight_style.dart';
 import 'package:sustain_tour_mobile/style/text_style_widget.dart';
-import 'package:sustain_tour_mobile/widget/s_widget.dart';
+import 'package:sustain_tour_mobile/screen/pusat_bantuan_screen/faq/s_widget.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class FaqScreen extends StatelessWidget {
-  const FaqScreen({super.key});
+  FaqScreen({Key? key}) : super(key: key);
+  final Uri _url = Uri.parse('https://web.whatsapp.com/');
+  Future<void> _launchUrl() async {
+    if (!await launchUrl(_url)) {
+      throw Exception('Could not launch $_url');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,11 +55,12 @@ class FaqScreen extends StatelessWidget {
             const SizedBox(height: 32),
             // const TextFieldPassword(),
             SizedBox(
-              height: 66,
+              height: 60,
               width: 374,
               child: SWidget(
                 hintText: 'Cari Pertanyaan',
                 errorText: errorText,
+                controller: faqProvider.searchController,
                 suffixIcon: Consumer<FaqScreenProvider>(
                   builder: (context, faqScreenProvider, child) {
                     return faqScreenProvider.isIconVisible
@@ -66,9 +74,9 @@ class FaqScreen extends StatelessWidget {
                             ),
                           )
                         : const SizedBox(
-                            width: 6,
-                            height: 6,
-                          );
+                            height: 4,
+                            width: 4,
+                          ); // Pastikan mengembalikan Icon ketika isIconVisible false
                   },
                 ),
                 prefixIcon: const Icon(
@@ -81,20 +89,6 @@ class FaqScreen extends StatelessWidget {
                 },
               ),
             ),
-            // SizedBox(
-            //   height: 60,
-            //   width: 374,
-            //   child: TextFieldWidget(
-            //     labelText: 'Search',
-            //     hintText: 'Apakah saya',
-            //     errorText: errorText,
-            //     prefixIcon: const Icon(Icons.search),
-            //     // controller: quesController,
-            //     onChange: (String value) {
-            //       faqProvider.searchFaq(value);
-            //     },
-            //   ),
-            // ),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.symmetric(
@@ -191,6 +185,9 @@ class FaqScreen extends StatelessWidget {
                               right: 38,
                             ),
                             child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisSize: MainAxisSize.min,
                               children: [
                                 Text(
                                   'Jika kamu tidak menemukan jawaban hubungi contact person kami dengan ',
@@ -199,12 +196,15 @@ class FaqScreen extends StatelessWidget {
                                     fontWeight: FontWeightStyle.semiBold,
                                   ),
                                 ),
-                                Text(
-                                  'klik disini wa.me/828181711',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyleWidget.bodyB3(
-                                      fontWeight: FontWeightStyle.semiBold,
-                                      color: ColorThemeStyle.blue100),
+                                TextButton(
+                                  onPressed: _launchUrl,
+                                  child: Text(
+                                    'klik disini wa.me/828181711',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyleWidget.bodyB3(
+                                        fontWeight: FontWeightStyle.semiBold,
+                                        color: ColorThemeStyle.blue100),
+                                  ),
                                 ),
                               ],
                             ),
