@@ -1,21 +1,15 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sustain_tour_mobile/constants/api_base_url.dart';
+import 'package:sustain_tour_mobile/constants/shared_preference_manager.dart';
 import 'package:sustain_tour_mobile/models/ai_models/ai_models.dart';
 
-class TokenManager {
-  static Future<String?> getToken() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? token = prefs.getString('token');
-    return token;
-  }
-}
-
 class AiAPI {
-  static Future<AiModels> postDataWithAuthorization({required String message}) async {
+  static Future<AiModels> postDataWithAuthorization(
+      {required String message}) async {
     Dio dio = Dio();
-    String? token = await TokenManager.getToken();
+    String? token = await SharedPreferenceManager.getToken();
 
     if (token != null) {
       try {
@@ -23,7 +17,7 @@ class AiAPI {
           {'message': message},
         );
         Response response = await dio.post(
-          'https://destimate.uc.r.appspot.com/chatbot/recommend-wisata',
+          '$baseUrl/chatbot/recommend-wisata',
           data: data,
           options: Options(
             headers: {
