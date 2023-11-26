@@ -3,11 +3,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:sustain_tour_mobile/constants/assets_image.dart';
 
-import 'package:sustain_tour_mobile/screen/login_screen/validator/from_password_screns.dart';
-import 'package:sustain_tour_mobile/screen/login_screen/component/from_username_screens.dart';
 import 'package:sustain_tour_mobile/screen/register_screen/register_provider.dart';
 import 'package:sustain_tour_mobile/screen/register_screen/register_sheet.dart';
 import 'package:sustain_tour_mobile/screen/register_screen/validator/form_confirm_password_screens.dart';
+import 'package:sustain_tour_mobile/screen/register_screen/validator/form_password_register_screens.dart';
 import 'package:sustain_tour_mobile/screen/register_screen/validator/form_full_name_screens.dart';
 import 'package:sustain_tour_mobile/screen/register_screen/validator/form_email_register_screens.dart';
 import 'package:sustain_tour_mobile/screen/register_screen/validator/form_phone_screens.dart';
@@ -113,24 +112,24 @@ class RegisterScreen extends StatelessWidget {
                 height: 10,
               ),
               TextFieldWidget(
-                  controller: Provider.of<FormPasswordProvider>(context)
-                      .passwordController,
+                  controller: Provider.of<FormPasswordRegisterProvider>(context)
+                      .passwordRegisterController,
                   labelText: 'Password',
                   hintText: 'Pasword',
                   // obscureText: !Provider.of<FormPasswordProvider>(context)
                   //     .isPasswordVisible,
                   errorText:
-                      Provider.of<FormPasswordProvider>(context).passwordError,
+                      Provider.of<FormPasswordRegisterProvider>(context).passwordRegisterError,
                   suffixIcon: GestureDetector(
                     child: Icon(
-                      Provider.of<FormPasswordProvider>(context)
-                              .isPasswordVisible
+                      Provider.of<FormPasswordRegisterProvider>(context)
+                              .isPasswordRegisterVisible
                           ? Icons.visibility
                           : Icons.visibility_off,
                     ),
                     onTap: () {
-                      Provider.of<FormPasswordProvider>(context, listen: false)
-                          .togglePasswordVisibility();
+                      Provider.of<FormPasswordRegisterProvider>(context, listen: false)
+                          .togglePasswordRegisterVisibility();
                     },
                   ),
                   prefixIcon: FractionallySizedBox(
@@ -155,14 +154,14 @@ class RegisterScreen extends StatelessWidget {
                   suffixIcon: GestureDetector(
                     child: Icon(
                       Provider.of<FormConfirmPasswordProvider>(context)
-                              .isPasswordVisible
+                              .isConfirmPasswordVisible
                           ? Icons.visibility
                           : Icons.visibility_off,
                     ),
                     onTap: () {
                       Provider.of<FormConfirmPasswordProvider>(context,
                               listen: false)
-                          .togglePasswordVisibility();
+                          .toggleConfirmPasswordVisibility();
                     },
                   ),
                   prefixIcon: FractionallySizedBox(
@@ -196,15 +195,17 @@ class RegisterScreen extends StatelessWidget {
                         .validateUsernameRegister();
                     Provider.of<FromPhoneProvider>(context, listen: false)
                         .validatePhone();
-                    Provider.of<FormPasswordProvider>(context, listen: false)
-                        .validatePassword();
-                    Provider.of<FromUsernameProvider>(context, listen: false)
-                        .validateEmail();
+                    Provider.of<FromEmailRegisterProvider>(context, listen: false)
+                        .validateEmailRegister();
+                    Provider.of<FormPasswordRegisterProvider>(context, listen: false)
+                        .validatePasswordRegister();
+                    Provider.of<FormConfirmPasswordProvider>(context, listen: false)
+                        .validateConfirmPassword();
                     String name = Provider.of<FormFullNameProvider>(context,
                             listen: false)
                         .fullNameController
                         .text;
-                    String username = Provider.of<FromUsernameRegisterProvider>(
+                    String usernameRegister = Provider.of<FromUsernameRegisterProvider>(
                             context,
                             listen: false)
                         .usernameRegisterController
@@ -218,9 +219,9 @@ class RegisterScreen extends StatelessWidget {
                             listen: false)
                         .emailRegisterController
                         .text;
-                    String password = Provider.of<FormPasswordProvider>(context,
+                    String passwordRegister = Provider.of<FormConfirmPasswordProvider>(context,
                             listen: false)
-                        .passwordController
+                        .confirmPasswordController
                         .text;
                     String confirmPassword =
                         Provider.of<FormConfirmPasswordProvider>(context,
@@ -228,11 +229,11 @@ class RegisterScreen extends StatelessWidget {
                             .confirmPasswordController
                             .text;
 
-                    if (username.isNotEmpty && password.isNotEmpty) {
+                    if (usernameRegister.isNotEmpty && passwordRegister.isNotEmpty) {
                       RegisterProvider authProvider =
                           Provider.of<RegisterProvider>(context, listen: false);
                       authProvider
-                          .registerUser(name, username, phone, email, password,
+                          .registerUser(name, usernameRegister, phone, email, passwordRegister,
                               confirmPassword)
                           .then((signUp) {
                         if (signUp) {
