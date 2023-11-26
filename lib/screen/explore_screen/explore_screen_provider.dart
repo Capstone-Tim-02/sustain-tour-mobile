@@ -60,6 +60,7 @@ class ExploreScreenProvider with ChangeNotifier {
 
   void onBottomSheetOpened(){
     _listSearchedKota = _listAllKota;
+    _searchKotaController.clear();
     _kotaIndex = _listSearchedKota.indexWhere((element) => element == selectedKota);
   }
 
@@ -163,6 +164,8 @@ class ExploreScreenProvider with ChangeNotifier {
     _showSearchHistory = false;
     _kotaIndex = 0;
     _hasMoreWisata = true;
+    _searchWisataController.clear();
+    _searchKotaController.clear();
     notifyListeners();
 
     try {
