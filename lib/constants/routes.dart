@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sustain_tour_mobile/screen/checkout_screen/checkout_screen.dart';
 import 'package:sustain_tour_mobile/screen/home_screen/components/desti_point_screen/desti_point_screen.dart';
 import 'package:sustain_tour_mobile/screen/register_screen/register_screen.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/login_screen.dart';
@@ -26,6 +27,8 @@ class Routes {
 
   static const String destiPointScreen = 'main/home/destiPoint';
 
+  static const String checkoutScreen = 'main/explore/checkout';
+
   static Map<String, WidgetBuilder> routeMap = {
     splashScreen: (context) => const SplashScreen(),
     onboardingScreen: (context) => const OnboardingScreen(),
@@ -38,5 +41,6 @@ class Routes {
     detailEmissionScreen: (context) => const DetailEmissionScreenComponent(),
     editAccountScreen: (context) => const EditAccountScreenComponent(),
     destiPointScreen: (context) => const DestiPointScreen(),
+    checkoutScreen: (context) => const CheckoutScreen(),
   };
 }
