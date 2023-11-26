@@ -7,25 +7,26 @@ class PointHistoryApi {
   Future<List<PointsHistory>> getPointHistoryFromAPI() async {
     String? token = await SharedPreferenceManager.getToken();
 
-    try {
-      final response = await Dio().get(
-        '$baseUrl/user/points/history',
-        options: Options(
-          headers: {
-            'Authorization': 'Bearer $token',
-          },
-        ),
-      );
-      List<PointsHistory> listPointHistory = [];
+    final response = await Dio().get(
+      '$baseUrl/user/points/history',
+      options: Options(
+        headers: {
+          'Authorization': 'Bearer $token',
+        },
+      ),
+    );
+    List<PointsHistory> listPointHistory = [];
 
-      List<dynamic> responseData = response.data["points_history"];
+    List<dynamic> responseData = response.data["points_history"];
 
+    if (response.statusCode == 200) {
       for (var element in responseData) {
         listPointHistory.add(PointsHistory.fromJson(element));
       }
-      return listPointHistory;
-    } catch (e) {
-      throw Exception("Error fetching data: $e");
+    } else {
+      return listPointHistory = [];
     }
+
+    return listPointHistory;
   }
 }

@@ -24,3 +24,4 @@ class ColorThemeStyle {
   static const Color disabledsBar = Color(0xFFDDDDDD);
   static const Color lightPurple = Color(0xFFBEB5FF);
 }
+  
