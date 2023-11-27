@@ -5,7 +5,6 @@ import 'package:sustain_tour_mobile/screen/profile_screen/component/profile_app_
 import 'package:sustain_tour_mobile/screen/profile_screen/profile_screen.dart';
 import 'package:sustain_tour_mobile/screen/explore_screen/explore_screen.dart';
 import 'package:sustain_tour_mobile/screen/home_screen/home_screen.dart';
-import 'package:sustain_tour_mobile/screen/promo_screen/promo_screen.dart';
 import 'package:sustain_tour_mobile/widget/bottom_navbar_widget/bottom_navbar_widget.dart';
 import 'package:sustain_tour_mobile/widget/bottom_navbar_widget/bottom_navbar_widget_provider.dart';
 
@@ -18,7 +17,7 @@ class MainScreen extends StatelessWidget {
       case 1:
         return TitleExplore.exploreAppBar;
       case 2:
-        return null;
+        return AppBar();
       case 3:
         return AppBar();
       case 4:
@@ -37,7 +36,7 @@ class MainScreen extends StatelessWidget {
       body: IndexedStack(index: provider.currentIndex, children: const [
         HomeScreen(),
         ExploreScreen(),
-        PromoScreen(),
+        Text("Halaman ketiga"),
         Text("Halaman Keempat"),
         ProfileScreen(),
       ]),
