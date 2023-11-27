@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sustain_tour_mobile/constants/assets_image.dart';
+import 'package:sustain_tour_mobile/constants/routes.dart';
 import 'package:sustain_tour_mobile/models/wisata_models/wisata_models.dart';
 import 'package:sustain_tour_mobile/style/color_theme_style.dart';
 import 'package:sustain_tour_mobile/style/font_weight_style.dart';
@@ -71,7 +72,7 @@ class CheckoutScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.6,
+                        width: MediaQuery.of(context).size.width * 0.65,
                         child: Text(
                           wisataItem.title,
                           style: TextStyleWidget.titleT2(
@@ -96,72 +97,73 @@ class CheckoutScreen extends StatelessWidget {
                         ],
                       ),
                       const SizedBox(height: 16),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Row(
-                            children: [
-                              InkWell(
-                                customBorder: const CircleBorder(),
-                                onTap: (){
-                                  //TODO Logic remove quantity
-                                },
-                                child: Container(
-                                  width: 24,
-                                  height: 24,
-                                  decoration: const BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: ColorThemeStyle.blue100
-                                  ),
-                                  child: const Icon(
-                                    Icons.remove,
-                                    size: 20,
-                                    color: ColorThemeStyle.white100
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 22),
-                                child: Text(
-                                  //TODO Ganti 4 dengan quantity
-                                  "4",
-                                  style: TextStyleWidget.bodyB3(
-                                    color: ColorThemeStyle.black100,
-                                    fontWeight: FontWeight.w500
-                                  ),
-                                )
-                              ),
-                              InkWell(
-                                customBorder: const CircleBorder(),
-                                onTap: (){
-                                  //TODO Logic Add quantity
-                                },
-                                child: Container(
-                                  width: 24,
-                                  height: 24,
-                                  decoration: const BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: ColorThemeStyle.blue100
-                                  ),
-                                  child: const Icon(
-                                    Icons.add,
-                                    size: 19,
-                                    color: ColorThemeStyle.white100
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.65,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                InkWell(
+                                  customBorder: const CircleBorder(),
+                                  onTap: (){
+                                    //TODO Logic remove quantity
+                                  },
+                                  child: Container(
+                                    width: 24,
+                                    height: 24,
+                                    decoration: const BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: ColorThemeStyle.blue100
+                                    ),
+                                    child: const Icon(
+                                      Icons.remove,
+                                      size: 20,
+                                      color: ColorThemeStyle.white100
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(width: 40),
-                          Text(
-                            "Rp 130.000",
-                            style: TextStyleWidget.titleT2(
-                              color: ColorThemeStyle.black100,
-                              fontWeight: FontWeight.w600
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 22),
+                                  child: Text(
+                                    //TODO Ganti 4 dengan quantity
+                                    "4",
+                                    style: TextStyleWidget.bodyB3(
+                                      color: ColorThemeStyle.black100,
+                                      fontWeight: FontWeight.w500
+                                    ),
+                                  )
+                                ),
+                                InkWell(
+                                  customBorder: const CircleBorder(),
+                                  onTap: (){
+                                    //TODO Logic Add quantity
+                                  },
+                                  child: Container(
+                                    width: 24,
+                                    height: 24,
+                                    decoration: const BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: ColorThemeStyle.blue100
+                                    ),
+                                    child: const Icon(
+                                      Icons.add,
+                                      size: 19,
+                                      color: ColorThemeStyle.white100
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
-                            overflow: TextOverflow.clip,
-                          )
-                        ]
+                            Text(
+                              "Rp 130.000",
+                              style: TextStyleWidget.titleT2(
+                                color: ColorThemeStyle.black100,
+                                fontWeight: FontWeight.w600
+                              ),
+                            )
+                          ]
+                        ),
                       )
                     ],
                   ),
@@ -177,7 +179,12 @@ class CheckoutScreen extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               GestureDetector(
-                onTap: (){},
+                onTap: (){
+                  Navigator.pushNamed(
+                    context,
+                    Routes.usePromoScreen
+                  );
+                },
                 child: Container(
                   width: double.infinity,
                   height: 72,
@@ -195,12 +202,15 @@ class CheckoutScreen extends StatelessWidget {
                           Container(
                             width: 48,
                             height: 48,
+                            alignment: Alignment.center,
                             decoration: BoxDecoration(
                               color: ColorThemeStyle.blue100,
                               borderRadius: BorderRadius.circular(8)
                             ),
                             child: SvgPicture.asset(
                               Assets.assetsIconsPromo,
+                              width: 28,
+                              height: 28,
                               colorFilter: const ColorFilter.mode(ColorThemeStyle.white100, BlendMode.srcIn),
                             ),
                           ),
@@ -264,14 +274,16 @@ class CheckoutScreen extends StatelessWidget {
                           Container(
                             width: 48,
                             height: 48,
+                            alignment: Alignment.center,
                             decoration: BoxDecoration(
                               color: ColorThemeStyle.blue100,
                               borderRadius: BorderRadius.circular(8)
                             ),
-                            child: const Icon(
-                              //TODO Ganti dengan icon di figma
-                              Icons.monetization_on_rounded,
-                              color: ColorThemeStyle.white100,
+                            child: SvgPicture.asset(
+                              Assets.assetsIconsCoin,
+                              width: 28,
+                              height: 28,
+                              colorFilter: const ColorFilter.mode(ColorThemeStyle.white100, BlendMode.srcIn),
                             )
                           ),
                           const SizedBox(width: 16),
