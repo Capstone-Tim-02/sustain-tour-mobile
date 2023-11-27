@@ -58,16 +58,16 @@ class PointHistory extends StatelessWidget {
 
                           // Menentukan warna teks berdasarkan apakah yang ditampilkan adalah pointsEarned atau pointsUsed
                           Color textColor = pointsEarned.isNotEmpty
-                              ? Colors.green
+                              ? ColorThemeStyle.green100
                               : (pointsUsed.isNotEmpty
-                                  ? Colors.red
-                                  : Colors.black);
+                                  ? ColorThemeStyle.red
+                                  : ColorThemeStyle.black100);
 
                           Color containerColor = pointsEarned.isNotEmpty
-                              ? Colors.lightGreen
+                              ? ColorThemeStyle.greenContainer
                               : (pointsUsed.isNotEmpty
-                                  ? Colors.lightBlue
-                                  : Colors.black);
+                                  ? ColorThemeStyle.redContainer
+                                  : ColorThemeStyle.black100);
 
                           // Tampilkan hanya satu dari dua teks berdasarkan ketersediaan data
                           String displayPoint = pointsEarned.isNotEmpty
@@ -79,11 +79,12 @@ class PointHistory extends StatelessWidget {
                               width: 380,
                               height: 64,
                               decoration: BoxDecoration(
-                                color: Colors.white,
+                                color: ColorThemeStyle.white100,
                                 borderRadius: BorderRadius.circular(10),
                                 boxShadow: [
                                   BoxShadow(
-                                    color: Colors.black.withOpacity(0.1),
+                                    color: ColorThemeStyle.black100
+                                        .withOpacity(0.1),
                                     spreadRadius: 0,
                                     blurRadius: 10,
                                     offset: const Offset(0, 0),
@@ -97,10 +98,18 @@ class PointHistory extends StatelessWidget {
                                 ),
                                 title: Text(
                                   dataPointHistory.wisataName ?? "",
-                                  style: const TextStyle(
-                                      color: ColorThemeStyle.black100),
+                                  style: TextStyleWidget.titleT2(
+                                    fontWeight: FontWeightStyle.medium,
+                                    color: ColorThemeStyle.black100,
+                                  ),
                                 ),
-                                subtitle: Text(displayText),
+                                subtitle: Text(
+                                  displayText,
+                                  style: TextStyleWidget.bodyB3(
+                                    fontWeight: FontWeightStyle.medium,
+                                    color: ColorThemeStyle.grey100,
+                                  ),
+                                ),
                                 trailing: Container(
                                   width: 54,
                                   height: 40,
@@ -111,7 +120,8 @@ class PointHistory extends StatelessWidget {
                                   child: Center(
                                     child: Text(
                                       displayPoint,
-                                      style: TextStyle(
+                                      style: TextStyleWidget.bodyB2(
+                                        fontWeight: FontWeightStyle.semiBold,
                                         color: textColor,
                                       ),
                                     ),

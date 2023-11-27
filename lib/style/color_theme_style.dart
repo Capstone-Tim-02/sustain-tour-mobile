@@ -23,5 +23,6 @@ class ColorThemeStyle {
   static const Color warningBar = Color(0xFFE4B200);
   static const Color disabledsBar = Color(0xFFDDDDDD);
   static const Color lightPurple = Color(0xFFBEB5FF);
+  static const Color redContainer = Color(0xFFFEBEBE);
+  static const Color greenContainer = Color(0xFFB3DDC4);
 }
-  

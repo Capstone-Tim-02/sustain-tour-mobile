@@ -44,7 +44,7 @@ class SWidget extends StatelessWidget {
       controller: controller,
       onChanged: onChange,
       obscureText: obscureText ?? false,
-      style: TextStyleWidget.bodyB2(
+      style: TextStyleWidget.bodyB3(
         fontWeight: FontWeightStyle.regular,
         color: ColorThemeStyle.blue100,
       ),
@@ -56,7 +56,7 @@ class SWidget extends StatelessWidget {
         suffixIcon: suffixIcon,
         fillColor: fillColor,
         filled: filled,
-        hintStyle: TextStyleWidget.bodyB2(
+        hintStyle: TextStyleWidget.bodyB3(
           fontWeight: FontWeightStyle.regular,
           color: ColorThemeStyle.blue100,
         ),
