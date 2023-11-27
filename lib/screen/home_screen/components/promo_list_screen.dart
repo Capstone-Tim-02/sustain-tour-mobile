@@ -26,7 +26,7 @@ class PromoListScreen extends StatelessWidget {
                 : homeScreenProvider.isGetPromoSuccess
                     ? ListView.builder(
                         scrollDirection: Axis.horizontal,
-                        itemCount: 4,
+                        itemCount: homeScreenProvider.listPromo.length,
                         padding: const EdgeInsets.symmetric(horizontal: 6),
                         itemBuilder: (context, index) {
                           return Padding(

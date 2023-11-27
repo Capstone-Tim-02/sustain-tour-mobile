@@ -24,7 +24,7 @@ class PromoHeader extends StatelessWidget {
           GestureDetector(
             onTap: () {
               //TODO Ganti dengan navigasi ke promo
-              bottomNavigationBarProvider.onChangeIndex(2);
+              bottomNavigationBarProvider.onChangeIndex(1);
             },
             child: Text(
               "Lihat semua",
