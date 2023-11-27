@@ -13,60 +13,56 @@ class PromoListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    LoginProvider loginProvider = Provider.of<LoginProvider>(context, listen: false);
-    ProfileProvider profileProvider = Provider.of<ProfileProvider>(context, listen: false);
+    LoginProvider loginProvider =
+        Provider.of<LoginProvider>(context, listen: false);
+    ProfileProvider profileProvider =
+        Provider.of<ProfileProvider>(context, listen: false);
     return SizedBox(
-      height: 130,
-      child: Consumer<HomeScreenProvider>(
-        builder: (context, homeScreenProvider, child) {
-          return homeScreenProvider.isLoadingPromo
-            ? const Center(child: CircularProgressIndicator())
-            : homeScreenProvider.isGetPromoSuccess
-                ? ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: homeScreenProvider.listPromo.length,
-                    padding:
-                      const EdgeInsets.symmetric(horizontal: 6),
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding:
-                          const EdgeInsets.symmetric(horizontal: 6),
-                        child: CardWidget.medium(
-                          imageUrl: homeScreenProvider
-                              .listPromo[index].imageVoucher,
-                          title: homeScreenProvider
-                              .listPromo[index].title),
-                      );
-                    },
-                  )
-                : Column(
-                    children: [
-                      const SizedBox(height: 20),
-                      Text(
-                        "Terjadi kesalahan!",
-                        style: TextStyleWidget.titleT2(
-                            fontWeight: FontWeight.w700,
-                            color: ColorThemeStyle.red),
-                      ),
-                      const SizedBox(height: 16),
-                      BadgeWidget.container(
-                        onPressed: () {
-                          profileProvider.getUserData(
-                              userId: loginProvider.userId ?? 0,
-                              token:
-                                  loginProvider.token.toString());
-                          homeScreenProvider.getRekomendasiWisata(
-                              token:
-                                  loginProvider.token.toString());
-                          homeScreenProvider.getPromo(
-                              token:
-                                  loginProvider.token.toString());
+        height: 130,
+        child: Consumer<HomeScreenProvider>(
+          builder: (context, homeScreenProvider, child) {
+            return homeScreenProvider.isLoadingPromo
+                ? const Center(child: CircularProgressIndicator())
+                : homeScreenProvider.isGetPromoSuccess
+                    ? ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: 4,
+                        padding: const EdgeInsets.symmetric(horizontal: 6),
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 6),
+                            child: CardWidget.medium(
+                                imageUrl: homeScreenProvider
+                                    .listPromo[index].imageVoucher,
+                                title:
+                                    homeScreenProvider.listPromo[index].title),
+                          );
                         },
-                        label: "Muat ulang")
-                    ],
-                  );
-        },
-      )
-    );
+                      )
+                    : Column(
+                        children: [
+                          const SizedBox(height: 20),
+                          Text(
+                            "Terjadi kesalahan!",
+                            style: TextStyleWidget.titleT2(
+                                fontWeight: FontWeight.w700,
+                                color: ColorThemeStyle.red),
+                          ),
+                          const SizedBox(height: 16),
+                          BadgeWidget.container(
+                              onPressed: () {
+                                profileProvider.getUserData(
+                                    userId: loginProvider.userId ?? 0,
+                                    token: loginProvider.token.toString());
+                                homeScreenProvider.getRekomendasiWisata(
+                                    token: loginProvider.token.toString());
+                                homeScreenProvider.getPromo(
+                                    token: loginProvider.token.toString());
+                              },
+                              label: "Muat ulang")
+                        ],
+                      );
+          },
+        ));
   }
 }
