@@ -18,7 +18,7 @@ class MainScreen extends StatelessWidget {
       case 1:
         return TitleExplore.exploreAppBar;
       case 2:
-        return AppBar();
+        return null;
       case 3:
         return AppBar();
       case 4:
