@@ -14,7 +14,12 @@ class DestiPointProvider extends ChangeNotifier {
     notifyListeners();
 
     _listPointHistory = await PointHistoryApi().getPointHistoryFromAPI();
-
+    //mengurutkan data yang used dulu baru yang earned
+    _listPointHistory.sort(
+      (a, b) {
+        return a.pointsEarned?.compareTo(b.pointsEarned ?? 0) ?? 0;
+      },
+    );
     _isLoadingHistory = false;
     notifyListeners();
   }
