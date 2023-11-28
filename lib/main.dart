@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
 import 'package:sustain_tour_mobile/screen/ai_screen/ai_screen_provider.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/login_provider.dart';
@@ -12,6 +13,7 @@ import 'package:sustain_tour_mobile/screen/profile_screen/component/profile_emis
 import 'package:sustain_tour_mobile/screen/profile_screen/component/profile_emission_component/profile_emission_provider.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/profile_provider.dart';
 import 'package:sustain_tour_mobile/screen/home_screen/home_screen_provider.dart';
+import 'package:sustain_tour_mobile/screen/promo_screen/component/detail_promo_provider.dart';
 import 'package:sustain_tour_mobile/screen/pusat_bantuan_screen/faq/faq_screen_provider.dart';
 import 'package:sustain_tour_mobile/screen/register_screen/register_provider.dart';
 import 'package:sustain_tour_mobile/screen/register_screen/validator/form_confirm_password_screens.dart';
@@ -26,7 +28,9 @@ import 'package:sustain_tour_mobile/widget/bottom_navbar_widget/bottom_navbar_wi
 import 'screen/onboarding_screen/onboarding_provider.dart';
 import 'screen/onboarding_screen/splash_screen/splash_screen_provider.dart';
 
-void main() {
+void main() async {
+  await initializeDateFormatting('id_ID', null);
+
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider<BottomNavigationBarProvider>(
@@ -75,6 +79,8 @@ void main() {
           create: (context) => ExploreScreenProvider()),
       ChangeNotifierProvider<DestiPointProvider>(
           create: (context) => DestiPointProvider()),
+      ChangeNotifierProvider<DetailPromoProvider>(
+          create: (context) => DetailPromoProvider()),
     ],
     child: const MyApp(),
   ));
