@@ -39,7 +39,7 @@ class MainScreen extends StatelessWidget {
         HomeScreen(),
         ExploreScreen(),
         Text("Halaman Ketiga"),
-        Text("Halaman Keempat"),
+        TiketScreen(),
         ProfileScreen(),
       ]),
       bottomNavigationBar: const BottomNavigationBarWidget(),
