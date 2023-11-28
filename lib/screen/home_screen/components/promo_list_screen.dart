@@ -14,10 +14,8 @@ class PromoListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    LoginProvider loginProvider =
-        Provider.of<LoginProvider>(context, listen: false);
-    ProfileProvider profileProvider =
-        Provider.of<ProfileProvider>(context, listen: false);
+    LoginProvider loginProvider = Provider.of<LoginProvider>(context, listen: false);
+    ProfileProvider profileProvider = Provider.of<ProfileProvider>(context, listen: false);
     return SizedBox(
         height: 130,
         child: Consumer<HomeScreenProvider>(
