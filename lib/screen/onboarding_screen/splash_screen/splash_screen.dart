@@ -23,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 3), () {
+    Future.delayed(const Duration(seconds: 0), () {
       SplashScreenProvider splashScreenProvider =
           Provider.of<SplashScreenProvider>(context, listen: false);
 
@@ -45,7 +45,7 @@ class _SplashScreenState extends State<SplashScreen> {
               .getPromo(token: token);
 
           Provider.of<TravelHistoryProvider>(context, listen: false)
-              .getBookingHistory(token: token);
+              .getBookingHistory();
 
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (context) => const MainScreen()),

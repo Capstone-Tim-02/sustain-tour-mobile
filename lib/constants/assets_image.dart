@@ -21,6 +21,10 @@ class Assets {
   /// assets/icons/camera.svg
   static const String assetsIconsCamera = "assets/icons/camera.svg";
 
+  /// Assets for assetsIconsCopyright
+  /// assets/icons/copyright.svg
+  static const String assetsIconsCopyright = "assets/icons/copyright.svg";
+
   /// Assets for assetsIconsEmail
   /// assets/icons/Email.svg
   static const String assetsIconsEmail = "assets/icons/Email.svg";
@@ -153,6 +157,14 @@ class Assets {
   /// assets/icons/Wisata_Sejarah.svg
   static const String assetsIconsWisataSejarah = "assets/icons/Wisata_Sejarah.svg";
 
+  /// Assets for assetsImagesDibatalkan
+  /// assets/images/dibatalkan.png
+  static const String assetsImagesDibatalkan = "assets/images/dibatalkan.png";
+
+  /// Assets for assetsImagesDiproses
+  /// assets/images/diproses.png
+  static const String assetsImagesDiproses = "assets/images/diproses.png";
+
   /// Assets for assetsImagesEmissionBg
   /// assets/images/emission_bg.png
   static const String assetsImagesEmissionBg = "assets/images/emission_bg.png";
@@ -172,6 +184,10 @@ class Assets {
   /// Assets for assetsImagesMatchmaking
   /// assets/images/matchmaking.png
   static const String assetsImagesMatchmaking = "assets/images/matchmaking.png";
+
+  /// Assets for assetsImagesNotFoundWisata
+  /// assets/images/not_found_wisata.png
+  static const String assetsImagesNotFoundWisata = "assets/images/not_found_wisata.png";
 
   /// Assets for assetsImagesOnboarding
   /// assets/images/onboarding.png
@@ -197,6 +213,10 @@ class Assets {
   /// assets/images/selamat_datang.png
   static const String assetsImagesSelamatDatang = "assets/images/selamat_datang.png";
 
+  /// Assets for assetsImagesSelesai
+  /// assets/images/selesai.png
+  static const String assetsImagesSelesai = "assets/images/selesai.png";
+
   /// Assets for assetsImagesWisataAlam
   /// assets/images/wisata_alam.png
   static const String assetsImagesWisataAlam = "assets/images/wisata_alam.png";
@@ -212,8 +232,4 @@ class Assets {
   /// Assets for assetsImagesWisataSejarah
   /// assets/images/wisata_sejarah.png
   static const String assetsImagesWisataSejarah = "assets/images/wisata_sejarah.png";
-
-  /// Assets for assetsImagesNotFoundWisata
-  /// assets/images/not_found_wisata.png
-  static const String assetsImagesNotFoundWisata = "assets/images/not_found_wisata.png";
 }

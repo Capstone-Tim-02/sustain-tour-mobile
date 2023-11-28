@@ -9,6 +9,7 @@ import 'package:sustain_tour_mobile/screen/onboarding_screen/splash_screen/splas
 import 'package:sustain_tour_mobile/screen/profile_screen/component/account_screen_component/account_screen_component.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/component/account_screen_component/component/edit_account_screen_component/edit_account_screen_component.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/component/profile_emission_component/component/detail_emission_screen_component/detail_emission_screen_component.dart';
+import 'package:sustain_tour_mobile/screen/tiket_screen/component/invoice_screen_component/invoice_screen_component.dart';
 
 class Routes {
   static const String splashScreen = '/';
@@ -23,6 +24,8 @@ class Routes {
   static const String detailEmissionScreen = '/main/profile/detail-emission';
   static const String editAccountScreen = 'main/profile/account/edit';
 
+  static const String invoiceScreen = '/main/tiket/invoice-screen';
+
   static Map<String, WidgetBuilder> routeMap = {
     splashScreen: (context) => const SplashScreen(),
     onboardingScreen: (context) => const OnboardingScreen(),
@@ -34,5 +37,6 @@ class Routes {
     accountScreen: (context) => const AccountScreenComponent(),
     detailEmissionScreen: (context) => const DetailEmissionScreenComponent(),
     editAccountScreen: (context) => const EditAccountScreenComponent(),
+    invoiceScreen: (context) => const InvoiceScreenComponent(),
   };
 }

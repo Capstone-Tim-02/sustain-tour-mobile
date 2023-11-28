@@ -18,6 +18,7 @@ import 'package:sustain_tour_mobile/screen/register_screen/validator/form_phone_
 import 'package:sustain_tour_mobile/screen/register_screen/validator/form_username_register_screens.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/component/from_password_screns.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/component/from_username_screens.dart';
+import 'package:sustain_tour_mobile/screen/tiket_screen/tiket_provider.dart';
 import 'package:sustain_tour_mobile/style/color_theme_style.dart';
 import 'package:sustain_tour_mobile/widget/bottom_navbar_widget/bottom_navbar_widget_provider.dart';
 import 'screen/onboarding_screen/onboarding_provider.dart';
@@ -66,6 +67,8 @@ void main() {
           create: (context) => TravelHistoryProvider()),
       ChangeNotifierProvider<ExploreScreenProvider>(
           create: (context) => ExploreScreenProvider()),
+      ChangeNotifierProvider<TiketProvider>(
+          create: (context) => TiketProvider()),
     ],
     child: const MyApp(),
   ));

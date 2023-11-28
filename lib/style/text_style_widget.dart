@@ -193,4 +193,17 @@ class TextStyleWidget {
       letterSpacing: 0.5,
     );
   }
+
+  static TextStyle labelL4(
+      {Color? color, FontWeight? fontWeight, FontStyle? fontStyle}) {
+    return TextStyle(
+      fontFamily: Fonts.poppins,
+      fontWeight: fontWeight,
+      color: color,
+      fontStyle: fontStyle,
+      fontSize: 10,
+      height: 1.6,
+      letterSpacing: 0.4,
+    );
+  }
 }

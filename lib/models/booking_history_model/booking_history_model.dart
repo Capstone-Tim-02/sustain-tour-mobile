@@ -7,20 +7,20 @@ import 'dart:convert';
 BookingHistoryModel bookingHistoryModelFromJson(String str) =>
     BookingHistoryModel.fromJson(json.decode(str));
 
-String bookingHistoryModelToJson(BookingHistoryModel data) =>
-    json.encode(data.toJson());
+// String bookingHistoryModelToJson(BookingHistoryModel data) =>
+//     json.encode(data.toJson());
 
 class BookingHistoryModel {
   int code;
   bool error;
   String message;
-  List<TicketData> ticketData;
+  List<TicketData>? ticketData;
 
   BookingHistoryModel({
     required this.code,
     required this.error,
     required this.message,
-    required this.ticketData,
+    this.ticketData,
   });
 
   factory BookingHistoryModel.fromJson(Map<String, dynamic> json) =>
@@ -28,16 +28,18 @@ class BookingHistoryModel {
         code: json["code"],
         error: json["error"],
         message: json["message"],
-        ticketData: List<TicketData>.from(
-            json["ticket_data"].map((x) => TicketData.fromJson(x))),
+        ticketData: json["ticket_data"] == null
+            ? null
+            : List<TicketData>.from(
+                json["ticket_data"].map((x) => TicketData.fromJson(x))),
       );
 
-  Map<String, dynamic> toJson() => {
-        "code": code,
-        "error": error,
-        "message": message,
-        "ticket_data": List<dynamic>.from(ticketData.map((x) => x.toJson())),
-      };
+  // Map<String, dynamic> toJson() => {
+  //       "code": code,
+  //       "error": error,
+  //       "message": message,
+  //       "ticket_data": List<dynamic>.from(ticketData.map((x) => x.toJson())),
+  //     };
 }
 
 class TicketData {
