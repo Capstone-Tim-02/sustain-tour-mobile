@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:sustain_tour_mobile/screen/ai_screen/ai_screen.dart';
+import 'package:sustain_tour_mobile/screen/home_screen/components/desti_point_screen/desti_point_screen.dart';
+import 'package:sustain_tour_mobile/screen/pusat_bantuan_screen/pusat_bantuan_screen.dart';
 import 'package:sustain_tour_mobile/screen/register_screen/register_screen.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/login_screen.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/matchmaking_question/matchmaking_2.dart';
@@ -15,6 +18,7 @@ class Routes {
   static const String splashScreen = '/';
   static const String onboardingScreen = '/onboarding';
   static const String loginScreen = '/loginscreen';
+  static const String aiScreen = '/aiscreen';
   static const String registerScreen = '/registerscreen';
   static const String matchmaking2Screen = '/loginscreen/matchmaking2';
   static const String matchmaking3Screen = '/loginscreen/matchmaking3';
@@ -23,6 +27,9 @@ class Routes {
   static const String accountScreen = '/main/profile/account';
   static const String detailEmissionScreen = '/main/profile/detail-emission';
   static const String editAccountScreen = 'main/profile/account/edit';
+  static const String pusatBantuan = 'main/profile/pusatBantuan';
+
+  static const String destiPointScreen = 'main/home/destiPoint';
 
   static const String invoiceScreen = '/main/tiket/invoice-screen';
 
@@ -30,6 +37,7 @@ class Routes {
     splashScreen: (context) => const SplashScreen(),
     onboardingScreen: (context) => const OnboardingScreen(),
     loginScreen: (context) => const LoginScreen(),
+    aiScreen: (context) => const AiScreen(),
     registerScreen: (context) => const RegisterScreen(),
     matchmaking2Screen: (context) => const Matchmaking2(),
     matchmaking3Screen: (context) => const Matchmaking3(),
@@ -38,5 +46,7 @@ class Routes {
     detailEmissionScreen: (context) => const DetailEmissionScreenComponent(),
     editAccountScreen: (context) => const EditAccountScreenComponent(),
     invoiceScreen: (context) => const InvoiceScreenComponent(),
+    destiPointScreen: (context) => const DestiPointScreen(),
+    pusatBantuan: (context) => const PusatBantuanScreen(),
   };
 }

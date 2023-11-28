@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sustain_tour_mobile/constants/assets_image.dart';
+import 'package:sustain_tour_mobile/constants/routes.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/profile_provider.dart';
 import 'package:sustain_tour_mobile/style/color_theme_style.dart';
 import 'package:sustain_tour_mobile/style/shadow_style.dart';
@@ -12,13 +13,13 @@ class PointIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    BottomNavigationBarProvider bottomNavigationBarProvider = Provider.of<BottomNavigationBarProvider>(context, listen: false);
+    BottomNavigationBarProvider bottomNavigationBarProvider =
+        Provider.of<BottomNavigationBarProvider>(context, listen: false);
     return Center(
       child: Container(
         height: 136,
         width: 380,
-        margin:
-            const EdgeInsets.only(top: 158, left: 16, right: 16),
+        margin: const EdgeInsets.only(top: 158, left: 16, right: 16),
         decoration: BoxDecoration(
           image: const DecorationImage(
               image: AssetImage(Assets.assetsImagesPointBackground),
@@ -27,8 +28,7 @@ class PointIndicator extends StatelessWidget {
           boxShadow: [ShadowStyle.shadowFix1],
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(
-              horizontal: 16, vertical: 18),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -60,10 +60,8 @@ class PointIndicator extends StatelessWidget {
                     },
                   ),
                   GestureDetector(
-                    onTap: () {
-                      //TODO Navigasi ke halaman poin
-                      bottomNavigationBarProvider.onChangeIndex(1);
-                    },
+                    onTap: () =>
+                        Navigator.pushNamed(context, Routes.destiPointScreen),
                     child: const CircleAvatar(
                       backgroundColor: ColorThemeStyle.blue100,
                       maxRadius: 27.5,

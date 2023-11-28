@@ -24,7 +24,7 @@ class ProfileOptionComponent extends StatelessWidget {
             iconSvgString: Assets.assetsIconsHelp,
             borderRadius: const BorderRadius.all(Radius.circular(10)),
             trailing: const Icon(Icons.navigate_next),
-            onTap: () {},
+            onTap: () => Navigator.pushNamed(context, Routes.pusatBantuan),
           ),
         ),
         Padding(

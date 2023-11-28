@@ -7,14 +7,9 @@ import 'package:sustain_tour_mobile/screen/home_screen/components/promo_list_scr
 import 'package:sustain_tour_mobile/screen/home_screen/components/rekomendasi_wisata_components/rekomendasi_wisata_screen.dart';
 import 'package:sustain_tour_mobile/screen/home_screen/components/rekomendasi_wisata_components/rekomendasi_wisata_header.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return const SingleChildScrollView(

@@ -18,7 +18,7 @@ class TextFieldPassword extends StatelessWidget {
               controller: formPasswordProvider.passwordController,
               labelText: 'Password',
               hintText: 'Password',
-              // obscureText: !formPasswordProvider.isPasswordVisible,
+              obscureText: !formPasswordProvider.isPasswordVisible,
               errorText: formPasswordProvider.passwordError,
               suffixIcon: GestureDetector(
                 child: Icon(

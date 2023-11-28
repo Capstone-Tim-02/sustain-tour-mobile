@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sustain_tour_mobile/screen/ai_screen/ai_screen_provider.dart';
+import 'package:sustain_tour_mobile/screen/login_screen/login_provider.dart';
 import 'package:sustain_tour_mobile/constants/routes.dart';
 import 'package:sustain_tour_mobile/screen/explore_screen/explore_screen_provider.dart';
+import 'package:sustain_tour_mobile/screen/home_screen/components/desti_point_screen/desti_point_provider.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/matchmaking_question/matchmaking_kesukaan_provider.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/matchmaking_question/matchmaking_provider.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/component/account_screen_component/component/edit_account_screen_component/edit_account_provider.dart';
@@ -9,7 +12,7 @@ import 'package:sustain_tour_mobile/screen/profile_screen/component/profile_emis
 import 'package:sustain_tour_mobile/screen/profile_screen/component/profile_emission_component/profile_emission_provider.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/profile_provider.dart';
 import 'package:sustain_tour_mobile/screen/home_screen/home_screen_provider.dart';
-import 'package:sustain_tour_mobile/screen/login_screen/login_provider.dart';
+import 'package:sustain_tour_mobile/screen/pusat_bantuan_screen/faq/faq_screen_provider.dart';
 import 'package:sustain_tour_mobile/screen/register_screen/register_provider.dart';
 import 'package:sustain_tour_mobile/screen/register_screen/validator/form_confirm_password_screens.dart';
 import 'package:sustain_tour_mobile/screen/register_screen/validator/form_email_register_screens.dart';
@@ -33,6 +36,8 @@ void main() {
           create: (context) => SplashScreenProvider()),
       ChangeNotifierProvider<OnboardingProvider>(
           create: (context) => OnboardingProvider()),
+      ChangeNotifierProvider<FaqScreenProvider>(
+          create: (context) => FaqScreenProvider()),
       ChangeNotifierProvider<ProfileProvider>(
           create: (context) => ProfileProvider()),
       ChangeNotifierProvider<ProfileEmissionProvider>(
@@ -45,6 +50,8 @@ void main() {
           create: (context) => FromUsernameProvider()),
       ChangeNotifierProvider<FormPasswordProvider>(
           create: (context) => FormPasswordProvider()),
+      ChangeNotifierProvider<AiScreenProvider>(
+          create: (context) => AiScreenProvider()),
       ChangeNotifierProvider<RegisterProvider>(
           create: (context) => RegisterProvider()),
       ChangeNotifierProvider<FormFullNameProvider>(
@@ -69,6 +76,8 @@ void main() {
           create: (context) => ExploreScreenProvider()),
       ChangeNotifierProvider<TiketProvider>(
           create: (context) => TiketProvider()),
+      ChangeNotifierProvider<DestiPointProvider>(
+          create: (context) => DestiPointProvider()),
     ],
     child: const MyApp(),
   ));
