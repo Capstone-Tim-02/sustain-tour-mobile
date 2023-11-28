@@ -52,29 +52,39 @@ class TiketScreen extends StatelessWidget {
                 Provider.of<TiketProvider>(context, listen: false).tabIndex,
             length: 2,
             child: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 16,
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  TabBar(
-                    onTap: (index) {
-                      Provider.of<TiketProvider>(context, listen: false)
-                          .setTabIndex(index: index);
-                    },
-                    unselectedLabelColor: Colors.black,
-                    labelStyle: TextStyleWidget.titleT2(
-                      fontWeight: FontWeightStyle.semiBold,
+                  Theme(
+                    data: Theme.of(context).copyWith(
+                      colorScheme: Theme.of(context).colorScheme.copyWith(
+                            surfaceVariant: Colors.transparent,
+                          ),
                     ),
-                    labelColor: ColorThemeStyle.blue100,
-                    tabs: const [
-                      Tab(
-                        text: 'Dipesan',
+                    child: TabBar(
+                      tabAlignment: TabAlignment.start,
+                      isScrollable: true,
+                      indicatorColor: ColorThemeStyle.blue100,
+                      labelPadding: const EdgeInsets.only(right: 8),
+                      onTap: (index) {
+                        Provider.of<TiketProvider>(context, listen: false)
+                            .setTabIndex(index: index);
+                      },
+                      unselectedLabelColor: Colors.black,
+                      labelStyle: TextStyleWidget.titleT2(
+                        fontWeight: FontWeightStyle.semiBold,
                       ),
-                      Tab(
-                        text: 'Riwayat',
-                      ),
-                    ],
+                      labelColor: ColorThemeStyle.blue100,
+                      tabs: const [
+                        Tab(
+                          text: 'Dipesan',
+                        ),
+                        Tab(
+                          text: 'Riwayat',
+                        ),
+                      ],
+                    ),
                   ),
                   Consumer<TiketProvider>(
                       builder: (context, tiketProvider, child) {

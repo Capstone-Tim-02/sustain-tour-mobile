@@ -57,6 +57,7 @@ class BadgeWidget {
   static SizedBox outline({
     required void Function()? onPressed,
     String? label,
+    FontWeight? fontWeight,
     double? width,
     double? height,
     Color? foregroundColor,
@@ -120,7 +121,7 @@ class BadgeWidget {
         child: Text(
           label ?? 'Label',
           style: TextStyleWidget.titleT3(
-            fontWeight: FontWeightStyle.medium,
+            fontWeight: fontWeight ?? FontWeightStyle.medium,
           ),
         ),
       ),

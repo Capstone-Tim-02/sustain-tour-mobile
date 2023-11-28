@@ -253,6 +253,7 @@ class InvoiceContainerComponent extends StatelessWidget {
                     ),
                     BadgeWidget.outline(
                       label: 'Batalkan pesanan',
+                      fontWeight: FontWeightStyle.semiBold,
                       borderColor: ColorThemeStyle.red,
                       foregroundColor: ColorThemeStyle.red,
                       overlayColor: const Color.fromARGB(255, 252, 74, 74),
