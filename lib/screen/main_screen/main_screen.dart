@@ -33,16 +33,13 @@ class MainScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: buildAppBar(provider.currentIndex),
-      body: IndexedStack(
-        index: provider.currentIndex,
-        children: const [
-          HomeScreen(),
-          ExploreScreen(),
-          Text("Halaman Ketiga"),
-          Text("Halaman Keempat"),
-          ProfileScreen(),
-        ]
-      ),
+      body: IndexedStack(index: provider.currentIndex, children: const [
+        HomeScreen(),
+        ExploreScreen(),
+        Text("Halaman ketiga"),
+        Text("Halaman Keempat"),
+        ProfileScreen(),
+      ]),
       bottomNavigationBar: const BottomNavigationBarWidget(),
       backgroundColor: Colors.white,
     );
