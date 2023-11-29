@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sustain_tour_mobile/screen/pusat_bantuan_screen/faq/detail_faq_screen.dart';
 import 'package:sustain_tour_mobile/screen/pusat_bantuan_screen/faq/faq_screen_provider.dart';
+import 'package:sustain_tour_mobile/screen/pusat_bantuan_screen/faq/s_widget.dart';
 import 'package:sustain_tour_mobile/style/color_theme_style.dart';
 import 'package:sustain_tour_mobile/style/font_weight_style.dart';
 import 'package:sustain_tour_mobile/style/text_style_widget.dart';
-import 'package:sustain_tour_mobile/screen/pusat_bantuan_screen/faq/s_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class FaqScreen extends StatelessWidget {
