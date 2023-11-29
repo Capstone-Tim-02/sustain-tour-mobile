@@ -25,12 +25,22 @@ class WisataErrorScreen extends StatelessWidget {
         const SizedBox(height: 16),
         BadgeWidget.container(
           onPressed: () {
-            exploreScreenProvider.getWisataDataByFilter(
-              token: loginProvider.token.toString()
-            );
             exploreScreenProvider.getAllKota(
               token: loginProvider.token.toString()
             );
+            exploreScreenProvider.getAllCategories(
+              token: loginProvider.token.toString()
+            );
+            if (exploreScreenProvider.showSearchPage == true) {
+              exploreScreenProvider.getWisataDataBySearch(
+                token: loginProvider.token.toString(),
+                searchQuery: exploreScreenProvider.searchWisataController.text
+              );
+            } else {
+              exploreScreenProvider.getWisataDataByFilter(
+                token: loginProvider.token.toString()
+              );
+            }
           },
           label: "Muat ulang")
       ],

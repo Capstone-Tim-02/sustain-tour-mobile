@@ -24,6 +24,8 @@ class _ExploreScreenState extends State<ExploreScreen> {
         token: loginProvider.token.toString());
       exploreScreenProvider.getAllKota(
         token: loginProvider.token.toString());
+      exploreScreenProvider.getAllCategories(
+        token: loginProvider.token.toString());
       exploreScreenProvider.getSearchHistory(
         userId: loginProvider.userId?.toInt() ?? 0);
     _scrollController.addListener(onScroll);
