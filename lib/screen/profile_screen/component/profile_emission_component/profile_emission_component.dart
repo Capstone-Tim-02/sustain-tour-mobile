@@ -108,6 +108,9 @@ class ProfileEmissionComponent extends StatelessWidget {
                 )
               ],
             ),
+            const SizedBox(
+              height: 8,
+            ),
           ],
         ),
       ),

@@ -61,8 +61,10 @@ class BadgeWidget {
     double? width,
     double? height,
     Color? foregroundColor,
+    Color? backgroundColor,
     Color? overlayColor,
     Color? borderColor,
+    Color? onPressedBorderColor,
     EdgeInsetsGeometry? padding,
     MaterialStateProperty<OutlinedBorder?>? shape,
   }) {
@@ -93,13 +95,27 @@ class BadgeWidget {
               ? MaterialStateProperty.all(const BorderSide(
                   color: ColorThemeStyle.grey100,
                   width: 2)) // warna border saat disable
-              : MaterialStateProperty.all(BorderSide(
-                  color: borderColor ?? ColorThemeStyle.blue100,
-                  width: 2)), // warna border saat enable
+              : MaterialStateProperty.resolveWith<BorderSide?>(
+                  (Set<MaterialState> states) {
+                    if (states.contains(MaterialState.pressed)) {
+                      return BorderSide(
+                          color:
+                              onPressedBorderColor ?? ColorThemeStyle.blue100,
+                          width: 2); //<-- SEE HERE
+                    }
+                    return BorderSide(
+                        color: borderColor ?? ColorThemeStyle.blue100,
+                        width: 2); // Defer to the widget's default.
+                  },
+                ),
+
+          // MaterialStateProperty.all(BorderSide(
+          //     color: borderColor ?? ColorThemeStyle.blue100,
+          //     width: 2)), // warna border saat enable
 
           // atur background
-          backgroundColor:
-              MaterialStateProperty.all(Colors.transparent), // ngikutin figma
+          backgroundColor: MaterialStateProperty.all(
+              backgroundColor ?? Colors.transparent), // ngikutin figma
 
           // atur warna button saat ditekan
           overlayColor: MaterialStateProperty.resolveWith<Color?>(

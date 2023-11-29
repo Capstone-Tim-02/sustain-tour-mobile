@@ -7,12 +7,14 @@ class StepComponentWidget {
     double? width,
     Widget? content,
     Color? backgroundColor,
+    EdgeInsetsGeometry? padding,
     BoxShape? shape,
     BorderRadiusGeometry? borderRadius,
   }) =>
       Container(
         height: height ?? 40,
         width: width ?? 40,
+        padding: padding,
         decoration: BoxDecoration(
           color: backgroundColor ?? ColorThemeStyle.blue100,
           shape: shape ?? BoxShape.rectangle,
@@ -28,7 +30,8 @@ class StepComponentWidget {
     Color? backgroundColor,
     BoxShape? shape,
     EdgeInsetsGeometry? margin,
-    BorderRadiusGeometry? borderRadius,
+    BorderRadiusGeometry? borderRadius =
+        const BorderRadius.all(Radius.circular(8)),
   }) =>
       Container(
         height: height ?? 12,
@@ -37,8 +40,7 @@ class StepComponentWidget {
         decoration: BoxDecoration(
           color: backgroundColor ?? ColorThemeStyle.blue100,
           shape: shape ?? BoxShape.rectangle,
-          borderRadius:
-              borderRadius ?? const BorderRadius.all(Radius.circular(8)),
+          borderRadius: borderRadius,
         ),
         child: content,
       );

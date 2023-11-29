@@ -205,7 +205,10 @@ class InvoiceContainerComponent extends StatelessWidget {
             height: tiket.statusOrder == 'pending' ? 16 : 0,
           ),
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(context, Routes.detailTransaksiScreen,
+                  arguments: tiket);
+            },
             child: Row(
               children: [
                 Text(

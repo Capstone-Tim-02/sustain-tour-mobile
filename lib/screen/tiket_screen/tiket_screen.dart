@@ -63,10 +63,8 @@ class TiketScreen extends StatelessWidget {
                           ),
                     ),
                     child: TabBar(
-                      tabAlignment: TabAlignment.start,
-                      isScrollable: true,
+                      tabAlignment: TabAlignment.fill,
                       indicatorColor: ColorThemeStyle.blue100,
-                      labelPadding: const EdgeInsets.only(right: 8),
                       onTap: (index) {
                         Provider.of<TiketProvider>(context, listen: false)
                             .setTabIndex(index: index);

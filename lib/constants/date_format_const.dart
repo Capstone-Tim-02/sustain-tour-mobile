@@ -8,4 +8,8 @@ class DateFormatConst {
   static DateFormat dateToTanggalHalfBulanTahunFormat = DateFormat(
     "dd MMM, yyyy",
   );
+
+  static DateFormat dateToTanggalHalfBulanTahunFormatNoKoma = DateFormat(
+    "dd MMM yyyy",
+  );
 }

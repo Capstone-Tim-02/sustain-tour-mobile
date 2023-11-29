@@ -16,6 +16,7 @@ class StepPaymentBottomSheetComponent {
                 borderRadius: BorderRadius.all(Radius.circular(40))),
             width: double.infinity,
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
