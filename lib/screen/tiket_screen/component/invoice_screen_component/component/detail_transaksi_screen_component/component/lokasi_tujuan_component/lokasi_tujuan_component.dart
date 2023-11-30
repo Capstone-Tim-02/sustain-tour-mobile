@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sustain_tour_mobile/constants/open_maps_func.dart';
 import 'package:sustain_tour_mobile/style/color_theme_style.dart';
 import 'package:sustain_tour_mobile/style/font_weight_style.dart';
 import 'package:sustain_tour_mobile/style/text_style_widget.dart';
@@ -6,7 +7,9 @@ import 'package:sustain_tour_mobile/widget/badge_widget.dart';
 
 class LokasiTujuanComponent extends StatelessWidget {
   final String lokasiWisata;
-  const LokasiTujuanComponent({super.key, required this.lokasiWisata});
+  final String mapsLink;
+  const LokasiTujuanComponent(
+      {super.key, required this.lokasiWisata, required this.mapsLink});
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +49,9 @@ class LokasiTujuanComponent extends StatelessWidget {
           width: double.infinity,
           label: 'Buka Maps',
           fontWeight: FontWeightStyle.semiBold,
-          onPressed: () {},
+          onPressed: () {
+            OpenMapsFunc.openMaps(context: context, mapsLink: mapsLink);
+          },
         )
       ],
     );

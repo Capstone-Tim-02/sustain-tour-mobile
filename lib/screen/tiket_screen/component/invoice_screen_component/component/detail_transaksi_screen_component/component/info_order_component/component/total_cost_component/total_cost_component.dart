@@ -67,6 +67,9 @@ class TotalCostComponent extends StatelessWidget {
             ],
           ),
         ),
+        SizedBox(
+          height: statusOrder != 'pending' ? 20 : 0,
+        ),
         if (statusOrder == 'pending')
           Padding(
             padding: const EdgeInsets.only(

@@ -45,6 +45,7 @@ class DetailTransaksiScreenComponent extends StatelessWidget {
             ),
             LokasiTujuanComponent(
               lokasiWisata: tiketData.lokasiWisata,
+              mapsLink: tiketData.mapsLink,
             ),
             const SizedBox(
               height: 32,
@@ -57,9 +58,9 @@ class DetailTransaksiScreenComponent extends StatelessWidget {
               totalCost: tiketData.totalCost,
               statusOrder: tiketData.statusOrder,
             ),
-            const SizedBox(
-              height: 32,
-            ),
+            // const SizedBox(
+            //   height: 32,
+            // ),
           ],
         ),
       ),
