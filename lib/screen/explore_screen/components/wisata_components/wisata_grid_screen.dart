@@ -29,7 +29,7 @@ class WisataGridScreen extends StatelessWidget {
                 Navigator.pushNamed(
                   context,
                   Routes.checkoutScreen,
-                  arguments: exploreScreenProvider.listWisata[index]
+                  arguments: exploreScreenProvider.listWisata[index],
                 );
               },
               child: CardWidget.small(
