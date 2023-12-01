@@ -52,5 +52,8 @@ class BookingResultProvider extends ChangeNotifier {
   void bookingResultProviderReset(){
     _isLoading = false;
     _isPostBookingSuccess = false;
+    _responseModel = null;
+    _bookingModel = null;
+    _errorMessage = "";
   }
 }
