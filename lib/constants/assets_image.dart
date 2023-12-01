@@ -29,6 +29,14 @@ class Assets {
   /// assets/icons/copyright.svg
   static const String assetsIconsCopyright = "assets/icons/copyright.svg";
 
+  /// Assets for assetsIconsCoin
+  /// assets/icons/coin.svg
+  static const String assetsIconsCoin = "assets/icons/coin.svg";
+
+  /// Assets for assetsIconsCopy
+  /// assets/icons/copy.svg
+  static const String assetsIconsCopy = "assets/icons/copy.svg";
+
   /// Assets for assetsIconsEmail
   /// assets/icons/Email.svg
   static const String assetsIconsEmail = "assets/icons/Email.svg";
@@ -232,6 +240,10 @@ class Assets {
   /// Assets for assetsImagesSelesai
   /// assets/images/selesai.png
   static const String assetsImagesSelesai = "assets/images/selesai.png";
+
+  /// Assets for assetsImagesSelesaiPutih
+  /// assets/images/selesaiPutih.png
+  static const String assetsImagesSelesaiPutih = "assets/images/SelesaiPutih.png";
 
   /// Assets for assetsImagesWisataAlam
   /// assets/images/wisata_alam.png

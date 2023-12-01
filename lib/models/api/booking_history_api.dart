@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sustain_tour_mobile/constants/api_base_url.dart';
-import 'package:sustain_tour_mobile/models/booking_history_model/booking_history_model.dart';
+import 'package:sustain_tour_mobile/models/booking_models/booking_history_model.dart';
 
 class BookingHistoryApi {
   static Future<BookingHistoryModel> getBookingHistory() async {

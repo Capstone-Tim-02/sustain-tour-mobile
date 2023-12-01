@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sustain_tour_mobile/models/api/booking_history_api.dart';
-import 'package:sustain_tour_mobile/models/booking_history_model/booking_history_model.dart';
+import 'package:sustain_tour_mobile/models/booking_models/booking_history_model.dart';
 
 class TravelHistoryProvider extends ChangeNotifier {
   late BookingHistoryModel _bookingHistoryModel;

@@ -8,6 +8,7 @@ class ButtonWidget {
   static Widget defaultContainer({
     required String? text,
     required Function()? onPressed,
+    TextStyle? textstyle
   }) {
     return SizedBox(
       height: 60,
@@ -34,7 +35,7 @@ class ButtonWidget {
           onPressed: onPressed,
           child: Text(
             text ?? 'Button',
-            style: TextStyleWidget.bodyB1(
+            style: textstyle ?? TextStyleWidget.bodyB1(
               fontWeight: FontWeightStyle.semiBold,
               color: onPressed == null
                   ? ColorThemeStyle.grey100

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:sustain_tour_mobile/screen/about_us_sscreen/about_us_screen.dart';
 import 'package:sustain_tour_mobile/screen/ai_screen/ai_screen.dart';
+import 'package:sustain_tour_mobile/screen/checkout_screen/checkout_screen.dart';
+import 'package:sustain_tour_mobile/screen/checkout_screen/components/booking_result_screen/booking_result_screen.dart';
+import 'package:sustain_tour_mobile/screen/checkout_screen/components/use_promo_screen/use_promo_screen.dart';
 import 'package:sustain_tour_mobile/screen/home_screen/components/desti_point_screen/desti_point_screen.dart';
 import 'package:sustain_tour_mobile/screen/pusat_bantuan_screen/pusat_bantuan_screen.dart';
 import 'package:sustain_tour_mobile/screen/register_screen/register_screen.dart';
@@ -36,6 +39,10 @@ class Routes {
 
   static const String destiPointScreen = 'main/home/destiPoint';
 
+  static const String checkoutScreen = 'main/checkout';
+  static const String usePromoScreen = 'main/checkout/usePromo';
+  static const String bookingResultScreen = 'main/checkout/result';
+
   static const String invoiceScreen = '/main/tiket/invoice-screen';
   static const String detailTransaksiScreen =
       '/main/tiket/invoice-screen/detail-transksi';
@@ -56,6 +63,9 @@ class Routes {
     detailTransaksiScreen: (context) => const DetailTransaksiScreenComponent(),
     destiPointScreen: (context) => const DestiPointScreen(),
     pusatBantuan: (context) => const PusatBantuanScreen(),
+    checkoutScreen: (context) => const CheckoutScreen(),
+    usePromoScreen: (context) => const UsePromoScreen(),
+    bookingResultScreen: (context) => const BookingResultScreen(),
     tnc: (context) => const TermsConditionScreen(),
     aboutUs: (context) => const AboutUsScreen(),
   };

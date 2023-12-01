@@ -11,11 +11,13 @@ class SnackBarWidget {
     Color? backgroundColor,
     SnackBarBehavior? behavior,
     TextStyle? textStyle,
+    Duration? duration
   }) {
     return SnackBar(
       behavior: behavior ?? SnackBarBehavior.floating,
       margin: margin ?? const EdgeInsets.only(left: 34, right: 34, bottom: 44),
       backgroundColor: backgroundColor ?? ColorThemeStyle.blue80,
+      duration: duration ?? const Duration(seconds: 4),
       content: FittedBox(
         fit: BoxFit.scaleDown,
         child: Text(
