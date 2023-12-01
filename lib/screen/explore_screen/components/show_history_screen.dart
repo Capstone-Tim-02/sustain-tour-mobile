@@ -13,77 +13,66 @@ class ShowHistoryScreen extends StatelessWidget {
     LoginProvider loginProvider = Provider.of<LoginProvider>(context, listen: false);
     return Consumer<ExploreScreenProvider>(
       builder: (context, exploreScreenProvider, child) {
-        return Container(
-          width: double.infinity,
-          decoration: const BoxDecoration(
-            color: ColorThemeStyle.white100
-          ),
-          child: Column(
-            children: [
-              ListView.builder(
-                shrinkWrap: true,
-                reverse: true,
-                padding: const EdgeInsets.symmetric(horizontal: 17, vertical: 10),
-                itemCount: exploreScreenProvider.searchHistoryList.length,
-                itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: (){
-                      exploreScreenProvider.onSearchWisataSubmit();
-                      exploreScreenProvider.searchWisataController.text = exploreScreenProvider.searchHistoryList[index].query;
-                      exploreScreenProvider.getWisataDataBySearch(
-                        token: loginProvider.token.toString(),
-                        searchQuery: exploreScreenProvider.searchHistoryList[index].query
-                      );
-                      
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.only(bottom: 16),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              const Icon(
-                                Icons.access_time,
-                                size: 24,
-                                color: ColorThemeStyle.black100
-                              ),
-                              const SizedBox(width: 16),
-                              SizedBox(
-                                width: 280,
-                                child: Text(
-                                  exploreScreenProvider.searchHistoryList[index].query,
-                                  style: TextStyleWidget.bodyB3(
-                                    color: ColorThemeStyle.black100,
-                                    fontWeight: FontWeight.w500
-                                  ),
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ),
-                            ],
-                          ),
-                          InkWell(
-                            onTap: (){
-                              exploreScreenProvider.deleteSearchHistory(
-                                id: exploreScreenProvider.searchHistoryList[index].id,
-                                userId: loginProvider.userId ?? 0
-                              );
-                            },
-                            child: const Icon(
-                              Icons.close,
-                              size: 24,
-                              color: ColorThemeStyle.black100
+        return ListView.builder(
+          reverse: true,
+          shrinkWrap: true,
+          padding: const EdgeInsets.symmetric(horizontal: 17, vertical: 10),
+          itemCount: exploreScreenProvider.searchHistoryList.length,
+          itemBuilder: (context, index) {
+            return GestureDetector(
+              onTap: (){
+                exploreScreenProvider.onSearchWisataSubmit();
+                exploreScreenProvider.searchWisataController.text = exploreScreenProvider.searchHistoryList[index].query;
+                exploreScreenProvider.getWisataDataBySearch(
+                  token: loginProvider.token.toString(),
+                  searchQuery: exploreScreenProvider.searchHistoryList[index].query
+                );
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 16),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const Icon(
+                          Icons.access_time,
+                          size: 24,
+                          color: ColorThemeStyle.black100
+                        ),
+                        const SizedBox(width: 16),
+                        SizedBox(
+                          width: 280,
+                          child: Text(
+                            exploreScreenProvider.searchHistoryList[index].query,
+                            style: TextStyleWidget.bodyB3(
+                              color: ColorThemeStyle.black100,
+                              fontWeight: FontWeight.w500
                             ),
+                            overflow: TextOverflow.ellipsis,
                           ),
-                        ],
+                        ),
+                      ],
+                    ),
+                    InkWell(
+                      onTap: (){
+                        exploreScreenProvider.deleteSearchHistory(
+                          id: exploreScreenProvider.searchHistoryList[index].id,
+                          userId: loginProvider.userId ?? 0
+                        );
+                      },
+                      child: const Icon(
+                        Icons.close,
+                        size: 24,
+                        color: ColorThemeStyle.black100
                       ),
                     ),
-                  );
-                },
-              )
-            ],
-          ),
+                  ],
+                ),
+              ),
+            );
+          },
         );
       }
     );

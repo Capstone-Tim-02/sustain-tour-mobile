@@ -10,17 +10,23 @@ class DestiPointProvider extends ChangeNotifier {
   List<PointsHistory> get listPointHistory => _listPointHistory;
 
   void getPointHistory() async {
-    _isLoadingHistory = true;
-    notifyListeners();
+    try {
+      _isLoadingHistory = true;
+      notifyListeners();
 
-    _listPointHistory = await PointHistoryApi().getPointHistoryFromAPI();
-    //mengurutkan data yang used dulu baru yang earned
-    _listPointHistory.sort(
-      (a, b) {
-        return a.pointsEarned?.compareTo(b.pointsEarned ?? 0) ?? 0;
-      },
-    );
-    _isLoadingHistory = false;
-    notifyListeners();
+      _listPointHistory = await PointHistoryApi().getPointHistoryFromAPI();
+      //mengurutkan data yang used dulu baru yang earned
+      _listPointHistory.sort(
+        (a, b) {
+          return a.pointsEarned?.compareTo(b.pointsEarned ?? 0) ?? 0;
+        },
+      );
+      _isLoadingHistory = false;
+      notifyListeners();
+    } catch (e) {
+      _isLoadingHistory = false;
+      _listPointHistory = [];
+      notifyListeners();
+    }
   }
 }

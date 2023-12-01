@@ -5,7 +5,7 @@ import 'package:sustain_tour_mobile/models/wisata_models/wisata_models.dart';
 class WisataApi {
   Future<List<Wisata>> getAllWisata({required int page, required String token, required List<Wisata> listWisata}) async {
     final response = await Dio().get(
-      '$baseUrl/wisata',
+      '$baseUrl/wisata/mobile',
       queryParameters: {
         'limit' : 6,
         'page' : page
@@ -67,7 +67,7 @@ class WisataApi {
     }
 
     final response = await Dio().get(
-      '$baseUrl/wisata',
+      '$baseUrl/wisata/mobile',
       queryParameters: queryParameters,
       options: Options(
         headers: {
@@ -90,16 +90,21 @@ class WisataApi {
     required String token,
     required String title,
     required int page,
-    required List<Wisata> listWisata
+    required List<Wisata> listWisata,
+    required List<String> category,
   }) async {
     Map<String, dynamic> queryParameters = {
       'limit' : 6,
       'page' : page,
-      'title' : title
+      'title' : title,
     };
 
+    if(category.isNotEmpty){
+      queryParameters.addAll({'category_name' : category});
+    }
+
     final response = await Dio().get(
-      '$baseUrl/wisata',
+      '$baseUrl/wisata/mobile',
       queryParameters: queryParameters,
       options: Options(
         headers: {
