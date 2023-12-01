@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sustain_tour_mobile/constants/routes.dart';
+import 'package:sustain_tour_mobile/screen/checkout_screen/checkout_provider.dart';
 import 'package:sustain_tour_mobile/screen/explore_screen/explore_screen_provider.dart';
 import 'package:sustain_tour_mobile/widget/card_widget.dart';
 
@@ -26,6 +27,7 @@ class WisataGridScreen extends StatelessWidget {
             return GestureDetector(
               //TODO Ingat ganti gesture detector nya ketika detail screen sudah jadi
               onTap: (){
+                Provider.of<CheckoutProvider>(context, listen: false).checkoutProviderReset();
                 Navigator.pushNamed(
                   context,
                   Routes.checkoutScreen,

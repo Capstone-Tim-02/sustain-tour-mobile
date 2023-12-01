@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sustain_tour_mobile/models/booking_history_model/booking_history_model.dart';
+import 'package:sustain_tour_mobile/models/booking_models/booking_history_model.dart';
 import 'package:sustain_tour_mobile/screen/tiket_screen/component/invoice_screen_component/component/invoice_container_component/invoice_container_component.dart';
 import 'package:sustain_tour_mobile/style/color_theme_style.dart';
 import 'package:sustain_tour_mobile/style/font_weight_style.dart';

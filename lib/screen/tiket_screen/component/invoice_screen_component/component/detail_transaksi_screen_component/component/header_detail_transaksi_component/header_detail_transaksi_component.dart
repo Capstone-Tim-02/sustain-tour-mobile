@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sustain_tour_mobile/constants/date_format_const.dart';
-import 'package:sustain_tour_mobile/models/booking_history_model/booking_history_model.dart';
+import 'package:sustain_tour_mobile/models/booking_models/booking_history_model.dart';
 import 'package:sustain_tour_mobile/style/color_theme_style.dart';
 import 'package:sustain_tour_mobile/style/font_weight_style.dart';
 import 'package:sustain_tour_mobile/style/text_style_widget.dart';

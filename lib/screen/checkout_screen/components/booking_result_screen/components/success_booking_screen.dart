@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sustain_tour_mobile/constants/assets_image.dart';
+import 'package:sustain_tour_mobile/constants/routes.dart';
 import 'package:sustain_tour_mobile/screen/checkout_screen/components/booking_result_screen/booking_result_provider.dart';
 import 'package:sustain_tour_mobile/style/color_theme_style.dart';
 import 'package:sustain_tour_mobile/style/text_style_widget.dart';
@@ -39,8 +40,12 @@ class SuccessBookingScreen extends StatelessWidget {
         const SizedBox(height: 32),
         GestureDetector(
           onTap: (){
-            //TODO Navigasi ke halaman detail transaksi
-            
+            bookingResultProvider.getBookingDetail();
+            Navigator.pushNamed(
+              context,
+              Routes.detailTransaksiScreen,
+              arguments: bookingResultProvider.bookingModel?.ticketData?.first
+            );
           },
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,

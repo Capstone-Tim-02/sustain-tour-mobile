@@ -101,7 +101,7 @@ class CheckoutProvider extends ChangeNotifier {
           _discountPercentage = listAllPromo[i].jumlahPotonganPersen;
           break;
         } else {
-          _message = "Kode yang kamu masukkan sudah kadaluwarsa";
+          _message = "Kode yang kamu masukkan sudah kedaluwarsa";
           break;
         }
       }
@@ -136,6 +136,7 @@ class CheckoutProvider extends ChangeNotifier {
   void checkoutProviderReset(){
     _quantity = 1;
     _isPointUsed = false;
+    _isLoadingPromo = true;
     _isGetPromoSuccess = false;
     _isPromoUsed = false;
     _usedPromoIndex = -1;
