@@ -15,6 +15,8 @@ import 'package:sustain_tour_mobile/screen/onboarding_screen/splash_screen/splas
 import 'package:sustain_tour_mobile/screen/profile_screen/component/account_screen_component/account_screen_component.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/component/account_screen_component/component/edit_account_screen_component/edit_account_screen_component.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/component/profile_emission_component/component/detail_emission_screen_component/detail_emission_screen_component.dart';
+import 'package:sustain_tour_mobile/screen/tiket_screen/component/invoice_screen_component/component/detail_transaksi_screen_component/detail_transaksi_screen_component.dart';
+import 'package:sustain_tour_mobile/screen/tiket_screen/component/invoice_screen_component/invoice_screen_component.dart';
 
 class Routes {
   static const String splashScreen = '/';
@@ -37,6 +39,10 @@ class Routes {
   static const String usePromoScreen = 'main/checkout/usePromo';
   static const String bookingResultScreen = 'main/checkout/result';
 
+  static const String invoiceScreen = '/main/tiket/invoice-screen';
+  static const String detailTransaksiScreen =
+      '/main/tiket/invoice-screen/detail-transksi';
+
   static Map<String, WidgetBuilder> routeMap = {
     splashScreen: (context) => const SplashScreen(),
     onboardingScreen: (context) => const OnboardingScreen(),
@@ -49,6 +55,8 @@ class Routes {
     accountScreen: (context) => const AccountScreenComponent(),
     detailEmissionScreen: (context) => const DetailEmissionScreenComponent(),
     editAccountScreen: (context) => const EditAccountScreenComponent(),
+    invoiceScreen: (context) => const InvoiceScreenComponent(),
+    detailTransaksiScreen: (context) => const DetailTransaksiScreenComponent(),
     destiPointScreen: (context) => const DestiPointScreen(),
     pusatBantuan: (context) => const PusatBantuanScreen(),
     checkoutScreen: (context) => const CheckoutScreen(),

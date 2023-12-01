@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sustain_tour_mobile/constants/api_base_url.dart';
 import 'package:sustain_tour_mobile/models/user_data_models/user_data_models.dart';
 import 'package:http_parser/http_parser.dart';
@@ -191,6 +192,26 @@ class UserDataApi {
         ),
       );
 
+      return true;
+    } on DioException catch (e) {
+      throw '${e.response?.data['message']}';
+    }
+  }
+
+  Future<bool> updateLokasiUser(
+      {required double lat, required double long}) async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    final int? userId = pref.getInt('id');
+    final String? token = pref.getString('token');
+
+    try {
+      await Dio().put('$baseUrl/userLocation/$userId',
+          options: Options(
+            headers: {
+              "authorization": "Bearer $token",
+            },
+          ),
+          data: {"Lat": lat, "Long": long});
       return true;
     } on DioException catch (e) {
       throw '${e.response?.data['message']}';

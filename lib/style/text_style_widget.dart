@@ -75,6 +75,30 @@ class TextStyleWidget {
     );
   }
 
+  static TextStyle headlineH4(
+      {Color? color, FontWeight? fontWeight, FontStyle? fontStyle}) {
+    return TextStyle(
+      fontFamily: Fonts.poppins,
+      fontWeight: fontWeight,
+      color: color,
+      fontStyle: fontStyle,
+      fontSize: 20,
+      height: 1.33,
+    );
+  }
+
+  static TextStyle headlineH5(
+      {Color? color, FontWeight? fontWeight, FontStyle? fontStyle}) {
+    return TextStyle(
+      fontFamily: Fonts.poppins,
+      fontWeight: fontWeight,
+      color: color,
+      fontStyle: fontStyle,
+      fontSize: 16,
+      height: 1.33,
+    );
+  }
+
   static TextStyle titleT1(
       {Color? color,
       FontWeight? fontWeight,
@@ -191,6 +215,32 @@ class TextStyleWidget {
       fontSize: 11,
       height: 1.45,
       letterSpacing: 0.5,
+    );
+  }
+
+  static TextStyle labelL4(
+      {Color? color, FontWeight? fontWeight, FontStyle? fontStyle}) {
+    return TextStyle(
+      fontFamily: Fonts.poppins,
+      fontWeight: fontWeight,
+      color: color,
+      fontStyle: fontStyle,
+      fontSize: 10,
+      height: 1.6,
+      letterSpacing: 0.4,
+    );
+  }
+
+  static TextStyle labelL5(
+      {Color? color, FontWeight? fontWeight, FontStyle? fontStyle}) {
+    return TextStyle(
+      fontFamily: Fonts.poppins,
+      fontWeight: fontWeight,
+      color: color,
+      fontStyle: fontStyle,
+      fontSize: 8,
+      height: 1.6,
+      letterSpacing: 0.4,
     );
   }
 }
