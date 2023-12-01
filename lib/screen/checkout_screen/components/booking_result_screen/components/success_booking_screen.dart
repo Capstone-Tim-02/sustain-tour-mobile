@@ -12,6 +12,7 @@ class SuccessBookingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     BookingResultProvider bookingResultProvider = Provider.of(context, listen: false);
+    bookingResultProvider.getBookingDetail();
     return Column(
       children: [
         const SizedBox(height: 75,),
@@ -39,8 +40,7 @@ class SuccessBookingScreen extends StatelessWidget {
         ),
         const SizedBox(height: 32),
         GestureDetector(
-          onTap: (){
-            bookingResultProvider.getBookingDetail();
+          onTap: () {
             Navigator.pushNamed(
               context,
               Routes.detailTransaksiScreen,
