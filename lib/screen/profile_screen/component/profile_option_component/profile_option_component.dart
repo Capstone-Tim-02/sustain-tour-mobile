@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sustain_tour_mobile/constants/assets_image.dart';
 import 'package:sustain_tour_mobile/constants/routes.dart';
+import 'package:sustain_tour_mobile/screen/ai_screen/ai_screen.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/login_provider.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/component/alert_dialog_component/alert_dialog_component.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/component/profile_option_component/component/list_tile_widget.dart';
@@ -20,11 +21,29 @@ class ProfileOptionComponent extends StatelessWidget {
           child: ListTileWidget(
             isUsingShadow: true,
             title: 'Pusat Bantuan',
-            subtitle: 'FAQ dan Virtual Asistent',
+            subtitle: 'FAQ',
             iconSvgString: Assets.assetsIconsHelp,
             borderRadius: const BorderRadius.all(Radius.circular(10)),
             trailing: const Icon(Icons.navigate_next),
             onTap: () => Navigator.pushNamed(context, Routes.pusatBantuan),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(bottom: 16, left: 16, right: 16),
+          child: ListTileWidget(
+            isUsingShadow: true,
+            title: 'Virtual Asistant',
+            subtitle: 'Bertanyalah kepada Chatbot kami',
+            iconSvgString: Assets.assetsIconsAccountCircleFill,
+            borderRadius: const BorderRadius.all(Radius.circular(10)),
+            trailing: const Icon(Icons.navigate_next),
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const AiScreen(),
+                ),
+              );
+            },
           ),
         ),
         Padding(

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sustain_tour_mobile/constants/assets_image.dart';
-import 'package:sustain_tour_mobile/screen/ai_screen/ai_screen.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/component/profile_option_component/component/list_tile_widget.dart';
 import 'package:sustain_tour_mobile/screen/pusat_bantuan_screen/faq/faq_screen.dart';
 import 'package:sustain_tour_mobile/style/font_weight_style.dart';
@@ -19,8 +18,11 @@ class PusatBantuanScreen extends StatelessWidget {
             fontWeight: FontWeightStyle.semiBold,
           ),
         ),
+        backgroundColor: Colors.white,
+        surfaceTintColor: Colors.white,
         centerTitle: true,
       ),
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -81,24 +83,6 @@ class PusatBantuanScreen extends StatelessWidget {
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) => FaqScreen(),
-                    ),
-                  );
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 16, left: 16, right: 16),
-              child: ListTileWidget(
-                isUsingShadow: true,
-                title: 'Virtual Asistant',
-                subtitle: 'Bertanyalah kepada Chatbot kami',
-                iconSvgString: Assets.assetsIconsAccountCircleFill,
-                borderRadius: const BorderRadius.all(Radius.circular(10)),
-                trailing: const Icon(Icons.navigate_next),
-                onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => const AiScreen(),
                     ),
                   );
                 },

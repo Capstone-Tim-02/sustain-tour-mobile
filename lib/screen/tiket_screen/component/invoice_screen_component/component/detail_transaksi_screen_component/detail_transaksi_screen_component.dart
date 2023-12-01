@@ -46,6 +46,8 @@ class DetailTransaksiScreenComponent extends StatelessWidget {
             LokasiTujuanComponent(
               lokasiWisata: tiketData.lokasiWisata,
               mapsLink: tiketData.mapsLink,
+              latTarget: tiketData.lat,
+              longTarget: tiketData.long,
             ),
             const SizedBox(
               height: 32,

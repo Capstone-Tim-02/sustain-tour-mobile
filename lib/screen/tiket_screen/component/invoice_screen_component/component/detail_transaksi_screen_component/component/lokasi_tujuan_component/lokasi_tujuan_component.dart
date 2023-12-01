@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:sustain_tour_mobile/constants/open_maps_func.dart';
-import 'package:sustain_tour_mobile/style/color_theme_style.dart';
 import 'package:sustain_tour_mobile/style/font_weight_style.dart';
 import 'package:sustain_tour_mobile/style/text_style_widget.dart';
 import 'package:sustain_tour_mobile/widget/badge_widget.dart';
+import 'package:sustain_tour_mobile/widget/google_maps_widget.dart';
 
 class LokasiTujuanComponent extends StatelessWidget {
   final String lokasiWisata;
   final String mapsLink;
+  final double latTarget;
+  final double longTarget;
   const LokasiTujuanComponent(
-      {super.key, required this.lokasiWisata, required this.mapsLink});
+      {super.key,
+      required this.lokasiWisata,
+      required this.mapsLink,
+      required this.latTarget,
+      required this.longTarget});
 
   @override
   Widget build(BuildContext context) {
@@ -25,13 +31,9 @@ class LokasiTujuanComponent extends StatelessWidget {
         const SizedBox(
           height: 16,
         ),
-        Container(
-          width: double.infinity,
-          height: 110,
-          decoration: BoxDecoration(
-            color: ColorThemeStyle.green100,
-            borderRadius: BorderRadius.circular(10),
-          ),
+        GoogleMapsWidget(
+          latTarget: latTarget,
+          longTarget: longTarget,
         ),
         const SizedBox(
           height: 8,
