@@ -8,21 +8,28 @@ class AlertDialogComponent extends StatelessWidget {
   final String text;
   final void Function()? onPressedNoButton;
   final void Function()? onPressedYesButton;
+  final EdgeInsets? insetPadding;
+  final EdgeInsetsGeometry? contentPadding;
   const AlertDialogComponent(
       {super.key,
       required this.text,
       this.onPressedNoButton,
-      this.onPressedYesButton});
+      this.onPressedYesButton,
+      this.insetPadding,
+      this.contentPadding});
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      contentPadding: const EdgeInsets.only(
-        left: 33,
-        top: 44,
-        right: 33,
-        bottom: 32,
-      ),
+      insetPadding: insetPadding ??
+          const EdgeInsets.symmetric(horizontal: 40.0, vertical: 24.0),
+      contentPadding: contentPadding ??
+          const EdgeInsets.only(
+            left: 31,
+            top: 44,
+            right: 31,
+            bottom: 32,
+          ),
       shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(10))),
       backgroundColor: Colors.white,
@@ -35,7 +42,7 @@ class AlertDialogComponent extends StatelessWidget {
           height: 1.81,
         ),
       ),
-      actionsAlignment: MainAxisAlignment.center,
+      actionsAlignment: MainAxisAlignment.spaceAround,
       actionsPadding: const EdgeInsets.only(
         left: 32,
         right: 32,
@@ -45,11 +52,8 @@ class AlertDialogComponent extends StatelessWidget {
         BadgeWidget.container(
           onPressed: onPressedNoButton,
           label: 'Tidak',
-          width: 110,
+          width: 105,
           height: 42,
-        ),
-        const SizedBox(
-          width: 24,
         ),
         BadgeWidget.outline(
           onPressed: onPressedYesButton,
@@ -57,7 +61,7 @@ class AlertDialogComponent extends StatelessWidget {
           foregroundColor: ColorThemeStyle.red,
           overlayColor: const Color.fromARGB(255, 235, 124, 116),
           label: 'Iya',
-          width: 110,
+          width: 105,
           height: 42,
         ),
       ],

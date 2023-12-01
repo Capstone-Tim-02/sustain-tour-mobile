@@ -53,8 +53,7 @@ void bottomSheetSearchKota(BuildContext context){
                       children: [
                         for(int i = 0; i < exploreScreenProvider.listSearchedKota.length;i++)
                         i == exploreScreenProvider.kotaIndex
-                        ? BadgeWidget.containerWithIcon(
-                            icon: const Icon(Icons.clear),
+                        ? BadgeWidget.container(
                             onPressed: (){
                               exploreScreenProvider.selectKota(-1);
                             },

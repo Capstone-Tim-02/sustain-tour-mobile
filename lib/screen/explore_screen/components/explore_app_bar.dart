@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sustain_tour_mobile/style/font_weight_style.dart';
 import 'package:sustain_tour_mobile/style/text_style_widget.dart';
 
-class TitleExplore {
+class ExploreAppBar {
   static AppBar exploreAppBar = AppBar(
     title: Text(
       'Explore',

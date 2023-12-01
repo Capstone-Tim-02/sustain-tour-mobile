@@ -9,12 +9,32 @@ class TravelHistoryProvider extends ChangeNotifier {
   bool _isLoading = true;
   bool get isLoading => _isLoading;
 
-  Future<void> getBookingHistory({required String token}) async {
+  String _messageErrorBatalkanPesanan = '';
+  String get messageErrorBatalkanPesanan => _messageErrorBatalkanPesanan;
+
+  void clearErrorMessage() {
+    _messageErrorBatalkanPesanan = '';
+  }
+
+  Future<void> getBookingHistory() async {
     _isLoading = true;
     notifyListeners();
-    _bookingHistoryModel =
-        await BookingHistoryApi.getBookingHistory(token: token);
+    _bookingHistoryModel = await BookingHistoryApi.getBookingHistory();
     _isLoading = false;
     notifyListeners();
+  }
+
+  Future<void> batalkanPesanan({required String invoiceNumber}) async {
+    bool isDoneBatalkanPesanan = false;
+    try {
+      isDoneBatalkanPesanan =
+          await BookingHistoryApi.batalkanPesanan(invoiceNumber: invoiceNumber);
+
+      if (isDoneBatalkanPesanan) {
+        await getBookingHistory();
+      }
+    } catch (e) {
+      _messageErrorBatalkanPesanan = e.toString();
+    }
   }
 }

@@ -24,6 +24,7 @@ class FaqScreen extends StatelessWidget {
     String? errorText;
     return Scaffold(
       resizeToAvoidBottomInset: false,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(
           'FAQ',
@@ -31,6 +32,8 @@ class FaqScreen extends StatelessWidget {
             fontWeight: FontWeightStyle.semiBold,
           ),
         ),
+        backgroundColor: Colors.white,
+        surfaceTintColor: Colors.white,
         centerTitle: true,
       ),
       body: Padding(
