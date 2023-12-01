@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_config/flutter_config.dart';
 import 'package:intl/date_symbol_data_local.dart';
+
 import 'package:provider/provider.dart';
 import 'package:sustain_tour_mobile/screen/ai_screen/ai_screen_provider.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/login_provider.dart';
@@ -30,11 +31,11 @@ import 'package:sustain_tour_mobile/widget/bottom_navbar_widget/bottom_navbar_wi
 import 'screen/onboarding_screen/onboarding_provider.dart';
 import 'screen/onboarding_screen/splash_screen/splash_screen_provider.dart';
 
-void main() async async {
-  WidgetsFlutterBinding.ensureInitialized(); // Required by FlutterConfig
-  await FlutterConfig.loadEnvVariables();
+void main() async {
   await initializeDateFormatting('id_ID', null);
 
+  WidgetsFlutterBinding.ensureInitialized(); // Required by FlutterConfig
+  await FlutterConfig.loadEnvVariables();
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider<BottomNavigationBarProvider>(
