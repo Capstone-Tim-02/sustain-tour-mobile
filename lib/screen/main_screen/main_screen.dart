@@ -7,6 +7,7 @@ import 'package:sustain_tour_mobile/screen/explore_screen/explore_screen.dart';
 import 'package:sustain_tour_mobile/screen/home_screen/home_screen.dart';
 import 'package:sustain_tour_mobile/screen/tiket_screen/component/tiket_app_bar_component/tiket_app_bar_component.dart';
 import 'package:sustain_tour_mobile/screen/tiket_screen/tiket_screen.dart';
+import 'package:sustain_tour_mobile/screen/promo_screen/promo_screen.dart';
 import 'package:sustain_tour_mobile/widget/bottom_navbar_widget/bottom_navbar_widget.dart';
 import 'package:sustain_tour_mobile/widget/bottom_navbar_widget/bottom_navbar_widget_provider.dart';
 
@@ -19,7 +20,7 @@ class MainScreen extends StatelessWidget {
       case 1:
         return ExploreAppBar.exploreAppBar;
       case 2:
-        return AppBar();
+        return null;
       case 3:
         return TiketAppBarComponent.tiketAppBar;
       case 4:
@@ -38,7 +39,7 @@ class MainScreen extends StatelessWidget {
       body: IndexedStack(index: provider.currentIndex, children: const [
         HomeScreen(),
         ExploreScreen(),
-        Text("Halaman Ketiga"),
+        PromoScreen(),
         TiketScreen(),
         ProfileScreen(),
       ]),

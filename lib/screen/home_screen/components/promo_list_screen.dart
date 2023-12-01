@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:sustain_tour_mobile/screen/home_screen/home_screen_provider.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/login_provider.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/profile_provider.dart';
+import 'package:sustain_tour_mobile/screen/promo_screen/component/detail_promo_screen.dart';
 import 'package:sustain_tour_mobile/style/color_theme_style.dart';
 import 'package:sustain_tour_mobile/style/text_style_widget.dart';
 import 'package:sustain_tour_mobile/widget/badge_widget.dart';
@@ -31,11 +32,23 @@ class PromoListScreen extends StatelessWidget {
                         itemBuilder: (context, index) {
                           return Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 6),
-                            child: CardWidget.medium(
-                                imageUrl: homeScreenProvider
-                                    .listPromo[index].imageVoucher,
-                                title:
-                                    homeScreenProvider.listPromo[index].title),
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) => DetailPromoScreen(
+                                      promoId: homeScreenProvider
+                                          .listPromo[index].id,
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: CardWidget.medium(
+                                  imageUrl: homeScreenProvider
+                                      .listPromo[index].imageVoucher,
+                                  title: homeScreenProvider
+                                      .listPromo[index].title),
+                            ),
                           );
                         },
                       )

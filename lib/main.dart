@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_config/flutter_config.dart';
+import 'package:intl/date_symbol_data_local.dart';
+
 import 'package:provider/provider.dart';
 import 'package:sustain_tour_mobile/screen/ai_screen/ai_screen_provider.dart';
 import 'package:sustain_tour_mobile/screen/checkout_screen/checkout_provider.dart';
@@ -15,6 +17,7 @@ import 'package:sustain_tour_mobile/screen/profile_screen/component/profile_emis
 import 'package:sustain_tour_mobile/screen/profile_screen/component/profile_emission_component/profile_emission_provider.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/profile_provider.dart';
 import 'package:sustain_tour_mobile/screen/home_screen/home_screen_provider.dart';
+import 'package:sustain_tour_mobile/screen/promo_screen/component/detail_promo_provider.dart';
 import 'package:sustain_tour_mobile/screen/pusat_bantuan_screen/faq/faq_screen_provider.dart';
 import 'package:sustain_tour_mobile/screen/register_screen/register_provider.dart';
 import 'package:sustain_tour_mobile/screen/register_screen/validator/form_confirm_password_screens.dart';
@@ -31,6 +34,8 @@ import 'screen/onboarding_screen/onboarding_provider.dart';
 import 'screen/onboarding_screen/splash_screen/splash_screen_provider.dart';
 
 void main() async {
+  await initializeDateFormatting('id_ID', null);
+
   WidgetsFlutterBinding.ensureInitialized(); // Required by FlutterConfig
   await FlutterConfig.loadEnvVariables();
   runApp(MultiProvider(
@@ -87,6 +92,8 @@ void main() async {
           create: (context) => TiketProvider()),
       ChangeNotifierProvider<DestiPointProvider>(
           create: (context) => DestiPointProvider()),
+      ChangeNotifierProvider<DetailPromoProvider>(
+          create: (context) => DetailPromoProvider()),
     ],
     child: const MyApp(),
   ));
