@@ -1,1 +1,3 @@
-const String baseUrl = 'https://destimate.uc.r.appspot.com';
+import 'package:flutter_config/flutter_config.dart';
+
+final String baseUrl = FlutterConfig.get('API_URL');

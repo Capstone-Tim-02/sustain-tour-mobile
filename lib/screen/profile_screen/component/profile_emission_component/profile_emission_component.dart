@@ -15,7 +15,7 @@ class ProfileEmissionComponent extends StatelessWidget {
     return GestureDetector(
       onTap: () => Navigator.pushNamed(context, Routes.detailEmissionScreen),
       child: Container(
-        height: 110,
+        // height: 110,
         width: double.infinity,
         margin: const EdgeInsets.symmetric(
           horizontal: 16,
@@ -83,7 +83,34 @@ class ProfileEmissionComponent extends StatelessWidget {
                 fontWeight: FontWeightStyle.regular,
                 color: Colors.white,
               ),
-            )
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Lihat Selengkapnya',
+                  textAlign: TextAlign.center,
+                  style: TextStyleWidget.labelL3(
+                    fontWeight: FontWeightStyle.semiBold,
+                    color: Colors.white,
+                  ),
+                ),
+                const SizedBox(
+                  width: 8,
+                ),
+                const Icon(
+                  Icons.arrow_forward,
+                  color: Colors.white,
+                  size: 15,
+                )
+              ],
+            ),
+            const SizedBox(
+              height: 8,
+            ),
           ],
         ),
       ),

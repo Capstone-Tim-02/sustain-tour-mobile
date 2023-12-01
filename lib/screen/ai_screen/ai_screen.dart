@@ -16,6 +16,7 @@ class AiScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final aiScreenProvider = context.read<AiScreenProvider>();
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(
           'Virtual Assistant',
@@ -23,6 +24,8 @@ class AiScreen extends StatelessWidget {
             fontWeight: FontWeightStyle.semiBold,
           ),
         ),
+        backgroundColor: Colors.white,
+        surfaceTintColor: Colors.white,
         centerTitle: true,
       ),
       body: Stack(

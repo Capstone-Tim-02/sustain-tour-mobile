@@ -116,6 +116,22 @@ class ProfileProvider extends ChangeNotifier {
     }
   }
 
+  Future<void> updateUserLocation({
+    required double lat,
+    required double long,
+  }) async {
+    bool isDoneUpdate = false;
+
+    try {
+      isDoneUpdate = await UserDataApi().updateLokasiUser(lat: lat, long: long);
+      if (isDoneUpdate) {
+        _message = 'Berhasil update lokasi user';
+      }
+    } catch (e) {
+      _message = e.toString();
+    }
+  }
+
   void clearMessage() {
     _message = '';
   }
