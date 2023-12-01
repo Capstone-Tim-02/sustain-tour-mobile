@@ -39,8 +39,8 @@ class MainScreen extends StatelessWidget {
       body: IndexedStack(index: provider.currentIndex, children: const [
         HomeScreen(),
         ExploreScreen(),
-        TiketScreen(),
         PromoScreen(),
+        TiketScreen(),
         ProfileScreen(),
       ]),
       bottomNavigationBar: const BottomNavigationBarWidget(),

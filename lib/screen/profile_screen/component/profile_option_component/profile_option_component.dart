@@ -37,13 +37,7 @@ class ProfileOptionComponent extends StatelessWidget {
             iconSvgString: Assets.assetsIconsAccountCircleFill,
             borderRadius: const BorderRadius.all(Radius.circular(10)),
             trailing: const Icon(Icons.navigate_next),
-            onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => const AiScreen(),
-                ),
-              );
-            },
+            onTap: () => Navigator.pushNamed(context, Routes.aiScreen),
           ),
         ),
         Padding(
@@ -55,20 +49,19 @@ class ProfileOptionComponent extends StatelessWidget {
             iconSvgString: Assets.assetsIconsInfo,
             borderRadius: const BorderRadius.all(Radius.circular(10)),
             trailing: const Icon(Icons.navigate_next),
-            onTap: () {},
+            onTap: () => Navigator.pushNamed(context, Routes.tnc),
           ),
         ),
         Padding(
           padding: const EdgeInsets.only(bottom: 16, left: 16, right: 16),
           child: ListTileWidget(
-            isUsingShadow: true,
-            title: 'Tentang Aplikasi',
-            subtitle: 'Versi dan Tujuan',
-            iconSvgString: Assets.assetsIconsCopyright,
-            borderRadius: const BorderRadius.all(Radius.circular(10)),
-            trailing: const Icon(Icons.navigate_next),
-            onTap: () {},
-          ),
+              isUsingShadow: true,
+              title: 'Tentang Aplikasi',
+              subtitle: 'Versi dan Tujuan',
+              iconSvgString: Assets.assetsIconsCopyright,
+              borderRadius: const BorderRadius.all(Radius.circular(10)),
+              trailing: const Icon(Icons.navigate_next),
+              onTap: () => Navigator.pushNamed(context, Routes.aboutUs)),
         ),
         Padding(
           padding: const EdgeInsets.only(bottom: 16, left: 16, right: 16),
