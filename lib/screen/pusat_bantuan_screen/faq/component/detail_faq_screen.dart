@@ -19,48 +19,44 @@ class DetailFaqScreen extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: SingleChildScrollView(
-        child: Expanded(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 16,
-              vertical: 32,
+      body: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 32,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              faqModel.tittle,
+              style: TextStyleWidget.titleT2(
+                fontWeight: FontWeightStyle.semiBold,
+              ),
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  faqModel.tittle,
-                  style: TextStyleWidget.titleT2(
-                    fontWeight: FontWeightStyle.semiBold,
-                  ),
-                ),
-                const SizedBox(height: 32),
-                Text(
-                  faqModel.detail,
-                  style: TextStyleWidget.labelL1(
-                    fontWeight: FontWeightStyle.medium,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  faqModel.link,
-                  style: const TextStyle(
-                      decoration: TextDecoration.underline,
-                      decorationColor: Colors.black,
-                      decorationThickness: 1.5,
-                      fontWeight: FontWeight.w700),
-                ),
-                const SizedBox(height: 16),
-                Text(
-                  faqModel.additional,
-                  style: TextStyleWidget.labelL1(
-                    fontWeight: FontWeightStyle.medium,
-                  ),
-                ),
-              ],
+            const SizedBox(height: 32),
+            Text(
+              faqModel.detail,
+              style: TextStyleWidget.labelL1(
+                fontWeight: FontWeightStyle.medium,
+              ),
             ),
-          ),
+            const SizedBox(height: 8),
+            Text(
+              faqModel.link,
+              style: const TextStyle(
+                  decoration: TextDecoration.underline,
+                  decorationColor: Colors.black,
+                  decorationThickness: 1.5,
+                  fontWeight: FontWeight.w700),
+            ),
+            const SizedBox(height: 16),
+            Text(
+              faqModel.additional,
+              style: TextStyleWidget.labelL1(
+                fontWeight: FontWeightStyle.medium,
+              ),
+            ),
+          ],
         ),
       ),
     );
