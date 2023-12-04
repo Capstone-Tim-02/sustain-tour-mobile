@@ -9,61 +9,81 @@ class CategoryWisata extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    LoginProvider loginProvider = Provider.of<LoginProvider>(context, listen: false);
+    LoginProvider loginProvider =
+        Provider.of<LoginProvider>(context, listen: false);
     return Consumer<ExploreScreenProvider>(
       builder: (context, exploreScreenProvider, child) {
         return exploreScreenProvider.showSearchHistory
-        ? const SizedBox()
-        : exploreScreenProvider.isGetWisataSuccess
-          ? SizedBox(
-              height: 40,
-              child: ListView.builder(
-                itemCount: exploreScreenProvider.wisataCategory.length,
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                padding: const EdgeInsets.symmetric(horizontal: 12),
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 4),
-                    child: exploreScreenProvider.wisataCategory.values.elementAt(index) == true ?
-                      BadgeWidget.containerWithIcon(
-                        icon: const Icon(Icons.clear),
-                        label: exploreScreenProvider.wisataCategory.keys.elementAt(index),
-                        onPressed: (){
-                          exploreScreenProvider.toggleButtonCategory(index: index);
-                          if (exploreScreenProvider.showSearchPage == true) {
-                            exploreScreenProvider.getWisataDataBySearch(
-                              token: loginProvider.token.toString(),
-                              searchQuery: exploreScreenProvider.searchWisataController.text
-                            );
-                          } else {
-                            exploreScreenProvider.getWisataDataByFilter(
-                              token: loginProvider.token.toString(),
-                            );
-                          }
-                        }
-                      ) :
-                      BadgeWidget.outline(
-                        label: exploreScreenProvider.wisataCategory.keys.elementAt(index),
-                        onPressed: (){
-                          exploreScreenProvider.toggleButtonCategory(index: index);
-                          if (exploreScreenProvider.showSearchPage == true) {
-                            exploreScreenProvider.getWisataDataBySearch(
-                              token: loginProvider.token.toString(),
-                              searchQuery: exploreScreenProvider.searchWisataController.text
-                            );
-                          } else {
-                            exploreScreenProvider.getWisataDataByFilter(
-                              token: loginProvider.token.toString(),
-                            );
-                          }
-                        }
-                      )
-                    );
-                },
-              ),
-            )
-          : const SizedBox();
+            ? const SizedBox()
+            : exploreScreenProvider.isGetWisataSuccess
+                ? SizedBox(
+                    height: 40,
+                    child: ListView.builder(
+                      itemCount: exploreScreenProvider.wisataCategory.length,
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      padding: const EdgeInsets.symmetric(horizontal: 12),
+                      itemBuilder: (context, index) {
+                        return Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 4),
+                            child: exploreScreenProvider.wisataCategory.values
+                                        .elementAt(index) ==
+                                    true
+                                ? BadgeWidget.containerWithIcon(
+                                    icon: const Icon(Icons.clear),
+                                    label: exploreScreenProvider
+                                        .wisataCategory.keys
+                                        .elementAt(index),
+                                    onPressed: () {
+                                      exploreScreenProvider
+                                          .toggleButtonCategory(index: index);
+                                      if (exploreScreenProvider
+                                              .showSearchPage ==
+                                          true) {
+                                        exploreScreenProvider
+                                            .getWisataDataBySearch(
+                                                token: loginProvider.token
+                                                    .toString(),
+                                                searchQuery:
+                                                    exploreScreenProvider
+                                                        .searchWisataController
+                                                        .text);
+                                      } else {
+                                        exploreScreenProvider
+                                            .getWisataDataByFilter(
+                                          token: loginProvider.token.toString(),
+                                        );
+                                      }
+                                    })
+                                : BadgeWidget.outline(
+                                    label: exploreScreenProvider
+                                        .wisataCategory.keys
+                                        .elementAt(index),
+                                    onPressed: () {
+                                      exploreScreenProvider
+                                          .toggleButtonCategory(index: index);
+                                      if (exploreScreenProvider
+                                              .showSearchPage ==
+                                          true) {
+                                        exploreScreenProvider
+                                            .getWisataDataBySearch(
+                                                token: loginProvider.token
+                                                    .toString(),
+                                                searchQuery:
+                                                    exploreScreenProvider
+                                                        .searchWisataController
+                                                        .text);
+                                      } else {
+                                        exploreScreenProvider
+                                            .getWisataDataByFilter(
+                                          token: loginProvider.token.toString(),
+                                        );
+                                      }
+                                    }));
+                      },
+                    ),
+                  )
+                : const SizedBox();
       },
     );
   }

@@ -1,41 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 import 'package:sustain_tour_mobile/constants/assets_image.dart';
-import 'package:sustain_tour_mobile/models/api/detail_wisata_byid_api.dart';
-import 'package:sustain_tour_mobile/models/detail_wisata_byid_models/detail_wisata_byid_models.dart';
+
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:sustain_tour_mobile/models/wisata_models/wisata_models.dart';
+
+import 'package:sustain_tour_mobile/screen/home_screen/components/detail_wisata_screen/detail_wisata_provider.dart';
+import 'package:sustain_tour_mobile/screen/login_screen/login_provider.dart';
 
 class DetailWisataScreen extends StatefulWidget {
-  final int wisataId;
-  final String userToken;
-
-  const DetailWisataScreen({
-    super.key,
-    required this.wisataId,
-    required this.userToken,
-  });
-
   @override
-  _DetailWisataScreenState createState() => _DetailWisataScreenState();
+  State<DetailWisataScreen> createState() => _DetailWisataScreenState();
 }
 
 class _DetailWisataScreenState extends State<DetailWisataScreen> {
-  late Future<DetailWisataByid> _futureDetailWisata;
-  late DetailWisataApi _detailWisataApi;
-  int _currentImageIndex = 0;
-
-  @override
-  void initState() {
-    super.initState();
-    _detailWisataApi = DetailWisataApi();
-    _futureDetailWisata = _detailWisataApi.getDetailWisataById(
-      widget.wisataId,
-      widget.userToken,
-    );
-  }
-
+  int currentImageIndex = 0;
   @override
   Widget build(BuildContext context) {
+    final wisatadata = (ModalRoute.of(context)?.settings.arguments) as Wisata;
+    LoginProvider loginProvider =
+        Provider.of<LoginProvider>(context, listen: false);
+    // Menggunakan ChangeNotifierProvider untuk mendapatkan DetailWisataProvider
+    final detailProvider = Provider.of<DetailWisataProvider>(context);
+
+    // Memanggil fungsi untuk mendapatkan detail wisata
+    detailProvider.getDetailWisataById(
+        wisatadata.id, loginProvider.token.toString());
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -52,23 +44,20 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
           },
         ),
       ),
-      body: FutureBuilder<DetailWisataByid>(
-        future: _futureDetailWisata,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (snapshot.hasError) {
-            return Center(child: Text('Error: ${snapshot.error}'));
-          } else if (!snapshot.hasData) {
-            return const Center(child: Text('No data available'));
-          } else {
-            DetailWisataByid detailWisata = snapshot.data!;
-            List<String> fasilitasList =
-                parseFasilitasString(detailWisata.wisata.fasilitas);
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16.0),
+        child: Consumer<DetailWisataProvider>(
+          builder: (context, provider, child) {
+            if (provider.detailWisata == null) {
+              // Menampilkan loading jika data belum diterima
+              return const Center(child: CircularProgressIndicator());
+            } else {
+              // Menampilkan detail wisata setelah diterima
+              final detailWisata = provider.detailWisata!;
+              List<String> fasilitasList =
+                  parseFasilitasString(wisatadata.fasilitas);
 
-            return SingleChildScrollView(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
+              return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Stack(
@@ -81,8 +70,7 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8.0),
                               image: DecorationImage(
-                                image: NetworkImage(
-                                    detailWisata.wisata.photoWisata1),
+                                image: NetworkImage(wisatadata.photoWisata1),
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -94,7 +82,7 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
                               borderRadius: BorderRadius.circular(8.0),
                               image: DecorationImage(
                                 image: NetworkImage(
-                                  detailWisata.wisata.photoWisata2,
+                                  wisatadata.photoWisata2,
                                 ),
                                 fit: BoxFit.cover,
                               ),
@@ -105,8 +93,7 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8.0),
                               image: DecorationImage(
-                                image: NetworkImage(
-                                    detailWisata.wisata.photoWisata3),
+                                image: NetworkImage(wisatadata.photoWisata3),
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -120,9 +107,7 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
                           autoPlay: true,
                           aspectRatio: 16 / 9,
                           onPageChanged: (index, reason) {
-                            setState(() {
-                              _currentImageIndex = index;
-                            });
+                            // TODO: Lakukan sesuatu jika halaman berubah
                           },
                         ),
                       ),
@@ -142,7 +127,7 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
                   ),
                   const SizedBox(height: 8.0),
                   Text(
-                    detailWisata.wisata.title,
+                    wisatadata.title,
                     style: const TextStyle(
                         fontSize: 24.0, fontWeight: FontWeight.bold),
                   ),
@@ -192,7 +177,7 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
                               const SizedBox(
                                 width: 5,
                               ),
-                              Text(detailWisata.wisata.descriptionIsOpen)
+                              Text(wisatadata.descriptionIsOpen)
                             ],
                           ),
                         ],
@@ -205,7 +190,7 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
                           ),
                           Flexible(
                             child: Text(
-                              detailWisata.wisata.kota,
+                              wisatadata.kota,
                               overflow: TextOverflow.ellipsis,
                               maxLines: 3,
                             ),
@@ -229,7 +214,7 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
                       Flexible(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: detailWisata.wisata.description
+                          children: wisatadata.description
                               .split('\n')
                               .map((paragraph) {
                             return Padding(
@@ -260,10 +245,10 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
                     Text('• ${fasilitasList[i]}',
                         style: const TextStyle(fontSize: 16)),
                 ],
-              ),
-            );
-          }
-        },
+              );
+            }
+          },
+        ),
       ),
     );
   }
@@ -300,7 +285,7 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
       margin: EdgeInsets.symmetric(horizontal: 4.0),
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: _currentImageIndex == index ? Colors.blue : Colors.grey,
+        color: currentImageIndex == index ? Colors.blue : Colors.grey,
       ),
     );
   }

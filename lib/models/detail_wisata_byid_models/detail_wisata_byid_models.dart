@@ -10,7 +10,7 @@ class DetailWisataByid {
   int code;
   bool error;
   int totalCarbonFootprint;
-  Wisata wisata;
+  WisataDetail wisata;
 
   DetailWisataByid({
     required this.code,
@@ -24,7 +24,7 @@ class DetailWisataByid {
         code: json["code"],
         error: json["error"],
         totalCarbonFootprint: json["total_carbon_footprint"],
-        wisata: Wisata.fromJson(json["wisata"]),
+        wisata: WisataDetail.fromJson(json["wisata"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -35,7 +35,7 @@ class DetailWisataByid {
       };
 }
 
-class Wisata {
+class WisataDetail {
   int id;
   String kode;
   String title;
@@ -60,7 +60,7 @@ class Wisata {
   DateTime createdAt;
   DateTime updatedAt;
 
-  Wisata({
+  WisataDetail({
     required this.id,
     required this.kode,
     required this.title,
@@ -86,7 +86,7 @@ class Wisata {
     required this.updatedAt,
   });
 
-  factory Wisata.fromJson(Map<String, dynamic> json) => Wisata(
+  factory WisataDetail.fromJson(Map<String, dynamic> json) => WisataDetail(
         id: json["id"],
         kode: json["kode"],
         title: json["title"],
