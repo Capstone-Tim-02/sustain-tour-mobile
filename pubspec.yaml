@@ -53,6 +53,8 @@ dependencies:
   flutter_dotenv: ^5.1.0
   flutter_config: ^2.0.2
   google_maps_flutter: ^2.5.0
+  timeago: ^3.6.0
+  timeago_flutter: ^3.6.0
 
 dev_dependencies:
   flutter_test:

@@ -25,10 +25,6 @@ class Assets {
   /// assets/icons/cloud.svg
   static const String assetsIconsCloud = "assets/icons/cloud.svg";
 
-  /// Assets for assetsIconsCopyright
-  /// assets/icons/copyright.svg
-  static const String assetsIconsCopyright = "assets/icons/copyright.svg";
-
   /// Assets for assetsIconsCoin
   /// assets/icons/coin.svg
   static const String assetsIconsCoin = "assets/icons/coin.svg";
@@ -36,6 +32,10 @@ class Assets {
   /// Assets for assetsIconsCopy
   /// assets/icons/copy.svg
   static const String assetsIconsCopy = "assets/icons/copy.svg";
+
+  /// Assets for assetsIconsCopyright
+  /// assets/icons/copyright.svg
+  static const String assetsIconsCopyright = "assets/icons/copyright.svg";
 
   /// Assets for assetsIconsEmail
   /// assets/icons/Email.svg
@@ -96,6 +96,22 @@ class Assets {
   /// Assets for assetsIconsName
   /// assets/icons/Name.svg
   static const String assetsIconsName = "assets/icons/Name.svg";
+
+  /// Assets for assetsIconsNotifPromoRead
+  /// assets/icons/notif_promo_read.svg
+  static const String assetsIconsNotifPromoRead = "assets/icons/notif_promo_read.svg";
+
+  /// Assets for assetsIconsNotifPromoUnread
+  /// assets/icons/notif_promo_unread.svg
+  static const String assetsIconsNotifPromoUnread = "assets/icons/notif_promo_unread.svg";
+
+  /// Assets for assetsIconsNotifTicketRead
+  /// assets/icons/notif_ticket_read.svg
+  static const String assetsIconsNotifTicketRead = "assets/icons/notif_ticket_read.svg";
+
+  /// Assets for assetsIconsNotifTicketUnread
+  /// assets/icons/notif_ticket_unread.svg
+  static const String assetsIconsNotifTicketUnread = "assets/icons/notif_ticket_unread.svg";
 
   /// Assets for assetsIconsPersonOutline
   /// assets/icons/PersonOutline.svg
@@ -242,7 +258,7 @@ class Assets {
   static const String assetsImagesSelesai = "assets/images/selesai.png";
 
   /// Assets for assetsImagesSelesaiPutih
-  /// assets/images/selesaiPutih.png
+  /// assets/images/SelesaiPutih.png
   static const String assetsImagesSelesaiPutih = "assets/images/SelesaiPutih.png";
 
   /// Assets for assetsImagesWisataAlam
