@@ -1,3 +1,3 @@
-import 'package:flutter_config/flutter_config.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-final String baseUrl = FlutterConfig.get('API_URL');
+final String baseUrl = dotenv.env['API_URL'] ?? '';

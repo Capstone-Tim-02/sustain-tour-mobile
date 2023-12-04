@@ -32,10 +32,11 @@ import 'package:sustain_tour_mobile/style/color_theme_style.dart';
 import 'package:sustain_tour_mobile/widget/bottom_navbar_widget/bottom_navbar_widget_provider.dart';
 import 'screen/onboarding_screen/onboarding_provider.dart';
 import 'screen/onboarding_screen/splash_screen/splash_screen_provider.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 void main() async {
   await initializeDateFormatting('id_ID', null);
-
+  await dotenv.load(fileName: ".env");
   WidgetsFlutterBinding.ensureInitialized(); // Required by FlutterConfig
   await FlutterConfig.loadEnvVariables();
   runApp(MultiProvider(
