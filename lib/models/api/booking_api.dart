@@ -71,24 +71,21 @@ class BookingApi {
     }
   }
 
-  static Future<BookingResponseModel> postBookingRequest({
-    required BookingRequestBodyModel requestBody
-  }) async {
-
+  static Future<BookingResponseModel> postBookingRequest(
+      {required BookingRequestBodyModel requestBody}) async {
     String? token = await SharedPreferenceManager.getToken();
     BookingResponseModel? bookingResponseModel;
 
     try {
-      final response = await Dio().post(
-        '$baseUrl/user/buy',
-        options: Options(
-          headers: {'Authorization': 'Bearer $token'},
-        ),
-        data: requestBody.toRawJson()
-      );
+      final response = await Dio().post('$baseUrl/user/buy',
+          options: Options(
+            headers: {'Authorization': 'Bearer $token'},
+          ),
+          data: requestBody.toRawJson());
 
       if (response.statusCode == 200) {
-        return bookingResponseModel = BookingResponseModel.fromJson(response.data);
+        bookingResponseModel = BookingResponseModel.fromJson(response.data);
+        return bookingResponseModel;
       } else {
         throw DioException(
           response: response,
