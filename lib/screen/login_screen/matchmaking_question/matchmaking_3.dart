@@ -68,7 +68,7 @@ class Matchmaking3 extends StatelessWidget {
                     token: loginProvider.token.toString());
 
                 Provider.of<TravelHistoryProvider>(context, listen: false)
-                    .getBookingHistory(token: loginProvider.token.toString());
+                    .getBookingHistory();
 
                 Provider.of<ProfileEmissionProvider>(context, listen: false)
                     .getUserEmission(

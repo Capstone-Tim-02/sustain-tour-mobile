@@ -21,6 +21,22 @@ class Assets {
   /// assets/icons/camera.svg
   static const String assetsIconsCamera = "assets/icons/camera.svg";
 
+  /// Assets for assetsIconsCloud
+  /// assets/icons/cloud.svg
+  static const String assetsIconsCloud = "assets/icons/cloud.svg";
+
+  /// Assets for assetsIconsCopyright
+  /// assets/icons/copyright.svg
+  static const String assetsIconsCopyright = "assets/icons/copyright.svg";
+
+  /// Assets for assetsIconsCoin
+  /// assets/icons/coin.svg
+  static const String assetsIconsCoin = "assets/icons/coin.svg";
+
+  /// Assets for assetsIconsCopy
+  /// assets/icons/copy.svg
+  static const String assetsIconsCopy = "assets/icons/copy.svg";
+
   /// Assets for assetsIconsEmail
   /// assets/icons/Email.svg
   static const String assetsIconsEmail = "assets/icons/Email.svg";
@@ -153,6 +169,18 @@ class Assets {
   /// assets/icons/Wisata_Sejarah.svg
   static const String assetsIconsWisataSejarah = "assets/icons/Wisata_Sejarah.svg";
 
+  /// Assets for assetsImagesChatBot
+  /// assets/images/ChatBot.png
+  static const String assetsImagesChatBot = "assets/images/ChatBot.png";
+
+  /// Assets for assetsImagesDibatalkan
+  /// assets/images/dibatalkan.png
+  static const String assetsImagesDibatalkan = "assets/images/dibatalkan.png";
+
+  /// Assets for assetsImagesDiproses
+  /// assets/images/diproses.png
+  static const String assetsImagesDiproses = "assets/images/diproses.png";
+
   /// Assets for assetsImagesEmissionBg
   /// assets/images/emission_bg.png
   static const String assetsImagesEmissionBg = "assets/images/emission_bg.png";
@@ -165,6 +193,10 @@ class Assets {
   /// assets/images/emission_real_bgWhite.png
   static const String assetsImagesEmissionRealBgWhite = "assets/images/emission_real_bgWhite.png";
 
+  /// Assets for assetsImagesKepalaChatBot
+  /// assets/images/KepalaChatBot.png
+  static const String assetsImagesKepalaChatBot = "assets/images/KepalaChatBot.png";
+
   /// Assets for assetsImagesLogoDestimate
   /// assets/images/logo_destimate.png
   static const String assetsImagesLogoDestimate = "assets/images/logo_destimate.png";
@@ -172,6 +204,10 @@ class Assets {
   /// Assets for assetsImagesMatchmaking
   /// assets/images/matchmaking.png
   static const String assetsImagesMatchmaking = "assets/images/matchmaking.png";
+
+  /// Assets for assetsImagesNotFoundWisata
+  /// assets/images/not_found_wisata.png
+  static const String assetsImagesNotFoundWisata = "assets/images/not_found_wisata.png";
 
   /// Assets for assetsImagesOnboarding
   /// assets/images/onboarding.png
@@ -193,9 +229,21 @@ class Assets {
   /// assets/images/point_background.png
   static const String assetsImagesPointBackground = "assets/images/point_background.png";
 
+  /// Assets for assetsImagesPusatBantuan
+  /// assets/images/PusatBantuan.png
+  static const String assetsImagesPusatBantuan = "assets/images/PusatBantuan.png";
+
   /// Assets for assetsImagesSelamatDatang
   /// assets/images/selamat_datang.png
   static const String assetsImagesSelamatDatang = "assets/images/selamat_datang.png";
+
+  /// Assets for assetsImagesSelesai
+  /// assets/images/selesai.png
+  static const String assetsImagesSelesai = "assets/images/selesai.png";
+
+  /// Assets for assetsImagesSelesaiPutih
+  /// assets/images/selesaiPutih.png
+  static const String assetsImagesSelesaiPutih = "assets/images/SelesaiPutih.png";
 
   /// Assets for assetsImagesWisataAlam
   /// assets/images/wisata_alam.png
@@ -212,8 +260,4 @@ class Assets {
   /// Assets for assetsImagesWisataSejarah
   /// assets/images/wisata_sejarah.png
   static const String assetsImagesWisataSejarah = "assets/images/wisata_sejarah.png";
-
-  /// Assets for assetsImagesNotFoundWisata
-  /// assets/images/not_found_wisata.png
-  static const String assetsImagesNotFoundWisata = "assets/images/not_found_wisata.png";
 }

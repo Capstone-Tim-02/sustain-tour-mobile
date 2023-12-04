@@ -1,1 +1,3 @@
-const String baseUrl = 'https://destimate.uc.r.appspot.com';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
+final String baseUrl = dotenv.env['API_URL'] ?? '';

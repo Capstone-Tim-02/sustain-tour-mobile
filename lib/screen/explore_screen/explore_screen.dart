@@ -4,7 +4,6 @@ import 'package:sustain_tour_mobile/screen/explore_screen/components/category_wi
 import 'package:sustain_tour_mobile/screen/explore_screen/components/loading_wisata.dart';
 import 'package:sustain_tour_mobile/screen/explore_screen/components/search_wisata.dart';
 import 'package:sustain_tour_mobile/screen/explore_screen/components/wisata_components/wisata_screen.dart';
-import 'package:sustain_tour_mobile/screen/explore_screen/components/title_explore.dart';
 import 'package:sustain_tour_mobile/screen/explore_screen/explore_screen_provider.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/login_provider.dart';
 
@@ -24,6 +23,8 @@ class _ExploreScreenState extends State<ExploreScreen> {
       exploreScreenProvider.getWisataInit(
         token: loginProvider.token.toString());
       exploreScreenProvider.getAllKota(
+        token: loginProvider.token.toString());
+      exploreScreenProvider.getAllCategories(
         token: loginProvider.token.toString());
       exploreScreenProvider.getSearchHistory(
         userId: loginProvider.userId?.toInt() ?? 0);
@@ -66,7 +67,6 @@ class _ExploreScreenState extends State<ExploreScreen> {
       child: const Center(
         child: Column(
           children: [
-            TitleExplore(),
             SearchWisata(),
             CategoryWisata(),
             ShowWisataScreen(),

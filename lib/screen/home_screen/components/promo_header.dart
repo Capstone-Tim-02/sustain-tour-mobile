@@ -9,29 +9,26 @@ class PromoHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    BottomNavigationBarProvider bottomNavigationBarProvider = Provider.of<BottomNavigationBarProvider>(context, listen: false);
+    BottomNavigationBarProvider bottomNavigationBarProvider =
+        Provider.of<BottomNavigationBarProvider>(context, listen: false);
     return Padding(
-      padding:
-          const EdgeInsets.only(left: 16, top: 32, bottom: 8, right: 16),
+      padding: const EdgeInsets.only(left: 16, top: 32, bottom: 8, right: 16),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
             "Penawaran Khusus",
             style: TextStyleWidget.titleT2(
-                color: ColorThemeStyle.black100,
-                fontWeight: FontWeight.w600),
+                color: ColorThemeStyle.black100, fontWeight: FontWeight.w600),
           ),
           GestureDetector(
             onTap: () {
-              //TODO Ganti dengan navigasi ke promo
-              bottomNavigationBarProvider.onChangeIndex(1);
+              bottomNavigationBarProvider.onChangeIndex(2);
             },
             child: Text(
               "Lihat semua",
               style: TextStyleWidget.bodyB3(
-                  color: ColorThemeStyle.black100,
-                  fontWeight: FontWeight.w600),
+                  color: ColorThemeStyle.black100, fontWeight: FontWeight.w600),
             ),
           )
         ],

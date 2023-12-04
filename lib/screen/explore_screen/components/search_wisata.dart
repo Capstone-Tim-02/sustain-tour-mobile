@@ -16,7 +16,7 @@ class SearchWisata extends StatelessWidget {
     LoginProvider loginProvider = Provider.of<LoginProvider>(context, listen: false);
     FocusNode focusNode = FocusNode();
     return Padding(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.only(bottom: 16,left: 16,right: 16,top:3),
       child: SearchWidget(
         style: TextStyleWidget.titleT2(
           color: ColorThemeStyle.grey100
