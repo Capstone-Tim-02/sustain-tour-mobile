@@ -16,8 +16,8 @@ class TextFieldUsername extends StatelessWidget {
           children: [
             TextFieldWidget(
               textCapitalization: TextCapitalization.none,
-              labelText: 'Email',
-              hintText: 'Email',
+              labelText: 'Username',
+              hintText: 'Username',
               errorText: fromUsernameProvider.emailError,
               controller: fromUsernameProvider.emailController,
               prefixIcon: FractionallySizedBox(
