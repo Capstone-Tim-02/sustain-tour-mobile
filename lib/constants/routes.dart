@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sustain_tour_mobile/screen/home_screen/components/desti_point_screen/desti_point_screen.dart';
-import 'package:sustain_tour_mobile/screen/home_screen/components/detail_wisata_screen/detail_wisata_screen.dart';
+import 'package:sustain_tour_mobile/screen/onboarding_screen/splash_screen/splash_screen.dart';
 import 'package:sustain_tour_mobile/screen/register_screen/register_screen.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/login_screen.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/matchmaking_question/matchmaking_2.dart';
@@ -27,10 +27,7 @@ class Routes {
   static const String destiPointScreen = 'main/home/destiPoint';
 
   static Map<String, WidgetBuilder> routeMap = {
-    splashScreen: (context) => DetailWisataScreen(
-        userToken:
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InN0ZXZlbiIsImV4cCI6MTcwMzU2MjczOCwiaWF0IjoxNzAwOTcwNzM4fQ.Fd_5TBgD-6SNQMSzugwEPxEiqLBX77HXqOV5FgRyGb4',
-        wisataId: 3),
+    splashScreen: (context) => const SplashScreen(),
     onboardingScreen: (context) => const OnboardingScreen(),
     loginScreen: (context) => const LoginScreen(),
     registerScreen: (context) => const RegisterScreen(),
