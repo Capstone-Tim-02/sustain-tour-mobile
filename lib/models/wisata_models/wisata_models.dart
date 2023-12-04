@@ -48,6 +48,7 @@ class Wisata {
     bool isOpen;
     String descriptionIsOpen;
     String fasilitas;
+    String videoLink;
     DateTime createdAt;
     DateTime updatedAt;
 
@@ -71,6 +72,7 @@ class Wisata {
         required this.isOpen,
         required this.descriptionIsOpen,
         required this.fasilitas,
+        required this.videoLink,
         required this.createdAt,
         required this.updatedAt,
     });
@@ -99,6 +101,7 @@ class Wisata {
         isOpen: json["is_open"],
         descriptionIsOpen: json["description_is_open"],
         fasilitas: json["fasilitas"],
+        videoLink: json["video_link"],
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["UpdatedAt"]),
     );
@@ -123,6 +126,7 @@ class Wisata {
         "is_open": isOpen,
         "description_is_open": descriptionIsOpen,
         "fasilitas": fasilitas,
+        "video_link": videoLink,
         "created_at": createdAt.toIso8601String(),
         "UpdatedAt": updatedAt.toIso8601String(),
     };

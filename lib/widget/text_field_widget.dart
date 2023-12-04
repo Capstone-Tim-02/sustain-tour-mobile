@@ -17,6 +17,7 @@ class TextFieldWidget extends StatelessWidget {
   final TextCapitalization textCapitalization;
   final TextInputAction? textInputAction;
   final void Function(String)? onFieldSubmitted;
+  final TextStyle? textStyle;
 
   const TextFieldWidget({
     super.key,
@@ -34,6 +35,7 @@ class TextFieldWidget extends StatelessWidget {
     this.obscureText,
     this.textInputAction,
     this.onFieldSubmitted,
+    this.textStyle,
   });
 
   @override
@@ -41,6 +43,7 @@ class TextFieldWidget extends StatelessWidget {
     return SizedBox(
       width: 380,
       child: TextFormField(
+        style: textStyle,
         textInputAction: textInputAction,
         onFieldSubmitted: onFieldSubmitted,
         textCapitalization: textCapitalization,

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sustain_tour_mobile/constants/assets_image.dart';
 import 'package:sustain_tour_mobile/constants/routes.dart';
-import 'package:sustain_tour_mobile/screen/ai_screen/ai_screen.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/login_provider.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/component/alert_dialog_component/alert_dialog_component.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/component/profile_option_component/component/list_tile_widget.dart';
