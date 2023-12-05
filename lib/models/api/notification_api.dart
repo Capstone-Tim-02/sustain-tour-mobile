@@ -23,4 +23,23 @@ class NotificationApi {
       throw '${e.response?.data['message']}';
     }
   }
+
+  static Future<bool> markAsReadNotification({required int notifId}) async {
+    String? token = await SharedPreferenceManager.getToken();
+
+    try {
+      await Dio().put(
+        '$baseUrl/user/notification/$notifId',
+        options: Options(
+          headers: {
+            "authorization": "Bearer $token",
+          },
+        ),
+      );
+
+      return true;
+    } on DioException catch (e) {
+      throw '${e.response?.data['message']}';
+    }
+  }
 }
