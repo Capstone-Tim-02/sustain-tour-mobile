@@ -34,10 +34,12 @@ import 'package:sustain_tour_mobile/widget/bottom_navbar_widget/bottom_navbar_wi
 import 'package:timeago/timeago.dart';
 import 'screen/onboarding_screen/onboarding_provider.dart';
 import 'screen/onboarding_screen/splash_screen/splash_screen_provider.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 void main() async {
   await initializeDateFormatting('id_ID', null);
+  await dotenv.load(fileName: ".env");
   timeago.setLocaleMessages('id', IdMessages());
 
   WidgetsFlutterBinding.ensureInitialized(); // Required by FlutterConfig

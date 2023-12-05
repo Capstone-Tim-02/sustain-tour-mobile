@@ -19,25 +19,21 @@ class DetailTNC extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: SingleChildScrollView(
-        child: Expanded(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 12,
-              vertical: 32,
+      body: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 12,
+          vertical: 32,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              tncModel.desc1,
+              style: TextStyleWidget.labelL2(
+                fontWeight: FontWeightStyle.medium,
+              ),
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  tncModel.desc1,
-                  style: TextStyleWidget.labelL2(
-                    fontWeight: FontWeightStyle.medium,
-                  ),
-                ),
-              ],
-            ),
-          ),
+          ],
         ),
       ),
     );
