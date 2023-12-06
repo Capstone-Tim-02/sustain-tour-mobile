@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:sustain_tour_mobile/screen/ai_screen/ai_screen_provider.dart';
 import 'package:sustain_tour_mobile/screen/checkout_screen/checkout_provider.dart';
 import 'package:sustain_tour_mobile/screen/checkout_screen/components/booking_result_screen/booking_result_provider.dart';
+import 'package:sustain_tour_mobile/screen/home_screen/components/notification_screen/notification_provider.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/login_provider.dart';
 import 'package:sustain_tour_mobile/constants/routes.dart';
 import 'package:sustain_tour_mobile/screen/explore_screen/explore_screen_provider.dart';
@@ -30,13 +31,17 @@ import 'package:sustain_tour_mobile/screen/login_screen/component/from_username_
 import 'package:sustain_tour_mobile/screen/tiket_screen/tiket_provider.dart';
 import 'package:sustain_tour_mobile/style/color_theme_style.dart';
 import 'package:sustain_tour_mobile/widget/bottom_navbar_widget/bottom_navbar_widget_provider.dart';
+import 'package:timeago/timeago.dart';
 import 'screen/onboarding_screen/onboarding_provider.dart';
 import 'screen/onboarding_screen/splash_screen/splash_screen_provider.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 void main() async {
   await initializeDateFormatting('id_ID', null);
   await dotenv.load(fileName: ".env");
+  timeago.setLocaleMessages('id', IdMessages());
+
   WidgetsFlutterBinding.ensureInitialized(); // Required by FlutterConfig
   await FlutterConfig.loadEnvVariables();
   runApp(MultiProvider(
@@ -95,6 +100,8 @@ void main() async {
           create: (context) => DestiPointProvider()),
       ChangeNotifierProvider<DetailPromoProvider>(
           create: (context) => DetailPromoProvider()),
+      ChangeNotifierProvider<NotificationProvider>(
+          create: (context) => NotificationProvider()),
     ],
     child: const MyApp(),
   ));
