@@ -8,6 +8,8 @@ import 'package:sustain_tour_mobile/models/wisata_models/wisata_models.dart';
 
 import 'package:sustain_tour_mobile/screen/home_screen/components/detail_wisata_screen/detail_wisata_provider.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/login_provider.dart';
+import 'package:sustain_tour_mobile/style/color_theme_style.dart';
+import 'package:sustain_tour_mobile/widget/google_maps_widget.dart';
 
 class DetailWisataScreen extends StatefulWidget {
   @override
@@ -16,18 +18,15 @@ class DetailWisataScreen extends StatefulWidget {
 
 class _DetailWisataScreenState extends State<DetailWisataScreen> {
   int currentImageIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     final wisatadata = (ModalRoute.of(context)?.settings.arguments) as Wisata;
     LoginProvider loginProvider =
         Provider.of<LoginProvider>(context, listen: false);
-    // Menggunakan ChangeNotifierProvider untuk mendapatkan DetailWisataProvider
     final detailProvider = Provider.of<DetailWisataProvider>(context);
-
-    // Memanggil fungsi untuk mendapatkan detail wisata
     detailProvider.getDetailWisataById(
         wisatadata.id, loginProvider.token.toString());
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -107,7 +106,9 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
                           autoPlay: true,
                           aspectRatio: 16 / 9,
                           onPageChanged: (index, reason) {
-                            // TODO: Lakukan sesuatu jika halaman berubah
+                            setState(() {
+                              currentImageIndex = index;
+                            });
                           },
                         ),
                       ),
@@ -244,6 +245,46 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
                   for (int i = 0; i < fasilitasList.length; i++)
                     Text('• ${fasilitasList[i]}',
                         style: const TextStyle(fontSize: 16)),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                    height: 141,
+                    width: 380,
+                    decoration: BoxDecoration(
+                        color: ColorThemeStyle.greenFLowkit,
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('Carbon Emission'),
+                            Text(
+                              'Informasi lengkap mengenai emisi\n karbon dan karbon yang dihasilkan\n dari wisata ini',
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 2,
+                            ),
+                            Text('Lihat Selengkapnya')
+                          ],
+                        ),
+                        Container(
+                          margin: const EdgeInsets.only(
+                            top: 27,
+                          ),
+                          child: Image.asset(
+                              Assets.assetsImaagesIllustratrionDetaiWisata),
+                        )
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  GoogleMapsWidget(
+                      latTarget: wisatadata.lat, longTarget: wisatadata.long),
+                  Text(wisatadata.location)
                 ],
               );
             }

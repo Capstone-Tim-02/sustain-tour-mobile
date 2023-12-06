@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sustain_tour_mobile/constants/routes.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/component/button_masuk.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/component/button_masuk_google.dart';
+// import 'package:sustain_tour_mobile/screen/login_screen/component/button_masuk_google.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/component/textfield_password.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/component/textfield_username.dart';
 import 'package:sustain_tour_mobile/style/font_weight_style.dart';
@@ -65,16 +66,6 @@ class LoginScreen extends StatelessWidget {
               height: 8,
             ),
             ButtonMasukGoogle(),
-            // ElevatedButton(
-            //   onPressed: () {
-            //     LoginProvider authProvider =
-            //         Provider.of<LoginProvider>(context, listen: false);
-            //     authProvider.logout();
-            //     // Navigasi kembali ke halaman login setelah logout
-            //     Navigator.of(context).pop();
-            //   },
-            //   child: const Text('Logout'),
-            // ),
             const SizedBox(
               height: 150,
             ),
