@@ -21,9 +21,6 @@ class TravelHistoryComponent extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(
-            height: 16,
-          ),
           const TravelHistoryListComponent(),
         ],
       ),

@@ -1,0 +1,45 @@
+import 'package:dio/dio.dart';
+import 'package:sustain_tour_mobile/constants/api_base_url.dart';
+import 'package:sustain_tour_mobile/constants/shared_preference_manager.dart';
+import 'package:sustain_tour_mobile/models/notification_model/notification_model.dart';
+
+class NotificationApi {
+  static Future<NotificationModel> getNotifications() async {
+    String? token = await SharedPreferenceManager.getToken();
+
+    try {
+      final response = await Dio().get(
+        '$baseUrl/user/notification',
+        options: Options(
+          headers: {
+            "authorization": "Bearer $token",
+          },
+        ),
+      );
+
+      NotificationModel notifModel = NotificationModel.fromJson(response.data);
+      return notifModel;
+    } on DioException catch (e) {
+      throw '${e.response?.data['message']}';
+    }
+  }
+
+  static Future<bool> markAsReadNotification({required int notifId}) async {
+    String? token = await SharedPreferenceManager.getToken();
+
+    try {
+      await Dio().put(
+        '$baseUrl/user/notification/$notifId',
+        options: Options(
+          headers: {
+            "authorization": "Bearer $token",
+          },
+        ),
+      );
+
+      return true;
+    } on DioException catch (e) {
+      throw '${e.response?.data['message']}';
+    }
+  }
+}

@@ -16,29 +16,30 @@ class BadgeWidget {
   }) {
     return SizedBox(
       width: width,
-      height: height ?? 40,
+      height: height,
       child: ElevatedButton(
         style: ButtonStyle(
-            // atur background
-            backgroundColor: onPressed == null
-                ? null
-                : MaterialStateProperty.all(
-                    backgroundColor ?? ColorThemeStyle.blue100),
+          // atur background
+          backgroundColor: onPressed == null
+              ? null
+              : MaterialStateProperty.all(
+                  backgroundColor ?? ColorThemeStyle.blue100),
 
-            // atur background saat di press
-            overlayColor: MaterialStateProperty.resolveWith<Color?>(
-              (Set<MaterialState> states) {
-                if (states.contains(MaterialState.pressed)) {
-                  return overlayColor ?? ColorThemeStyle.blue60; //<-- SEE HERE
-                }
-                return null; // Defer to the widget's default.
-              },
-            ),
-            shape: shape,
-            padding: MaterialStateProperty.resolveWith<EdgeInsetsGeometry>(
-                (states) =>
-                    padding ??
-                    const EdgeInsets.symmetric(horizontal: 24, vertical: 8))),
+          // atur background saat di press
+          overlayColor: MaterialStateProperty.resolveWith<Color?>(
+            (Set<MaterialState> states) {
+              if (states.contains(MaterialState.pressed)) {
+                return overlayColor ?? ColorThemeStyle.blue60; //<-- SEE HERE
+              }
+              return null; // Defer to the widget's default.
+            },
+          ),
+          shape: shape,
+          padding: MaterialStateProperty.resolveWith<EdgeInsetsGeometry>(
+              (states) =>
+                  padding ??
+                  const EdgeInsets.symmetric(horizontal: 24, vertical: 8)),
+        ),
         onPressed: onPressed,
         child: Text(
           label ?? 'Label',
@@ -56,17 +57,20 @@ class BadgeWidget {
   static SizedBox outline({
     required void Function()? onPressed,
     String? label,
+    FontWeight? fontWeight,
     double? width,
     double? height,
     Color? foregroundColor,
+    Color? backgroundColor,
     Color? overlayColor,
     Color? borderColor,
+    Color? onPressedBorderColor,
     EdgeInsetsGeometry? padding,
     MaterialStateProperty<OutlinedBorder?>? shape,
   }) {
     return SizedBox(
       width: width,
-      height: height ?? 40,
+      height: height,
       child: ElevatedButton(
         style: ButtonStyle(
           elevation: MaterialStateProperty.all(0),
@@ -91,13 +95,27 @@ class BadgeWidget {
               ? MaterialStateProperty.all(const BorderSide(
                   color: ColorThemeStyle.grey100,
                   width: 2)) // warna border saat disable
-              : MaterialStateProperty.all(BorderSide(
-                  color: borderColor ?? ColorThemeStyle.blue100,
-                  width: 2)), // warna border saat enable
+              : MaterialStateProperty.resolveWith<BorderSide?>(
+                  (Set<MaterialState> states) {
+                    if (states.contains(MaterialState.pressed)) {
+                      return BorderSide(
+                          color:
+                              onPressedBorderColor ?? ColorThemeStyle.blue100,
+                          width: 2); //<-- SEE HERE
+                    }
+                    return BorderSide(
+                        color: borderColor ?? ColorThemeStyle.blue100,
+                        width: 2); // Defer to the widget's default.
+                  },
+                ),
+
+          // MaterialStateProperty.all(BorderSide(
+          //     color: borderColor ?? ColorThemeStyle.blue100,
+          //     width: 2)), // warna border saat enable
 
           // atur background
-          backgroundColor:
-              MaterialStateProperty.all(Colors.transparent), // ngikutin figma
+          backgroundColor: MaterialStateProperty.all(
+              backgroundColor ?? Colors.transparent), // ngikutin figma
 
           // atur warna button saat ditekan
           overlayColor: MaterialStateProperty.resolveWith<Color?>(
@@ -108,12 +126,18 @@ class BadgeWidget {
               return null; // Defer to the widget's default.
             },
           ),
+
+          padding: MaterialStateProperty.resolveWith<EdgeInsetsGeometry>(
+            (states) =>
+                padding ??
+                const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+          ),
         ),
         onPressed: onPressed,
         child: Text(
           label ?? 'Label',
           style: TextStyleWidget.titleT3(
-            fontWeight: FontWeightStyle.medium,
+            fontWeight: fontWeight ?? FontWeightStyle.medium,
           ),
         ),
       ),
@@ -175,7 +199,6 @@ class BadgeWidget {
       height: 40,
       child: ElevatedButton.icon(
         icon: icon ?? const Icon(Icons.add),
-        
         style: ButtonStyle(
           padding: MaterialStateProperty.all(
             const EdgeInsets.symmetric(

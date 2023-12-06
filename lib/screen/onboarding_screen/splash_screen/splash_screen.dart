@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sustain_tour_mobile/constants/assets_image.dart';
+import 'package:sustain_tour_mobile/screen/home_screen/components/notification_screen/notification_provider.dart';
 import 'package:sustain_tour_mobile/screen/home_screen/home_screen_provider.dart';
 import 'package:sustain_tour_mobile/screen/main_screen/main_screen.dart';
 import 'package:sustain_tour_mobile/screen/onboarding_screen/onboarding_screen.dart';
@@ -23,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 3), () {
+    Future.delayed(const Duration(seconds: 0), () {
       SplashScreenProvider splashScreenProvider =
           Provider.of<SplashScreenProvider>(context, listen: false);
 
@@ -45,7 +46,10 @@ class _SplashScreenState extends State<SplashScreen> {
               .getPromo(token: token);
 
           Provider.of<TravelHistoryProvider>(context, listen: false)
-              .getBookingHistory(token: token);
+              .getBookingHistory();
+
+          Provider.of<NotificationProvider>(context, listen: false)
+              .getNotifications();
 
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (context) => const MainScreen()),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:sustain_tour_mobile/models/api/category_api.dart';
 import 'package:sustain_tour_mobile/models/api/cities_api.dart';
 import 'package:sustain_tour_mobile/models/api/wisata_api.dart';
+import 'package:sustain_tour_mobile/models/matchmaking_models/category_models.dart';
 import 'package:sustain_tour_mobile/models/search_history_models/search_history_models.dart';
 import 'package:sustain_tour_mobile/models/wisata_models/wisata_models.dart';
 import 'package:sustain_tour_mobile/utils/database_helper.dart';
@@ -18,12 +20,7 @@ class ExploreScreenProvider with ChangeNotifier {
   int _currentPage = 1;
   int get currentPage => _currentPage;
 
-  Map<String, bool> _wisataCategory = {
-    "Wisata Alam" : false,
-    "Wisata Lifestyle" : false,
-    "Wisata Air" : false,
-    "Wisata Sejarah" : false,
-  };
+  Map<String, bool> _wisataCategory = {};
   Map<String, bool> get wisataCategory => _wisataCategory;
 
   List<String> _listAllKota = [];
@@ -145,8 +142,9 @@ class ExploreScreenProvider with ChangeNotifier {
   }
 
   void onSearchWisataClear(){
-    _showSearchPage = false;
-    _showSearchHistory = false;
+    for (var i = 0; i < _wisataCategory.length; i++) {
+      _wisataCategory.update(_wisataCategory.keys.elementAt(i), (value) => false);
+    }
     notifyListeners();
   }
 
@@ -154,12 +152,6 @@ class ExploreScreenProvider with ChangeNotifier {
     _currentPage = 1;
     _listWisata = [];
     _selectedKota = "Semua Lokasi";
-    _wisataCategory = {
-      "Wisata Alam" : false,
-      "Wisata Lifestyle" : false,
-      "Wisata Air" : false,
-      "Wisata Sejarah" : false,
-    };
     _showSearchPage = false;
     _showSearchHistory = false;
     _kotaIndex = 0;
@@ -249,7 +241,8 @@ class ExploreScreenProvider with ChangeNotifier {
         page: _currentPage,
         token: token,
         listWisata: _listWisata,
-        title: searchQuery
+        title: searchQuery,
+        category: selectedCategory,
       );
       _isGetWisataSuccess = true;
 
@@ -280,6 +273,20 @@ class ExploreScreenProvider with ChangeNotifier {
       notifyListeners();
     } catch (e) {
       _isGetKotaSuccess = false;
+      notifyListeners();
+      throw Exception(e);
+    }
+  }
+
+  void getAllCategories({required String token}) async {
+    try {
+      CategoryModels categoryModel = await CategoryApi().getCategoriesApi(token: token);
+      for (var element in categoryModel.categories) {
+        _wisataCategory[element.categoryName] = false;
+      }
+      notifyListeners();
+    } catch (e) {
+      _wisataCategory = {};
       notifyListeners();
       throw Exception(e);
     }

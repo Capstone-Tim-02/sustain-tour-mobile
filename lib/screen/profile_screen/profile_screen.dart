@@ -8,9 +8,8 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
+    return ListView(
+      children: const [
         SizedBox(
           height: 32,
         ),

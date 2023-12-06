@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sustain_tour_mobile/constants/assets_image.dart';
 import 'package:sustain_tour_mobile/constants/routes.dart';
+import 'package:sustain_tour_mobile/screen/home_screen/components/notification_screen/notification_provider.dart';
 import 'package:sustain_tour_mobile/screen/home_screen/home_screen_provider.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/login_provider.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/component/profile_emission_component/component/detail_emission_screen_component/component/travel_history_component/travel_history_provider.dart';
@@ -81,14 +82,16 @@ class Matchmaking1 extends StatelessWidget {
                         token: loginProvider.token.toString());
 
                     Provider.of<TravelHistoryProvider>(context, listen: false)
-                        .getBookingHistory(
-                            token: loginProvider.token.toString());
+                        .getBookingHistory();
 
                     Provider.of<ProfileEmissionProvider>(context, listen: false)
                         .getUserEmission(
                       userId: loginProvider.userId ?? 0,
                       token: loginProvider.token ?? '',
                     );
+
+                    Provider.of<NotificationProvider>(context, listen: false)
+                        .getNotifications();
 
                     Navigator.pushNamedAndRemoveUntil(
                         context, Routes.mainScreen, (route) => false);

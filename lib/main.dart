@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_config/flutter_config.dart';
+import 'package:intl/date_symbol_data_local.dart';
+
 import 'package:provider/provider.dart';
+import 'package:sustain_tour_mobile/screen/ai_screen/ai_screen_provider.dart';
+import 'package:sustain_tour_mobile/screen/checkout_screen/checkout_provider.dart';
+import 'package:sustain_tour_mobile/screen/checkout_screen/components/booking_result_screen/booking_result_provider.dart';
+import 'package:sustain_tour_mobile/screen/home_screen/components/notification_screen/notification_provider.dart';
+import 'package:sustain_tour_mobile/screen/login_screen/login_provider.dart';
 import 'package:sustain_tour_mobile/constants/routes.dart';
 import 'package:sustain_tour_mobile/screen/explore_screen/explore_screen_provider.dart';
+import 'package:sustain_tour_mobile/screen/home_screen/components/desti_point_screen/desti_point_provider.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/matchmaking_question/matchmaking_kesukaan_provider.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/matchmaking_question/matchmaking_provider.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/component/account_screen_component/component/edit_account_screen_component/edit_account_provider.dart';
@@ -9,7 +18,8 @@ import 'package:sustain_tour_mobile/screen/profile_screen/component/profile_emis
 import 'package:sustain_tour_mobile/screen/profile_screen/component/profile_emission_component/profile_emission_provider.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/profile_provider.dart';
 import 'package:sustain_tour_mobile/screen/home_screen/home_screen_provider.dart';
-import 'package:sustain_tour_mobile/screen/login_screen/login_provider.dart';
+import 'package:sustain_tour_mobile/screen/promo_screen/component/detail_promo_provider.dart';
+import 'package:sustain_tour_mobile/screen/pusat_bantuan_screen/faq/faq_screen_provider.dart';
 import 'package:sustain_tour_mobile/screen/register_screen/register_provider.dart';
 import 'package:sustain_tour_mobile/screen/register_screen/validator/form_confirm_password_screens.dart';
 import 'package:sustain_tour_mobile/screen/register_screen/validator/form_email_register_screens.dart';
@@ -18,12 +28,22 @@ import 'package:sustain_tour_mobile/screen/register_screen/validator/form_phone_
 import 'package:sustain_tour_mobile/screen/register_screen/validator/form_username_register_screens.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/component/from_password_screns.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/component/from_username_screens.dart';
+import 'package:sustain_tour_mobile/screen/tiket_screen/tiket_provider.dart';
 import 'package:sustain_tour_mobile/style/color_theme_style.dart';
 import 'package:sustain_tour_mobile/widget/bottom_navbar_widget/bottom_navbar_widget_provider.dart';
+import 'package:timeago/timeago.dart';
 import 'screen/onboarding_screen/onboarding_provider.dart';
 import 'screen/onboarding_screen/splash_screen/splash_screen_provider.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
-void main() {
+void main() async {
+  await initializeDateFormatting('id_ID', null);
+  await dotenv.load(fileName: ".env");
+  timeago.setLocaleMessages('id', IdMessages());
+
+  WidgetsFlutterBinding.ensureInitialized(); // Required by FlutterConfig
+  await FlutterConfig.loadEnvVariables();
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider<BottomNavigationBarProvider>(
@@ -32,6 +52,8 @@ void main() {
           create: (context) => SplashScreenProvider()),
       ChangeNotifierProvider<OnboardingProvider>(
           create: (context) => OnboardingProvider()),
+      ChangeNotifierProvider<FaqScreenProvider>(
+          create: (context) => FaqScreenProvider()),
       ChangeNotifierProvider<ProfileProvider>(
           create: (context) => ProfileProvider()),
       ChangeNotifierProvider<ProfileEmissionProvider>(
@@ -44,6 +66,8 @@ void main() {
           create: (context) => FromUsernameProvider()),
       ChangeNotifierProvider<FormPasswordProvider>(
           create: (context) => FormPasswordProvider()),
+      ChangeNotifierProvider<AiScreenProvider>(
+          create: (context) => AiScreenProvider()),
       ChangeNotifierProvider<RegisterProvider>(
           create: (context) => RegisterProvider()),
       ChangeNotifierProvider<FormFullNameProvider>(
@@ -66,6 +90,18 @@ void main() {
           create: (context) => TravelHistoryProvider()),
       ChangeNotifierProvider<ExploreScreenProvider>(
           create: (context) => ExploreScreenProvider()),
+      ChangeNotifierProvider<CheckoutProvider>(
+          create: (context) => CheckoutProvider()),
+      ChangeNotifierProvider<BookingResultProvider>(
+          create: (context) => BookingResultProvider()),
+      ChangeNotifierProvider<TiketProvider>(
+          create: (context) => TiketProvider()),
+      ChangeNotifierProvider<DestiPointProvider>(
+          create: (context) => DestiPointProvider()),
+      ChangeNotifierProvider<DetailPromoProvider>(
+          create: (context) => DetailPromoProvider()),
+      ChangeNotifierProvider<NotificationProvider>(
+          create: (context) => NotificationProvider()),
     ],
     child: const MyApp(),
   ));
