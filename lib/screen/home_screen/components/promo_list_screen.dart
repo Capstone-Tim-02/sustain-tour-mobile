@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sustain_tour_mobile/screen/home_screen/components/notification_screen/notification_provider.dart';
 import 'package:sustain_tour_mobile/screen/home_screen/home_screen_provider.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/login_provider.dart';
+import 'package:sustain_tour_mobile/screen/profile_screen/component/profile_emission_component/component/detail_emission_screen_component/component/travel_history_component/travel_history_provider.dart';
+import 'package:sustain_tour_mobile/screen/profile_screen/component/profile_emission_component/profile_emission_provider.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/profile_provider.dart';
 import 'package:sustain_tour_mobile/screen/promo_screen/component/detail_promo_screen.dart';
 import 'package:sustain_tour_mobile/style/color_theme_style.dart';
@@ -71,6 +74,17 @@ class PromoListScreen extends StatelessWidget {
                                     token: loginProvider.token.toString());
                                 homeScreenProvider.getPromo(
                                     token: loginProvider.token.toString());
+                                Provider.of<ProfileEmissionProvider>(context,
+                                        listen: false)
+                                    .getUserEmission(
+                                        userId: loginProvider.userId ?? 0,
+                                        token: loginProvider.token.toString());
+                                Provider.of<TravelHistoryProvider>(context,
+                                        listen: false)
+                                    .getBookingHistory();
+                                Provider.of<NotificationProvider>(context,
+                                        listen: false)
+                                    .getNotifications();
                               },
                               label: "Muat ulang")
                         ],

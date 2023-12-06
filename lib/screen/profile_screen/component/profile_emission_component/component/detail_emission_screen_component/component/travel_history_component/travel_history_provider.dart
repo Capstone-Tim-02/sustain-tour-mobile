@@ -3,7 +3,12 @@ import 'package:sustain_tour_mobile/models/api/booking_api.dart';
 import 'package:sustain_tour_mobile/models/booking_models/booking_history_model.dart';
 
 class TravelHistoryProvider extends ChangeNotifier {
-  late BookingHistoryModel _bookingHistoryModel;
+  BookingHistoryModel _bookingHistoryModel = BookingHistoryModel(
+    code: 0,
+    error: true,
+    message: '',
+    ticketData: null,
+  );
   BookingHistoryModel get bookingHistoryModel => _bookingHistoryModel;
 
   bool _isLoading = true;
