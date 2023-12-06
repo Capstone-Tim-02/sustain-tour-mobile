@@ -15,6 +15,7 @@ class TextFieldUsername extends StatelessWidget {
         return Column(
           children: [
             TextFieldWidget(
+              textCapitalization: TextCapitalization.none,
               labelText: 'Email',
               hintText: 'Email',
               errorText: fromUsernameProvider.emailError,

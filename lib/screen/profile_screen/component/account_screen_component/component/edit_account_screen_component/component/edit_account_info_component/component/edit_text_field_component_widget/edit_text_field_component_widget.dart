@@ -9,13 +9,22 @@ class EditTextFieldComponentWidget extends StatelessWidget {
   final String? label;
   final String? errorText;
   final void Function(String)? onChanged;
+  final TextInputType? keyboarType;
+  final Widget? prefixIcon;
+  final Widget? prefix;
+  final bool obscureText;
+
   const EditTextFieldComponentWidget(
       {super.key,
       this.autofocus,
       this.controller,
       this.label,
       this.onChanged,
-      this.errorText});
+      this.errorText,
+      this.keyboarType,
+      this.prefixIcon,
+      this.prefix,
+      this.obscureText = false});
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +32,13 @@ class EditTextFieldComponentWidget extends StatelessWidget {
       autofocus: autofocus ?? true,
       controller: controller,
       cursorColor: ColorThemeStyle.blue100,
+      keyboardType: keyboarType,
       style: TextStyleWidget.titleT2(
           fontWeight: FontWeight.w500, color: Colors.black),
+      obscureText: obscureText,
       decoration: InputDecoration(
+        prefixIcon: prefixIcon,
+        prefix: prefix,
         errorText: errorText,
         contentPadding: const EdgeInsets.only(bottom: -8),
         focusedBorder: const UnderlineInputBorder(
@@ -35,8 +48,9 @@ class EditTextFieldComponentWidget extends StatelessWidget {
         )),
         label: Text(
           label ?? '',
-          style: TextStyleWidget.titleT3(
-              fontWeight: FontWeightStyle.medium, color: Colors.black),
+          style: TextStyleWidget.titleT2(
+              fontWeight: FontWeightStyle.semiBold,
+              color: ColorThemeStyle.blue100),
         ),
         floatingLabelBehavior: FloatingLabelBehavior.always,
       ),

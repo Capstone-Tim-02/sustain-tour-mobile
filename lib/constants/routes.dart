@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sustain_tour_mobile/screen/home_screen/components/desti_point_screen/desti_point_screen.dart';
 import 'package:sustain_tour_mobile/screen/register_screen/register_screen.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/login_screen.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/matchmaking_question/matchmaking_2.dart';
@@ -23,6 +24,8 @@ class Routes {
   static const String detailEmissionScreen = '/main/profile/detail-emission';
   static const String editAccountScreen = 'main/profile/account/edit';
 
+  static const String destiPointScreen = 'main/home/destiPoint';
+
   static Map<String, WidgetBuilder> routeMap = {
     splashScreen: (context) => const SplashScreen(),
     onboardingScreen: (context) => const OnboardingScreen(),
@@ -34,5 +37,6 @@ class Routes {
     accountScreen: (context) => const AccountScreenComponent(),
     detailEmissionScreen: (context) => const DetailEmissionScreenComponent(),
     editAccountScreen: (context) => const EditAccountScreenComponent(),
+    destiPointScreen: (context) => const DestiPointScreen(),
   };
 }

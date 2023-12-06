@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sustain_tour_mobile/screen/profile_screen/component/profile_emission_component/component/detail_emission_screen_component/component/booking_history_component/booking_history_component.dart';
+import 'package:sustain_tour_mobile/screen/profile_screen/component/profile_emission_component/component/detail_emission_screen_component/component/travel_history_component/travel_history_component.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/component/profile_emission_component/component/detail_emission_screen_component/component/detail_emission_component.dart/detail_emission_component.dart';
 import 'package:sustain_tour_mobile/style/font_weight_style.dart';
 import 'package:sustain_tour_mobile/style/text_style_widget.dart';
@@ -34,7 +34,7 @@ class DetailEmissionScreenComponent extends StatelessWidget {
           SizedBox(
             height: 16,
           ),
-          BookingHistoryComponent(),
+          TravelHistoryComponent(),
         ],
       ),
       backgroundColor: Colors.white,

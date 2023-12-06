@@ -12,8 +12,11 @@ class TextFieldWidget extends StatelessWidget {
   final Widget? suffixIcon;
   final Color? fillColor;
   final bool? filled;
+  final bool? obscureText;
   final TextInputType? keyboardType;
   final TextCapitalization textCapitalization;
+  final TextInputAction? textInputAction;
+  final void Function(String)? onFieldSubmitted;
 
   const TextFieldWidget({
     super.key,
@@ -28,6 +31,9 @@ class TextFieldWidget extends StatelessWidget {
     this.filled,
     this.keyboardType,
     this.textCapitalization = TextCapitalization.sentences,
+    this.obscureText,
+    this.textInputAction,
+    this.onFieldSubmitted,
   });
 
   @override
@@ -35,11 +41,14 @@ class TextFieldWidget extends StatelessWidget {
     return SizedBox(
       width: 380,
       child: TextFormField(
+        textInputAction: textInputAction,
+        onFieldSubmitted: onFieldSubmitted,
         textCapitalization: textCapitalization,
         // membuat huruf pertama pada keyboard HP menjadi kapital
         keyboardType: keyboardType, //mengubah jenis keyboard
         controller: controller,
         onChanged: onChange,
+        obscureText: obscureText ?? false,
         decoration: InputDecoration(
           labelText: labelText,
           hintText: hintText,

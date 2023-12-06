@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:sustain_tour_mobile/constants/assets_image.dart';
+import 'package:sustain_tour_mobile/screen/profile_screen/component/account_screen_component/component/edit_account_screen_component/component/edit_account_photo_component/component/edit_account_photo_option_component/edit_account_photo_option_component.dart';
 import 'package:sustain_tour_mobile/style/color_theme_style.dart';
 
 class EditAccountPhotoComponent extends StatelessWidget {
   final String imageUrl;
-  final void Function()? onTapEditPhoto;
-  const EditAccountPhotoComponent(
-      {super.key, required this.imageUrl, this.onTapEditPhoto});
+  const EditAccountPhotoComponent({super.key, required this.imageUrl});
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +19,8 @@ class EditAccountPhotoComponent extends StatelessWidget {
             Container(
                 height: 182,
                 width: 182,
-                decoration: BoxDecoration(
-                  color: ColorThemeStyle.lightPurple.withOpacity(0.54),
+                decoration: const BoxDecoration(
+                  color: ColorThemeStyle.grey50,
                   shape: BoxShape.circle,
                 ),
                 child: imageUrl.isNotEmpty
@@ -32,14 +31,20 @@ class EditAccountPhotoComponent extends StatelessWidget {
                           height: 182,
                           fit: BoxFit
                               .fill, // memastikan gambar pas dalam lingkaran tanpa distorsi
+                          loadingBuilder: (context, child, loadingProgress) {
+                            if (loadingProgress == null) return child;
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          },
                           errorBuilder: (BuildContext context, Object error,
                               StackTrace? stackTrace) {
                             // Menangani error, mengembalikan widget pengganti (misalnya ikon)
                             return const Center(
                               child: Icon(
-                                Icons.image,
-                                color: Colors.white,
-                                size: 89,
+                                Icons.broken_image_outlined,
+                                color: ColorThemeStyle.grey100,
+                                size: 80,
                               ),
                             );
                           },
@@ -47,13 +52,20 @@ class EditAccountPhotoComponent extends StatelessWidget {
                       )
                     : const Center(
                         child: Icon(
-                          Icons.image,
-                          color: Colors.white,
-                          size: 89,
+                          Icons.broken_image_outlined,
+                          color: ColorThemeStyle.grey100,
+                          size: 80,
                         ),
                       )),
             GestureDetector(
-              onTap: onTapEditPhoto,
+              onTap: () {
+                showModalBottomSheet(
+                  context: context,
+                  builder: (context) {
+                    return const EditAccountPhotoOptionComponent();
+                  },
+                );
+              },
               child: Container(
                 height: 40,
                 width: 40,

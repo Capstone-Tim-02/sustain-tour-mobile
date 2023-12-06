@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:sustain_tour_mobile/constants/api_base_url.dart';
 import 'package:sustain_tour_mobile/models/user_data_models/user_data_models.dart';
+import 'package:http_parser/http_parser.dart';
 
 class UserDataApi {
   Future<User> getUserData({required int userId, required String token}) async {
@@ -120,11 +123,40 @@ class UserDataApi {
     }
   }
 
+  Future<bool> uploadProfileImage({
+    required int userId,
+    required String token,
+    required File image,
+  }) async {
+    try {
+      String fileName = image.path.split('/').last;
+      await Dio().put('$baseUrl/user/$userId',
+          options: Options(
+            headers: {
+              "authorization": "Bearer $token",
+              'Content-Type': 'multipart/form-data',
+            },
+          ),
+          data: FormData.fromMap({
+            'profile_image': await MultipartFile.fromFile(
+              image.path,
+              filename: fileName,
+              contentType: MediaType('image', 'png'),
+            ),
+          }));
+
+      return true;
+    } on DioException catch (e) {
+      throw '${e.response?.data['message']}';
+    }
+  }
+
   Future<bool> updatePassword({
     required int userId,
     required String token,
     required String currentPassword,
     required String newPassword,
+    required String confirmNewPassword,
   }) async {
     try {
       await Dio().put('$baseUrl/user/change-password/$userId',
@@ -135,8 +167,29 @@ class UserDataApi {
           ),
           data: {
             "currentPassword": currentPassword,
-            "newPassword": newPassword
+            "newPassword": newPassword,
+            "confirmPassword": confirmNewPassword,
           });
+
+      return true;
+    } on DioException catch (e) {
+      throw '${e.response?.data['message']}';
+    }
+  }
+
+  Future<bool> deleteProfileImage({
+    required int userId,
+    required String token,
+  }) async {
+    try {
+      await Dio().delete(
+        '$baseUrl/user/photo/$userId',
+        options: Options(
+          headers: {
+            "authorization": "Bearer $token",
+          },
+        ),
+      );
 
       return true;
     } on DioException catch (e) {
