@@ -119,8 +119,8 @@ class RegisterScreen extends StatelessWidget {
                   hintText: 'Pasword',
                   // obscureText: !Provider.of<FormPasswordProvider>(context)
                   //     .isPasswordVisible,
-                  errorText:
-                      Provider.of<FormPasswordRegisterProvider>(context).passwordRegisterError,
+                  errorText: Provider.of<FormPasswordRegisterProvider>(context)
+                      .passwordRegisterError,
                   suffixIcon: GestureDetector(
                     child: Icon(
                       Provider.of<FormPasswordRegisterProvider>(context)
@@ -129,7 +129,8 @@ class RegisterScreen extends StatelessWidget {
                           : Icons.visibility_off,
                     ),
                     onTap: () {
-                      Provider.of<FormPasswordRegisterProvider>(context, listen: false)
+                      Provider.of<FormPasswordRegisterProvider>(context,
+                              listen: false)
                           .togglePasswordRegisterVisibility();
                     },
                   ),
@@ -196,21 +197,24 @@ class RegisterScreen extends StatelessWidget {
                         .validateUsernameRegister();
                     Provider.of<FromPhoneProvider>(context, listen: false)
                         .validatePhone();
-                    Provider.of<FromEmailRegisterProvider>(context, listen: false)
+                    Provider.of<FromEmailRegisterProvider>(context,
+                            listen: false)
                         .validateEmailRegister();
-                    Provider.of<FormPasswordRegisterProvider>(context, listen: false)
+                    Provider.of<FormPasswordRegisterProvider>(context,
+                            listen: false)
                         .validatePasswordRegister();
-                    Provider.of<FormConfirmPasswordProvider>(context, listen: false)
+                    Provider.of<FormConfirmPasswordProvider>(context,
+                            listen: false)
                         .validateConfirmPassword();
                     String name = Provider.of<FormFullNameProvider>(context,
                             listen: false)
                         .fullNameController
                         .text;
-                    String usernameRegister = Provider.of<FromUsernameRegisterProvider>(
-                            context,
-                            listen: false)
-                        .usernameRegisterController
-                        .text;
+                    String usernameRegister =
+                        Provider.of<FromUsernameRegisterProvider>(context,
+                                listen: false)
+                            .usernameRegisterController
+                            .text;
                     String phone =
                         Provider.of<FromPhoneProvider>(context, listen: false)
                             .phoneController
@@ -220,22 +224,25 @@ class RegisterScreen extends StatelessWidget {
                             listen: false)
                         .emailRegisterController
                         .text;
-                    String passwordRegister = Provider.of<FormConfirmPasswordProvider>(context,
-                            listen: false)
-                        .confirmPasswordController
-                        .text;
+                    String passwordRegister =
+                        Provider.of<FormPasswordRegisterProvider>(context,
+                                listen: false)
+                            .passwordRegisterController
+                            .text;
                     String confirmPassword =
                         Provider.of<FormConfirmPasswordProvider>(context,
                                 listen: false)
                             .confirmPasswordController
                             .text;
 
-                    if (usernameRegister.isNotEmpty && passwordRegister.isNotEmpty) {
+                    if (usernameRegister.isNotEmpty &&
+                        passwordRegister.isNotEmpty) {
                       RegisterProvider authProvider =
                           Provider.of<RegisterProvider>(context, listen: false);
+
                       authProvider
-                          .registerUser(name, usernameRegister, phone, email, passwordRegister,
-                              confirmPassword)
+                          .registerUser(name, usernameRegister,
+                              passwordRegister, confirmPassword, email, phone)
                           .then((signUp) {
                         if (signUp) {
                           ScaffoldMessenger.of(context).showSnackBar(

@@ -65,16 +65,6 @@ class LoginScreen extends StatelessWidget {
               height: 8,
             ),
             ButtonMasukGoogle(),
-            // ElevatedButton(
-            //   onPressed: () {
-            //     LoginProvider authProvider =
-            //         Provider.of<LoginProvider>(context, listen: false);
-            //     authProvider.logout();
-            //     // Navigasi kembali ke halaman login setelah logout
-            //     Navigator.of(context).pop();
-            //   },
-            //   child: const Text('Logout'),
-            // ),
             const SizedBox(
               height: 150,
             ),

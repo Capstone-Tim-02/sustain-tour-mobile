@@ -17,8 +17,6 @@ class BUttonMasuk extends StatelessWidget {
       children: [
         ButtonWidget.defaultContainer(
           onPressed: () {
-            // Your existing login button logic
-
             Provider.of<FormPasswordProvider>(context, listen: false)
                 .validatePassword();
             Provider.of<FromUsernameProvider>(context, listen: false)
