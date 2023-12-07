@@ -4,11 +4,14 @@ import 'package:provider/provider.dart';
 import 'package:sustain_tour_mobile/constants/assets_image.dart';
 
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:sustain_tour_mobile/constants/open_maps_func.dart';
 import 'package:sustain_tour_mobile/models/wisata_models/wisata_models.dart';
 
 import 'package:sustain_tour_mobile/screen/home_screen/components/detail_wisata_screen/detail_wisata_provider.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/login_provider.dart';
 import 'package:sustain_tour_mobile/style/color_theme_style.dart';
+import 'package:sustain_tour_mobile/style/font_weight_style.dart';
+import 'package:sustain_tour_mobile/widget/badge_widget.dart';
 import 'package:sustain_tour_mobile/widget/google_maps_widget.dart';
 
 class DetailWisataScreen extends StatefulWidget {
@@ -270,6 +273,7 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
                           ],
                         ),
                         Container(
+                          padding: EdgeInsets.only(right: 4, bottom: 2),
                           margin: const EdgeInsets.only(
                             top: 27,
                           ),
@@ -284,7 +288,16 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
                   ),
                   GoogleMapsWidget(
                       latTarget: wisatadata.lat, longTarget: wisatadata.long),
-                  Text(wisatadata.location)
+                  Text(wisatadata.location),
+                  BadgeWidget.outline(
+                    width: double.infinity,
+                    label: 'Buka Maps',
+                    fontWeight: FontWeightStyle.semiBold,
+                    onPressed: () {
+                      OpenMapsFunc.openMaps(
+                          context: context, mapsLink: wisatadata.mapsLink);
+                    },
+                  )
                 ],
               );
             }
