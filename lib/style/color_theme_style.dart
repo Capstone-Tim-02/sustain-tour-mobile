@@ -26,4 +26,6 @@ class ColorThemeStyle {
   static const Color lightPurple = Color(0xFFBEB5FF);
   static const Color redContainer = Color(0xFFFEBEBE);
   static const Color greenContainer = Color(0xFFB3DDC4);
+  static const Color greenCarbon = Color(0xFF0B8708);
+  static const Color greenSelengkapnya = Color(0xFF0B4D0A);
 }

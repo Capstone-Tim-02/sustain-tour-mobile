@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:sustain_tour_mobile/constants/assets_image.dart';
 
@@ -11,7 +12,9 @@ import 'package:sustain_tour_mobile/screen/home_screen/components/detail_wisata_
 import 'package:sustain_tour_mobile/screen/login_screen/login_provider.dart';
 import 'package:sustain_tour_mobile/style/color_theme_style.dart';
 import 'package:sustain_tour_mobile/style/font_weight_style.dart';
+import 'package:sustain_tour_mobile/style/text_style_widget.dart';
 import 'package:sustain_tour_mobile/widget/badge_widget.dart';
+import 'package:sustain_tour_mobile/widget/button_widget.dart';
 import 'package:sustain_tour_mobile/widget/google_maps_widget.dart';
 
 class DetailWisataScreen extends StatefulWidget {
@@ -21,6 +24,7 @@ class DetailWisataScreen extends StatefulWidget {
 
 class _DetailWisataScreenState extends State<DetailWisataScreen> {
   int currentImageIndex = 0;
+  DateTime selectedDate = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -31,21 +35,6 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
     detailProvider.getDetailWisataById(
         wisatadata.id, loginProvider.token.toString());
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        title: const Text('Detail Wisata'),
-        centerTitle: true,
-        leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back,
-            color: Colors.black,
-          ),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
-      ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Consumer<DetailWisataProvider>(
@@ -62,6 +51,30 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  SizedBox(
+                    height: 16,
+                  ),
+                  Row(
+                    children: [
+                      IconButton(
+                        icon: const Icon(
+                          Icons.arrow_back,
+                          color: Colors.black,
+                        ),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                      SizedBox(
+                        width: 80,
+                      ),
+                      Text(
+                        'Detail Wisata',
+                        style: TextStyleWidget.titleT2(
+                            fontWeight: FontWeightStyle.semiBold),
+                      ),
+                    ],
+                  ),
                   Stack(
                     children: [
                       CarouselSlider(
@@ -132,15 +145,17 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
                   const SizedBox(height: 8.0),
                   Text(
                     wisatadata.title,
-                    style: const TextStyle(
-                        fontSize: 24.0, fontWeight: FontWeight.bold),
+                    style: TextStyleWidget.headlineH3(
+                        fontWeight: FontWeightStyle.semiBold),
                   ),
-                  const SizedBox(height: 8.0),
+                  const SizedBox(
+                    height: 16,
+                  ),
                   Column(
                     children: [
                       Row(
                         children: [
-                          SvgPicture.asset(Assets.assetsIconsLocation),
+                          SvgPicture.asset(Assets.assetsIconCarbonCloud),
                           const SizedBox(
                             width: 5,
                           ),
@@ -148,7 +163,12 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
                             children: [
                               GestureDetector(
                                 onTap: () {},
-                                child: const Text("Carbon Emision"),
+                                child: Text(
+                                  "Carbon Emision",
+                                  style: TextStyleWidget.bodyB3(
+                                      fontWeight: FontWeightStyle.semiBold,
+                                      color: ColorThemeStyle.greenCarbon),
+                                ),
                               ),
                               const SizedBox(
                                 width: 5,
@@ -157,14 +177,22 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
                               const SizedBox(
                                 width: 5,
                               ),
-                              Text(detailWisata.totalCarbonFootprint.toString())
+                              Text(
+                                detailWisata.totalCarbonFootprint.toString(),
+                                style: TextStyleWidget.bodyB3(
+                                    fontWeight: FontWeightStyle.semiBold,
+                                    color: ColorThemeStyle.greenCarbon),
+                              )
                             ],
                           ),
                         ],
                       ),
+                      const SizedBox(
+                        height: 16,
+                      ),
                       Row(
                         children: [
-                          SvgPicture.asset(Assets.assetsIconsLocation),
+                          SvgPicture.asset(Assets.assetsIconsClock),
                           const SizedBox(
                             width: 5,
                           ),
@@ -172,7 +200,12 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
                             children: [
                               GestureDetector(
                                 onTap: () {},
-                                child: const Text("Open"),
+                                child: Text(
+                                  "Open",
+                                  style: TextStyleWidget.bodyB3(
+                                    fontWeight: FontWeightStyle.semiBold,
+                                  ),
+                                ),
                               ),
                               const SizedBox(
                                 width: 5,
@@ -181,14 +214,22 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
                               const SizedBox(
                                 width: 5,
                               ),
-                              Text(wisatadata.descriptionIsOpen)
+                              Text(
+                                wisatadata.descriptionIsOpen,
+                                style: TextStyleWidget.bodyB3(
+                                  fontWeight: FontWeightStyle.semiBold,
+                                ),
+                              )
                             ],
                           ),
                         ],
                       ),
+                      const SizedBox(
+                        height: 16,
+                      ),
                       Row(
                         children: [
-                          SvgPicture.asset(Assets.assetsIconsLocation),
+                          SvgPicture.asset(Assets.assetsIconMiLocation),
                           const SizedBox(
                             width: 5,
                           ),
@@ -197,6 +238,9 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
                               wisatadata.kota,
                               overflow: TextOverflow.ellipsis,
                               maxLines: 3,
+                              style: TextStyleWidget.bodyB3(
+                                fontWeight: FontWeightStyle.semiBold,
+                              ),
                             ),
                           ),
                         ],
@@ -204,10 +248,11 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
                     ],
                   ),
                   const SizedBox(height: 16.0),
-                  const Text(
+                  Text(
                     'Highlight',
-                    style:
-                        TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+                    style: TextStyleWidget.titleT2(
+                      fontWeight: FontWeightStyle.semiBold,
+                    ),
                   ),
                   const SizedBox(height: 16.0),
                   Row(
@@ -226,10 +271,20 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  const Text('•',
-                                      style: TextStyle(fontSize: 16)),
+                                  Text(
+                                    '•',
+                                    style: TextStyleWidget.bodyB3(
+                                      fontWeight: FontWeightStyle.regular,
+                                    ),
+                                  ),
                                   const SizedBox(width: 8),
-                                  Expanded(child: Text(paragraph)),
+                                  Expanded(
+                                      child: Text(
+                                    paragraph,
+                                    style: TextStyleWidget.bodyB3(
+                                      fontWeight: FontWeightStyle.regular,
+                                    ),
+                                  )),
                                 ],
                               ),
                             );
@@ -238,19 +293,22 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 16.0),
-                  const Text(
-                    'Fasilitas',
-                    style:
-                        TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+                  const SizedBox(height: 32),
+                  Text(
+                    'Fasilitas Lokal',
+                    style: TextStyleWidget.titleT2(
+                      fontWeight: FontWeightStyle.semiBold,
+                    ),
                   ),
                   const SizedBox(height: 8.0),
                   for (int i = 0; i < fasilitasList.length; i++)
-                    Text('• ${fasilitasList[i]}',
-                        style: const TextStyle(fontSize: 16)),
-                  SizedBox(
-                    height: 20,
-                  ),
+                    Text(
+                      '• ${fasilitasList[i]}',
+                      style: TextStyleWidget.bodyB3(
+                        fontWeight: FontWeightStyle.regular,
+                      ),
+                    ),
+                  const SizedBox(height: 32),
                   Container(
                     height: 141,
                     width: 380,
@@ -260,20 +318,51 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Column(
+                        Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('Carbon Emission'),
-                            Text(
-                              'Informasi lengkap mengenai emisi\n karbon dan karbon yang dihasilkan\n dari wisata ini',
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 2,
+                            Padding(
+                              padding: const EdgeInsets.only(top: 14, left: 17),
+                              child: Text(
+                                'Carbon Emission',
+                                style: TextStyleWidget.headlineH3(
+                                    fontWeight: FontWeightStyle.semiBold,
+                                    color: ColorThemeStyle.white100),
+                              ),
                             ),
-                            Text('Lihat Selengkapnya')
+                            Padding(
+                              padding: const EdgeInsets.only(top: 8, left: 17),
+                              child: Text(
+                                'Informasi lengkap mengenai \nemisi karbon dan karbon yang \ndihasilkan dari wisata ini',
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 3,
+                                style: TextStyleWidget.labelL2(
+                                    fontWeight: FontWeightStyle.medium,
+                                    color: ColorThemeStyle.white100),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 8, left: 17),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    'Lihat Selengkapnya',
+                                    style: TextStyleWidget.labelL2(
+                                        fontWeight: FontWeightStyle.medium,
+                                        color:
+                                            ColorThemeStyle.greenSelengkapnya),
+                                  ),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  const Icon(Icons.arrow_forward)
+                                ],
+                              ),
+                            )
                           ],
                         ),
                         Container(
-                          padding: EdgeInsets.only(right: 4, bottom: 2),
+                          padding: const EdgeInsets.only(right: 4, bottom: 2),
                           margin: const EdgeInsets.only(
                             top: 27,
                           ),
@@ -283,12 +372,23 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
                       ],
                     ),
                   ),
-                  SizedBox(
-                    height: 10,
+                  const SizedBox(
+                    height: 32,
                   ),
                   GoogleMapsWidget(
                       latTarget: wisatadata.lat, longTarget: wisatadata.long),
-                  Text(wisatadata.location),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  Text(
+                    wisatadata.location,
+                    style: TextStyleWidget.bodyB3(
+                      fontWeight: FontWeightStyle.regular,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 24,
+                  ),
                   BadgeWidget.outline(
                     width: double.infinity,
                     label: 'Buka Maps',
@@ -297,6 +397,99 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
                       OpenMapsFunc.openMaps(
                           context: context, mapsLink: wisatadata.mapsLink);
                     },
+                  ),
+                  const Divider(),
+                  Text(
+                    'Pesan Tiket',
+                    style: TextStyleWidget.titleT2(
+                      fontWeight: FontWeightStyle.semiBold,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 80,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 7,
+                      itemBuilder: (context, index) {
+                        final currentDate =
+                            DateTime.now().add(Duration(days: index));
+
+                        return GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              selectedDate = currentDate;
+                            });
+                          },
+                          child: Container(
+                            width: 100,
+                            margin: const EdgeInsets.all(8),
+                            padding: const EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              color: currentDate.day == selectedDate.day
+                                  ? ColorThemeStyle.blue100
+                                  : Colors.transparent,
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(
+                                color: currentDate.day == selectedDate.day
+                                    ? ColorThemeStyle.blue100
+                                    : ColorThemeStyle.blue100,
+                                width: 3,
+                              ),
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  DateFormat('EEE').format(currentDate),
+                                  style: TextStyleWidget.bodyB3(
+                                    fontWeight: FontWeightStyle.semiBold,
+                                    color: currentDate.day == selectedDate.day
+                                        ? Colors.white
+                                        : Colors.black,
+                                  ),
+                                ),
+                                Text(
+                                  DateFormat('d MMM').format(currentDate),
+                                  style: TextStyleWidget.bodyB2(
+                                    fontWeight: FontWeightStyle.medium,
+                                    color: currentDate.day == selectedDate.day
+                                        ? Colors.white
+                                        : ColorThemeStyle.grey80,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Harga',
+                            style: TextStyleWidget.titleT1(
+                                fontWeight: FontWeightStyle.semiBold,
+                                color: ColorThemeStyle.grey80),
+                          ),
+                          const SizedBox(
+                            height: 8,
+                          ),
+                          Text(
+                            'Rp.${wisatadata.price}'.toString(),
+                            style: TextStyleWidget.headlineH3(
+                              fontWeight: FontWeightStyle.semiBold,
+                            ),
+                          )
+                        ],
+                      ),
+                      ButtonWidget.smallContainer(
+                          text: 'Beli', onPressed: () {})
+                    ],
                   )
                 ],
               );
@@ -336,7 +529,7 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
     return Container(
       width: 8.0,
       height: 8.0,
-      margin: EdgeInsets.symmetric(horizontal: 4.0),
+      margin: const EdgeInsets.symmetric(horizontal: 4.0),
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         color: currentImageIndex == index ? Colors.blue : Colors.grey,

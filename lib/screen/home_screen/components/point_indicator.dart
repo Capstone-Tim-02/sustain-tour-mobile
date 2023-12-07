@@ -6,15 +6,12 @@ import 'package:sustain_tour_mobile/screen/profile_screen/profile_provider.dart'
 import 'package:sustain_tour_mobile/style/color_theme_style.dart';
 import 'package:sustain_tour_mobile/style/shadow_style.dart';
 import 'package:sustain_tour_mobile/style/text_style_widget.dart';
-import 'package:sustain_tour_mobile/widget/bottom_navbar_widget/bottom_navbar_widget_provider.dart';
 
 class PointIndicator extends StatelessWidget {
   const PointIndicator({super.key});
 
   @override
   Widget build(BuildContext context) {
-    BottomNavigationBarProvider bottomNavigationBarProvider =
-        Provider.of<BottomNavigationBarProvider>(context, listen: false);
     return Center(
       child: Container(
         height: 136,

@@ -25,7 +25,7 @@ class ProfileEmissionProvider extends ChangeNotifier {
         code: 0,
         equivalentPoweringHouseInHours: 0,
         error: true,
-        roundedTotalCarbonFootprint: 90,
+        roundedTotalCarbonFootprint: 0,
       );
     }
     _isLoading = false;
