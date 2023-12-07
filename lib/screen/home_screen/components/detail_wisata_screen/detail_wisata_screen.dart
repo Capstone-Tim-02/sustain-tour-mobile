@@ -6,6 +6,7 @@ import 'package:sustain_tour_mobile/constants/assets_image.dart';
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:sustain_tour_mobile/constants/open_maps_func.dart';
+import 'package:sustain_tour_mobile/constants/routes.dart';
 import 'package:sustain_tour_mobile/models/wisata_models/wisata_models.dart';
 
 import 'package:sustain_tour_mobile/screen/home_screen/components/detail_wisata_screen/detail_wisata_provider.dart';
@@ -464,6 +465,9 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
                       },
                     ),
                   ),
+                  const SizedBox(
+                    height: 16,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -488,7 +492,11 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
                         ],
                       ),
                       ButtonWidget.smallContainer(
-                          text: 'Beli', onPressed: () {})
+                          text: 'Beli',
+                          onPressed: () {
+                            Navigator.pushNamed(context, Routes.checkoutScreen,
+                                arguments: wisatadata);
+                          })
                     ],
                   )
                 ],
