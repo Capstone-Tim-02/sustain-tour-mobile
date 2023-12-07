@@ -7,6 +7,7 @@ import 'package:sustain_tour_mobile/screen/ai_screen/ai_screen_provider.dart';
 import 'package:sustain_tour_mobile/screen/checkout_screen/checkout_provider.dart';
 import 'package:sustain_tour_mobile/screen/checkout_screen/components/booking_result_screen/booking_result_provider.dart';
 import 'package:sustain_tour_mobile/screen/home_screen/components/notification_screen/notification_provider.dart';
+import 'package:sustain_tour_mobile/screen/home_screen/components/detail_wisata_screen/detail_wisata_provider.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/login_provider.dart';
 import 'package:sustain_tour_mobile/constants/routes.dart';
 import 'package:sustain_tour_mobile/screen/explore_screen/explore_screen_provider.dart';
@@ -102,6 +103,8 @@ void main() async {
           create: (context) => DetailPromoProvider()),
       ChangeNotifierProvider<NotificationProvider>(
           create: (context) => NotificationProvider()),
+      ChangeNotifierProvider<DetailWisataProvider>(
+          create: (context) => DetailWisataProvider()),
     ],
     child: const MyApp(),
   ));

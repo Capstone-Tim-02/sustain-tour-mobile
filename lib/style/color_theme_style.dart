@@ -15,6 +15,7 @@ class ColorThemeStyle {
   static const Color black100 = Color(0xFF070707);
   static const Color red = Color(0xFFE10E0E);
   static const Color green = Color(0xFF4FD100);
+  static const Color greenFLowkit = Color(0xFF29CC6A);
   static const Color green100 = Color(0xFF36B734);
   static const Color errorBar = Color(0xFFE10E0E);
   static const Color correctMessage = Color(0xFF13A04B);
@@ -25,4 +26,6 @@ class ColorThemeStyle {
   static const Color lightPurple = Color(0xFFBEB5FF);
   static const Color redContainer = Color(0xFFFEBEBE);
   static const Color greenContainer = Color(0xFFB3DDC4);
+  static const Color greenCarbon = Color(0xFF0B8708);
+  static const Color greenSelengkapnya = Color(0xFF0B4D0A);
 }
