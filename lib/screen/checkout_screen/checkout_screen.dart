@@ -1,29 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:intl/intl.dart';
-import 'package:money_formatter/money_formatter.dart';
 import 'package:provider/provider.dart';
 import 'package:sustain_tour_mobile/constants/assets_image.dart';
+import 'package:sustain_tour_mobile/constants/currency_format_const.dart';
+import 'package:sustain_tour_mobile/constants/date_format_const.dart';
 import 'package:sustain_tour_mobile/constants/routes.dart';
-import 'package:sustain_tour_mobile/models/wisata_models/wisata_models.dart';
+import 'package:sustain_tour_mobile/models/checkout_models/checkout_argument_models.dart';
 import 'package:sustain_tour_mobile/screen/checkout_screen/checkout_provider.dart';
-import 'package:sustain_tour_mobile/screen/login_screen/login_provider.dart';
+import 'package:sustain_tour_mobile/screen/checkout_screen/components/booking_result_screen/booking_result_provider.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/profile_provider.dart';
 import 'package:sustain_tour_mobile/style/color_theme_style.dart';
 import 'package:sustain_tour_mobile/style/font_weight_style.dart';
 import 'package:sustain_tour_mobile/style/shadow_style.dart';
 import 'package:sustain_tour_mobile/style/text_style_widget.dart';
 import 'package:sustain_tour_mobile/widget/button_widget.dart';
+import 'package:sustain_tour_mobile/widget/snack_bar_widget.dart';
 
 class CheckoutScreen extends StatelessWidget {
   const CheckoutScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final wisataItem = (ModalRoute.of(context)?.settings.arguments) as Wisata;
+    final arguments = (ModalRoute.of(context)?.settings.arguments) as CheckoutArgumentModel;
     ProfileProvider profileProvider = Provider.of<ProfileProvider>(context, listen: false);
     CheckoutProvider checkoutProvider = Provider.of<CheckoutProvider>(context, listen: false);
-    LoginProvider loginProvider = Provider.of<LoginProvider>(context, listen: false);
+    BookingResultProvider bookingResultProvider = Provider.of<BookingResultProvider>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -54,8 +55,7 @@ class CheckoutScreen extends StatelessWidget {
                 ),
               ),
               Text(
-                //TODO Ganti dengan tanggal sesuai pilihan
-                DateFormat('d MMMM yyyy').format(DateTime.now().add(const Duration(days: 2))).toString(),
+                DateFormatConst.dateToTanggalBulanTahunFormat.format(arguments.checkinDate).toString(),
                 style: TextStyleWidget.headlineH3(
                   color: ColorThemeStyle.black100,
                   fontWeight: FontWeight.w600
@@ -67,7 +67,7 @@ class CheckoutScreen extends StatelessWidget {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(10),
                     child: Image.network(
-                      wisataItem.photoWisata1,
+                      arguments.wisata.photoWisata1,
                       width: 83,
                       height: 86,
                       fit: BoxFit.fitHeight,
@@ -83,7 +83,7 @@ class CheckoutScreen extends StatelessWidget {
                       SizedBox(
                         width: MediaQuery.of(context).size.width * 0.65,
                         child: Text(
-                          wisataItem.title,
+                          arguments.wisata.title,
                           style: TextStyleWidget.titleT2(
                             color: ColorThemeStyle.black100,
                             fontWeight: FontWeight.w600
@@ -97,7 +97,7 @@ class CheckoutScreen extends StatelessWidget {
                           const Icon(Icons.location_pin, size: 12),
                           const SizedBox(width: 8),
                           Text(
-                            wisataItem.kota.replaceAll('"', ''),
+                            arguments.wisata.kota.replaceAll('"', ''),
                             style: TextStyleWidget.bodyB3(
                               color: ColorThemeStyle.grey100,
                               fontWeight: FontWeight.w500
@@ -169,7 +169,7 @@ class CheckoutScreen extends StatelessWidget {
                               },
                             ),
                             Text(
-                              "Rp. ${MoneyFormatter(amount: wisataItem.price.toDouble()).output.withoutFractionDigits.toString().replaceAll(",", ".")}",
+                              CurrencyFormatConst.convertToIdr(arguments.wisata.price.toDouble(),0),
                               style: TextStyleWidget.titleT2(
                                 color: ColorThemeStyle.black100,
                                 fontWeight: FontWeight.w600
@@ -355,7 +355,17 @@ class CheckoutScreen extends StatelessWidget {
                               inactiveTrackColor: ColorThemeStyle.grey50,
                               value: checkoutProvider.isPointUsed,
                               onChanged: (bool value){
-                                checkoutProvider.togglePoin(value);
+                                if(profileProvider.user.points == 0){
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBarWidget.snackBarWidget(
+                                      message: "Kamu tidak memiliki poin!",
+                                      duration: const Duration(seconds: 2),
+                                      backgroundColor: ColorThemeStyle.red
+                                    )
+                                  );
+                                } else {
+                                  checkoutProvider.togglePoin(value);
+                                }
                               }
                             ),
                           )
@@ -389,10 +399,7 @@ class CheckoutScreen extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          "Rp. ${MoneyFormatter(
-                            amount: (checkoutProvider.quantity * wisataItem.price)
-                            .toDouble()).output.withoutFractionDigits.toString().replaceAll(",", ".")
-                          }",
+                          CurrencyFormatConst.convertToIdr((checkoutProvider.quantity * arguments.wisata.price),0),
                           style: TextStyleWidget.bodyB3(
                             color: ColorThemeStyle.black100,
                             fontWeight: FontWeight.w500
@@ -419,13 +426,10 @@ class CheckoutScreen extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              "- Rp. ${MoneyFormatter(
-                                amount: (
-                                  (checkoutProvider.discountPercentage / 100) *
-                                  checkoutProvider.quantity *
-                                  wisataItem.price
-                                )
-                                .toDouble()).output.withoutFractionDigits.toString().replaceAll(",", ".")
+                              "- ${CurrencyFormatConst.convertToIdr((
+                                (checkoutProvider.discountPercentage / 100) *
+                                checkoutProvider.quantity *
+                                arguments.wisata.price),0)
                               }",
                               style: TextStyleWidget.bodyB3(
                                 color: ColorThemeStyle.black100,
@@ -454,10 +458,7 @@ class CheckoutScreen extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            "- Rp. ${MoneyFormatter(
-                              amount: (profileProvider.user.points * 1000)
-                              .toDouble()).output.withoutFractionDigits.toString().replaceAll(",", ".")
-                            }",
+                            "- ${CurrencyFormatConst.convertToIdr((profileProvider.user.points * 1000),0)}",
                             style: TextStyleWidget.bodyB3(
                               color: ColorThemeStyle.black100,
                               fontWeight: FontWeight.w500
@@ -484,13 +485,11 @@ class CheckoutScreen extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          "Rp. ${MoneyFormatter(
-                            amount: (
-                              (checkoutProvider.quantity * wisataItem.price) -
-                              ((checkoutProvider.discountPercentage / 100) * wisataItem.price * checkoutProvider.quantity) -
-                              (checkoutProvider.isPointUsed ? (profileProvider.user.points * 1000) : 0)
-                            ).toDouble()).output.withoutFractionDigits.toString().replaceAll(",", ".")
-                          }",
+                          CurrencyFormatConst.convertToIdr((
+                            (checkoutProvider.quantity * arguments.wisata.price) -
+                            ((checkoutProvider.discountPercentage / 100) * arguments.wisata.price * checkoutProvider.quantity) -
+                            (checkoutProvider.isPointUsed ? (profileProvider.user.points * 1000) : 0)
+                          ),0),
                           style: TextStyleWidget.bodyB1(
                             color: ColorThemeStyle.blue100,
                             fontWeight: FontWeight.w600
@@ -510,18 +509,14 @@ class CheckoutScreen extends StatelessWidget {
                 ),
                 onPressed: (){
                   checkoutProvider.onBooking(
-                    wisataId: wisataItem.id,
-                    //TODO ganti dengan tanggal yang nanti didapat dari argument
-                    checkinBooking: DateTime.now().add(const Duration(days: 2))
+                    wisataId: arguments.wisata.id,
+                    checkinBooking: arguments.checkinDate
                   );
+                  bookingResultProvider.bookingResultProviderReset();
+                  bookingResultProvider.bookingRequest(requestBody: checkoutProvider.requestBodyModel!);
                   Navigator.pushNamed(
                     context,
                     Routes.bookingResultScreen,
-                    arguments: checkoutProvider.requestBodyModel
-                  );
-                  profileProvider.getUserData(
-                    userId: loginProvider.userId ?? 0,
-                    token: loginProvider.token.toString()
                   );
                 }
               ),

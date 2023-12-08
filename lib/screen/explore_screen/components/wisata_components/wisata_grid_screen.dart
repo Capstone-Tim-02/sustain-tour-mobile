@@ -20,7 +20,6 @@ class WisataGridScreen extends StatelessWidget {
         itemCount: exploreScreenProvider.listWisata.length,
         itemBuilder: (BuildContext context, int index) {
           return GestureDetector(
-            //TODO Ingat ganti gesture detector nya ketika detail screen sudah jadi
             onTap: () {
               Navigator.pushNamed(
                 context,
