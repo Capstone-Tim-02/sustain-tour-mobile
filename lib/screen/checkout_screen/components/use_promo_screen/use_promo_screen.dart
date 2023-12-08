@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:sustain_tour_mobile/constants/assets_image.dart';
+import 'package:sustain_tour_mobile/constants/date_format_const.dart';
 import 'package:sustain_tour_mobile/models/promo_models/promo_models.dart';
 import 'package:sustain_tour_mobile/screen/checkout_screen/checkout_provider.dart';
 import 'package:sustain_tour_mobile/style/color_theme_style.dart';
@@ -11,7 +12,6 @@ import 'package:sustain_tour_mobile/style/shadow_style.dart';
 import 'package:sustain_tour_mobile/style/text_style_widget.dart';
 import 'package:sustain_tour_mobile/widget/badge_widget.dart';
 import 'package:sustain_tour_mobile/widget/snack_bar_widget.dart';
-import 'package:intl/intl.dart';
 
 class UsePromoScreen extends StatelessWidget {
   const UsePromoScreen({super.key});
@@ -44,7 +44,6 @@ class UsePromoScreen extends StatelessWidget {
                     child: SizedBox(
                       height: 44,
                       child: TextFormField(
-                        keyboardType: TextInputType.none,
                         controller: checkoutProvider.usePromoController,
                         decoration: InputDecoration(
                           contentPadding: const EdgeInsets.symmetric(horizontal: 16),
@@ -177,8 +176,7 @@ class UsePromoScreen extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.symmetric(horizontal: 12),
                                   child: Text(
-                                    //TODO Format Date yang bener
-                                    "Berlaku hingga ${DateFormat('d MMMM y').format(promoItem.tanggalKadaluarsa)}",
+                                    "Berlaku hingga ${DateFormatConst.dateToTanggalHalfBulanTahunFormatNoKoma.format(promoItem.tanggalKadaluarsa)}",
                                     style: const TextStyle(
                                       fontSize: 10,
                                       fontWeight: FontWeight.w400,

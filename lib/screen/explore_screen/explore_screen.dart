@@ -62,16 +62,31 @@ class _ExploreScreenState extends State<ExploreScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      controller: _scrollController,
-      child: const Center(
-        child: Column(
-          children: [
-            SearchWisata(),
-            CategoryWisata(),
-            ShowWisataScreen(),
-            LoadingWisata()
-          ],
+    return RefreshIndicator(
+      onRefresh: () async{
+        ExploreScreenProvider exploreScreenProvider = Provider.of<ExploreScreenProvider>(context, listen: false);
+        LoginProvider loginProvider = Provider.of<LoginProvider>(context, listen: false);
+          exploreScreenProvider.getWisataInit(
+            token: loginProvider.token.toString());
+          exploreScreenProvider.getAllKota(
+            token: loginProvider.token.toString());
+          exploreScreenProvider.getAllCategories(
+            token: loginProvider.token.toString());
+          exploreScreenProvider.getSearchHistory(
+            userId: loginProvider.userId?.toInt() ?? 0);
+      },
+      child: SingleChildScrollView(
+        physics: const AlwaysScrollableScrollPhysics(),
+        controller: _scrollController,
+        child: const Center(
+          child: Column(
+            children: [
+              SearchWisata(),
+              CategoryWisata(),
+              ShowWisataScreen(),
+              LoadingWisata()
+            ],
+          ),
         ),
       ),
     );

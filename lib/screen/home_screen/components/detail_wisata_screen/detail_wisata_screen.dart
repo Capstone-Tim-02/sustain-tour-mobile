@@ -5,10 +5,13 @@ import 'package:provider/provider.dart';
 import 'package:sustain_tour_mobile/constants/assets_image.dart';
 
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:sustain_tour_mobile/constants/currency_format_const.dart';
+import 'package:sustain_tour_mobile/constants/date_format_const.dart';
 import 'package:sustain_tour_mobile/constants/open_maps_func.dart';
 import 'package:sustain_tour_mobile/constants/routes.dart';
+import 'package:sustain_tour_mobile/models/checkout_models/checkout_argument_models.dart';
 import 'package:sustain_tour_mobile/models/wisata_models/wisata_models.dart';
-
+import 'package:sustain_tour_mobile/screen/checkout_screen/checkout_provider.dart';
 import 'package:sustain_tour_mobile/screen/home_screen/components/detail_wisata_screen/detail_wisata_provider.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/login_provider.dart';
 import 'package:sustain_tour_mobile/style/color_theme_style.dart';
@@ -450,7 +453,7 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
                                   ),
                                 ),
                                 Text(
-                                  DateFormat('d MMM').format(currentDate),
+                                  DateFormatConst.dateToTanggalHalfBulanFormat.format(currentDate),
                                   style: TextStyleWidget.bodyB2(
                                     fontWeight: FontWeightStyle.medium,
                                     color: currentDate.day == selectedDate.day
@@ -484,7 +487,7 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
                             height: 8,
                           ),
                           Text(
-                            'Rp.${wisatadata.price}'.toString(),
+                            CurrencyFormatConst.convertToIdr(wisatadata.price,0),
                             style: TextStyleWidget.headlineH3(
                               fontWeight: FontWeightStyle.semiBold,
                             ),
@@ -494,8 +497,12 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
                       ButtonWidget.smallContainer(
                           text: 'Beli',
                           onPressed: () {
+                            Provider.of<CheckoutProvider>(context, listen: false).checkoutProviderReset();
                             Navigator.pushNamed(context, Routes.checkoutScreen,
-                                arguments: wisatadata);
+                                arguments: CheckoutArgumentModel(
+                                  checkinDate: selectedDate,
+                                  wisata: wisatadata
+                                ));
                           })
                     ],
                   )
