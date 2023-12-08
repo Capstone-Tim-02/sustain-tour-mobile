@@ -7,61 +7,43 @@ import 'package:sustain_tour_mobile/screen/explore_screen/components/wisata_comp
 import 'package:sustain_tour_mobile/screen/explore_screen/explore_screen_provider.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/login_provider.dart';
 
-class ExploreScreen extends StatefulWidget {
+class ExploreScreen extends StatelessWidget {
   const ExploreScreen({super.key});
 
   @override
-  State<ExploreScreen> createState() => _ExploreScreenState();
-}
-
-class _ExploreScreenState extends State<ExploreScreen> {
-  @override
-  void initState() {
-    super.initState();
-    ExploreScreenProvider exploreScreenProvider = Provider.of<ExploreScreenProvider>(context, listen: false);
-    LoginProvider loginProvider = Provider.of<LoginProvider>(context, listen: false);
-      exploreScreenProvider.getWisataInit(
-        token: loginProvider.token.toString());
-      exploreScreenProvider.getAllKota(
-        token: loginProvider.token.toString());
-      exploreScreenProvider.getAllCategories(
-        token: loginProvider.token.toString());
-      exploreScreenProvider.getSearchHistory(
-        userId: loginProvider.userId?.toInt() ?? 0);
-    _scrollController.addListener(onScroll);
-  }
-
-  void onScroll(){
+  Widget build(BuildContext context) {
+    final ScrollController scrollController = ScrollController();
     ExploreScreenProvider exploreScreenProvider = Provider.of<ExploreScreenProvider>(context, listen: false);
     LoginProvider loginProvider = Provider.of<LoginProvider>(context, listen: false);
 
-    double maxScroll = _scrollController.position.maxScrollExtent;
-    double currentScroll = _scrollController.position.pixels;
+    void onScroll(){
+      double maxScroll = scrollController.position.maxScrollExtent;
+      double currentScroll = scrollController.position.pixels;
 
-    if(currentScroll >= maxScroll && exploreScreenProvider.hasMoreWisata){
-      if(exploreScreenProvider.showSearchPage){
-        exploreScreenProvider.getWisataDataBySearch(
-          token: loginProvider.token.toString(),
-          searchQuery: exploreScreenProvider.searchWisataController.text
-        );
-      } else {
-        exploreScreenProvider.getWisataDataByFilter(
-          token: loginProvider.token.toString(),
-        );
+      if(currentScroll >= maxScroll && exploreScreenProvider.hasMoreWisata){
+        if(exploreScreenProvider.showSearchPage){
+          exploreScreenProvider.getWisataDataBySearch(
+            token: loginProvider.token.toString(),
+            searchQuery: exploreScreenProvider.searchWisataController.text
+          );
+        } else {
+          exploreScreenProvider.getWisataDataByFilter(
+            token: loginProvider.token.toString(),
+          );
+        }
       }
     }
-  }
 
-  @override
-  void dispose() {
-    _scrollController.dispose();
-    super.dispose();
-  }
+    exploreScreenProvider.getWisataInit(
+      token: loginProvider.token.toString());
+    exploreScreenProvider.getAllKota(
+      token: loginProvider.token.toString());
+    exploreScreenProvider.getAllCategories(
+      token: loginProvider.token.toString());
+    exploreScreenProvider.getSearchHistory(
+      userId: loginProvider.userId?.toInt() ?? 0);
+    scrollController.addListener(onScroll);
 
-  final ScrollController _scrollController = ScrollController();
-
-  @override
-  Widget build(BuildContext context) {
     return RefreshIndicator(
       onRefresh: () async{
         ExploreScreenProvider exploreScreenProvider = Provider.of<ExploreScreenProvider>(context, listen: false);
@@ -77,7 +59,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
       },
       child: SingleChildScrollView(
         physics: const AlwaysScrollableScrollPhysics(),
-        controller: _scrollController,
+        controller: scrollController,
         child: const Center(
           child: Column(
             children: [

@@ -52,6 +52,7 @@ class BookingResultScreen extends StatelessWidget {
                     icon: const Icon(Icons.arrow_back)
                   )
             ),
+            backgroundColor: Colors.white,
             body: bookingResultProvider.isLoading
               ? const Center(child: CircularProgressIndicator())
               : bookingResultProvider.isPostBookingSuccess

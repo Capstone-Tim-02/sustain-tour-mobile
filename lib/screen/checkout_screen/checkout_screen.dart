@@ -37,6 +37,7 @@ class CheckoutScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         surfaceTintColor: Colors.white,
       ),
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),

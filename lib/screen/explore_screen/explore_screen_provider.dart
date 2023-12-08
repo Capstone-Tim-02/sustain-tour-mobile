@@ -158,7 +158,6 @@ class ExploreScreenProvider with ChangeNotifier {
     _hasMoreWisata = true;
     _searchWisataController.clear();
     _searchKotaController.clear();
-    notifyListeners();
 
     try {
       _listWisata = await WisataApi().getAllWisata(page: currentPage, token: token, listWisata: listWisata);
