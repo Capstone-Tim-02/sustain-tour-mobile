@@ -43,7 +43,6 @@ class BookingResultProvider extends ChangeNotifier {
 
   Future<void> getBookingDetail() async {
     _isLoading = true;
-    notifyListeners();
     _bookingModel = await BookingApi.getBookingByInvoice(invoiceNumber: _responseModel?.data.invoiceNumber ?? "");
     _isLoading = false;
     notifyListeners();
