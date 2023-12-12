@@ -10,7 +10,7 @@ class DetailWisataProvider extends ChangeNotifier {
   DetailWisataByid? get detailWisata => _detailWisata;
   bool get isLoading => _isLoading;
 
-  Future<void> getDetailWisataById(int id, String token) async {
+  Future<void> getDetailWisataById(int id) async {
     try {
       _isLoading = true;
       _detailWisata = await _detailWisataApi.getDetailWisataById(id);
