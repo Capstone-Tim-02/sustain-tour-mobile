@@ -60,25 +60,10 @@ class LoginScreen extends StatelessWidget {
                 ButtonMasukGoogle(),
               ],
             ),
-            const SizedBox(height: 32),
-            const BUttonMasuk(),
             const SizedBox(
-              height: 8,
+              height: 32,
             ),
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [Text('Atau')],
-            ),
-            const SizedBox(
-              height: 8,
-            ),
-            ButtonMasukGoogle(),
-            const SizedBox(
-              height: 150,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-            children : [Column(
+            Column(
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -103,7 +88,7 @@ class LoginScreen extends StatelessWidget {
                   ],
                 )
               ],
-            ),])
+            ),
           ],
         ),
       ),
