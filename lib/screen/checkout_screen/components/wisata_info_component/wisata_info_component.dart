@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:sustain_tour_mobile/models/wisata_models/wisata_models.dart';
+import 'package:sustain_tour_mobile/models/detail_wisata_byid_models/detail_wisata_byid_models.dart';
 import 'package:sustain_tour_mobile/screen/checkout_screen/components/wisata_info_component/ticket_quantity_component.dart';
 import 'package:sustain_tour_mobile/style/color_theme_style.dart';
 import 'package:sustain_tour_mobile/style/text_style_widget.dart';
 
 class WisataInfoComponent extends StatelessWidget {
-  final Wisata selectedWisata;
+  final WisataDetail selectedWisata;
 
-  const WisataInfoComponent({
-    super.key,
-    required this.selectedWisata
-  });
+  const WisataInfoComponent({super.key, required this.selectedWisata});
 
   @override
   Widget build(BuildContext context) {
@@ -39,9 +36,8 @@ class WisataInfoComponent extends StatelessWidget {
               child: Text(
                 selectedWisata.title,
                 style: TextStyleWidget.titleT2(
-                  color: ColorThemeStyle.black100,
-                  fontWeight: FontWeight.w600
-                ),
+                    color: ColorThemeStyle.black100,
+                    fontWeight: FontWeight.w600),
                 overflow: TextOverflow.ellipsis,
               ),
             ),
@@ -53,14 +49,13 @@ class WisataInfoComponent extends StatelessWidget {
                 Text(
                   selectedWisata.kota.replaceAll('"', ''),
                   style: TextStyleWidget.bodyB3(
-                    color: ColorThemeStyle.grey100,
-                    fontWeight: FontWeight.w500
-                  ),
+                      color: ColorThemeStyle.grey100,
+                      fontWeight: FontWeight.w500),
                 ),
               ],
             ),
             const SizedBox(height: 16),
-            TicketQuantityComponent(selectedWisata : selectedWisata),
+            TicketQuantityComponent(selectedWisata: selectedWisata),
             const SizedBox(height: 24),
           ],
         ),

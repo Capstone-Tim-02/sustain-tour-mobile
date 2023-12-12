@@ -10,10 +10,9 @@ import 'package:sustain_tour_mobile/constants/date_format_const.dart';
 import 'package:sustain_tour_mobile/constants/open_maps_func.dart';
 import 'package:sustain_tour_mobile/constants/routes.dart';
 import 'package:sustain_tour_mobile/models/checkout_models/checkout_argument_models.dart';
-import 'package:sustain_tour_mobile/models/wisata_models/wisata_models.dart';
 import 'package:sustain_tour_mobile/screen/checkout_screen/checkout_provider.dart';
+import 'package:sustain_tour_mobile/screen/home_screen/components/detail_wisata_screen/carbon_footprint_byid_provider.dart';
 import 'package:sustain_tour_mobile/screen/home_screen/components/detail_wisata_screen/detail_wisata_provider.dart';
-import 'package:sustain_tour_mobile/screen/login_screen/login_provider.dart';
 import 'package:sustain_tour_mobile/style/color_theme_style.dart';
 import 'package:sustain_tour_mobile/style/font_weight_style.dart';
 import 'package:sustain_tour_mobile/style/text_style_widget.dart';
@@ -22,6 +21,7 @@ import 'package:sustain_tour_mobile/widget/button_widget.dart';
 import 'package:sustain_tour_mobile/widget/google_maps_widget.dart';
 
 class DetailWisataScreen extends StatefulWidget {
+  const DetailWisataScreen({Key? key}) : super(key: key);
   @override
   State<DetailWisataScreen> createState() => _DetailWisataScreenState();
 }
@@ -32,52 +32,46 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final wisatadata = (ModalRoute.of(context)?.settings.arguments) as Wisata;
-    LoginProvider loginProvider =
-        Provider.of<LoginProvider>(context, listen: false);
-    final detailProvider = Provider.of<DetailWisataProvider>(context);
-    detailProvider.getDetailWisataById(
-        wisatadata.id, loginProvider.token.toString());
+    final totalcarbon =
+        Provider.of<CarbonEmissionProvider>(context, listen: false);
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Detail Wisata',
+          style: TextStyleWidget.titleT2(fontWeight: FontWeightStyle.semiBold),
+        ),
+        centerTitle: true,
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.black,
+          ),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+      ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
         child: Consumer<DetailWisataProvider>(
           builder: (context, provider, child) {
-            if (provider.detailWisata == null) {
-              // Menampilkan loading jika data belum diterima
-              return const Center(child: CircularProgressIndicator());
+            if (provider.isLoading) {
+              return const Column(
+                children: [
+                  Center(child: CircularProgressIndicator()),
+                ],
+              );
             } else {
-              // Menampilkan detail wisata setelah diterima
               final detailWisata = provider.detailWisata!;
+
               List<String> fasilitasList =
-                  parseFasilitasString(wisatadata.fasilitas);
+                  parseFasilitasString(detailWisata.wisata.fasilitas);
 
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 16,
-                  ),
-                  Row(
-                    children: [
-                      IconButton(
-                        icon: const Icon(
-                          Icons.arrow_back,
-                          color: Colors.black,
-                        ),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                      ),
-                      SizedBox(
-                        width: 80,
-                      ),
-                      Text(
-                        'Detail Wisata',
-                        style: TextStyleWidget.titleT2(
-                            fontWeight: FontWeightStyle.semiBold),
-                      ),
-                    ],
                   ),
                   Stack(
                     children: [
@@ -89,7 +83,8 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8.0),
                               image: DecorationImage(
-                                image: NetworkImage(wisatadata.photoWisata1),
+                                image: NetworkImage(
+                                    detailWisata.wisata.photoWisata1),
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -101,8 +96,7 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
                               borderRadius: BorderRadius.circular(8.0),
                               image: DecorationImage(
                                 image: NetworkImage(
-                                  wisatadata.photoWisata2,
-                                ),
+                                    detailWisata.wisata.photoWisata2),
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -112,7 +106,8 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8.0),
                               image: DecorationImage(
-                                image: NetworkImage(wisatadata.photoWisata3),
+                                image: NetworkImage(
+                                    detailWisata.wisata.photoWisata3),
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -148,7 +143,7 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
                   ),
                   const SizedBox(height: 8.0),
                   Text(
-                    wisatadata.title,
+                    detailWisata.wisata.title,
                     style: TextStyleWidget.headlineH3(
                         fontWeight: FontWeightStyle.semiBold),
                   ),
@@ -182,7 +177,7 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
                                 width: 5,
                               ),
                               Text(
-                                detailWisata.totalCarbonFootprint.toString(),
+                                totalcarbon.totalCarbonFootprint.toString(),
                                 style: TextStyleWidget.bodyB3(
                                     fontWeight: FontWeightStyle.semiBold,
                                     color: ColorThemeStyle.greenCarbon),
@@ -219,7 +214,7 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
                                 width: 5,
                               ),
                               Text(
-                                wisatadata.descriptionIsOpen,
+                                detailWisata.wisata.descriptionIsOpen,
                                 style: TextStyleWidget.bodyB3(
                                   fontWeight: FontWeightStyle.semiBold,
                                 ),
@@ -239,7 +234,7 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
                           ),
                           Flexible(
                             child: Text(
-                              wisatadata.kota,
+                              detailWisata.wisata.kota,
                               overflow: TextOverflow.ellipsis,
                               maxLines: 3,
                               style: TextStyleWidget.bodyB3(
@@ -267,7 +262,7 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
                       Flexible(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: wisatadata.description
+                          children: detailWisata.wisata.description
                               .split('\n')
                               .map((paragraph) {
                             return Padding(
@@ -349,12 +344,243 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
                               padding: const EdgeInsets.only(top: 8, left: 17),
                               child: Row(
                                 children: [
-                                  Text(
-                                    'Lihat Selengkapnya',
-                                    style: TextStyleWidget.labelL2(
-                                        fontWeight: FontWeightStyle.medium,
-                                        color:
-                                            ColorThemeStyle.greenSelengkapnya),
+                                  GestureDetector(
+                                    onTap: () {
+                                      showModalBottomSheet(
+                                        context: context,
+                                        builder: (context) {
+                                          return SingleChildScrollView(
+                                            child: Container(
+                                              padding: const EdgeInsets.all(24),
+                                              decoration: const BoxDecoration(
+                                                color: Colors.white,
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(40)),
+                                              ),
+                                              width: double.infinity,
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Container(
+                                                        width: 157,
+                                                        height: 5,
+                                                        margin: const EdgeInsets
+                                                            .only(
+                                                            top: 10,
+                                                            bottom: 20),
+                                                        decoration:
+                                                            const BoxDecoration(
+                                                          color: ColorThemeStyle
+                                                              .grey80,
+                                                          borderRadius:
+                                                              BorderRadius.all(
+                                                                  Radius
+                                                                      .circular(
+                                                                          4)),
+                                                        ),
+                                                      )
+                                                    ],
+                                                  ),
+                                                  Text(
+                                                    'Carbon Emission Footprint',
+                                                    style:
+                                                        TextStyleWidget.titleT2(
+                                                      color: ColorThemeStyle
+                                                          .black100,
+                                                      fontWeight:
+                                                          FontWeightStyle
+                                                              .semiBold,
+                                                    ),
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 36,
+                                                  ),
+                                                  Row(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Text(
+                                                        'Apa itu Carbon Emission Footprint?',
+                                                        style: TextStyleWidget
+                                                            .bodyB1(
+                                                          color: ColorThemeStyle
+                                                              .black100,
+                                                          fontWeight:
+                                                              FontWeightStyle
+                                                                  .semiBold,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 16,
+                                                  ),
+                                                  Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Row(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          const Padding(
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                                    top: 6),
+                                                            child: Icon(
+                                                              Icons
+                                                                  .fiber_manual_record,
+                                                              size: 5,
+                                                            ),
+                                                          ),
+                                                          const SizedBox(
+                                                            width: 10,
+                                                          ),
+                                                          Expanded(
+                                                            child: Text(
+                                                              'Carbon emission footprint adalah ukuran seberapa banyak kita berkontribusi terhadap perubahan iklim. Saat melakukan kegiatan atau beraktivitas, kita melepaskan gas rumah kaca ke atmosfer. Gas-gas ini menyebabkan atmosfer memanas, yang dapat menyebabkan berbagai permasalahan. Mengurangi jejak karbon dapat dengan melakukan hal-hal sederhana, seperti menggunakan transportasi umum.',
+                                                              style:
+                                                                  TextStyleWidget
+                                                                      .bodyB3(
+                                                                color:
+                                                                    ColorThemeStyle
+                                                                        .black100,
+                                                                fontWeight:
+                                                                    FontWeightStyle
+                                                                        .regular,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  SizedBox(
+                                                    height: 32,
+                                                  ),
+                                                  Row(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Text(
+                                                        'Total Carbon Emission Footprint',
+                                                        style: TextStyleWidget
+                                                            .bodyB1(
+                                                          color: ColorThemeStyle
+                                                              .black100,
+                                                          fontWeight:
+                                                              FontWeightStyle
+                                                                  .semiBold,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 16,
+                                                  ),
+                                                  Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Row(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          const Padding(
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                                    top: 6),
+                                                            child: Icon(
+                                                              Icons
+                                                                  .fiber_manual_record,
+                                                              size: 5,
+                                                            ),
+                                                          ),
+                                                          const SizedBox(
+                                                            width: 10,
+                                                          ),
+                                                          Expanded(
+                                                            child: Text(
+                                                              'Total carbon footprint adalah jumlah emisi gas rumah kaca yang dihasilkan oleh suatu kegiatan atau aktivitas. Jumlah emisi gas tersebut nantinya akan dikonversi ke satuan ekuivalen CO2e untuk memudahkan perbandingan dan perhitungan ',
+                                                              style:
+                                                                  TextStyleWidget
+                                                                      .bodyB3(
+                                                                color:
+                                                                    ColorThemeStyle
+                                                                        .black100,
+                                                                fontWeight:
+                                                                    FontWeightStyle
+                                                                        .regular,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      const SizedBox(
+                                                        height: 16,
+                                                      ),
+                                                      Row(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          const Padding(
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                                    top: 6),
+                                                            child: Icon(
+                                                              Icons
+                                                                  .fiber_manual_record,
+                                                              size: 5,
+                                                            ),
+                                                          ),
+                                                          const SizedBox(
+                                                            width: 10,
+                                                          ),
+                                                          Expanded(
+                                                            child: Text(
+                                                              'Total Carbon Emmision destinasi ini setara dengan ${totalcarbon.totalCarbonFootprint}',
+                                                              style:
+                                                                  TextStyleWidget
+                                                                      .bodyB3(
+                                                                color:
+                                                                    ColorThemeStyle
+                                                                        .black100,
+                                                                fontWeight:
+                                                                    FontWeightStyle
+                                                                        .regular,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      );
+                                    },
+                                    child: Text(
+                                      'Lihat Selengkapnya',
+                                      style: TextStyleWidget.labelL2(
+                                          fontWeight: FontWeightStyle.medium,
+                                          color: ColorThemeStyle
+                                              .greenSelengkapnya),
+                                    ),
                                   ),
                                   const SizedBox(
                                     width: 10,
@@ -380,12 +606,13 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
                     height: 32,
                   ),
                   GoogleMapsWidget(
-                      latTarget: wisatadata.lat, longTarget: wisatadata.long),
+                      latTarget: detailWisata.wisata.lat,
+                      longTarget: detailWisata.wisata.long),
                   const SizedBox(
                     height: 8,
                   ),
                   Text(
-                    wisatadata.location,
+                    detailWisata.wisata.location,
                     style: TextStyleWidget.bodyB3(
                       fontWeight: FontWeightStyle.regular,
                     ),
@@ -399,7 +626,8 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
                     fontWeight: FontWeightStyle.semiBold,
                     onPressed: () {
                       OpenMapsFunc.openMaps(
-                          context: context, mapsLink: wisatadata.mapsLink);
+                          context: context,
+                          mapsLink: detailWisata.wisata.mapsLink);
                     },
                   ),
                   const Divider(),
@@ -444,7 +672,8 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  DateFormat('EEE').format(currentDate),
+                                  DateFormat("EEE", 'ID_id')
+                                      .format(currentDate),
                                   style: TextStyleWidget.bodyB3(
                                     fontWeight: FontWeightStyle.semiBold,
                                     color: currentDate.day == selectedDate.day
@@ -453,7 +682,8 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
                                   ),
                                 ),
                                 Text(
-                                  DateFormatConst.dateToTanggalHalfBulanFormat.format(currentDate),
+                                  DateFormatConst.dateToTanggalHalfBulanFormat
+                                      .format(currentDate),
                                   style: TextStyleWidget.bodyB2(
                                     fontWeight: FontWeightStyle.medium,
                                     color: currentDate.day == selectedDate.day
@@ -487,7 +717,8 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
                             height: 8,
                           ),
                           Text(
-                            CurrencyFormatConst.convertToIdr(wisatadata.price,0),
+                            CurrencyFormatConst.convertToIdr(
+                                detailWisata.wisata.price, 0),
                             style: TextStyleWidget.headlineH3(
                               fontWeight: FontWeightStyle.semiBold,
                             ),
@@ -497,12 +728,13 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
                       ButtonWidget.smallContainer(
                           text: 'Beli',
                           onPressed: () {
-                            Provider.of<CheckoutProvider>(context, listen: false).checkoutProviderReset();
+                            Provider.of<CheckoutProvider>(context,
+                                    listen: false)
+                                .checkoutProviderReset();
                             Navigator.pushNamed(context, Routes.checkoutScreen,
                                 arguments: CheckoutArgumentModel(
-                                  checkinDate: selectedDate,
-                                  wisata: wisatadata
-                                ));
+                                    checkinDate: selectedDate,
+                                    wisata: detailWisata.wisata));
                           })
                     ],
                   )

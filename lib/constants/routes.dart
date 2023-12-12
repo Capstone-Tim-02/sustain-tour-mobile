@@ -6,7 +6,7 @@ import 'package:sustain_tour_mobile/screen/checkout_screen/booking_result_screen
 import 'package:sustain_tour_mobile/screen/checkout_screen/use_promo_screen/use_promo_screen.dart';
 import 'package:sustain_tour_mobile/screen/home_screen/components/desti_point_screen/desti_point_screen.dart';
 import 'package:sustain_tour_mobile/screen/home_screen/components/notification_screen/notification_screen.dart';
-import 'package:sustain_tour_mobile/screen/home_screen/components/detail_wisata_screen/detail_wisata_screen.dart';
+
 import 'package:sustain_tour_mobile/screen/home_screen/home_screen.dart';
 import 'package:sustain_tour_mobile/screen/pusat_bantuan_screen/pusat_bantuan_screen.dart';
 import 'package:sustain_tour_mobile/screen/onboarding_screen/splash_screen/splash_screen.dart';
@@ -34,7 +34,6 @@ class Routes {
   static const String mainScreen = '/main';
   static const String homeScreen = '/home';
   static const String notifikasiScreen = '/home/notifikasi';
-  static const String detailWisataScreen = '/detaiwisata';
   static const String accountScreen = '/main/profile/account';
   static const String detailEmissionScreen = '/main/profile/detail-emission';
   static const String editAccountScreen = 'main/profile/account/edit';
@@ -76,6 +75,5 @@ class Routes {
     tnc: (context) => const TermsConditionScreen(),
     aboutUs: (context) => const AboutUsScreen(),
     notifikasiScreen: (context) => const NotificationScreen(),
-    detailWisataScreen: (context) => DetailWisataScreen(),
   };
 }

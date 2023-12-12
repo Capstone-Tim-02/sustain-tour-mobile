@@ -20,8 +20,6 @@ class LoginScreen extends StatelessWidget {
             const EdgeInsets.only(top: 64, right: 19, left: 19, bottom: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          mainAxisSize: MainAxisSize.max,
           children: <Widget>[
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,19 +45,6 @@ class LoginScreen extends StatelessWidget {
                   height: 10,
                 ),
                 const TextFieldPassword(),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Row(),
-                    Row(
-                      children: [
-                        const Text('Lupa Password?'),
-                        TextButton(
-                            onPressed: () {}, child: const Text('Atur Ulang'))
-                      ],
-                    ),
-                  ],
-                ),
                 const SizedBox(height: 32),
                 const BUttonMasuk(),
                 const SizedBox(
@@ -75,6 +60,9 @@ class LoginScreen extends StatelessWidget {
                 ButtonMasukGoogle(),
               ],
             ),
+            const SizedBox(
+              height: 32,
+            ),
             Column(
               children: [
                 Row(
@@ -88,7 +76,12 @@ class LoginScreen extends StatelessWidget {
                             Navigator.pushReplacementNamed(
                                 context, Routes.registerScreen);
                           },
-                          child: const Text('Daftar'),
+                          child: const Text(
+                            'Daftar',
+                            style: TextStyle(
+                              decoration: TextDecoration.underline,
+                            ),
+                          ),
                         )
                       ],
                     ),

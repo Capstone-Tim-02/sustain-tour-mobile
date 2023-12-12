@@ -23,13 +23,12 @@ class TextFieldUsername extends StatelessWidget {
               prefixIcon: FractionallySizedBox(
                 widthFactor: 0.06,
                 child: SvgPicture.asset(
-                  Assets.assetsIconsUsers,
+                  Assets.assetsIconsUsername,
                   fit: BoxFit.contain,
                 ),
               ),
             ),
             const SizedBox(height: 10),
-            // Add more widgets or content as needed
           ],
         );
       },

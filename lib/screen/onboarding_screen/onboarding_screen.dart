@@ -108,19 +108,19 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             Column(
               children: [
                 ButtonWidget.defaultContainer(
-                    text: "Masuk",
+                    text: "Belum Punya Akun? Daftar dulu",
                     onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => LoginScreen()));
+                      Navigator.pushReplacementNamed(
+                          context, Routes.registerScreen);
                     }),
                 const SizedBox(
                   height: 16,
                 ),
                 ButtonWidget.defaultOutline(
-                    text: "Belum Punya Akun? Daftar dulu",
+                    text: "Masuk",
                     onPressed: () {
-                      Navigator.pushReplacementNamed(
-                          context, Routes.registerScreen);
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => LoginScreen()));
                     })
               ],
             ),

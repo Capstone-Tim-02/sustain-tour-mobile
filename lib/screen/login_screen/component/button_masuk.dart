@@ -5,6 +5,7 @@ import 'package:sustain_tour_mobile/screen/login_screen/matchmaking_question/mat
 import 'package:sustain_tour_mobile/screen/login_screen/component/from_password_screns.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/component/from_username_screens.dart';
 import 'package:sustain_tour_mobile/widget/button_widget.dart';
+import 'package:sustain_tour_mobile/widget/snack_bar_widget.dart';
 
 class BUttonMasuk extends StatelessWidget {
   const BUttonMasuk({Key? key}) : super(key: key);
@@ -17,8 +18,6 @@ class BUttonMasuk extends StatelessWidget {
       children: [
         ButtonWidget.defaultContainer(
           onPressed: () {
-            // Your existing login button logic
-
             Provider.of<FormPasswordProvider>(context, listen: false)
                 .validatePassword();
             Provider.of<FromUsernameProvider>(context, listen: false)
@@ -38,10 +37,14 @@ class BUttonMasuk extends StatelessWidget {
               authProvider.loginUser(username, password).then((loggedIn) {
                 if (loggedIn) {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(authProvider.message),
-                    ),
-                  );
+                      SnackBarWidget.snackBarWidget(
+                          message: authProvider.message));
+                  Provider.of<FromUsernameProvider>(context, listen: false)
+                      .emailController
+                      .clear();
+                  Provider.of<FormPasswordProvider>(context, listen: false)
+                      .passwordController
+                      .clear();
 
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
@@ -49,10 +52,8 @@ class BUttonMasuk extends StatelessWidget {
                   );
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(authProvider.message),
-                    ),
-                  ); // Handle login failure
+                      SnackBarWidget.snackBarWidget(
+                          message: authProvider.message));
                 }
               });
             }

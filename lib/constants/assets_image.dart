@@ -255,6 +255,10 @@ class Assets {
   /// assets/images/onboarding2.png
   static const String assetsImagesOnboarding2 = "assets/images/onboarding2.png";
 
+  /// Assets for assetsImagesOnboarding3
+  /// assets/images/onboarding3.png
+  static const String assetsImagesOnboarding3 = "assets/images/onboarding3.png";
+
   /// Assets for assetsImagesOnboarding4
   /// assets/images/onboarding4.png
   static const String assetsImagesOnboarding4 = "assets/images/onboarding4.png";

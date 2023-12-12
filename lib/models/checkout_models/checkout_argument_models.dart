@@ -1,8 +1,8 @@
-import 'package:sustain_tour_mobile/models/wisata_models/wisata_models.dart';
+import '../detail_wisata_byid_models/detail_wisata_byid_models.dart';
 
 class CheckoutArgumentModel {
   DateTime checkinDate;
-  Wisata wisata;
+  WisataDetail wisata;
 
   CheckoutArgumentModel({
     required this.checkinDate,

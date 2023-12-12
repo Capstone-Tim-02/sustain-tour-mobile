@@ -16,7 +16,7 @@ class OnboardingProvider with ChangeNotifier {
         deskripsi:
             'Sesuaikan preferensi perjalanan Kamu untuk mendapatkan rekomendasi yang sesuai dengan minat dan gaya Anda.'),
     OnboardingModels(
-        imagePath: Assets.assetsImagesLogoDestimate,
+        imagePath: Assets.assetsImagesOnboarding3,
         title: 'Booking tiket Mudah, Tanpa Repot',
         deskripsi:
             'Dapatkan tiket dengan mudah dan nikmati perjalanan tanpa repot dengan layanan pembelian tiket kami.'),
