@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:sustain_tour_mobile/constants/assets_image.dart';
+
 import 'package:sustain_tour_mobile/constants/routes.dart';
-import 'package:sustain_tour_mobile/screen/login_screen/component/from_password_screns.dart';
-import 'package:sustain_tour_mobile/screen/login_screen/component/from_username_screens.dart';
 import 'package:sustain_tour_mobile/screen/register_screen/register_provider.dart';
 import 'package:sustain_tour_mobile/screen/register_screen/register_sheet.dart';
 import 'package:sustain_tour_mobile/screen/register_screen/validator/form_confirm_password_screens.dart';
+import 'package:sustain_tour_mobile/screen/register_screen/validator/form_password_register_screens.dart';
 import 'package:sustain_tour_mobile/screen/register_screen/validator/form_full_name_screens.dart';
 import 'package:sustain_tour_mobile/screen/register_screen/validator/form_email_register_screens.dart';
 import 'package:sustain_tour_mobile/screen/register_screen/validator/form_phone_screens.dart';
@@ -113,24 +113,25 @@ class RegisterScreen extends StatelessWidget {
                 height: 10,
               ),
               TextFieldWidget(
-                  controller: Provider.of<FormPasswordProvider>(context)
-                      .passwordController,
+                  controller: Provider.of<FormPasswordRegisterProvider>(context)
+                      .passwordRegisterController,
                   labelText: 'Password',
                   hintText: 'Pasword',
-                  // obscureText: !Provider.of<FormPasswordProvider>(context)
-                  //     .isPasswordVisible,
-                  errorText:
-                      Provider.of<FormPasswordProvider>(context).passwordError,
+                  obscureText: !Provider.of<FormPasswordRegisterProvider>(context)
+                      .isPasswordRegisterVisible,
+                  errorText: Provider.of<FormPasswordRegisterProvider>(context)
+                      .passwordRegisterError,
                   suffixIcon: GestureDetector(
                     child: Icon(
-                      Provider.of<FormPasswordProvider>(context)
-                              .isPasswordVisible
+                      Provider.of<FormPasswordRegisterProvider>(context)
+                              .isPasswordRegisterVisible
                           ? Icons.visibility
                           : Icons.visibility_off,
                     ),
                     onTap: () {
-                      Provider.of<FormPasswordProvider>(context, listen: false)
-                          .togglePasswordVisibility();
+                      Provider.of<FormPasswordRegisterProvider>(context,
+                              listen: false)
+                          .togglePasswordRegisterVisibility();
                     },
                   ),
                   prefixIcon: FractionallySizedBox(
@@ -148,21 +149,21 @@ class RegisterScreen extends StatelessWidget {
                       .confirmPasswordController,
                   labelText: 'Konfirmasi Password',
                   hintText: 'Konfirmasi Password',
-                  // obscureText: !Provider.of<FormPasswordProvider>(context)
-                  //     .isPasswordVisible,
+                  obscureText: !Provider.of<FormConfirmPasswordProvider>(context)
+                      .isConfirmPasswordVisible,
                   errorText: Provider.of<FormConfirmPasswordProvider>(context)
                       .confirmPasswordError,
                   suffixIcon: GestureDetector(
                     child: Icon(
                       Provider.of<FormConfirmPasswordProvider>(context)
-                              .isPasswordVisible
+                              .isConfirmPasswordVisible
                           ? Icons.visibility
                           : Icons.visibility_off,
                     ),
                     onTap: () {
                       Provider.of<FormConfirmPasswordProvider>(context,
                               listen: false)
-                          .togglePasswordVisibility();
+                          .toggleConfirmPasswordVisibility();
                     },
                   ),
                   prefixIcon: FractionallySizedBox(
@@ -196,19 +197,24 @@ class RegisterScreen extends StatelessWidget {
                         .validateUsernameRegister();
                     Provider.of<FromPhoneProvider>(context, listen: false)
                         .validatePhone();
-                    Provider.of<FormPasswordProvider>(context, listen: false)
-                        .validatePassword();
-                    Provider.of<FromUsernameProvider>(context, listen: false)
-                        .validateEmail();
+                    Provider.of<FromEmailRegisterProvider>(context,
+                            listen: false)
+                        .validateEmailRegister();
+                    Provider.of<FormPasswordRegisterProvider>(context,
+                            listen: false)
+                        .validatePasswordRegister();
+                    Provider.of<FormConfirmPasswordProvider>(context,
+                            listen: false)
+                        .validateConfirmPassword();
                     String name = Provider.of<FormFullNameProvider>(context,
                             listen: false)
                         .fullNameController
                         .text;
-                    String username = Provider.of<FromUsernameRegisterProvider>(
-                            context,
-                            listen: false)
-                        .usernameRegisterController
-                        .text;
+                    String usernameRegister =
+                        Provider.of<FromUsernameRegisterProvider>(context,
+                                listen: false)
+                            .usernameRegisterController
+                            .text;
                     String phone =
                         Provider.of<FromPhoneProvider>(context, listen: false)
                             .phoneController
@@ -218,22 +224,25 @@ class RegisterScreen extends StatelessWidget {
                             listen: false)
                         .emailRegisterController
                         .text;
-                    String password = Provider.of<FormPasswordProvider>(context,
-                            listen: false)
-                        .passwordController
-                        .text;
+                    String passwordRegister =
+                        Provider.of<FormPasswordRegisterProvider>(context,
+                                listen: false)
+                            .passwordRegisterController
+                            .text;
                     String confirmPassword =
                         Provider.of<FormConfirmPasswordProvider>(context,
                                 listen: false)
                             .confirmPasswordController
                             .text;
 
-                    if (username.isNotEmpty && password.isNotEmpty) {
+                    if (usernameRegister.isNotEmpty &&
+                        passwordRegister.isNotEmpty) {
                       RegisterProvider authProvider =
                           Provider.of<RegisterProvider>(context, listen: false);
+
                       authProvider
-                          .registerUser(name, username, phone, email, password,
-                              confirmPassword)
+                          .registerUser(name, usernameRegister,
+                              passwordRegister, confirmPassword, email, phone)
                           .then((signUp) {
                         if (signUp) {
                           ScaffoldMessenger.of(context).showSnackBar(
@@ -241,6 +250,14 @@ class RegisterScreen extends StatelessWidget {
                               content: Text(authProvider.message),
                             ),
                           );
+                          showModalBottomSheet(
+                              shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.vertical(
+                                  top: Radius.circular(20),
+                                ),
+                              ),
+                              context: context,
+                              builder: (context) => const RegisterSheet());
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
@@ -250,14 +267,6 @@ class RegisterScreen extends StatelessWidget {
                         }
                       });
                     }
-                    showModalBottomSheet(
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.vertical(
-                            top: Radius.circular(20),
-                          ),
-                        ),
-                        context: context,
-                        builder: (context) => const RegisterSheet());
                   },
                   text: 'Daftar'),
               const SizedBox(
