@@ -1,7 +1,7 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
-export "FLUTTER_ROOT=C:\Users\Public\SDK\flutter"
-export "FLUTTER_APPLICATION_PATH=D:\msib\capstune\sustain-tour-mobile"
+export "FLUTTER_ROOT=C:\Users\62896\flutter"
+export "FLUTTER_APPLICATION_PATH=C:\GitHub\sustain-tour-mobile"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
 export "FLUTTER_BUILD_DIR=build"
 export "FLUTTER_BUILD_NAME=1.0.0"
