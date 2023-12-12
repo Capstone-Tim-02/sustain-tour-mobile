@@ -23,7 +23,23 @@ class WisataInfoComponent extends StatelessWidget {
             height: 86,
             fit: BoxFit.fitHeight,
             errorBuilder: (context, error, stackTrace) {
-              return const Icon(Icons.image_not_supported);
+              return Image.network(
+                selectedWisata.photoWisata2,
+                width: 83,
+                height: 86,
+                fit: BoxFit.fitHeight,
+                errorBuilder: (context, error, stackTrace) {
+                  return Image.network(
+                    selectedWisata.photoWisata3,
+                    width: 83,
+                    height: 86,
+                    fit: BoxFit.fitHeight,
+                    errorBuilder: (context, error, stackTrace) {
+                      return const Icon(Icons.image_not_supported_outlined);
+                    },
+                  );
+                },
+              );
             },
           ),
         ),

@@ -57,6 +57,7 @@ dependencies:
   timeago_flutter: ^3.6.0
   skeletonizer: ^0.8.0
   google_sign_in: ^6.1.6
+  cached_network_image: ^3.3.0
 
 dev_dependencies:
   flutter_test:
@@ -104,6 +105,10 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
+    - family:  CustomIcons
+      fonts:
+        - asset: fonts/CustomIcons.ttf
+
     - family: Poppins
       fonts:
         - asset: fonts/Poppins-Thin.ttf

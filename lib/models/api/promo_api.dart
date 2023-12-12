@@ -1,8 +1,10 @@
 import 'package:dio/dio.dart';
+import 'package:sustain_tour_mobile/constants/shared_preference_manager.dart';
 import 'package:sustain_tour_mobile/models/promo_models/promo_models.dart';
 
 class PromoApi {
-  Future<List<Promo>> getUserPromo({required String token}) async {
+  Future<List<Promo>> getUserPromo() async {
+    String token = await SharedPreferenceManager.getToken() ?? '';
     List<Promo> listPromo = [];
 
     final response = await Dio().get(

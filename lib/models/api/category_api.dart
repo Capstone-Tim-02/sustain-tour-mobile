@@ -1,13 +1,16 @@
 import 'package:dio/dio.dart';
 import 'package:sustain_tour_mobile/constants/api_base_url.dart';
+import 'package:sustain_tour_mobile/constants/shared_preference_manager.dart';
 
 import 'package:sustain_tour_mobile/models/matchmaking_models/category_models.dart';
 
 class CategoryApi {
   final Dio _dio = Dio();
 
-  Future<CategoryModels> getCategoriesApi({required token}) async {
+  Future<CategoryModels> getCategoriesApi() async {
     try {
+      String token = await SharedPreferenceManager.getToken() ?? '';
+
       final response = await _dio.get(
         '$baseUrl/categories',
         options: Options(headers: {'Authorization': 'Bearer $token'}),

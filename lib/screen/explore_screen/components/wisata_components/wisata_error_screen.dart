@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sustain_tour_mobile/screen/explore_screen/explore_screen_provider.dart';
-import 'package:sustain_tour_mobile/screen/login_screen/login_provider.dart';
 import 'package:sustain_tour_mobile/style/color_theme_style.dart';
 import 'package:sustain_tour_mobile/style/text_style_widget.dart';
 import 'package:sustain_tour_mobile/widget/badge_widget.dart';
@@ -12,7 +11,6 @@ class WisataErrorScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ExploreScreenProvider exploreScreenProvider = Provider.of<ExploreScreenProvider>(context, listen: false);
-    LoginProvider loginProvider = Provider.of<LoginProvider>(context, listen: false);
     return Column(
       children: [
         const SizedBox(height: 20),
@@ -25,21 +23,14 @@ class WisataErrorScreen extends StatelessWidget {
         const SizedBox(height: 16),
         BadgeWidget.container(
           onPressed: () {
-            exploreScreenProvider.getAllKota(
-              token: loginProvider.token.toString()
-            );
-            exploreScreenProvider.getAllCategories(
-              token: loginProvider.token.toString()
-            );
+            exploreScreenProvider.getAllKota();
+            exploreScreenProvider.getAllCategories();
             if (exploreScreenProvider.showSearchPage == true) {
               exploreScreenProvider.getWisataDataBySearch(
-                token: loginProvider.token.toString(),
                 searchQuery: exploreScreenProvider.searchWisataController.text
               );
             } else {
-              exploreScreenProvider.getWisataDataByFilter(
-                token: loginProvider.token.toString()
-              );
+              exploreScreenProvider.getWisataDataByFilter();
             }
           },
           label: "Muat ulang")

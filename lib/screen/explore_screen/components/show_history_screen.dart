@@ -24,7 +24,6 @@ class ShowHistoryScreen extends StatelessWidget {
                 exploreScreenProvider.onSearchWisataSubmit();
                 exploreScreenProvider.searchWisataController.text = exploreScreenProvider.searchHistoryList[index].query;
                 exploreScreenProvider.getWisataDataBySearch(
-                  token: loginProvider.token.toString(),
                   searchQuery: exploreScreenProvider.searchHistoryList[index].query
                 );
               },

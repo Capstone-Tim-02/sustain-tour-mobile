@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sustain_tour_mobile/screen/explore_screen/explore_screen_provider.dart';
-import 'package:sustain_tour_mobile/screen/login_screen/login_provider.dart';
 import 'package:sustain_tour_mobile/widget/badge_widget.dart';
 
 class CategoryWisata extends StatelessWidget {
@@ -9,8 +8,6 @@ class CategoryWisata extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    LoginProvider loginProvider =
-        Provider.of<LoginProvider>(context, listen: false);
     return Consumer<ExploreScreenProvider>(
       builder: (context, exploreScreenProvider, child) {
         return exploreScreenProvider.showSearchHistory
@@ -29,32 +26,32 @@ class CategoryWisata extends StatelessWidget {
                             child: exploreScreenProvider.wisataCategory.values
                                         .elementAt(index) ==
                                     true
-                                ? BadgeWidget.containerWithIcon(
-                                    icon: const Icon(Icons.clear),
-                                    label: exploreScreenProvider
-                                        .wisataCategory.keys
-                                        .elementAt(index),
-                                    onPressed: () {
-                                      exploreScreenProvider
-                                          .toggleButtonCategory(index: index);
-                                      if (exploreScreenProvider
-                                              .showSearchPage ==
-                                          true) {
-                                        exploreScreenProvider
-                                            .getWisataDataBySearch(
-                                                token: loginProvider.token
-                                                    .toString(),
-                                                searchQuery:
-                                                    exploreScreenProvider
-                                                        .searchWisataController
-                                                        .text);
-                                      } else {
-                                        exploreScreenProvider
-                                            .getWisataDataByFilter(
-                                          token: loginProvider.token.toString(),
-                                        );
-                                      }
-                                    })
+                                ? Directionality(
+                                    textDirection: TextDirection.rtl,
+                                    child: BadgeWidget.containerWithIcon(
+                                        icon: const Icon(Icons.clear, size: 18),
+                                        label: exploreScreenProvider
+                                            .wisataCategory.keys
+                                            .elementAt(index),
+                                        onPressed: () {
+                                          exploreScreenProvider
+                                              .toggleButtonCategory(
+                                                  index: index);
+                                          if (exploreScreenProvider
+                                                  .showSearchPage ==
+                                              true) {
+                                            exploreScreenProvider
+                                                .getWisataDataBySearch(
+                                                    searchQuery:
+                                                        exploreScreenProvider
+                                                            .searchWisataController
+                                                            .text);
+                                          } else {
+                                            exploreScreenProvider
+                                                .getWisataDataByFilter();
+                                          }
+                                        }),
+                                  )
                                 : BadgeWidget.outline(
                                     label: exploreScreenProvider
                                         .wisataCategory.keys
@@ -67,17 +64,13 @@ class CategoryWisata extends StatelessWidget {
                                           true) {
                                         exploreScreenProvider
                                             .getWisataDataBySearch(
-                                                token: loginProvider.token
-                                                    .toString(),
                                                 searchQuery:
                                                     exploreScreenProvider
                                                         .searchWisataController
                                                         .text);
                                       } else {
                                         exploreScreenProvider
-                                            .getWisataDataByFilter(
-                                          token: loginProvider.token.toString(),
-                                        );
+                                            .getWisataDataByFilter();
                                       }
                                     }));
                       },

@@ -23,12 +23,12 @@ class HomeScreenProvider with ChangeNotifier {
   bool _isGetPromoSuccess = false;
   bool get isGetPromoSuccess => _isGetPromoSuccess;
 
-  void getRekomendasiWisata({required String token}) async {
+  void getRekomendasiWisata() async {
     _isLoadingWisata = true;
     notifyListeners();
 
     try {
-      _listWisata = await WisataApi().getWisataByUserPrederences(token: token);
+      _listWisata = await WisataApi().getWisataByUserPrederences();
       _isGetWisataSuccess = true;
       _isLoadingWisata = false;
       notifyListeners();
@@ -40,12 +40,12 @@ class HomeScreenProvider with ChangeNotifier {
     }
   }
 
-  void getPromo({required String token}) async {
+  void getPromo() async {
     _isLoadingPromo = true;
     notifyListeners();
 
     try {
-      _listPromo = await PromoApi().getUserPromo(token: token);
+      _listPromo = await PromoApi().getUserPromo();
       _isGetPromoSuccess = true;
       _isLoadingPromo = false;
       notifyListeners();

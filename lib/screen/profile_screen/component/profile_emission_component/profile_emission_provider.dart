@@ -15,10 +15,10 @@ class ProfileEmissionProvider extends ChangeNotifier {
   bool get isLoading => _isLoading;
 
   Future<void> getUserEmission(
-      {required int userId, required String token}) async {
+      {required int userId}) async {
     try {
       _emissionModel =
-          await EmissionApi.getUserEmission(userId: userId, token: token);
+          await EmissionApi.getUserEmission(userId: userId);
     } on DioException catch (e) {
       print('emission bad request token invalid : $e');
       _emissionModel = EmissionModel(

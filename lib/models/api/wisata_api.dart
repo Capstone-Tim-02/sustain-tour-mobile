@@ -1,9 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:sustain_tour_mobile/constants/api_base_url.dart';
+import 'package:sustain_tour_mobile/constants/shared_preference_manager.dart';
 import 'package:sustain_tour_mobile/models/wisata_models/wisata_models.dart';
 
 class WisataApi {
-  Future<List<Wisata>> getAllWisata({required int page, required String token, required List<Wisata> listWisata}) async {
+  Future<List<Wisata>> getAllWisata({required int page, required List<Wisata> listWisata}) async {
+    String token = await SharedPreferenceManager.getToken() ?? '';
+
     final response = await Dio().get(
       '$baseUrl/wisata/mobile',
       queryParameters: {
@@ -27,8 +30,9 @@ class WisataApi {
     return listWisata;
   }
 
-  Future<List<Wisata>> getWisataByUserPrederences({required String token}) async {
+  Future<List<Wisata>> getWisataByUserPrederences() async {
     List<Wisata> listWisata = [];
+    String token = await SharedPreferenceManager.getToken() ?? '';
 
     final response = await Dio().get(
       '$baseUrl/user/preferences/',
@@ -50,12 +54,12 @@ class WisataApi {
   }
 
   Future<List<Wisata>> getWisataByFilter({
-    required String token,
     required List<String> category,
     required String kota,
     required int page,
     required List<Wisata> listWisata
   }) async {
+    String token = await SharedPreferenceManager.getToken() ?? '';
     Map<String, dynamic> queryParameters = {
       'limit' : 6,
       'page' : page,
@@ -87,12 +91,12 @@ class WisataApi {
   }
 
   Future<List<Wisata>> getWisataBySearch({
-    required String token,
     required String title,
     required int page,
     required List<Wisata> listWisata,
     required List<String> category,
   }) async {
+    String token = await SharedPreferenceManager.getToken() ?? "";
     Map<String, dynamic> queryParameters = {
       'limit' : 6,
       'page' : page,

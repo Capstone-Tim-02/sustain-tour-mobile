@@ -23,23 +23,18 @@ class ExploreScreen extends StatelessWidget {
       if(currentScroll >= maxScroll && exploreScreenProvider.hasMoreWisata){
         if(exploreScreenProvider.showSearchPage){
           exploreScreenProvider.getWisataDataBySearch(
-            token: loginProvider.token.toString(),
             searchQuery: exploreScreenProvider.searchWisataController.text
           );
         } else {
           exploreScreenProvider.getWisataDataByFilter(
-            token: loginProvider.token.toString(),
           );
         }
       }
     }
 
-    exploreScreenProvider.getWisataInit(
-      token: loginProvider.token.toString());
-    exploreScreenProvider.getAllKota(
-      token: loginProvider.token.toString());
-    exploreScreenProvider.getAllCategories(
-      token: loginProvider.token.toString());
+    exploreScreenProvider.getWisataInit();
+    exploreScreenProvider.getAllKota();
+    exploreScreenProvider.getAllCategories();
     exploreScreenProvider.getSearchHistory(
       userId: loginProvider.userId?.toInt() ?? 0);
     scrollController.addListener(onScroll);
@@ -48,12 +43,9 @@ class ExploreScreen extends StatelessWidget {
       onRefresh: () async{
         ExploreScreenProvider exploreScreenProvider = Provider.of<ExploreScreenProvider>(context, listen: false);
         LoginProvider loginProvider = Provider.of<LoginProvider>(context, listen: false);
-          exploreScreenProvider.getWisataInit(
-            token: loginProvider.token.toString());
-          exploreScreenProvider.getAllKota(
-            token: loginProvider.token.toString());
-          exploreScreenProvider.getAllCategories(
-            token: loginProvider.token.toString());
+          exploreScreenProvider.getWisataInit();
+          exploreScreenProvider.getAllKota();
+          exploreScreenProvider.getAllCategories();
           exploreScreenProvider.getSearchHistory(
             userId: loginProvider.userId?.toInt() ?? 0);
       },

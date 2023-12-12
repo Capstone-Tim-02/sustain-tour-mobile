@@ -43,7 +43,6 @@ class EditAccountPhotoFromGallery extends StatelessWidget {
 
           await profileProvider.uploadProfileImage(
             userId: loginProvider.userId ?? -1,
-            token: loginProvider.token ?? '',
             image: selectedImage,
           );
 

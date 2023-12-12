@@ -3,11 +3,13 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sustain_tour_mobile/constants/api_base_url.dart';
+import 'package:sustain_tour_mobile/constants/shared_preference_manager.dart';
 import 'package:sustain_tour_mobile/models/user_data_models/user_data_models.dart';
 import 'package:http_parser/http_parser.dart';
 
 class UserDataApi {
-  Future<User> getUserData({required int userId, required String token}) async {
+  Future<User> getUserData({required int userId}) async {
+    String token = await SharedPreferenceManager.getToken() ?? '';
     User userData = User(
         id: userId,
         name: "",
@@ -36,9 +38,9 @@ class UserDataApi {
 
   Future<bool> updateName(
       {required int userId,
-      required String token,
       required String newName}) async {
     try {
+      String token = await SharedPreferenceManager.getToken() ?? '';
       await Dio().put('$baseUrl/user/$userId',
           options: Options(
             headers: {
@@ -58,9 +60,9 @@ class UserDataApi {
 
   Future<String> updateUsername(
       {required int userId,
-      required String token,
       required String newUsername}) async {
     try {
+      String token = await SharedPreferenceManager.getToken() ?? '';
       final response = await Dio().put('$baseUrl/user/$userId',
           options: Options(
             headers: {
@@ -82,9 +84,9 @@ class UserDataApi {
 
   Future<bool> updateNoHandphone(
       {required int userId,
-      required String token,
       required String newNoHp}) async {
     try {
+      String token = await SharedPreferenceManager.getToken() ?? '';
       await Dio().put('$baseUrl/user/$userId',
           options: Options(
             headers: {
@@ -104,9 +106,9 @@ class UserDataApi {
 
   Future<bool> updateEmail(
       {required int userId,
-      required String token,
       required String newEmail}) async {
     try {
+      String token = await SharedPreferenceManager.getToken() ?? '';
       await Dio().put('$baseUrl/user/$userId',
           options: Options(
             headers: {
@@ -126,10 +128,10 @@ class UserDataApi {
 
   Future<bool> uploadProfileImage({
     required int userId,
-    required String token,
     required File image,
   }) async {
     try {
+      String token = await SharedPreferenceManager.getToken() ?? '';
       String fileName = image.path.split('/').last;
       await Dio().put('$baseUrl/user/$userId',
           options: Options(
@@ -154,12 +156,12 @@ class UserDataApi {
 
   Future<bool> updatePassword({
     required int userId,
-    required String token,
     required String currentPassword,
     required String newPassword,
     required String confirmNewPassword,
   }) async {
     try {
+      String token = await SharedPreferenceManager.getToken() ?? '';
       await Dio().put('$baseUrl/user/change-password/$userId',
           options: Options(
             headers: {
@@ -180,9 +182,9 @@ class UserDataApi {
 
   Future<bool> deleteProfileImage({
     required int userId,
-    required String token,
   }) async {
     try {
+    String token = await SharedPreferenceManager.getToken() ?? '';
       await Dio().delete(
         '$baseUrl/user/photo/$userId',
         options: Options(

@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:sustain_tour_mobile/constants/shared_preference_manager.dart';
 import 'package:sustain_tour_mobile/models/api/promo_api.dart';
 import 'package:sustain_tour_mobile/models/booking_models/booking_request_body_models.dart';
 import 'package:sustain_tour_mobile/models/promo_models/promo_models.dart';
@@ -66,8 +65,7 @@ class CheckoutProvider extends ChangeNotifier {
     try {
       _isLoadingPromo = true;
       notifyListeners();
-      String token = await SharedPreferenceManager.getToken() ?? "";
-      _listAllPromo = await PromoApi().getUserPromo(token: token);
+      _listAllPromo = await PromoApi().getUserPromo();
 
       _isGetPromoSuccess = true;
       _isLoadingPromo = false;

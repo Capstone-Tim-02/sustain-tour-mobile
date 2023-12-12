@@ -17,17 +17,16 @@ class ProfileProvider extends ChangeNotifier {
   String _message = '';
   String get message => _message;
 
-  Future<void> getUserData({required int userId, required String token}) async {
+  Future<void> getUserData({required int userId}) async {
     _isLoading = true;
     notifyListeners();
-    _user = await UserDataApi().getUserData(userId: userId, token: token);
+    _user = await UserDataApi().getUserData(userId: userId);
     _isLoading = false;
     notifyListeners();
   }
 
   Future<void> updateName({
     required int userId,
-    required String token,
     required String newName,
   }) async {
     bool isDoneUpdate = false;
@@ -35,13 +34,12 @@ class ProfileProvider extends ChangeNotifier {
     try {
       isDoneUpdate = await UserDataApi().updateName(
         userId: userId,
-        token: token,
         newName: newName,
       );
 
       if (isDoneUpdate) {
         _message = 'Berhasil update nama';
-        await getUserData(userId: userId, token: token);
+        await getUserData(userId: userId);
       }
     } catch (e) {
       _message = e.toString();
@@ -50,13 +48,11 @@ class ProfileProvider extends ChangeNotifier {
 
   Future<void> updateUsername({
     required int userId,
-    required String token,
     required String newUsername,
   }) async {
     try {
       String newToken = await UserDataApi().updateUsername(
         userId: userId,
-        token: token,
         newUsername: newUsername,
       );
 
@@ -65,7 +61,7 @@ class ProfileProvider extends ChangeNotifier {
       await prefs.setString('token', newToken);
 
       _message = 'Berhasil update username';
-      await getUserData(userId: userId, token: newToken);
+      await getUserData(userId: userId);
     } catch (e) {
       _message = e.toString();
     }
@@ -73,7 +69,6 @@ class ProfileProvider extends ChangeNotifier {
 
   Future<void> updateNoHandphone({
     required int userId,
-    required String token,
     required String newNoHp,
   }) async {
     bool isDoneUpdate = false;
@@ -81,13 +76,12 @@ class ProfileProvider extends ChangeNotifier {
     try {
       isDoneUpdate = await UserDataApi().updateNoHandphone(
         userId: userId,
-        token: token,
         newNoHp: newNoHp,
       );
 
       if (isDoneUpdate) {
         _message = 'Berhasil update no hp';
-        await getUserData(userId: userId, token: token);
+        await getUserData(userId: userId);
       }
     } catch (e) {
       _message = e.toString();
@@ -96,7 +90,6 @@ class ProfileProvider extends ChangeNotifier {
 
   Future<void> updateEmail({
     required int userId,
-    required String token,
     required String newEmail,
   }) async {
     bool isDoneUpdate = false;
@@ -104,13 +97,12 @@ class ProfileProvider extends ChangeNotifier {
     try {
       isDoneUpdate = await UserDataApi().updateEmail(
         userId: userId,
-        token: token,
         newEmail: newEmail,
       );
 
       if (isDoneUpdate) {
         _message = 'Berhasil update email';
-        await getUserData(userId: userId, token: token);
+        await getUserData(userId: userId);
       }
     } catch (e) {
       _message = e.toString();
@@ -140,7 +132,6 @@ class ProfileProvider extends ChangeNotifier {
 
   Future<void> updatePassword({
     required int userId,
-    required String token,
     required String currentPassword,
     required String newPassword,
     required String confirmNewPassword,
@@ -150,7 +141,6 @@ class ProfileProvider extends ChangeNotifier {
     try {
       isDoneUpload = await UserDataApi().updatePassword(
         userId: userId,
-        token: token,
         currentPassword: currentPassword,
         newPassword: newPassword,
         confirmNewPassword: confirmNewPassword,
@@ -158,7 +148,7 @@ class ProfileProvider extends ChangeNotifier {
 
       if (isDoneUpload) {
         _message = 'Berhasil ganti password';
-        await getUserData(userId: userId, token: token);
+        await getUserData(userId: userId);
       }
     } catch (e) {
       _message = e.toString();
@@ -167,7 +157,6 @@ class ProfileProvider extends ChangeNotifier {
 
   Future<void> uploadProfileImage({
     required int userId,
-    required String token,
     required File image,
   }) async {
     bool isDoneUpdate = false;
@@ -175,12 +164,11 @@ class ProfileProvider extends ChangeNotifier {
     try {
       isDoneUpdate = await UserDataApi().uploadProfileImage(
         userId: userId,
-        token: token,
         image: image,
       );
       if (isDoneUpdate) {
         _message = 'Berhasil upload profile image';
-        await getUserData(userId: userId, token: token);
+        await getUserData(userId: userId);
       }
     } catch (e) {
       _message = e.toString();
@@ -189,18 +177,16 @@ class ProfileProvider extends ChangeNotifier {
 
   Future<void> deleteProfileImage({
     required int userId,
-    required String token,
   }) async {
     bool isDoneUpdate = false;
 
     try {
       isDoneUpdate = await UserDataApi().deleteProfileImage(
         userId: userId,
-        token: token,
       );
       if (isDoneUpdate) {
         _message = 'Berhasil delete profile image';
-        await getUserData(userId: userId, token: token);
+        await getUserData(userId: userId);
       }
     } catch (e) {
       _message = e.toString();

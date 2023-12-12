@@ -146,6 +146,10 @@ class Assets {
 
   /// Assets for assetsIconsSends
   /// assets/icons/sends.svg
+  static const String assetsIconsSearch = "assets/icons/search.svg";
+
+  /// Assets for assetsIconsSends
+  /// assets/icons/sends.svg
   static const String assetsIconsSends = "assets/icons/sends.svg";
 
   /// Assets for assetsIconsTag

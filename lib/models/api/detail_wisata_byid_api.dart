@@ -1,11 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:sustain_tour_mobile/constants/api_base_url.dart';
+import 'package:sustain_tour_mobile/constants/shared_preference_manager.dart';
 import 'package:sustain_tour_mobile/models/detail_wisata_byid_models/detail_wisata_byid_models.dart';
 
 class DetailWisataApi {
   final Dio _dio = Dio();
-  Future<DetailWisataByid> getDetailWisataById(int id, String token) async {
+  Future<DetailWisataByid> getDetailWisataById(int id) async {
     try {
+      String token = await SharedPreferenceManager.getToken() ?? '';
       final response = await _dio.get(
         '$baseUrl/wisata/$id',
         options: Options(

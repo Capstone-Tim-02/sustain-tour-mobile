@@ -20,7 +20,6 @@ class Matchmaking2 extends StatefulWidget {
 class _Matchmaking2State extends State<Matchmaking2> {
   String? selectedCategory;
   late int? userId;
-  late String? userToken;
 
   @override
   void initState() {
@@ -28,9 +27,8 @@ class _Matchmaking2State extends State<Matchmaking2> {
     LoginProvider loginProvider =
         Provider.of<LoginProvider>(context, listen: false);
     Provider.of<CategoryProvider>(context, listen: false)
-        .getCategories(token: loginProvider.token);
+        .getCategories();
     userId = loginProvider.userId;
-    userToken = loginProvider.token;
     selectedCategory = null;
   }
 
@@ -115,7 +113,7 @@ class _Matchmaking2State extends State<Matchmaking2> {
                   await Provider.of<CategoryKesukaanProvider>(context,
                           listen: false)
                       .updateCategoryKesukaan(
-                          userId ?? 0, userToken ?? '', selectedCategory ?? '');
+                          userId ?? 0, selectedCategory ?? '');
 
                   Navigator.pushReplacementNamed(
                     context,

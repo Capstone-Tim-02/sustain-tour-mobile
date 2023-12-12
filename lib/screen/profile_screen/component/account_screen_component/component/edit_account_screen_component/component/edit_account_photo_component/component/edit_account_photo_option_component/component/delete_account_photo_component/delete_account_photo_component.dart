@@ -29,7 +29,7 @@ class DeleteAccountPhotoComponent extends StatelessWidget {
 
                   await profileProvider.deleteProfileImage(
                       userId: loginProvider.userId ?? -1,
-                      token: loginProvider.token ?? '');
+                  );
 
                   if (!context.mounted) return;
 

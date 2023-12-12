@@ -33,13 +33,20 @@ class CardWidget {
                   Center(
                     child: SizedBox(
                       height: 146,
-                      child:
-                          Image.network(imageUrl ?? "", fit: BoxFit.fitHeight,
-                              errorBuilder: (context, error, stackTrace) {
-                        return const Center(
-                            child: Icon(Icons.image_not_supported_sharp,
-                                size: 60));
-                      }),
+                      child: Image.network(imageUrl ?? "", fit: BoxFit.fitHeight,
+                        loadingBuilder: (context, child, loadingProgress) {
+                          if(loadingProgress==null) return child;
+                          return const Center(child: CircularProgressIndicator());
+                        },
+                        errorBuilder: (context, error, stackTrace) {
+                          return const Center(
+                            child: Icon(
+                              Icons.image_not_supported_sharp,
+                              size: 60,
+                            ),
+                          );
+                        }
+                      ),
                     ),
                   ),
                   Padding(
@@ -135,9 +142,17 @@ class CardWidget {
                 height: 90,
                 width: double.infinity,
                 child: Image.network(imageUrl ?? "", fit: BoxFit.fill,
-                    errorBuilder: (context, error, stackTrace) {
-                  return const Icon(Icons.image_not_supported_sharp, size: 60);
-                }),
+                  loadingBuilder: (context, child, loadingProgress) {
+                    if(loadingProgress==null) return child;
+                    return const Center(child: CircularProgressIndicator());
+                  },
+                  errorBuilder: (context, error, stackTrace) {
+                    return const Icon(
+                      Icons.image_not_supported_sharp,
+                      size: 60,
+                    );
+                  }
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.all(8),
@@ -183,10 +198,17 @@ class CardWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10),
                     child: Image.network(imageUrl ?? "", fit: BoxFit.fill,
-                        errorBuilder: (context, error, stackTrace) {
-                      return const Icon(Icons.image_not_supported_sharp,
-                          size: 60);
-                    }),
+                      loadingBuilder: (context, child, loadingProgress) {
+                        if(loadingProgress==null) return child;
+                        return const Center(child: CircularProgressIndicator());
+                      },
+                      errorBuilder: (context, error, stackTrace) {
+                        return const Icon(
+                          Icons.image_not_supported_sharp,
+                          size: 60,
+                        );
+                      }
+                    )
                   ),
                 ),
               ),
@@ -253,10 +275,17 @@ class CardWidget {
                   height: 164,
                   width: 380,
                   child: Image.network(imageUrl ?? "", fit: BoxFit.fill,
-                      errorBuilder: (context, error, stackTrace) {
-                    return const Icon(Icons.image_not_supported_sharp,
-                        size: 60);
-                  }),
+                    loadingBuilder: (context, child, loadingProgress) {
+                      if(loadingProgress==null) return child;
+                      return const Center(child: CircularProgressIndicator());
+                    },
+                    errorBuilder: (context, error, stackTrace) {
+                      return const Icon(
+                        Icons.image_not_supported_sharp,
+                        size: 60,
+                      );
+                    }
+                  ),
                 ),
               ),
               Column(
