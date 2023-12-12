@@ -117,8 +117,8 @@ class RegisterScreen extends StatelessWidget {
                       .passwordRegisterController,
                   labelText: 'Password',
                   hintText: 'Pasword',
-                  // obscureText: !Provider.of<FormPasswordProvider>(context)
-                  //     .isPasswordVisible,
+                  obscureText: !Provider.of<FormPasswordRegisterProvider>(context)
+                      .isPasswordRegisterVisible,
                   errorText: Provider.of<FormPasswordRegisterProvider>(context)
                       .passwordRegisterError,
                   suffixIcon: GestureDetector(
@@ -149,8 +149,8 @@ class RegisterScreen extends StatelessWidget {
                       .confirmPasswordController,
                   labelText: 'Konfirmasi Password',
                   hintText: 'Konfirmasi Password',
-                  // obscureText: !Provider.of<FormPasswordProvider>(context)
-                  //     .isPasswordVisible,
+                  obscureText: !Provider.of<FormConfirmPasswordProvider>(context)
+                      .isConfirmPasswordVisible,
                   errorText: Provider.of<FormConfirmPasswordProvider>(context)
                       .confirmPasswordError,
                   suffixIcon: GestureDetector(
@@ -250,6 +250,14 @@ class RegisterScreen extends StatelessWidget {
                               content: Text(authProvider.message),
                             ),
                           );
+                          showModalBottomSheet(
+                              shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.vertical(
+                                  top: Radius.circular(20),
+                                ),
+                              ),
+                              context: context,
+                              builder: (context) => const RegisterSheet());
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
@@ -259,14 +267,6 @@ class RegisterScreen extends StatelessWidget {
                         }
                       });
                     }
-                    showModalBottomSheet(
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.vertical(
-                            top: Radius.circular(20),
-                          ),
-                        ),
-                        context: context,
-                        builder: (context) => const RegisterSheet());
                   },
                   text: 'Daftar'),
               const SizedBox(

@@ -160,7 +160,7 @@ class AiScreen extends StatelessWidget {
                                     } else {
                                       const snackBar = SnackBar(
                                         content: Text(
-                                          'perompak somalia sedang meretas device anda',
+                                          'Pertanyaan tidak valid!!!, Berikan pertanyaan terkait rekomendasi wista',
                                         ),
                                       );
                                       ScaffoldMessenger.of(context)

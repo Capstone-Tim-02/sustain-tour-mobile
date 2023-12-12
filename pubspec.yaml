@@ -56,6 +56,7 @@ dependencies:
   timeago: ^3.6.0
   timeago_flutter: ^3.6.0
   skeletonizer: ^0.8.0
+  google_sign_in: ^6.1.6
 
 dev_dependencies:
   flutter_test:
@@ -86,10 +87,10 @@ flutter:
     - assets/images/
 
   #UNTUK GENERATE IMAGE
-# flutter_assets:
-#   assets_path: assets/
-#   output_path: lib/constants/
-#   filename: assets_image.dart
+  # flutter_assets:
+  #   assets_path: assets/
+  #   output_path: lib/constants/
+  #   filename: assets_image.dart
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

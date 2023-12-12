@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sustain_tour_mobile/screen/checkout_screen/components/booking_result_screen/booking_result_provider.dart';
+import 'package:sustain_tour_mobile/screen/checkout_screen/booking_result_screen/booking_result_provider.dart';
 import 'package:sustain_tour_mobile/style/color_theme_style.dart';
 import 'package:sustain_tour_mobile/style/text_style_widget.dart';
 

@@ -19,93 +19,105 @@ class Matchmaking1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15),
+      padding: const EdgeInsets.only(bottom: 10),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisSize: MainAxisSize.max,
         children: [
-          const SizedBox(
-            height: 106,
-          ),
-          SizedBox(
-              height: 280,
-              width: 380,
-              child: Image.asset(Assets.assetsImagesMatchmaking)),
-          const SizedBox(
-            height: 32,
-          ),
-          SizedBox(
-              child: Column(
+          Column(
             children: [
-              Text(
-                'Mulai Petualangan Kamu dengan Kami!',
-                style: TextStyleWidget.headlineH2(
-                    fontWeight: FontWeightStyle.medium),
-                textAlign: TextAlign.center,
-              ),
               const SizedBox(
-                height: 12,
+                height: 106,
               ),
-              Text(
-                'Selamat datang! Kami ingin memberikan pengalaman wisata yang paling cocok dengan preferensi Kamu nih. Yuk kita mulai dengan beberapa pertanyaan singkat.',
-                style: TextStyleWidget.bodyB1(
-                  fontWeight: FontWeightStyle.light,
-                ),
-                textAlign: TextAlign.center,
-              )
+              SizedBox(
+                  height: 280,
+                  width: 380,
+                  child: Image.asset(Assets.assetsImagesMatchmaking)),
+              const SizedBox(
+                height: 32,
+              ),
+              SizedBox(
+                  child: Column(
+                children: [
+                  Text(
+                    'Mulai Petualangan Kamu dengan Kami!',
+                    style: TextStyleWidget.headlineH2(
+                        fontWeight: FontWeightStyle.medium),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(
+                    height: 12,
+                  ),
+                  Text(
+                    'Selamat datang! Kami ingin memberikan pengalaman wisata yang paling cocok dengan preferensi Kamu nih. Yuk kita mulai dengan beberapa pertanyaan singkat.',
+                    style: TextStyleWidget.bodyB1(
+                      fontWeight: FontWeightStyle.light,
+                    ),
+                    textAlign: TextAlign.center,
+                  )
+                ],
+              )),
             ],
-          )),
-          const SizedBox(
-            height: 140,
           ),
-          SizedBox(
-              child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          Column(
             children: [
-              ButtonWidget.smallOutline(
-                  text: 'Lewati',
-                  onPressed: () {
-                    LoginProvider loginProvider =
-                        Provider.of<LoginProvider>(context, listen: false);
+              SizedBox(
+                  child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ButtonWidget.smallOutline(
+                      text: 'Lewati',
+                      onPressed: () {
+                        LoginProvider loginProvider =
+                            Provider.of<LoginProvider>(context, listen: false);
 
-                    HomeScreenProvider homeScreenProvider =
-                        Provider.of<HomeScreenProvider>(context, listen: false);
-                    ProfileProvider profileProvider =
-                        Provider.of<ProfileProvider>(context, listen: false);
+                        HomeScreenProvider homeScreenProvider =
+                            Provider.of<HomeScreenProvider>(context,
+                                listen: false);
+                        ProfileProvider profileProvider =
+                            Provider.of<ProfileProvider>(context,
+                                listen: false);
 
-                    homeScreenProvider.getRekomendasiWisata(
-                        token: loginProvider.token.toString());
+                        homeScreenProvider.getRekomendasiWisata(
+                            token: loginProvider.token.toString());
 
-                    homeScreenProvider.getPromo(
-                        token: loginProvider.token.toString());
+                        homeScreenProvider.getPromo(
+                            token: loginProvider.token.toString());
 
-                    profileProvider.getUserData(
-                        userId: loginProvider.userId ?? 0,
-                        token: loginProvider.token.toString());
+                        profileProvider.getUserData(
+                            userId: loginProvider.userId ?? 0,
+                            token: loginProvider.token.toString());
 
-                    Provider.of<TravelHistoryProvider>(context, listen: false)
-                        .getBookingHistory();
+                        Provider.of<TravelHistoryProvider>(context,
+                                listen: false)
+                            .getBookingHistory();
 
-                    Provider.of<ProfileEmissionProvider>(context, listen: false)
-                        .getUserEmission(
-                      userId: loginProvider.userId ?? 0,
-                      token: loginProvider.token ?? '',
-                    );
+                        Provider.of<ProfileEmissionProvider>(context,
+                                listen: false)
+                            .getUserEmission(
+                          userId: loginProvider.userId ?? 0,
+                          token: loginProvider.token ?? '',
+                        );
 
-                    Provider.of<NotificationProvider>(context, listen: false)
-                        .getNotifications();
+                        Provider.of<NotificationProvider>(context,
+                                listen: false)
+                            .getNotifications();
 
-                    Navigator.pushNamedAndRemoveUntil(
-                        context, Routes.mainScreen, (route) => false);
-                  }),
-              const SizedBox(
-                width: 16,
-              ),
-              ButtonWidget.smallContainer(
-                  text: 'Isi Pertanyaan',
-                  onPressed: () {
-                    Navigator.pushNamed(context, Routes.matchmaking2Screen);
-                  })
+                        Navigator.pushNamedAndRemoveUntil(
+                            context, Routes.mainScreen, (route) => false);
+                      }),
+                  const SizedBox(
+                    width: 16,
+                  ),
+                  ButtonWidget.smallContainer(
+                      text: 'Isi Pertanyaan',
+                      onPressed: () {
+                        Navigator.pushNamed(context, Routes.matchmaking2Screen);
+                      })
+                ],
+              )),
             ],
-          )),
+          ),
         ],
       ),
     ));

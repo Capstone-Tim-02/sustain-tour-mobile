@@ -98,7 +98,7 @@ class _Matchmaking2State extends State<Matchmaking2> {
                   ),
                 ),
                 const SizedBox(
-                  height: 91,
+                  height: 51,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

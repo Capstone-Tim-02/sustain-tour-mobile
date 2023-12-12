@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sustain_tour_mobile/models/api/user_data_api.dart';
@@ -116,14 +117,15 @@ class ProfileProvider extends ChangeNotifier {
     }
   }
 
-  Future<void> updateUserLocation({
-    required double lat,
-    required double long,
-  }) async {
+  // WARNING: FUNCTION INI HANYA DIPANGGIL JIKA IZIN LOKASI SUDAH DIBERIKAN
+  // JADI MINTA DULU IZINNYA DI SPLASH SCREEN ATAU TOMBOL CHECKOUT
+  Future<void> updateUserLocation() async {
     bool isDoneUpdate = false;
+    Position userLocation = await Geolocator.getCurrentPosition();
 
     try {
-      isDoneUpdate = await UserDataApi().updateLokasiUser(lat: lat, long: long);
+      isDoneUpdate = await UserDataApi().updateLokasiUser(
+          lat: userLocation.latitude, long: userLocation.longitude);
       if (isDoneUpdate) {
         _message = 'Berhasil update lokasi user';
       }

@@ -45,7 +45,7 @@ class Matchmaking3 extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           const SizedBox(
-            height: 159,
+            height: 100,
           ),
           ButtonWidget.defaultContainer(
               text: 'Mulai',
