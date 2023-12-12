@@ -19,6 +19,7 @@ import 'package:sustain_tour_mobile/style/text_style_widget.dart';
 import 'package:sustain_tour_mobile/widget/badge_widget.dart';
 import 'package:sustain_tour_mobile/widget/button_widget.dart';
 import 'package:sustain_tour_mobile/widget/google_maps_widget.dart';
+import 'package:sustain_tour_mobile/widget/widget_youtube_player.dart';
 
 class DetailWisataScreen extends StatefulWidget {
   const DetailWisataScreen({Key? key}) : super(key: key);
@@ -82,6 +83,19 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
                             width: 380,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(8.0),
+                              child: YoutubePlayerWidget(
+                                linkVid: detailWisata.wisata.videoLink,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            margin: const EdgeInsets.all(5),
+                            width: 380,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8.0),
                               image: DecorationImage(
                                 image: NetworkImage(
                                     detailWisata.wisata.photoWisata1),
@@ -118,7 +132,6 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
                           initialPage: 0,
                           reverse: false,
                           viewportFraction: 1.0,
-                          autoPlay: true,
                           aspectRatio: 16 / 9,
                           onPageChanged: (index, reason) {
                             setState(() {
@@ -134,7 +147,7 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: List.generate(
-                            3,
+                            4,
                             (index) => buildIndicator(index),
                           ),
                         ),
