@@ -5,7 +5,7 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
 import 'package:sustain_tour_mobile/screen/ai_screen/ai_screen_provider.dart';
 import 'package:sustain_tour_mobile/screen/checkout_screen/checkout_provider.dart';
-import 'package:sustain_tour_mobile/screen/checkout_screen/components/booking_result_screen/booking_result_provider.dart';
+import 'package:sustain_tour_mobile/screen/checkout_screen/booking_result_screen/booking_result_provider.dart';
 import 'package:sustain_tour_mobile/screen/home_screen/components/notification_screen/notification_provider.dart';
 import 'package:sustain_tour_mobile/screen/home_screen/components/detail_wisata_screen/detail_wisata_provider.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/login_provider.dart';

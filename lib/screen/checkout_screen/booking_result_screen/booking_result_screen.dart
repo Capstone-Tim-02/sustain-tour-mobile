@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sustain_tour_mobile/constants/routes.dart';
-import 'package:sustain_tour_mobile/screen/checkout_screen/components/booking_result_screen/booking_result_provider.dart';
-import 'package:sustain_tour_mobile/screen/checkout_screen/components/booking_result_screen/components/failed_booking_screen.dart';
-import 'package:sustain_tour_mobile/screen/checkout_screen/components/booking_result_screen/components/success_booking_screen.dart';
+import 'package:sustain_tour_mobile/screen/checkout_screen/booking_result_screen/booking_result_provider.dart';
+import 'package:sustain_tour_mobile/screen/checkout_screen/booking_result_screen/components/failed_booking_screen.dart';
+import 'package:sustain_tour_mobile/screen/checkout_screen/booking_result_screen/components/success_booking_screen.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/component/profile_emission_component/component/detail_emission_screen_component/component/travel_history_component/travel_history_provider.dart';
 import 'package:sustain_tour_mobile/style/font_weight_style.dart';
 import 'package:sustain_tour_mobile/style/text_style_widget.dart';

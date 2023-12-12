@@ -85,7 +85,6 @@ class BookingApi {
 
       if (response.statusCode == 200) {
         bookingResponseModel = BookingResponseModel.fromJson(response.data);
-        print(response.data);
         return bookingResponseModel;
       } else {
         throw DioException(

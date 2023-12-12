@@ -10,6 +10,7 @@ import 'package:sustain_tour_mobile/style/font_weight_style.dart';
 import 'package:sustain_tour_mobile/style/text_style_widget.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/component/profile_emission_component/profile_emission_provider.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/profile_provider.dart';
+import 'package:sustain_tour_mobile/utils/geolocator_helper.dart';
 
 import 'splash_screen_provider.dart';
 
@@ -24,11 +25,22 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 0), () {
+    Future.delayed(const Duration(seconds: 0), () async {
+      // minta izin lokasi
+      bool isLocationPermissionGranted =
+          await GeolocatorHelper.handleLocationPermission();
+      if (!mounted) return;
+
+      // jika izin diberikan maka tembak api update lokasi user
+      if (isLocationPermissionGranted) {
+        Provider.of<ProfileProvider>(context, listen: false)
+            .updateUserLocation();
+      }
+
       SplashScreenProvider splashScreenProvider =
           Provider.of<SplashScreenProvider>(context, listen: false);
 
-      splashScreenProvider.loadDataSplashScreen(context).then((_) {
+      splashScreenProvider.loadDataSplashScreen(context).then((_) async {
         String token = splashScreenProvider.hasToken;
         int id = splashScreenProvider.hasId;
 
