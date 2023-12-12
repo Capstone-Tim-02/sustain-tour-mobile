@@ -205,7 +205,7 @@ class UserDataApi {
     final String? token = pref.getString('token');
 
     try {
-      await Dio().put('$baseUrl/userLocation/$userId',
+      await Dio().put('$baseUrl/userlocation/$userId',
           options: Options(
             headers: {
               "authorization": "Bearer $token",
