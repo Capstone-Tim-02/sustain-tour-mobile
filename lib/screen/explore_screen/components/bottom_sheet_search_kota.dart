@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sustain_tour_mobile/constants/custom_icons.dart';
 import 'package:sustain_tour_mobile/screen/explore_screen/explore_screen_provider.dart';
-import 'package:sustain_tour_mobile/screen/login_screen/login_provider.dart';
 import 'package:sustain_tour_mobile/style/color_theme_style.dart';
 import 'package:sustain_tour_mobile/style/text_style_widget.dart';
 import 'package:sustain_tour_mobile/widget/badge_widget.dart';
@@ -9,7 +9,6 @@ import 'package:sustain_tour_mobile/widget/search_widget.dart';
 
 void bottomSheetSearchKota(BuildContext context){
   ExploreScreenProvider exploreScreenProvider = Provider.of<ExploreScreenProvider>(context, listen: false);
-  LoginProvider loginProvider = Provider.of<LoginProvider>(context, listen: false);
   exploreScreenProvider.onBottomSheetOpened();
   showModalBottomSheet(
     context: context,
@@ -24,7 +23,7 @@ void bottomSheetSearchKota(BuildContext context){
             endIndent: 130,
             thickness: 5,
           ),
-            Padding(
+          Padding(
             padding: const EdgeInsets.only(top: 35, bottom: 18, left: 20, right: 20),
             child: SearchWidget(
               style: TextStyleWidget.titleT2(
@@ -34,9 +33,12 @@ void bottomSheetSearchKota(BuildContext context){
                 exploreScreenProvider.searchKota(query: exploreScreenProvider.searchKotaController.text);
               },
               controller: exploreScreenProvider.searchKotaController,
-              prefixIcon: const Icon(
-                Icons.search,
-                size: 24,
+              prefixIcon: const Padding(
+                padding: EdgeInsets.only(left: 8),
+                child: Icon(
+                  CustomIcons.search,
+                  size: 24,
+                ),
               ),
               label: "Search",
             ),
@@ -49,7 +51,7 @@ void bottomSheetSearchKota(BuildContext context){
                   child: SingleChildScrollView(
                     child: Wrap(
                       spacing: 8,
-                      runSpacing: 16,
+                      runSpacing: 8,
                       children: [
                         for(int i = 0; i < exploreScreenProvider.listSearchedKota.length;i++)
                         i == exploreScreenProvider.kotaIndex
@@ -113,9 +115,7 @@ void bottomSheetSearchKota(BuildContext context){
                       onPressed: exploreScreenProvider.kotaIndex != -1
                         ? (){
                           exploreScreenProvider.onSubmitKota();
-                          exploreScreenProvider.getWisataDataByFilter(
-                            token: loginProvider.token.toString(),
-                          );
+                          exploreScreenProvider.getWisataDataByFilter();
                           Navigator.pop(context);
                         } : null,
                       child: Text(

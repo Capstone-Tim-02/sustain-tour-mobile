@@ -58,15 +58,12 @@ class Matchmaking3 extends StatelessWidget {
                 ProfileProvider profileProvider =
                     Provider.of<ProfileProvider>(context, listen: false);
 
-                homeScreenProvider.getRekomendasiWisata(
-                    token: loginProvider.token.toString());
+                homeScreenProvider.getRekomendasiWisata();
 
-                homeScreenProvider.getPromo(
-                    token: loginProvider.token.toString());
+                homeScreenProvider.getPromo();
 
                 profileProvider.getUserData(
-                    userId: loginProvider.userId ?? 0,
-                    token: loginProvider.token.toString());
+                    userId: loginProvider.userId ?? 0);
 
                 Provider.of<TravelHistoryProvider>(context, listen: false)
                     .getBookingHistory();
@@ -76,9 +73,7 @@ class Matchmaking3 extends StatelessWidget {
 
                 Provider.of<ProfileEmissionProvider>(context, listen: false)
                     .getUserEmission(
-                  userId: loginProvider.userId ?? 0,
-                  token: loginProvider.token ?? '',
-                );
+                  userId: loginProvider.userId ?? 0);
 
                 Navigator.pushNamedAndRemoveUntil(
                     context, Routes.mainScreen, (route) => false);

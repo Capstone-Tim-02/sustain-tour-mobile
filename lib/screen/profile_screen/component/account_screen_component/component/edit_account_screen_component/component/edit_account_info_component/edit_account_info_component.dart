@@ -254,7 +254,6 @@ class EditAccountInfoComponent extends StatelessWidget {
                                     listen: false,
                                   );
 
-                                  String token = loginProvider.token ?? '';
                                   int userId = loginProvider.userId ?? -1;
 
                                   switch (label) {
@@ -262,7 +261,6 @@ class EditAccountInfoComponent extends StatelessWidget {
                                       String value = editProvider.currentName;
                                       await profileProvider.updateName(
                                         userId: userId,
-                                        token: token,
                                         newName: value,
                                       );
                                       break;
@@ -271,7 +269,6 @@ class EditAccountInfoComponent extends StatelessWidget {
                                           editProvider.currentUsername;
                                       await profileProvider.updateUsername(
                                         userId: userId,
-                                        token: token,
                                         newUsername: value,
                                       );
                                       break;
@@ -279,7 +276,6 @@ class EditAccountInfoComponent extends StatelessWidget {
                                       String value = editProvider.currentNoHp;
                                       await profileProvider.updateNoHandphone(
                                         userId: userId,
-                                        token: token,
                                         newNoHp: value,
                                       );
                                       break;
@@ -287,7 +283,6 @@ class EditAccountInfoComponent extends StatelessWidget {
                                       String value = editProvider.currentEmail;
                                       await profileProvider.updateEmail(
                                         userId: userId,
-                                        token: token,
                                         newEmail: value,
                                       );
                                       break;
@@ -474,12 +469,10 @@ class EditAccountInfoComponent extends StatelessWidget {
                                   listen: false,
                                 );
 
-                                String token = loginProvider.token ?? '';
                                 int userId = loginProvider.userId ?? -1;
 
                                 await profileProvider.updatePassword(
                                   userId: userId,
-                                  token: token,
                                   currentPassword: editProvider.currentPassword,
                                   newPassword: editProvider.newPassword,
                                   confirmNewPassword:

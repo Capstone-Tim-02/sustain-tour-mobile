@@ -8,11 +8,11 @@ class CategoryKesukaanProvider extends ChangeNotifier {
   bool get isLoading => _isLoading;
 
   Future<void> updateCategoryKesukaan(
-      int userId, String token, String newCategoryKesukaan) async {
+      int userId, String newCategoryKesukaan) async {
     try {
       _setLoading(true);
       await _apiClient.updateCategoryKesukaan(
-          userId, token, newCategoryKesukaan);
+          userId, newCategoryKesukaan);
     } catch (error) {
       error.toString();
     } finally {

@@ -18,7 +18,7 @@ class SearchWidget extends StatefulWidget {
   final void Function(String) onSubmit;
   final TextEditingController? controller;
   final TextStyle? style;
-  final Icon? prefixIcon;
+  final Widget? prefixIcon;
   final Widget? suffixIcon;
   final Function()? onTap;
   final FocusNode? focusNode;

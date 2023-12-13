@@ -9,10 +9,10 @@ class CategoryProvider with ChangeNotifier {
 
   List<Category> get categories => _categories;
 
-  Future<void> getCategories({required token}) async {
+  Future<void> getCategories() async {
     try {
       CategoryModels categoryModels =
-          await _apiProvider.getCategoriesApi(token: token);
+          await _apiProvider.getCategoriesApi();
       _categories = categoryModels.categories;
       notifyListeners();
     } catch (error) {

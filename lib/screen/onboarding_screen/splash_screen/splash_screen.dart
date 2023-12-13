@@ -46,16 +46,16 @@ class _SplashScreenState extends State<SplashScreen> {
 
         if (token.isNotEmpty && id != 0) {
           Provider.of<ProfileProvider>(context, listen: false)
-              .getUserData(userId: id, token: token);
+              .getUserData(userId: id);
 
           Provider.of<ProfileEmissionProvider>(context, listen: false)
-              .getUserEmission(userId: id, token: token);
+              .getUserEmission(userId: id);
 
           Provider.of<HomeScreenProvider>(context, listen: false)
-              .getRekomendasiWisata(token: token);
+              .getRekomendasiWisata();
 
           Provider.of<HomeScreenProvider>(context, listen: false)
-              .getPromo(token: token);
+              .getPromo();
 
           Provider.of<TravelHistoryProvider>(context, listen: false)
               .getBookingHistory();

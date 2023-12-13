@@ -81,26 +81,22 @@ class Matchmaking1 extends StatelessWidget {
                               Provider.of<ProfileProvider>(context,
                                   listen: false);
 
-                          homeScreenProvider.getRekomendasiWisata(
-                              token: loginProvider.token.toString());
+                        homeScreenProvider.getRekomendasiWisata();
 
-                          homeScreenProvider.getPromo(
-                              token: loginProvider.token.toString());
+                        homeScreenProvider.getPromo();
 
-                          profileProvider.getUserData(
-                              userId: loginProvider.userId ?? 0,
-                              token: loginProvider.token.toString());
+                        profileProvider.getUserData(
+                            userId: loginProvider.userId ?? 0);
 
                           Provider.of<TravelHistoryProvider>(context,
                                   listen: false)
                               .getBookingHistory();
 
-                          Provider.of<ProfileEmissionProvider>(context,
-                                  listen: false)
-                              .getUserEmission(
-                            userId: loginProvider.userId ?? 0,
-                            token: loginProvider.token ?? '',
-                          );
+                        Provider.of<ProfileEmissionProvider>(context,
+                                listen: false)
+                            .getUserEmission(
+                          userId: loginProvider.userId ?? 0,
+                        );
 
                           Provider.of<NotificationProvider>(context,
                                   listen: false)

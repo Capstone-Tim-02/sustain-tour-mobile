@@ -33,16 +33,12 @@ class RekomendasiWisataErrorScreen extends StatelessWidget {
           return BadgeWidget.container(
               onPressed: () {
                 profileProvider.getUserData(
-                    userId: loginProvider.userId ?? 0,
-                    token: loginProvider.token.toString());
-                homeScreenProvider.getRekomendasiWisata(
-                    token: loginProvider.token.toString());
-                homeScreenProvider.getPromo(
-                    token: loginProvider.token.toString());
+                    userId: loginProvider.userId ?? 0);
+                homeScreenProvider.getRekomendasiWisata();
+                homeScreenProvider.getPromo();
                 Provider.of<ProfileEmissionProvider>(context, listen: false)
                     .getUserEmission(
-                        userId: loginProvider.userId ?? 0,
-                        token: loginProvider.token.toString());
+                        userId: loginProvider.userId ?? 0);
                 Provider.of<TravelHistoryProvider>(context, listen: false)
                     .getBookingHistory();
                 Provider.of<NotificationProvider>(context, listen: false)

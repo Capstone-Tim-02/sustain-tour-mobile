@@ -1,10 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:sustain_tour_mobile/constants/api_base_url.dart';
+import 'package:sustain_tour_mobile/constants/shared_preference_manager.dart';
 import 'package:sustain_tour_mobile/models/emission_model/emission_model.dart';
 
 class EmissionApi {
   static Future<EmissionModel> getUserEmission(
-      {required int userId, required String token}) async {
+      {required int userId}) async {
+    String token = await SharedPreferenceManager.getToken() ?? '';
+
     final response = await Dio().get(
       '$baseUrl/carbonfootprint/$userId',
       options: Options(headers: {'Authorization': 'Bearer $token'}),

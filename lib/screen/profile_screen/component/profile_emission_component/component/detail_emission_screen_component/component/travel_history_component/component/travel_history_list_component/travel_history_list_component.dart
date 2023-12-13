@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sustain_tour_mobile/constants/assets_image.dart';
@@ -72,32 +73,26 @@ class TravelHistoryListComponent extends StatelessWidget {
                                   child: ClipRRect(
                                     borderRadius: const BorderRadius.all(
                                         Radius.circular(10)),
-                                    child: Image.network(
-                                      ticket.photoWisata1,
+                                    child: CachedNetworkImage(
+                                      imageUrl: ticket.photoWisata1,
                                       fit: BoxFit.fill,
-                                      errorBuilder:
-                                          (context, error, stackTrace) {
-                                        return Image.network(
-                                          ticket.photoWisata2,
+                                      placeholder: (context, url) => Container(color: ColorThemeStyle.grey50),
+                                      errorWidget: (context, url, error) {
+                                        return CachedNetworkImage(
+                                          imageUrl: ticket.photoWisata2,
                                           fit: BoxFit.fill,
-                                          errorBuilder:
-                                              (context, error, stackTrace) {
-                                            return Image.network(
-                                              ticket.photoWisata3,
+                                          placeholder: (context, url) => Container(color: ColorThemeStyle.grey50),
+                                          errorWidget: (context, url, error) {
+                                            return CachedNetworkImage(
+                                              imageUrl: ticket.photoWisata3,
                                               fit: BoxFit.fill,
-                                              errorBuilder: (context, error,
-                                                      stackTrace) =>
-                                                  const Center(
-                                                      child: Icon(
-                                                Icons
-                                                    .image_not_supported_outlined,
-                                                // size: 50,
-                                              )),
+                                              placeholder: (context, url) => Container(color: ColorThemeStyle.grey50),
+                                              errorWidget: (context, url, error) => const Icon(Icons.image_not_supported),
                                             );
-                                          },
+                                          }
                                         );
                                       },
-                                    ),
+                                    )
                                   ),
                                 ),
                                 const SizedBox(

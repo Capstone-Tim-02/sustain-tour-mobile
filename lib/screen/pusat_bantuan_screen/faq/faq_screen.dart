@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sustain_tour_mobile/constants/custom_icons.dart';
 import 'package:sustain_tour_mobile/screen/pusat_bantuan_screen/faq/component/detail_faq_screen.dart';
 import 'package:sustain_tour_mobile/screen/pusat_bantuan_screen/faq/component/s_widget.dart';
 import 'package:sustain_tour_mobile/screen/pusat_bantuan_screen/faq/faq_screen_provider.dart';
@@ -82,9 +83,13 @@ class FaqScreen extends StatelessWidget {
                           ); // Pastikan mengembalikan Icon ketika isIconVisible false
                   },
                 ),
-                prefixIcon: const Icon(
-                  Icons.search,
-                  color: ColorThemeStyle.blue100,
+                prefixIcon: const Padding(
+                  padding: EdgeInsets.only(left: 8),
+                  child: Icon(
+                    CustomIcons.search,
+                    size: 24,
+                    color: ColorThemeStyle.blue100,
+                  ),
                 ),
                 // controller: quesController,
                 onChange: (String value) {

@@ -1,12 +1,15 @@
 import 'package:dio/dio.dart';
 import 'package:sustain_tour_mobile/constants/api_base_url.dart';
+import 'package:sustain_tour_mobile/constants/shared_preference_manager.dart';
 
 class CategoryKesukaanApi {
   final Dio _dio = Dio();
 
   Future<void> updateCategoryKesukaan(
-      int userId, String token, String newCategoryKesukaan) async {
+      int userId, String newCategoryKesukaan) async {
     try {
+      String token = await SharedPreferenceManager.getToken() ?? '';
+
       FormData formData = FormData.fromMap({
         'category_kesukaan': newCategoryKesukaan,
       });

@@ -148,7 +148,7 @@ class ExploreScreenProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void getWisataInit({required String token}) async {
+  void getWisataInit() async {
     _currentPage = 1;
     _listWisata = [];
     _selectedKota = "Semua Lokasi";
@@ -160,7 +160,7 @@ class ExploreScreenProvider with ChangeNotifier {
     _searchKotaController.clear();
 
     try {
-      _listWisata = await WisataApi().getAllWisata(page: currentPage, token: token, listWisata: listWisata);
+      _listWisata = await WisataApi().getAllWisata(page: currentPage, listWisata: listWisata);
       _isGetWisataSuccess = true;
 
       if(_listWisata.length < _currentPage * 6){
@@ -180,7 +180,7 @@ class ExploreScreenProvider with ChangeNotifier {
     }
   }
 
-  void getWisataDataByFilter({required String token}) async {
+  void getWisataDataByFilter() async {
     _hasMoreWisata = true;
     notifyListeners();
 
@@ -194,11 +194,10 @@ class ExploreScreenProvider with ChangeNotifier {
 
     try {
       if(selectedCategory.isEmpty && _selectedKota == "Semua Lokasi"){
-        _listWisata = await WisataApi().getAllWisata(page: _currentPage, token: token, listWisata: _listWisata);
+        _listWisata = await WisataApi().getAllWisata(page: _currentPage, listWisata: _listWisata);
       } else {
         _listWisata = await WisataApi().getWisataByFilter(
           page: _currentPage,
-          token: token,
           listWisata: _listWisata,
           category: selectedCategory,
           kota: _selectedKota == "Semua Lokasi" ? "" : _selectedKota,
@@ -223,7 +222,7 @@ class ExploreScreenProvider with ChangeNotifier {
     }
   }
 
-  void getWisataDataBySearch({required String token, required String searchQuery}) async {
+  void getWisataDataBySearch({required String searchQuery}) async {
     _hasMoreWisata = true;
     notifyListeners();
 
@@ -238,7 +237,6 @@ class ExploreScreenProvider with ChangeNotifier {
     try {
       _listWisata = await WisataApi().getWisataBySearch(
         page: _currentPage,
-        token: token,
         listWisata: _listWisata,
         title: searchQuery,
         category: selectedCategory,
@@ -262,9 +260,9 @@ class ExploreScreenProvider with ChangeNotifier {
     }
   }
 
-  void getAllKota({required String token}) async {
+  void getAllKota() async {
     try {
-      _listAllKota = await CitiesApi().getAllKota(token: token);
+      _listAllKota = await CitiesApi().getAllKota();
       _listAllKota.insert(0,"Semua Lokasi");
       _listSearchedKota = _listAllKota;
 
@@ -277,9 +275,9 @@ class ExploreScreenProvider with ChangeNotifier {
     }
   }
 
-  void getAllCategories({required String token}) async {
+  void getAllCategories() async {
     try {
-      CategoryModels categoryModel = await CategoryApi().getCategoriesApi(token: token);
+      CategoryModels categoryModel = await CategoryApi().getCategoriesApi();
       for (var element in categoryModel.categories) {
         _wisataCategory[element.categoryName] = false;
       }

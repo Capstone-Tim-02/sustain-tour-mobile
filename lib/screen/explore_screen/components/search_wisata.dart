@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sustain_tour_mobile/constants/custom_icons.dart';
 import 'package:sustain_tour_mobile/screen/explore_screen/components/bottom_sheet_search_kota.dart';
 import 'package:sustain_tour_mobile/screen/explore_screen/explore_screen_provider.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/login_provider.dart';
@@ -29,7 +30,6 @@ class SearchWisata extends StatelessWidget {
             query: exploreScreenProvider.searchWisataController.text
           );
           exploreScreenProvider.getWisataDataBySearch(
-            token: loginProvider.token.toString(),
             searchQuery: exploreScreenProvider.searchWisataController.text
           );
           focusNode.unfocus();
@@ -39,9 +39,12 @@ class SearchWisata extends StatelessWidget {
         },
         label: "Search",
         controller: exploreScreenProvider.searchWisataController,
-        prefixIcon: const Icon(
-          Icons.search,
-          size: 24,
+        prefixIcon: const Padding(
+          padding: EdgeInsets.only(left: 8),
+          child: Icon(
+            CustomIcons.search,
+            size: 24,
+          ),
         ),
         suffixIcon: Consumer<ExploreScreenProvider>(
           builder: (context, exploreScreenProvider, child) {
@@ -52,7 +55,7 @@ class SearchWisata extends StatelessWidget {
                   onTap: (){
                     exploreScreenProvider.onSearchWisataClear();
                     exploreScreenProvider.searchWisataController.clear();
-                    exploreScreenProvider.getWisataInit(token: loginProvider.token.toString());
+                    exploreScreenProvider.getWisataInit();
                     focusNode.unfocus();
                   },
                   child: const Icon(
