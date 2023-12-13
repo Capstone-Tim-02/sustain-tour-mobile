@@ -62,59 +62,64 @@ class Matchmaking1 extends StatelessWidget {
           Column(
             children: [
               SizedBox(
-                  child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  ButtonWidget.smallOutline(
-                      text: 'Lewati',
-                      onPressed: () {
-                        LoginProvider loginProvider =
-                            Provider.of<LoginProvider>(context, listen: false);
+                  child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 6),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ButtonWidget.smallOutline(
+                        text: 'Lewati',
+                        onPressed: () {
+                          LoginProvider loginProvider =
+                              Provider.of<LoginProvider>(context,
+                                  listen: false);
 
-                        HomeScreenProvider homeScreenProvider =
-                            Provider.of<HomeScreenProvider>(context,
-                                listen: false);
-                        ProfileProvider profileProvider =
-                            Provider.of<ProfileProvider>(context,
-                                listen: false);
+                          HomeScreenProvider homeScreenProvider =
+                              Provider.of<HomeScreenProvider>(context,
+                                  listen: false);
+                          ProfileProvider profileProvider =
+                              Provider.of<ProfileProvider>(context,
+                                  listen: false);
 
-                        homeScreenProvider.getRekomendasiWisata(
-                            token: loginProvider.token.toString());
+                          homeScreenProvider.getRekomendasiWisata(
+                              token: loginProvider.token.toString());
 
-                        homeScreenProvider.getPromo(
-                            token: loginProvider.token.toString());
+                          homeScreenProvider.getPromo(
+                              token: loginProvider.token.toString());
 
-                        profileProvider.getUserData(
+                          profileProvider.getUserData(
+                              userId: loginProvider.userId ?? 0,
+                              token: loginProvider.token.toString());
+
+                          Provider.of<TravelHistoryProvider>(context,
+                                  listen: false)
+                              .getBookingHistory();
+
+                          Provider.of<ProfileEmissionProvider>(context,
+                                  listen: false)
+                              .getUserEmission(
                             userId: loginProvider.userId ?? 0,
-                            token: loginProvider.token.toString());
+                            token: loginProvider.token ?? '',
+                          );
 
-                        Provider.of<TravelHistoryProvider>(context,
-                                listen: false)
-                            .getBookingHistory();
+                          Provider.of<NotificationProvider>(context,
+                                  listen: false)
+                              .getNotifications();
 
-                        Provider.of<ProfileEmissionProvider>(context,
-                                listen: false)
-                            .getUserEmission(
-                          userId: loginProvider.userId ?? 0,
-                          token: loginProvider.token ?? '',
-                        );
-
-                        Provider.of<NotificationProvider>(context,
-                                listen: false)
-                            .getNotifications();
-
-                        Navigator.pushNamedAndRemoveUntil(
-                            context, Routes.mainScreen, (route) => false);
-                      }),
-                  const SizedBox(
-                    width: 16,
-                  ),
-                  ButtonWidget.smallContainer(
-                      text: 'Isi Pertanyaan',
-                      onPressed: () {
-                        Navigator.pushNamed(context, Routes.matchmaking2Screen);
-                      })
-                ],
+                          Navigator.pushNamedAndRemoveUntil(
+                              context, Routes.mainScreen, (route) => false);
+                        }),
+                    const SizedBox(
+                      width: 16,
+                    ),
+                    ButtonWidget.smallContainer(
+                        text: 'Isi preferensi',
+                        onPressed: () {
+                          Navigator.pushNamed(
+                              context, Routes.matchmaking2Screen);
+                        })
+                  ],
+                ),
               )),
             ],
           ),

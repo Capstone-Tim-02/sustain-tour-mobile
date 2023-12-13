@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'form_password_register_screens.dart';
 
 class FormConfirmPasswordProvider with ChangeNotifier {
   final TextEditingController _confirmPasswordController = TextEditingController();
@@ -18,13 +19,13 @@ class FormConfirmPasswordProvider with ChangeNotifier {
     String confirmPassword = _confirmPasswordController.text;
 
     // Validasi panjang password
-    if (confirmPassword.length <= 2) {
+    if (confirmPassword.length <= 5) {
       _confirmPasswordError = 'Password harus lebih dari 5 karakter';
       notifyListeners();
       return false;
     }
 
-    if (confirmPassword != confirmPassword){
+    if (confirmPassword != FormPasswordRegisterProvider){
       _confirmPasswordError = 'Password tidak sama';
       notifyListeners();
       return false;

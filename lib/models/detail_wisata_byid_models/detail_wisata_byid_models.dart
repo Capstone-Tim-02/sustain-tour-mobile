@@ -1,21 +1,11 @@
-import 'dart:convert';
-
-DetailWisataByid detailWisataByidFromJson(String str) =>
-    DetailWisataByid.fromJson(json.decode(str));
-
-String detailWisataByidToJson(DetailWisataByid data) =>
-    json.encode(data.toJson());
-
 class DetailWisataByid {
   int code;
   bool error;
-  int totalCarbonFootprint;
   WisataDetail wisata;
 
   DetailWisataByid({
     required this.code,
     required this.error,
-    required this.totalCarbonFootprint,
     required this.wisata,
   });
 
@@ -23,14 +13,12 @@ class DetailWisataByid {
       DetailWisataByid(
         code: json["code"],
         error: json["error"],
-        totalCarbonFootprint: json["total_carbon_footprint"],
         wisata: WisataDetail.fromJson(json["wisata"]),
       );
 
   Map<String, dynamic> toJson() => {
         "code": code,
         "error": error,
-        "total_carbon_footprint": totalCarbonFootprint,
         "wisata": wisata.toJson(),
       };
 }

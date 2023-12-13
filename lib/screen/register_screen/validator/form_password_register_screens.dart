@@ -18,7 +18,7 @@ class FormPasswordRegisterProvider with ChangeNotifier {
     String passwordRegister = _passwordRegisterController.text;
 
     // Validasi panjang password
-    if (passwordRegister.length <= 2) {
+    if (passwordRegister.length <= 5) {
       _passwordRegisterError = 'Password harus lebih dari 5 karakter';
       notifyListeners();
       return false;

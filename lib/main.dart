@@ -34,6 +34,7 @@ import 'package:sustain_tour_mobile/screen/tiket_screen/tiket_provider.dart';
 import 'package:sustain_tour_mobile/style/color_theme_style.dart';
 import 'package:sustain_tour_mobile/widget/bottom_navbar_widget/bottom_navbar_widget_provider.dart';
 import 'package:timeago/timeago.dart';
+import 'screen/home_screen/components/detail_wisata_screen/carbon_footprint_byid_provider.dart';
 import 'screen/onboarding_screen/onboarding_provider.dart';
 import 'screen/onboarding_screen/splash_screen/splash_screen_provider.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -108,6 +109,8 @@ void main() async {
           create: (context) => NotificationProvider()),
       ChangeNotifierProvider<DetailWisataProvider>(
           create: (context) => DetailWisataProvider()),
+      ChangeNotifierProvider<CarbonEmissionProvider>(
+          create: (context) => CarbonEmissionProvider()),
     ],
     child: const MyApp(),
   ));

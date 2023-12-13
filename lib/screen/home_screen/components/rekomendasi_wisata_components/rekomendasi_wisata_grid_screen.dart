@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sustain_tour_mobile/constants/routes.dart';
+import 'package:sustain_tour_mobile/screen/home_screen/components/detail_wisata_screen/carbon_footprint_byid_provider.dart';
+import 'package:sustain_tour_mobile/screen/home_screen/components/detail_wisata_screen/detail_wisata_provider.dart';
+import 'package:sustain_tour_mobile/screen/home_screen/components/detail_wisata_screen/detail_wisata_screen.dart';
 import 'package:sustain_tour_mobile/screen/home_screen/home_screen_provider.dart';
 import 'package:sustain_tour_mobile/widget/card_widget.dart';
 
@@ -21,8 +23,19 @@ class RekomendasiWisataGridScreen extends StatelessWidget {
         itemBuilder: (BuildContext context, int index) {
           return GestureDetector(
             onTap: () {
-              Navigator.pushNamed(context, Routes.detailWisataScreen,
-                  arguments: homeScreenProvider.listWisata[index]);
+              Provider.of<CarbonEmissionProvider>(context, listen: false)
+                  .getCarbonEmissionById(
+                      homeScreenProvider.listWisata[index].id);
+              final detailProvider =
+                  Provider.of<DetailWisataProvider>(context, listen: false);
+              detailProvider
+                  .getDetailWisataById(homeScreenProvider.listWisata[index].id);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => DetailWisataScreen(),
+                ),
+              );
             },
             child: CardWidget.small(
                 imageUrl: homeScreenProvider.listWisata[index].photoWisata1,

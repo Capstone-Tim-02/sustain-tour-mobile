@@ -14,7 +14,8 @@ class CheckoutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final arguments = (ModalRoute.of(context)?.settings.arguments) as CheckoutArgumentModel;
+    final arguments =
+        (ModalRoute.of(context)?.settings.arguments) as CheckoutArgumentModel;
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -40,9 +41,8 @@ class CheckoutScreen extends StatelessWidget {
               const PoinInfoComponent(),
               OrderInfoComponent(selectedWisata: arguments.wisata),
               BookingButtonComponent(
-                wisataId: arguments.wisata.id,
-                checkinBooking: arguments.checkinDate
-              )
+                  wisataId: arguments.wisata.id,
+                  checkinBooking: arguments.checkinDate)
             ],
           ),
         ),

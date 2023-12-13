@@ -37,102 +37,97 @@ class _Matchmaking2State extends State<Matchmaking2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          const SizedBox(
-            height: 60,
-          ),
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: 16),
-            child: Column(
+      body: Padding(
+        padding: const EdgeInsets.only(bottom: 10),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Column(
               children: [
-                SizedBox(
+                const SizedBox(
+                  height: 60,
+                ),
+                Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 16),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(
-                        height: 12,
-                      ),
-                      Text(
-                        'Pilih preferensi wisatamu terlebih dahulu yuk',
-                        style: TextStyleWidget.headlineH3(
-                          fontWeight: FontWeightStyle.semiBold,
+                      SizedBox(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const SizedBox(
+                              height: 12,
+                            ),
+                            Text(
+                              'Pilih preferensi wisatamu terlebih dahulu yuk',
+                              style: TextStyleWidget.headlineH3(
+                                fontWeight: FontWeightStyle.semiBold,
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 8,
+                            ),
+                            Text(
+                              'Kamu lebih suka yang mana nih?',
+                              style: TextStyleWidget.titleT2(
+                                fontWeight: FontWeightStyle.light,
+                              ),
+                            )
+                          ],
                         ),
                       ),
                       const SizedBox(
-                        height: 8,
+                        height: 32,
                       ),
-                      Text(
-                        'Kamu lebih suka yang mana nih?',
-                        style: TextStyleWidget.titleT2(
-                          fontWeight: FontWeightStyle.light,
+                      SizedBox(
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                buildCategoryWisataAlam(),
+                                buildCategoryWisataHiburan()
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 16,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                buildCategoryWisataAir(),
+                                buildCategoryWisataSejarah(),
+                              ],
+                            )
+                          ],
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
-                const SizedBox(
-                  height: 32,
-                ),
-                SizedBox(
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          buildCategoryWisataAlam(),
-                          buildCategoryWisataHiburan()
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 16,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          buildCategoryWisataAir(),
-                          buildCategoryWisataSejarah(),
-                        ],
-                      )
-                    ],
-                  ),
-                ),
-                const SizedBox(
-                  height: 51,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    ButtonWidget.smallOutline(
-                      text: 'Kembali',
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                    ),
-                    ButtonWidget.smallContainer(
-                      text: 'Selanjutnya',
-                      onPressed: () async {
-                        if (selectedCategory != null) {
-                          await Provider.of<CategoryKesukaanProvider>(context,
-                                  listen: false)
-                              .updateCategoryKesukaan(userId ?? 0,
-                                  userToken ?? '', selectedCategory ?? '');
-
-                          Navigator.pushReplacementNamed(
-                            context,
-                            Routes.matchmaking3Screen,
-                          );
-                        } else {
-                          // Handle case where no category is selected
-                        }
-                      },
-                    ),
-                  ],
-                )
               ],
             ),
-          ),
-        ],
+            ButtonWidget.defaultContainer(
+              text: 'Selesai',
+              onPressed: () async {
+                if (selectedCategory != null) {
+                  await Provider.of<CategoryKesukaanProvider>(context,
+                          listen: false)
+                      .updateCategoryKesukaan(
+                          userId ?? 0, userToken ?? '', selectedCategory ?? '');
+
+                  Navigator.pushReplacementNamed(
+                    context,
+                    Routes.matchmaking3Screen,
+                  );
+                } else {
+                  // Handle case where no category is selected
+                }
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -145,7 +140,7 @@ class _Matchmaking2State extends State<Matchmaking2> {
             child: CircularProgressIndicator(),
           );
         } else {
-          String categoryName = categoryProvider.categories[0].categoryName;
+          String categoryName = categoryProvider.categories[3].categoryName;
 
           return GestureDetector(
             onTap: () {
@@ -154,16 +149,16 @@ class _Matchmaking2State extends State<Matchmaking2> {
               });
             },
             child: Container(
-              width: 182,
-              height: 216,
+              width: 175,
+              height: 230,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(
-                  color: selectedCategory == categoryName
-                      ? Colors.blue
-                      : Colors.black,
                   width: 1.0,
                 ),
+                color: selectedCategory == categoryName
+                    ? ColorThemeStyle.blue10
+                    : Colors.transparent,
               ),
               child: Column(
                 children: [
@@ -229,16 +224,16 @@ class _Matchmaking2State extends State<Matchmaking2> {
               });
             },
             child: Container(
-              width: 182,
-              height: 216,
+              width: 175,
+              height: 230,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(
-                  color: selectedCategory == categoryName
-                      ? Colors.blue
-                      : Colors.black,
                   width: 1.0,
                 ),
+                color: selectedCategory == categoryName
+                    ? ColorThemeStyle.blue10
+                    : Colors.transparent,
               ),
               child: Column(
                 children: [
@@ -251,7 +246,7 @@ class _Matchmaking2State extends State<Matchmaking2> {
                           height: 40,
                           width: 40,
                           child: Image.asset(
-                            Assets.assetsImagesWisataAlam,
+                            Assets.assetsImagesWisataBudaya,
                           ),
                         ),
                         const SizedBox(
@@ -268,7 +263,7 @@ class _Matchmaking2State extends State<Matchmaking2> {
                           height: 12,
                         ),
                         Text(
-                          'Temukan ketenangan di antara alam. Jelajahi gunung indah, pantai memesona, dan taman eksotis',
+                          'Menyatu dengan perbedaan budaya. Rasakan keunikan seni, tradisi, dan cita rasa kuliner yang khas',
                           style: TextStyleWidget.labelL2(
                             fontWeight: FontWeightStyle.regular,
                             color: ColorThemeStyle.grey100,
@@ -304,16 +299,16 @@ class _Matchmaking2State extends State<Matchmaking2> {
               });
             },
             child: Container(
-              width: 182,
-              height: 216,
+              width: 175,
+              height: 230,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(
-                  color: selectedCategory == categoryName
-                      ? Colors.blue
-                      : Colors.black,
                   width: 1.0,
                 ),
+                color: selectedCategory == categoryName
+                    ? ColorThemeStyle.blue10
+                    : Colors.transparent,
               ),
               child: Column(
                 children: [
@@ -326,7 +321,7 @@ class _Matchmaking2State extends State<Matchmaking2> {
                           height: 40,
                           width: 40,
                           child: Image.asset(
-                            Assets.assetsImagesWisataAlam,
+                            Assets.assetsImagesWisataHiburan,
                           ),
                         ),
                         const SizedBox(
@@ -343,7 +338,7 @@ class _Matchmaking2State extends State<Matchmaking2> {
                           height: 12,
                         ),
                         Text(
-                          'Temukan ketenangan di antara alam. Jelajahi gunung indah, pantai memesona, dan taman eksotis',
+                          'Nikmati liburanmu dengan sensasi taman rekreasi, pertunjukan menarik, dan kegiatan seru yang tak terlupakan',
                           style: TextStyleWidget.labelL2(
                             fontWeight: FontWeightStyle.regular,
                             color: ColorThemeStyle.grey100,
@@ -370,7 +365,7 @@ class _Matchmaking2State extends State<Matchmaking2> {
             child: CircularProgressIndicator(),
           );
         } else {
-          String categoryName = categoryProvider.categories[3].categoryName;
+          String categoryName = categoryProvider.categories[0].categoryName;
 
           return GestureDetector(
             onTap: () {
@@ -379,16 +374,16 @@ class _Matchmaking2State extends State<Matchmaking2> {
               });
             },
             child: Container(
-              width: 182,
-              height: 216,
+              width: 175,
+              height: 230,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(
-                  color: selectedCategory == categoryName
-                      ? Colors.blue
-                      : Colors.black,
                   width: 1.0,
                 ),
+                color: selectedCategory == categoryName
+                    ? ColorThemeStyle.blue10
+                    : Colors.transparent,
               ),
               child: Column(
                 children: [
@@ -401,7 +396,7 @@ class _Matchmaking2State extends State<Matchmaking2> {
                           height: 40,
                           width: 40,
                           child: Image.asset(
-                            Assets.assetsImagesWisataAlam,
+                            Assets.assetsImagesWisataSejarah,
                           ),
                         ),
                         const SizedBox(
@@ -418,7 +413,7 @@ class _Matchmaking2State extends State<Matchmaking2> {
                           height: 12,
                         ),
                         Text(
-                          'Temukan ketenangan di antara alam. Jelajahi gunung indah, pantai memesona, dan taman eksotis',
+                          'Jejak masa lalu yang masih tersimpan. Cari tau kisah menarik di balik situs purbakala dan bangunan bersejarah',
                           style: TextStyleWidget.labelL2(
                             fontWeight: FontWeightStyle.regular,
                             color: ColorThemeStyle.grey100,
