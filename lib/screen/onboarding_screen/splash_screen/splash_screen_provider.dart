@@ -19,7 +19,7 @@ class SplashScreenProvider with ChangeNotifier {
     _hasToken = authProvider.token ?? '';
     _hasId = authProvider.userId ?? 0;
 
-    await Future.delayed(const Duration(seconds: 3));
+    await Future.delayed(const Duration(seconds: 1));
     _isLoading = false;
     notifyListeners();
   }

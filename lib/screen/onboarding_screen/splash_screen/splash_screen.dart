@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:sustain_tour_mobile/constants/assets_image.dart';
 import 'package:sustain_tour_mobile/screen/home_screen/components/notification_screen/notification_provider.dart';
 import 'package:sustain_tour_mobile/screen/home_screen/home_screen_provider.dart';
+import 'package:sustain_tour_mobile/screen/login_screen/matchmaking_question/matchmaking_1.dart';
 import 'package:sustain_tour_mobile/screen/main_screen/main_screen.dart';
 import 'package:sustain_tour_mobile/screen/onboarding_screen/onboarding_screen.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/component/profile_emission_component/component/detail_emission_screen_component/component/travel_history_component/travel_history_provider.dart';
@@ -63,9 +64,17 @@ class _SplashScreenState extends State<SplashScreen> {
           Provider.of<NotificationProvider>(context, listen: false)
               .getNotifications();
 
-          Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => const MainScreen()),
-          );
+          Future.delayed(const Duration(milliseconds: 1500), () async {
+            if(Provider.of<ProfileProvider>(context, listen: false).user.statusCategory == true){
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => const MainScreen()),
+              );
+            } else {
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) =>const Matchmaking1()),
+              );
+            }
+          });
         } else {
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (context) => const OnboardingScreen()),

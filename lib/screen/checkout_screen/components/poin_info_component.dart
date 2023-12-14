@@ -95,6 +95,7 @@ class PoinInfoComponent extends StatelessWidget {
                       value: checkoutProvider.isPointUsed,
                       onChanged: (bool value){
                         if(profileProvider.user.points == 0){
+                          ScaffoldMessenger.of(context).hideCurrentSnackBar();
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBarWidget.snackBarWidget(
                               message: "Kamu tidak memiliki poin!",

@@ -10,16 +10,44 @@ class AlertDialogComponent extends StatelessWidget {
   final void Function()? onPressedYesButton;
   final EdgeInsets? insetPadding;
   final EdgeInsetsGeometry? contentPadding;
+  final String? labelRedButton;
+  final String? labelBlueButton;
+  final bool? reverseButtonPosition;
   const AlertDialogComponent(
       {super.key,
       required this.text,
       this.onPressedNoButton,
       this.onPressedYesButton,
       this.insetPadding,
-      this.contentPadding});
+      this.contentPadding,
+      this.labelRedButton,
+      this.labelBlueButton,
+      this.reverseButtonPosition = false});
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> buttonWidgetList = [
+      BadgeWidget.container(
+          onPressed: reverseButtonPosition! ?  onPressedYesButton : onPressedNoButton,
+          label: labelBlueButton ??'Tidak',
+          width: 105,
+          height: 42,
+        ),
+        BadgeWidget.outline(
+          onPressed: reverseButtonPosition! ? onPressedNoButton : onPressedYesButton,
+          borderColor: ColorThemeStyle.red,
+          foregroundColor: ColorThemeStyle.red,
+          overlayColor: const Color.fromARGB(255, 235, 124, 116),
+          label: labelRedButton ?? 'Iya',
+          width: 105,
+          height: 42,
+        ),
+    ];
+
+    if(reverseButtonPosition == true){
+      buttonWidgetList = buttonWidgetList.reversed.toList();
+    }
+
     return AlertDialog(
       insetPadding: insetPadding ??
           const EdgeInsets.symmetric(horizontal: 40.0, vertical: 24.0),
@@ -48,23 +76,7 @@ class AlertDialogComponent extends StatelessWidget {
         right: 32,
         bottom: 44,
       ),
-      actions: [
-        BadgeWidget.container(
-          onPressed: onPressedNoButton,
-          label: 'Tidak',
-          width: 105,
-          height: 42,
-        ),
-        BadgeWidget.outline(
-          onPressed: onPressedYesButton,
-          borderColor: ColorThemeStyle.red,
-          foregroundColor: ColorThemeStyle.red,
-          overlayColor: const Color.fromARGB(255, 235, 124, 116),
-          label: 'Iya',
-          width: 105,
-          height: 42,
-        ),
-      ],
+      actions: buttonWidgetList
     );
   }
 }
