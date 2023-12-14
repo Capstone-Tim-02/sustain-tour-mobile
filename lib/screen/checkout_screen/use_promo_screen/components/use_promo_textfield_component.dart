@@ -50,6 +50,7 @@ class UsePromoTextfieldComponent extends StatelessWidget {
             backgroundColor: ColorThemeStyle.blue100
           ),
           onPressed: (){
+            ScaffoldMessenger.of(context).hideCurrentSnackBar();
             checkoutProvider.onUsePromo(checkoutProvider.usePromoController.text);
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBarWidget.snackBarWidget(

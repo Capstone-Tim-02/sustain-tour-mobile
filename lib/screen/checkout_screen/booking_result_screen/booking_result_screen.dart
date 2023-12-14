@@ -4,7 +4,9 @@ import 'package:sustain_tour_mobile/constants/routes.dart';
 import 'package:sustain_tour_mobile/screen/checkout_screen/booking_result_screen/booking_result_provider.dart';
 import 'package:sustain_tour_mobile/screen/checkout_screen/booking_result_screen/components/failed_booking_screen.dart';
 import 'package:sustain_tour_mobile/screen/checkout_screen/booking_result_screen/components/success_booking_screen.dart';
+import 'package:sustain_tour_mobile/screen/login_screen/login_provider.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/component/profile_emission_component/component/detail_emission_screen_component/component/travel_history_component/travel_history_provider.dart';
+import 'package:sustain_tour_mobile/screen/profile_screen/profile_provider.dart';
 import 'package:sustain_tour_mobile/style/font_weight_style.dart';
 import 'package:sustain_tour_mobile/style/text_style_widget.dart';
 import 'package:sustain_tour_mobile/widget/bottom_navbar_widget/bottom_navbar_widget_provider.dart';
@@ -16,6 +18,8 @@ class BookingResultScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     TravelHistoryProvider travelHistoryProvider = Provider.of<TravelHistoryProvider>(context, listen: false);
     BottomNavigationBarProvider bottomNavigationBarProvider = Provider.of<BottomNavigationBarProvider>(context, listen: false);
+    ProfileProvider profileProvider = Provider.of<ProfileProvider>(context, listen: false);
+    LoginProvider loginProvider = Provider.of<LoginProvider>(context, listen: false);
 
     return Consumer<BookingResultProvider>(
       builder: (context, bookingResultProvider, child) {
@@ -36,6 +40,7 @@ class BookingResultScreen extends StatelessWidget {
                 ? IconButton(
                     onPressed:(){
                       bottomNavigationBarProvider.onChangeIndex(0);
+                      profileProvider.getUserData(userId: loginProvider.userId?.toInt() ?? 0);
                       travelHistoryProvider.getBookingHistory();
                       Navigator.pushNamedAndRemoveUntil(
                         context,

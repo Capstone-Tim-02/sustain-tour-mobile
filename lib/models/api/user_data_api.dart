@@ -21,6 +21,7 @@ class UserDataApi {
         isVerified: false,
         categoryKesukaan: "",
         categoryId: 0,
+        statusCategory: false,
         createdAt: DateTime.now());
 
     final response = await Dio().get(

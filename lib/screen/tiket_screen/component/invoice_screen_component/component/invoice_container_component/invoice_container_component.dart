@@ -5,6 +5,7 @@ import 'package:sustain_tour_mobile/constants/currency_format_const.dart';
 import 'package:sustain_tour_mobile/constants/date_format_const.dart';
 import 'package:sustain_tour_mobile/constants/routes.dart';
 import 'package:sustain_tour_mobile/models/booking_models/booking_history_model.dart';
+import 'package:sustain_tour_mobile/screen/login_screen/login_provider.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/component/alert_dialog_component/alert_dialog_component.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/component/profile_emission_component/component/detail_emission_screen_component/component/travel_history_component/travel_history_provider.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/profile_provider.dart';
@@ -297,6 +298,10 @@ class InvoiceContainerComponent extends StatelessWidget {
                                   Provider.of<TiketProvider>(context,
                                           listen: false)
                                       .setTabIndex(index: 1);
+                                  Provider.of<ProfileProvider>(context,
+                                          listen: false)
+                                      .getUserData(userId: Provider.of<LoginProvider>(context,
+                                          listen: false).userId ?? 0);
                                   Navigator.pushNamedAndRemoveUntil(context,
                                       Routes.mainScreen, (route) => false);
                                 },

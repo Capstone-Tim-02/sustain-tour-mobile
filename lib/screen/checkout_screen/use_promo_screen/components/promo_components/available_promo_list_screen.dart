@@ -114,6 +114,7 @@ class AvailablePromoListScreen extends StatelessWidget {
                             )
                           : GestureDetector(
                             onTap: (){
+                              ScaffoldMessenger.of(context).hideCurrentSnackBar();
                               checkoutProvider.onCopyPromo(index);
                               Clipboard.setData(
                                 ClipboardData(text: promoItem.kodeVoucher)).then((_){

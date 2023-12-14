@@ -44,6 +44,7 @@ class User {
   bool isVerified;
   String categoryKesukaan;
   int categoryId;
+  bool statusCategory;
   DateTime? createdAt;
 
   User({
@@ -57,6 +58,7 @@ class User {
     required this.isVerified,
     required this.categoryKesukaan,
     required this.categoryId,
+    required this.statusCategory,
     required this.createdAt,
   });
 
@@ -75,6 +77,7 @@ class User {
         isVerified: json["is_verified"],
         categoryKesukaan: json["category_kesukaan"],
         categoryId: json["category_id"],
+        statusCategory: json["status_category"],
         createdAt:
             DateTime.parse(json["created_at"] ?? DateTime.now().toString()),
       );
@@ -90,6 +93,7 @@ class User {
         "is_verified": isVerified,
         "category_kesukaan": categoryKesukaan,
         "category_id": categoryId,
+        "status_category": statusCategory,
         "created_at": createdAt?.toIso8601String() ?? DateTime.now(),
       };
 }
