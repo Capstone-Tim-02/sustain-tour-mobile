@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:email_validator/email_validator.dart';
 
 class FromEmailRegisterProvider with ChangeNotifier {
-  final TextEditingController _emailRegisterController = TextEditingController();
+  final TextEditingController _emailRegisterController =
+      TextEditingController();
   String? _emailRegisterError;
 
   String? get emailRegisterError => _emailRegisterError;
@@ -9,22 +11,17 @@ class FromEmailRegisterProvider with ChangeNotifier {
 
   bool validateEmailRegister() {
     String emailRegister = _emailRegisterController.text;
+
     if (emailRegister.isEmpty) {
-      _emailRegisterError = 'Email tidak boleh kosong';
+      _emailRegisterError = 'Email tidak boloh kosong';
       notifyListeners();
       return false;
-    }
-
-    // Validasi panjang email
-    if (emailRegister.length <= 5) {
-      _emailRegisterError = 'Email harus lebih dari 5 karakter';
+    } else if (!EmailValidator.validate(emailRegister)) {
+      _emailRegisterError = 'Email tidak valid';
       notifyListeners();
       return false;
-    }
-
-    // Lakukan validasi email sesuai kebutuhan
-    else {
-      _emailRegisterError = null; // Menggunakan nullable pada string
+    } else {
+      _emailRegisterError = null;
       notifyListeners();
       return true;
     }

@@ -24,10 +24,11 @@ class RegisterProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<bool> registerUser(
-    String name, String username, String password, String confirmPassword, String email, String phone) async {
+  Future<bool> registerUser(String name, String username, String password,
+      String confirmPassword, String email, String phone) async {
     try {
-      RegisterModels response = await _apiProvider.register(name, username, password, confirmPassword, email, phone);
+      RegisterModels response = await _apiProvider.register(
+          name, username, password, confirmPassword, email, phone);
 
       if (response.code == 200) {
         _message = response.message;
@@ -38,8 +39,10 @@ class RegisterProvider with ChangeNotifier {
         await prefs.setInt('id', _userId!);
         notifyListeners();
       }
+
       return true;
     } catch (error) {
+      print(error);
       _message = error.toString();
       notifyListeners();
       return false;

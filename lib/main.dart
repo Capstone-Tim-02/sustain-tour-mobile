@@ -23,6 +23,7 @@ import 'package:sustain_tour_mobile/screen/promo_screen/component/detail_promo_p
 import 'package:sustain_tour_mobile/screen/pusat_bantuan_screen/faq/faq_screen_provider.dart';
 import 'package:sustain_tour_mobile/screen/register_screen/register_provider.dart';
 import 'package:sustain_tour_mobile/screen/register_screen/validator/form_confirm_password_screens.dart';
+import 'package:sustain_tour_mobile/screen/register_screen/validator/form_password_register_screens.dart';
 import 'package:sustain_tour_mobile/screen/register_screen/validator/form_email_register_screens.dart';
 import 'package:sustain_tour_mobile/screen/register_screen/validator/form_full_name_screens.dart';
 import 'package:sustain_tour_mobile/screen/register_screen/validator/form_phone_screens.dart';
@@ -80,6 +81,8 @@ void main() async {
           create: (context) => FromPhoneProvider()),
       ChangeNotifierProvider<FromEmailRegisterProvider>(
           create: (context) => FromEmailRegisterProvider()),
+      ChangeNotifierProvider<FormPasswordRegisterProvider>(
+          create: (context) => FormPasswordRegisterProvider()),
       ChangeNotifierProvider<FormConfirmPasswordProvider>(
           create: (context) => FormConfirmPasswordProvider()),
       ChangeNotifierProvider<EditAccountProvider>(

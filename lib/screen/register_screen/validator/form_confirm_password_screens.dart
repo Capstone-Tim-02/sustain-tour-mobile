@@ -1,47 +1,30 @@
 import 'package:flutter/material.dart';
 
 class FormConfirmPasswordProvider with ChangeNotifier {
-  final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController = TextEditingController();
-  String? _passwordError;
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
   String? _confirmPasswordError;
-  bool _isPasswordVisible = false;
+  bool _isConfirmPasswordVisible = false;
 
-  String? get passwordError => _passwordError;
   String? get confirmPasswordError => _confirmPasswordError;
-  bool get isPasswordVisible => _isPasswordVisible;
-  TextEditingController get passwordController => _passwordController;
-  TextEditingController get confirmPasswordController => _confirmPasswordController;
+  bool get isConfirmPasswordVisible => _isConfirmPasswordVisible;
+  TextEditingController get confirmPasswordController =>
+      _confirmPasswordController;
 
-  void togglePasswordVisibility() {
-    _isPasswordVisible = !_isPasswordVisible;
+  void toggleConfirmPasswordVisibility() {
+    _isConfirmPasswordVisible = !_isConfirmPasswordVisible;
     notifyListeners();
   }
 
-  bool validatePassword() {
-    String password = _passwordController.text;
+  bool validateConfirmPassword({required String password}) {
     String confirmPassword = _confirmPasswordController.text;
 
-    // Validasi panjang password
-    if (password.length <= 2) {
-      _passwordError = 'Password harus lebih dari 5 karakter';
-      notifyListeners();
-      return false;
-    }
-
-    if (password != confirmPassword){
-      _passwordError = 'Password tidak sama';
-      notifyListeners();
-      return false;
-    }
-
-    // Lakukan validasi password sesuai kebutuhan
-    if (password.isEmpty) {
-      _passwordError = 'Password tidak boleh kosong';
+    if (confirmPassword != password) {
+      _confirmPasswordError = 'Password tidak sama';
       notifyListeners();
       return false;
     } else {
-      _passwordError = null; // Menggunakan nullable pada string
+      _confirmPasswordError = null; // Menggunakan nullable pada string
       notifyListeners();
       return true;
     }

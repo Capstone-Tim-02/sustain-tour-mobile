@@ -1,30 +1,28 @@
 import 'package:dio/dio.dart';
+import 'package:sustain_tour_mobile/constants/api_base_url.dart';
 import 'package:sustain_tour_mobile/models/register_models/register_models.dart';
 
 class RegisterApi {
   final Dio _dio = Dio();
-  static const String baseUrl = 'https://destimate.uc.r.appspot.com';
 
-  Future<RegisterModels> register(
-    String name, String username, String password, String confirmPassword, String email, String phone) async {
+  Future<RegisterModels> register(String name, String username, String password,
+      String confirmPassword, String email, String phone) async {
     try {
       final response = await _dio.post(
         '$baseUrl/signup',
         data: {
-          'name' : name,
-          'username' : username,
-          'password' : password,
-          'confirm_password' : confirmPassword,
-          'email' : email,
-          'phone_number' : phone
+          'name': name,
+          'username': username,
+          'password': password,
+          'confirm_password': confirmPassword,
+          'email': email,
+          'phone_number': phone
         },
-        options: Options(headers: {
-          'Content-Type': 'application/json',
-        }),
       );
 
       return RegisterModels.fromJson(response.data);
     } on DioException catch (error) {
+      print(error.response!.statusMessage);
       if (error.response?.statusCode == 401) {
         String errorMessage =
             error.response?.data['message'] ?? 'Invalid username or password';
