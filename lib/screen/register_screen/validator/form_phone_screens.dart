@@ -9,28 +9,26 @@ class FromPhoneProvider with ChangeNotifier {
 
   bool validatePhone() {
     String phone = _phoneController.text;
+
+    RegExp regExp = RegExp(r'^[0-9]+$');
     if (phone.isEmpty) {
-      _phoneError = 'Nomor HP tidak boleh kosong';
+      _phoneError = 'No Handphone tidak boleh kosong';
       notifyListeners();
       return false;
-    }
-
-    // Validasi panjang Nomor HP
-    if (phone.length < 8 || phone.length > 15) {
-      _phoneError = 'Nomor HP harus terdiri dari 8-15 angka';
+    } else if (!regExp.hasMatch(phone)) {
+      _phoneError = 'No Handphone hanya boleh angka';
       notifyListeners();
       return false;
-    }
-
-    if (!RegExp(r'^\d+$').hasMatch(phone)) {
-      _phoneError = 'Nomor telepon harus terdiri dari angka saja';
+    } else if (phone.length < 10) {
+      _phoneError = 'No Handphone minimal 10 digit';
       notifyListeners();
       return false;
-    }
-
-    // Lakukan validasi Nomor HP sesuai kebutuhan
-    else {
-      _phoneError = null; // Menggunakan nullable pada string
+    } else if (phone.length > 12) {
+      _phoneError = 'No Handphone maksimal 12 digit';
+      notifyListeners();
+      return false;
+    } else {
+      _phoneError = null;
       notifyListeners();
       return true;
     }

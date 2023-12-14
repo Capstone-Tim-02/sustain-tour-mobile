@@ -117,8 +117,9 @@ class RegisterScreen extends StatelessWidget {
                       .passwordRegisterController,
                   labelText: 'Password',
                   hintText: 'Pasword',
-                  obscureText: !Provider.of<FormPasswordRegisterProvider>(context)
-                      .isPasswordRegisterVisible,
+                  obscureText:
+                      !Provider.of<FormPasswordRegisterProvider>(context)
+                          .isPasswordRegisterVisible,
                   errorText: Provider.of<FormPasswordRegisterProvider>(context)
                       .passwordRegisterError,
                   suffixIcon: GestureDetector(
@@ -149,8 +150,9 @@ class RegisterScreen extends StatelessWidget {
                       .confirmPasswordController,
                   labelText: 'Konfirmasi Password',
                   hintText: 'Konfirmasi Password',
-                  obscureText: !Provider.of<FormConfirmPasswordProvider>(context)
-                      .isConfirmPasswordVisible,
+                  obscureText:
+                      !Provider.of<FormConfirmPasswordProvider>(context)
+                          .isConfirmPasswordVisible,
                   errorText: Provider.of<FormConfirmPasswordProvider>(context)
                       .confirmPasswordError,
                   suffixIcon: GestureDetector(
@@ -205,7 +207,12 @@ class RegisterScreen extends StatelessWidget {
                         .validatePasswordRegister();
                     Provider.of<FormConfirmPasswordProvider>(context,
                             listen: false)
-                        .validateConfirmPassword();
+                        .validateConfirmPassword(
+                            password: Provider.of<FormPasswordRegisterProvider>(
+                                    context,
+                                    listen: false)
+                                .passwordRegisterController
+                                .text);
                     String name = Provider.of<FormFullNameProvider>(context,
                             listen: false)
                         .fullNameController
@@ -244,6 +251,7 @@ class RegisterScreen extends StatelessWidget {
                           .registerUser(name, usernameRegister,
                               passwordRegister, confirmPassword, email, phone)
                           .then((signUp) {
+                        print(signUp);
                         if (signUp) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(

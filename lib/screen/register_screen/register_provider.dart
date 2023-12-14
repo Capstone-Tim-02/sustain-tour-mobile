@@ -42,6 +42,7 @@ class RegisterProvider with ChangeNotifier {
 
       return true;
     } catch (error) {
+      print(error);
       _message = error.toString();
       notifyListeners();
       return false;
