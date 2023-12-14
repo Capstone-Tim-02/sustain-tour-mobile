@@ -28,8 +28,10 @@ class BookingHistoryModel {
         code: json["code"],
         error: json["error"],
         message: json["message"],
-        ticketData: List<TicketData>.from(
-            json["ticket_data"].map((x) => TicketData.fromJson(x))),
+        ticketData: json["ticket_data"] == null
+            ? null
+            : List<TicketData>.from(
+                json["ticket_data"].map((x) => TicketData.fromJson(x))),
       );
 
   // Map<String, dynamic> toJson() => {

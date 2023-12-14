@@ -28,8 +28,10 @@ class NotificationModel {
         code: json["code"],
         error: json["error"],
         message: json["message"],
-        notifications: List<Notifikasi>.from(
-            json["notifications"].map((x) => Notifikasi.fromJson(x))),
+        notifications: json["notifications"] == null
+            ? null
+            : List<Notifikasi>.from(
+                json["notifications"].map((x) => Notifikasi.fromJson(x))),
       );
 
   // Map<String, dynamic> toJson() => {

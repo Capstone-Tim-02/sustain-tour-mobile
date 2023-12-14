@@ -8,6 +8,7 @@ import 'package:sustain_tour_mobile/screen/home_screen/components/desti_point_sc
 import 'package:sustain_tour_mobile/screen/home_screen/components/notification_screen/notification_screen.dart';
 
 import 'package:sustain_tour_mobile/screen/home_screen/home_screen.dart';
+import 'package:sustain_tour_mobile/screen/login_screen/matchmaking_question/matchmaking_1.dart';
 import 'package:sustain_tour_mobile/screen/pusat_bantuan_screen/pusat_bantuan_screen.dart';
 import 'package:sustain_tour_mobile/screen/onboarding_screen/splash_screen/splash_screen.dart';
 import 'package:sustain_tour_mobile/screen/register_screen/register_screen.dart';
@@ -28,6 +29,7 @@ class Routes {
   static const String onboardingScreen = '/onboarding';
   static const String loginScreen = '/loginscreen';
   static const String registerScreen = '/registerscreen';
+  static const String matchmaking1Screen = '/loginscreen/matchmaking1';
   static const String matchmaking2Screen = '/loginscreen/matchmaking2';
   static const String matchmaking3Screen = '/loginscreen/matchmaking3';
 
@@ -58,6 +60,7 @@ class Routes {
     loginScreen: (context) => const LoginScreen(),
     aiScreen: (context) => const AiScreen(),
     registerScreen: (context) => const RegisterScreen(),
+    matchmaking1Screen: (context) => const Matchmaking1(),
     matchmaking2Screen: (context) => const Matchmaking2(),
     matchmaking3Screen: (context) => const Matchmaking3(),
     mainScreen: (context) => const MainScreen(),

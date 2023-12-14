@@ -5,7 +5,7 @@ import 'package:sustain_tour_mobile/models/detail_wisata_byid_models/detail_wisa
 class DetailWisataProvider extends ChangeNotifier {
   final DetailWisataApi _detailWisataApi = DetailWisataApi();
   DetailWisataByid? _detailWisata;
-  bool _isLoading = false;
+  bool _isLoading = true;
 
   DetailWisataByid? get detailWisata => _detailWisata;
   bool get isLoading => _isLoading;
@@ -13,10 +13,10 @@ class DetailWisataProvider extends ChangeNotifier {
   Future<void> getDetailWisataById(int id) async {
     try {
       _isLoading = true;
-      _detailWisata = await _detailWisataApi.getDetailWisataById(id);
       notifyListeners();
+      _detailWisata = await _detailWisataApi.getDetailWisataById(id);
     } catch (error) {
-      print('Error getting detail wisata: $error');
+      error.toString();
     } finally {
       _isLoading = false;
       notifyListeners();

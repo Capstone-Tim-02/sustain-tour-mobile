@@ -9,7 +9,7 @@ class NotificationProvider extends ChangeNotifier {
     code: 0,
     error: true,
     message: '',
-    notifications: [],
+    notifications: null,
   );
   NotificationModel get notificationModel => _notificationModel;
 

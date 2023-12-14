@@ -4,12 +4,12 @@ import 'package:sustain_tour_mobile/constants/routes.dart';
 import 'package:sustain_tour_mobile/screen/home_screen/components/notification_screen/notification_provider.dart';
 import 'package:sustain_tour_mobile/screen/home_screen/home_screen_provider.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/login_provider.dart';
-import 'package:sustain_tour_mobile/screen/login_screen/matchmaking_question/matchmaking_1.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/component/from_password_screns.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/component/from_username_screens.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/component/profile_emission_component/component/detail_emission_screen_component/component/travel_history_component/travel_history_provider.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/component/profile_emission_component/profile_emission_provider.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/profile_provider.dart';
+import 'package:sustain_tour_mobile/widget/bottom_navbar_widget/bottom_navbar_widget_provider.dart';
 import 'package:sustain_tour_mobile/widget/button_widget.dart';
 import 'package:sustain_tour_mobile/widget/snack_bar_widget.dart';
 
@@ -59,9 +59,10 @@ class BUttonMasuk extends StatelessWidget {
                       userId: loginProvider.userId ?? 0);
 
                   Future.delayed(const Duration(milliseconds: 1500), () async {
-                    if(profileProvider.user.statusCategory == true){
+                    if (profileProvider.user.statusCategory == true) {
                       HomeScreenProvider homeScreenProvider =
-                        Provider.of<HomeScreenProvider>(context, listen: false);
+                          Provider.of<HomeScreenProvider>(context,
+                              listen: false);
                       homeScreenProvider.getRekomendasiWisata();
                       homeScreenProvider.getPromo();
 
@@ -71,16 +72,20 @@ class BUttonMasuk extends StatelessWidget {
                       Provider.of<NotificationProvider>(context, listen: false)
                           .getNotifications();
 
-                      Provider.of<ProfileEmissionProvider>(context, listen: false)
-                          .getUserEmission(
-                        userId: loginProvider.userId ?? 0);
-
-                      Navigator.pushReplacementNamed(
-                          context, Routes.mainScreen);
+                      Provider.of<ProfileEmissionProvider>(context,
+                              listen: false)
+                          .getUserEmission(userId: loginProvider.userId ?? 0);
+                      Provider.of<BottomNavigationBarProvider>(context,
+                              listen: false)
+                          .onChangeIndex(0);
+                      Navigator.of(context).pushNamedAndRemoveUntil(
+                        Routes.mainScreen,
+                        (route) => false,
+                      );
                     } else {
-                      Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(
-                            builder: (context) => const Matchmaking1()),
+                      Navigator.of(context).pushNamedAndRemoveUntil(
+                        Routes.matchmaking1Screen,
+                        (route) => false,
                       );
                     }
                   });

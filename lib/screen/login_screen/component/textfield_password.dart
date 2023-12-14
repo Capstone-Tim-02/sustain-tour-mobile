@@ -20,6 +20,7 @@ class TextFieldPassword extends StatelessWidget {
               hintText: 'Password',
               obscureText: !formPasswordProvider.isPasswordVisible,
               errorText: formPasswordProvider.passwordError,
+              textCapitalization: TextCapitalization.none,
               suffixIcon: GestureDetector(
                 child: Icon(
                   formPasswordProvider.isPasswordVisible

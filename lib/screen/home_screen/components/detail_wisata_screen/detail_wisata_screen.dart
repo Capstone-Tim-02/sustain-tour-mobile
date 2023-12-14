@@ -81,9 +81,6 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
                           Container(
                             margin: const EdgeInsets.all(5),
                             width: 380,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(8.0),
                               child: YoutubePlayerWidget(
@@ -190,7 +187,8 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
                                 width: 5,
                               ),
                               Text(
-                                totalcarbon.totalCarbonFootprint.toString(),
+                                totalcarbon.totalCarbonFootprint!
+                                    .toStringAsFixed(0),
                                 style: TextStyleWidget.bodyB3(
                                     fontWeight: FontWeightStyle.semiBold,
                                     color: ColorThemeStyle.greenCarbon),

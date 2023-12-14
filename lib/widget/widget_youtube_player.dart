@@ -13,11 +13,10 @@ class YoutubePlayerWidget extends StatelessWidget {
 
     final youtubeController = YoutubePlayerController.fromVideoId(
       videoId: videoID,
-      autoPlay: true,
+      autoPlay: false,
       params: const YoutubePlayerParams(
         mute: false,
         showControls: true,
-        showFullscreenButton: true,
       ),
     );
     return Container(
