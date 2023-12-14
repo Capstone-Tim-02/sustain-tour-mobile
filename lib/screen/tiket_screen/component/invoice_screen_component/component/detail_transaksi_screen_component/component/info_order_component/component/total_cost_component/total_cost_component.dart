@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sustain_tour_mobile/constants/currency_format_const.dart';
+import 'package:sustain_tour_mobile/screen/home_screen/components/detail_wisata_screen/detail_wisata_provider.dart';
+import 'package:sustain_tour_mobile/screen/home_screen/components/detail_wisata_screen/detail_wisata_screen.dart';
 import 'package:sustain_tour_mobile/screen/tiket_screen/component/invoice_screen_component/component/step_payment_bottom_sheet_component/step_payment_bottom_sheet_component.dart';
 import 'package:sustain_tour_mobile/style/color_theme_style.dart';
 import 'package:sustain_tour_mobile/style/font_weight_style.dart';
@@ -9,8 +12,12 @@ import 'package:sustain_tour_mobile/widget/badge_widget.dart';
 class TotalCostComponent extends StatelessWidget {
   final String statusOrder;
   final int totalCost;
+  final int wisataId;
   const TotalCostComponent(
-      {super.key, required this.statusOrder, required this.totalCost});
+      {super.key,
+      required this.statusOrder,
+      required this.totalCost,
+      required this.wisataId});
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +65,17 @@ class TotalCostComponent extends StatelessWidget {
                       onPressedBorderColor: ColorThemeStyle.blue40,
                       width: double.infinity,
                       backgroundColor: Colors.white,
-                      onPressed: () {},
+                      onPressed: () {
+                        Provider.of<DetailWisataProvider>(context,
+                                listen: false)
+                            .getDetailWisataById(wisataId);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const DetailWisataScreen(),
+                          ),
+                        );
+                      },
                     )
                   : const SizedBox(),
               SizedBox(

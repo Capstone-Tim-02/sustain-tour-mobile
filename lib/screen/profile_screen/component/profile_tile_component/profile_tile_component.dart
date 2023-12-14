@@ -99,6 +99,7 @@ class ProfileTileComponent extends StatelessWidget {
                       height: 8,
                     ),
                     GestureDetector(
+                      key: const Key('Profile Selengkapnya'),
                       onTap: () =>
                           Navigator.pushNamed(context, Routes.accountScreen),
                       child: Text(

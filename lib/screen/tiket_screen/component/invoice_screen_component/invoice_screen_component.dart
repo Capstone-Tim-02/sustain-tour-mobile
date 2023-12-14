@@ -10,7 +10,7 @@ class InvoiceScreenComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TicketData tiketData =
+    TicketData tiketData =
         ModalRoute.of(context)!.settings.arguments as TicketData;
     return Scaffold(
       appBar: AppBar(

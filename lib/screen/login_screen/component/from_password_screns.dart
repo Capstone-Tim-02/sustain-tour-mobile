@@ -17,13 +17,6 @@ class FormPasswordProvider with ChangeNotifier {
   bool validatePassword() {
     String password = _passwordController.text;
 
-    // Validasi panjang password
-    if (password.length <= 2) {
-      _passwordError = 'Password harus lebih dari 5 karakter';
-      notifyListeners();
-      return false;
-    }
-
     // Lakukan validasi password sesuai kebutuhan
     if (password.isEmpty) {
       _passwordError = 'Password tidak boleh kosong';

@@ -9,15 +9,16 @@ class FromUsernameProvider with ChangeNotifier {
 
   bool validateEmail() {
     String email = _emailController.text;
+
     if (email.isEmpty) {
-      _emailError = 'Email tidak boleh kosong';
+      _emailError = 'Username tidak boleh kosong';
       notifyListeners();
       return false;
     }
 
     // Validasi panjang email
-    if (email.length <= 5) {
-      _emailError = 'Email harus lebih dari 5 karakter';
+    else if (email.length <= 5) {
+      _emailError = 'Username harus lebih dari 5 karakter';
       notifyListeners();
       return false;
     }

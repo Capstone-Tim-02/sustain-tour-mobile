@@ -11,6 +11,7 @@ class InfoOrderComponent extends StatelessWidget {
   final int potonganPoint;
   final int pointsEarned;
   final int totalCost;
+  final int wisataId;
   final String statusOrder;
   const InfoOrderComponent(
       {super.key,
@@ -19,7 +20,8 @@ class InfoOrderComponent extends StatelessWidget {
       required this.potonganPoint,
       required this.pointsEarned,
       required this.totalCost,
-      required this.statusOrder});
+      required this.statusOrder,
+      required this.wisataId});
 
   @override
   Widget build(BuildContext context) {
@@ -115,7 +117,11 @@ class InfoOrderComponent extends StatelessWidget {
         const SizedBox(
           height: 32,
         ),
-        TotalCostComponent(statusOrder: statusOrder, totalCost: totalCost),
+        TotalCostComponent(
+          statusOrder: statusOrder,
+          totalCost: totalCost,
+          wisataId: wisataId,
+        ),
       ],
     );
   }

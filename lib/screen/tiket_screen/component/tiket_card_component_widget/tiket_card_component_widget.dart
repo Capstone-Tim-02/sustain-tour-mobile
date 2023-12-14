@@ -55,27 +55,37 @@ class TiketCardComponentWidget extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Text(
-                        'Kode Pemesanan:',
-                        style: TextStyleWidget.titleT3(
-                          color: Colors.white,
-                          fontWeight: FontWeightStyle.regular,
+                  Expanded(
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Text(
+                          'Kode Pemesanan:',
+                          style: TextStyleWidget.titleT3(
+                            color: Colors.white,
+                            fontWeight: FontWeightStyle.regular,
+                          ),
                         ),
-                      ),
-                      const SizedBox(
-                        width: 8,
-                      ),
-                      Text(
-                        invoiceNumber,
-                        style: TextStyleWidget.titleT3(
-                          color: Colors.white,
-                          fontWeight: FontWeightStyle.semiBold,
+                        const SizedBox(
+                          width: 8,
                         ),
-                      ),
-                    ],
+                        Flexible(
+                          child: FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 8.0),
+                              child: Text(
+                                invoiceNumber,
+                                style: TextStyleWidget.titleT3(
+                                  color: Colors.white,
+                                  fontWeight: FontWeightStyle.semiBold,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                   Container(
                     padding: const EdgeInsets.symmetric(
@@ -169,7 +179,7 @@ class TiketCardComponentWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Text(
-                        CurrencyFormatConst.convertToIdr(totalCost, 2),
+                        CurrencyFormatConst.convertToIdr(totalCost, 0),
                         style: TextStyleWidget.titleT3(
                           fontWeight: FontWeightStyle.semiBold,
                         ),
@@ -196,6 +206,7 @@ class TiketCardComponentWidget extends StatelessWidget {
                       top: 16,
                     ),
                     child: GestureDetector(
+                      key: const Key('Pesan Ulang'),
                       onTap: onTapPesanUlang,
                       child: Row(
                         children: [

@@ -59,10 +59,8 @@ class DetailTransaksiScreenComponent extends StatelessWidget {
               pointsEarned: tiketData.pointsEarned,
               totalCost: tiketData.totalCost,
               statusOrder: tiketData.statusOrder,
+              wisataId: tiketData.wisataId,
             ),
-            // const SizedBox(
-            //   height: 32,
-            // ),
           ],
         ),
       ),
