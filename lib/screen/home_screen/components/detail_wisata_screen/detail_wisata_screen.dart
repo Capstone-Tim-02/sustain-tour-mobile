@@ -84,8 +84,8 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(8.0),
                               child: YoutubePlayerWidget(
-                                youtubeController: provider.youtubeController
-                              ),
+                                  youtubeController:
+                                      provider.youtubeController),
                             ),
                           ),
                           Container(
@@ -189,7 +189,8 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
                               Consumer<CarbonEmissionProvider>(
                                 builder: (context, value, child) {
                                   return Text(
-                                    (totalcarbon.totalCarbonFootprint ?? 0).toStringAsFixed(0),
+                                    (totalcarbon.totalCarbonFootprint ?? 0)
+                                        .toStringAsFixed(0),
                                     style: TextStyleWidget.bodyB3(
                                         fontWeight: FontWeightStyle.semiBold,
                                         color: ColorThemeStyle.greenCarbon),
@@ -563,24 +564,25 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
                                                             width: 10,
                                                           ),
                                                           Expanded(
-                                                            child: Consumer<CarbonEmissionProvider>(
-                                                              builder:(context, value, child) {
-                                                                return Text(
-                                                                'Total Carbon Emmision destinasi ini setara dengan ${(totalcarbon.totalCarbonFootprint ?? 0).toStringAsFixed(0)
-                                                                }',
+                                                            child: Consumer<
+                                                                    CarbonEmissionProvider>(
+                                                                builder:
+                                                                    (context,
+                                                                        value,
+                                                                        child) {
+                                                              return Text(
+                                                                'Total Carbon Emmision destinasi ini setara dengan ${(totalcarbon.totalCarbonFootprint ?? 0).toStringAsFixed(0)}',
                                                                 style:
                                                                     TextStyleWidget
                                                                         .bodyB3(
-                                                                  color:
-                                                                      ColorThemeStyle
-                                                                          .black100,
+                                                                  color: ColorThemeStyle
+                                                                      .black100,
                                                                   fontWeight:
                                                                       FontWeightStyle
                                                                           .regular,
-                                                                  ),
-                                                                );
-                                                              }
-                                                            ),
+                                                                ),
+                                                              );
+                                                            }),
                                                           ),
                                                         ],
                                                       ),

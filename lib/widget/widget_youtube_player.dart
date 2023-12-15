@@ -4,10 +4,7 @@ import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 class YoutubePlayerWidget extends StatelessWidget {
   final YoutubePlayerController youtubeController;
 
-  const YoutubePlayerWidget({
-    super.key,
-    required this.youtubeController
-  });
+  const YoutubePlayerWidget({super.key, required this.youtubeController});
 
   @override
   Widget build(BuildContext context) {

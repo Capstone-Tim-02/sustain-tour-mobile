@@ -9,14 +9,10 @@ class PromoApi {
 
     final response = await Dio().get(
       'https://destimate.uc.r.appspot.com/user/promo/',
-      options: Options(
-        headers: {
-          "authorization": "Bearer $token"
-        }
-      ),
+      options: Options(headers: {"authorization": "Bearer $token"}),
     );
 
-    if(response.statusCode == 200){
+    if (response.statusCode == 200) {
       PromoModel responseModel = PromoModel.fromJson(response.data);
       for (var element in responseModel.promos) {
         listPromo.add(element);
