@@ -20,7 +20,7 @@ class BookingResultProvider extends ChangeNotifier {
   String _errorMessage = "";
   String get errorMessage => _errorMessage;
 
-  void bookingRequest({
+  Future<void> bookingRequest({
     required BookingRequestBodyModel requestBody,
   }) async {
     _isLoading = true;

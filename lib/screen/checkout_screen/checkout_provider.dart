@@ -2,9 +2,11 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import 'package:sustain_tour_mobile/models/api/promo_api.dart';
 import 'package:sustain_tour_mobile/models/booking_models/booking_request_body_models.dart';
 import 'package:sustain_tour_mobile/models/promo_models/promo_models.dart';
+import 'package:sustain_tour_mobile/screen/profile_screen/profile_provider.dart';
 
 class CheckoutProvider extends ChangeNotifier {
   int _quantity = 1;
@@ -18,6 +20,9 @@ class CheckoutProvider extends ChangeNotifier {
 
   bool _isPromoUsed = false;
   bool get isPromoUsed => _isPromoUsed;
+
+  bool _isLoadingBooking = false;
+  bool get isLoadingBooking => _isLoadingBooking;
 
   int _usedPromoIndex = -1;
   int get usedPromoIndex => _usedPromoIndex;
@@ -121,14 +126,26 @@ class CheckoutProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void onBooking({required int wisataId, required DateTime checkinBooking}){
-    _requestBodyModel = BookingRequestBodyModel(
-      wisataId: wisataId,
-      useAllPoints: _isPointUsed,
-      kodeVoucher: kodeVoucher,
-      quantity: quantity,
-      checkinBooking: DateFormat('yyyy-MM-dd').format(checkinBooking)
-    );
+  Future<void> onBooking({required int wisataId, required DateTime checkinBooking, required BuildContext context}) async {
+    _isLoadingBooking = true;
+    notifyListeners();
+
+    try {
+      await Provider.of<ProfileProvider>(context, listen: false).updateUserLocation();
+      _requestBodyModel = BookingRequestBodyModel(
+        wisataId: wisataId,
+        useAllPoints: _isPointUsed,
+        kodeVoucher: kodeVoucher,
+        quantity: quantity,
+        checkinBooking: DateFormat('yyyy-MM-dd').format(checkinBooking)
+      );
+      _isLoadingBooking = false;
+      notifyListeners();
+    } catch (e) {
+      _isLoadingBooking = false;
+      notifyListeners();
+      throw Exception(e);
+    }
   }
 
   void checkoutProviderReset(){
