@@ -111,6 +111,8 @@ void main() async {
           create: (context) => DetailWisataProvider()),
       ChangeNotifierProvider<CarbonEmissionProvider>(
           create: (context) => CarbonEmissionProvider()),
+      ChangeNotifierProvider<CarbonEmissionProvider>(
+          create: (context) => CarbonEmissionProvider()),
     ],
     child: const MyApp(),
   ));

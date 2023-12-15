@@ -2,23 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 class YoutubePlayerWidget extends StatelessWidget {
-  final String? linkVid;
-  const YoutubePlayerWidget({super.key, required this.linkVid});
+  final YoutubePlayerController youtubeController;
+
+  const YoutubePlayerWidget({
+    super.key,
+    required this.youtubeController
+  });
 
   @override
   Widget build(BuildContext context) {
-    final videoURL = linkVid ?? "https://www.youtube.com/watch?v=ts8i-6AtDfc";
-    final videoID =
-        YoutubePlayerController.convertUrlToId(videoURL) ?? "InvalidID";
-
-    final youtubeController = YoutubePlayerController.fromVideoId(
-      videoId: videoID,
-      autoPlay: false,
-      params: const YoutubePlayerParams(
-        mute: false,
-        showControls: true,
-      ),
-    );
     return Container(
       height: 202,
       width: 380,

@@ -35,4 +35,10 @@ class CarbonEmissionProvider extends ChangeNotifier {
       notifyListeners();
     }
   }
+
+  void carbonProviderReset(){
+    _totalCarbonFootprint = null;
+    _isLoading = false;
+    _error = null;
+  }
 }

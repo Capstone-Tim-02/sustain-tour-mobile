@@ -46,9 +46,9 @@ class _SplashScreenState extends State<SplashScreen> {
         int id = splashScreenProvider.hasId;
 
         if (token.isNotEmpty && id != 0) {
-          Provider.of<ProfileProvider>(context, listen: false)
+          await Provider.of<ProfileProvider>(context, listen: false)
               .getUserData(userId: id);
-
+          if (!context.mounted) return;
           Provider.of<ProfileEmissionProvider>(context, listen: false)
               .getUserEmission(userId: id);
 
@@ -64,7 +64,7 @@ class _SplashScreenState extends State<SplashScreen> {
           Provider.of<NotificationProvider>(context, listen: false)
               .getNotifications();
 
-          Future.delayed(const Duration(milliseconds: 1500), () async {
+          Future.delayed(const Duration(milliseconds: 1700), () async {
             if(Provider.of<ProfileProvider>(context, listen: false).user.statusCategory == true){
               Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => const MainScreen()),

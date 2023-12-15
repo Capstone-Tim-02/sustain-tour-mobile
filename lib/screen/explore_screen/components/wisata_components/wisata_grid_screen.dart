@@ -23,17 +23,18 @@ class WisataGridScreen extends StatelessWidget {
         itemBuilder: (BuildContext context, int index) {
           return GestureDetector(
             onTap: () {
-              Provider.of<CarbonEmissionProvider>(context, listen: false)
+              final detailProvider = Provider.of<DetailWisataProvider>(context, listen: false);
+              final carbonProvider = Provider.of<CarbonEmissionProvider>(context, listen: false);
+              carbonProvider.carbonProviderReset();
+              carbonProvider
                   .getCarbonEmissionById(
                       exploreScreenProvider.listWisata[index].id);
-              final detailProvider =
-                  Provider.of<DetailWisataProvider>(context, listen: false);
-              detailProvider.getDetailWisataById(
-                  exploreScreenProvider.listWisata[index].id);
+              detailProvider
+                  .getDetailWisataById(exploreScreenProvider.listWisata[index].id);
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => DetailWisataScreen(),
+                  builder: (context) => const DetailWisataScreen(),
                 ),
               );
             },
