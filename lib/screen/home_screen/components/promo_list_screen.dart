@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sustain_tour_mobile/screen/home_screen/components/notification_screen/notification_provider.dart';
@@ -30,7 +32,8 @@ class PromoListScreen extends StatelessWidget {
                 : homeScreenProvider.isGetPromoSuccess
                     ? ListView.builder(
                         scrollDirection: Axis.horizontal,
-                        itemCount: homeScreenProvider.listPromo.length,
+                        itemCount: min(5, homeScreenProvider.listPromo.length),
+                        //item count  : agar jika data kurang dari 5 akan tampil tanpa eror, jika data > 5 akan menampilkan 5 data saja
                         padding: const EdgeInsets.symmetric(horizontal: 6),
                         itemBuilder: (context, index) {
                           return Padding(
