@@ -126,7 +126,7 @@ class StepPaymentBottomSheetComponent {
                               height: 8,
                             ),
                             Text(
-                              'Anda akan mendampatkan invoice pembayaran yang nantinya akan anda bayar secara tunai di tempat wisata tujuan',
+                              'Anda akan mendampatkan invoice untuk melakukan pembayaran',
                               style: TextStyleWidget.labelL4(
                                   fontWeight: FontWeightStyle.medium,
                                   color: ColorThemeStyle.grey100),
@@ -135,7 +135,7 @@ class StepPaymentBottomSheetComponent {
                               height: 32,
                             ),
                             Text(
-                              'Berikan invoice kepada kasir',
+                              'Transfer Secara Manual',
                               style: TextStyleWidget.titleT2(
                                 fontWeight: FontWeightStyle.semiBold,
                               ),
@@ -144,7 +144,7 @@ class StepPaymentBottomSheetComponent {
                               height: 8,
                             ),
                             Text(
-                              'Setelah tiba ditempat wisata berikan invoice, dan setorkan uang tunai sesuai total pembelian yang anda lakukan',
+                              'Bank : Mandiri\n12000456789\nKonfirmasi Pembayaran dengan kirimkan bukti pembayaran Klik Disini',
                               style: TextStyleWidget.labelL4(
                                   fontWeight: FontWeightStyle.medium,
                                   color: ColorThemeStyle.grey100),

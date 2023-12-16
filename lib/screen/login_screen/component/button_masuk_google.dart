@@ -5,7 +5,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 const List<String> scopes = <String>[
   'email',
-  'https://www.googleapis.com/auth/contacts.readonly',
+  'https://destimate.uc.r.appspot.com/auth/google/initiate',
 ];
 
 GoogleSignIn _googleSignIn = GoogleSignIn(
@@ -53,7 +53,8 @@ class _ButtonMasukGoogleState extends State<ButtonMasukGoogle> {
           text: 'Daftar Pakai Google',
           onPressed: () {
             _handleSignIn();
-            print(_curentuser!.displayName ?? '-');
+            print('object');
+            print(_curentuser?.displayName ?? '-');
           },
         ),
       ],
