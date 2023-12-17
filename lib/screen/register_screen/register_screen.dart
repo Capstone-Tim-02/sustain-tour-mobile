@@ -175,19 +175,6 @@ class RegisterScreen extends StatelessWidget {
                       fit: BoxFit.contain,
                     ),
                   )),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Row(),
-                  Row(
-                    children: [
-                      const Text('Lupa Password?'),
-                      TextButton(
-                          onPressed: () {}, child: const Text('Atur Ulang'))
-                    ],
-                  ),
-                ],
-              ),
               const SizedBox(height: 32),
               ButtonWidget.defaultContainer(
                   onPressed: () {
