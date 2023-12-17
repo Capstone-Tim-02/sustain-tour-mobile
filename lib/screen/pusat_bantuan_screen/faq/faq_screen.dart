@@ -11,7 +11,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 class FaqScreen extends StatelessWidget {
   FaqScreen({Key? key}) : super(key: key);
-  final Uri _url = Uri.parse('https://web.whatsapp.com/');
+  final Uri _url = Uri.parse('https://wa.me/6285173412286');
   Future<void> _launchUrl() async {
     if (!await launchUrl(_url)) {
       throw Exception('Could not launch $_url');
