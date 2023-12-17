@@ -16,11 +16,7 @@ class FormFullNameProvider with ChangeNotifier {
     }
 
     // Validasi huruf kapital
-    else if (!RegExp(r'^[A-Z][a-z]*$').hasMatch(fullName)) {
-      _fullNameError = 'Nama harus dimulai dari huruf kapital';
-      notifyListeners();
-      return false;
-    } else if (fullName.length < 3) {
+    else if (fullName.length < 3) {
       _fullNameError = 'Nama minimal 3 karakter';
       notifyListeners();
       return false;

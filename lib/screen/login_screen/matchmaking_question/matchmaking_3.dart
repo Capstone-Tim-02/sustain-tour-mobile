@@ -19,33 +19,39 @@ class Matchmaking3 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisSize: MainAxisSize.max,
         children: [
-          const SizedBox(
-            height: 77,
-          ),
-          Image.asset(Assets.assetsImagesSelamatDatang),
-          const SizedBox(
-            height: 33,
-          ),
-          Text(
-            'Selamat Bergabung\nbersama Kami!',
-            style: TextStyleWidget.headlineH3(
-              fontWeight: FontWeightStyle.medium,
-            ),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(
-            height: 12,
-          ),
-          Text(
-            'Ayo mulai petualangan Kamu! Temukan destinasi yang menakjubkan dan rencanakan liburan impian Anda bersama kami.',
-            style: TextStyleWidget.bodyB1(
-              fontWeight: FontWeightStyle.light,
-            ),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(
-            height: 100,
+          Column(
+            children: [
+              const SizedBox(
+                height: 77,
+              ),
+              Image.asset(Assets.assetsImagesSelamatDatang),
+              const SizedBox(
+                height: 33,
+              ),
+              Text(
+                'Selamat Bergabung\nbersama Kami!',
+                style: TextStyleWidget.headlineH3(
+                  fontWeight: FontWeightStyle.medium,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(
+                height: 12,
+              ),
+              Text(
+                'Ayo mulai petualangan Kamu! Temukan destinasi yang menakjubkan dan rencanakan liburan impian Anda bersama kami.',
+                style: TextStyleWidget.bodyB1(
+                  fontWeight: FontWeightStyle.light,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(
+                height: 100,
+              ),
+            ],
           ),
           ButtonWidget.defaultContainer(
               text: 'Mulai',
@@ -62,8 +68,7 @@ class Matchmaking3 extends StatelessWidget {
 
                 homeScreenProvider.getPromo();
 
-                profileProvider.getUserData(
-                    userId: loginProvider.userId ?? 0);
+                profileProvider.getUserData(userId: loginProvider.userId ?? 0);
 
                 Provider.of<TravelHistoryProvider>(context, listen: false)
                     .getBookingHistory();
@@ -72,8 +77,7 @@ class Matchmaking3 extends StatelessWidget {
                     .getNotifications();
 
                 Provider.of<ProfileEmissionProvider>(context, listen: false)
-                    .getUserEmission(
-                  userId: loginProvider.userId ?? 0);
+                    .getUserEmission(userId: loginProvider.userId ?? 0);
 
                 Navigator.pushNamedAndRemoveUntil(
                     context, Routes.mainScreen, (route) => false);

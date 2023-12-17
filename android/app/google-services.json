@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "940599329818",
+    "project_id": "sustaintour-208cf",
+    "storage_bucket": "sustaintour-208cf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:940599329818:android:3609418a6f4397cc4efda3",
+        "android_client_info": {
+          "package_name": "com.example.sustain_tour_mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "940599329818-mjs1r8sgao0pnge4gip67gq14vn50tre.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPmXHRX5LwNiJVht88FLjPEa_xukFLyy4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "940599329818-mjs1r8sgao0pnge4gip67gq14vn50tre.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "940599329818-14v11239fjl36sp1scsjkttf7hs05h72.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.exampel.sustaintour"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
