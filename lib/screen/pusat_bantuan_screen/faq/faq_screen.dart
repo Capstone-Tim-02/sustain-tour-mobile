@@ -207,7 +207,7 @@ class FaqScreen extends StatelessWidget {
                                 TextButton(
                                   onPressed: _launchUrl,
                                   child: Text(
-                                    'klik disini wa.me/828181711',
+                                    'klik disini',
                                     textAlign: TextAlign.center,
                                     style: TextStyleWidget.bodyB3(
                                         fontWeight: FontWeightStyle.semiBold,

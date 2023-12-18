@@ -26,8 +26,7 @@ class _Matchmaking2State extends State<Matchmaking2> {
     super.initState();
     LoginProvider loginProvider =
         Provider.of<LoginProvider>(context, listen: false);
-    Provider.of<CategoryProvider>(context, listen: false)
-        .getCategories();
+    Provider.of<CategoryProvider>(context, listen: false).getCategories();
     userId = loginProvider.userId;
     selectedCategory = null;
   }
@@ -138,7 +137,7 @@ class _Matchmaking2State extends State<Matchmaking2> {
             child: CircularProgressIndicator(),
           );
         } else {
-          String categoryName = categoryProvider.categories[3].categoryName;
+          String categoryName = 'Wisata Alam';
 
           return GestureDetector(
             onTap: () {
@@ -213,7 +212,7 @@ class _Matchmaking2State extends State<Matchmaking2> {
             child: CircularProgressIndicator(),
           );
         } else {
-          String categoryName = categoryProvider.categories[1].categoryName;
+          String categoryName = 'Wisata Budaya';
 
           return GestureDetector(
             onTap: () {
@@ -288,7 +287,7 @@ class _Matchmaking2State extends State<Matchmaking2> {
             child: CircularProgressIndicator(),
           );
         } else {
-          String categoryName = categoryProvider.categories[2].categoryName;
+          String categoryName = 'Wisata Hiburan';
 
           return GestureDetector(
             onTap: () {
@@ -363,7 +362,7 @@ class _Matchmaking2State extends State<Matchmaking2> {
             child: CircularProgressIndicator(),
           );
         } else {
-          String categoryName = categoryProvider.categories[0].categoryName;
+          String categoryName = 'Wisata Sejarah';
 
           return GestureDetector(
             onTap: () {

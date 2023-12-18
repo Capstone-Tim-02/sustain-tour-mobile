@@ -3,9 +3,17 @@ import 'package:sustain_tour_mobile/screen/tiket_screen/component/invoice_screen
 import 'package:sustain_tour_mobile/style/color_theme_style.dart';
 import 'package:sustain_tour_mobile/style/font_weight_style.dart';
 import 'package:sustain_tour_mobile/style/text_style_widget.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class StepPaymentBottomSheetComponent {
   static void buildBottomSheetSteps(BuildContext context) {
+    final Uri _url = Uri.parse('https://wa.me/6285173412286');
+    Future<void> _launchUrl() async {
+      if (!await launchUrl(_url)) {
+        throw Exception('Could not launch $_url');
+      }
+    }
+
     showModalBottomSheet(
         context: context,
         builder: (context) {
@@ -143,11 +151,25 @@ class StepPaymentBottomSheetComponent {
                             const SizedBox(
                               height: 8,
                             ),
-                            Text(
-                              'Bank : Mandiri\n12000456789\nKonfirmasi Pembayaran dengan kirimkan bukti pembayaran Klik Disini',
-                              style: TextStyleWidget.labelL4(
-                                  fontWeight: FontWeightStyle.medium,
-                                  color: ColorThemeStyle.grey100),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Bank : Mandiri\n12000456789\nKonfirmasi Pembayaran dengan kirimkan bukti pembayaran',
+                                  style: TextStyleWidget.labelL4(
+                                      fontWeight: FontWeightStyle.medium,
+                                      color: ColorThemeStyle.grey100),
+                                ),
+                                GestureDetector(
+                                  onTap: _launchUrl,
+                                  child: Text(
+                                    'Klik Disini',
+                                    style: TextStyleWidget.labelL4(
+                                        fontWeight: FontWeightStyle.medium,
+                                        color: ColorThemeStyle.blue100),
+                                  ),
+                                ),
+                              ],
                             ),
                             const SizedBox(
                               height: 32,

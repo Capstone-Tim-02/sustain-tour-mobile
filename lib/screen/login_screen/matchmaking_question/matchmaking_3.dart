@@ -53,35 +53,39 @@ class Matchmaking3 extends StatelessWidget {
               ),
             ],
           ),
-          ButtonWidget.defaultContainer(
-              text: 'Mulai',
-              onPressed: () {
-                LoginProvider loginProvider =
-                    Provider.of<LoginProvider>(context, listen: false);
+          Padding(
+            padding: const EdgeInsets.only(bottom: 16),
+            child: ButtonWidget.defaultContainer(
+                text: 'Mulai',
+                onPressed: () {
+                  LoginProvider loginProvider =
+                      Provider.of<LoginProvider>(context, listen: false);
 
-                HomeScreenProvider homeScreenProvider =
-                    Provider.of<HomeScreenProvider>(context, listen: false);
-                ProfileProvider profileProvider =
-                    Provider.of<ProfileProvider>(context, listen: false);
+                  HomeScreenProvider homeScreenProvider =
+                      Provider.of<HomeScreenProvider>(context, listen: false);
+                  ProfileProvider profileProvider =
+                      Provider.of<ProfileProvider>(context, listen: false);
 
-                homeScreenProvider.getRekomendasiWisata();
+                  homeScreenProvider.getRekomendasiWisata();
 
-                homeScreenProvider.getPromo();
+                  homeScreenProvider.getPromo();
 
-                profileProvider.getUserData(userId: loginProvider.userId ?? 0);
+                  profileProvider.getUserData(
+                      userId: loginProvider.userId ?? 0);
 
-                Provider.of<TravelHistoryProvider>(context, listen: false)
-                    .getBookingHistory();
+                  Provider.of<TravelHistoryProvider>(context, listen: false)
+                      .getBookingHistory();
 
-                Provider.of<NotificationProvider>(context, listen: false)
-                    .getNotifications();
+                  Provider.of<NotificationProvider>(context, listen: false)
+                      .getNotifications();
 
-                Provider.of<ProfileEmissionProvider>(context, listen: false)
-                    .getUserEmission(userId: loginProvider.userId ?? 0);
+                  Provider.of<ProfileEmissionProvider>(context, listen: false)
+                      .getUserEmission(userId: loginProvider.userId ?? 0);
 
-                Navigator.pushNamedAndRemoveUntil(
-                    context, Routes.mainScreen, (route) => false);
-              })
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, Routes.mainScreen, (route) => false);
+                }),
+          )
         ],
       ),
     );
