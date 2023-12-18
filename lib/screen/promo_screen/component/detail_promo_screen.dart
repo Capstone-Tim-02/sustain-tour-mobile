@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:sustain_tour_mobile/constants/assets_image.dart';
 import 'package:sustain_tour_mobile/screen/promo_screen/component/detail_promo_provider.dart';
 import 'package:sustain_tour_mobile/style/color_theme_style.dart';
 import 'package:sustain_tour_mobile/style/font_weight_style.dart';
@@ -47,7 +48,7 @@ class DetailPromoScreen extends StatelessWidget {
               detailPromoData?.tanggalKadaluarsa ?? DateTime.now(),
             );
 
-            if (detailPromoData != null) {
+            if (!promoProvider.isErrorDetailPromo && detailPromoData != null) {
               return SingleChildScrollView(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -194,7 +195,26 @@ class DetailPromoScreen extends StatelessWidget {
                 ),
               );
             } else {
-              return const Text('Detail Promo Data Not Available');
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(Assets.assetsImagesNotFoundWisata),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 70.0),
+                    child: Text(
+                      'Upss maaf, promo ini telah berakhir',
+                      textAlign: TextAlign.center,
+                      style: TextStyleWidget.bodyB2(
+                        fontWeight: FontWeightStyle.medium,
+                        color: ColorThemeStyle.grey100,
+                      ),
+                    ),
+                  ),
+                ],
+              );
             }
           }
         },
