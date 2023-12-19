@@ -28,7 +28,7 @@ class RegisterApi {
             error.response?.data['message'] ?? 'Invalid username or password';
         throw errorMessage;
       } else {
-        throw 'Terjadi kesalahan';
+        throw error.response?.data['message'];
       }
     }
   }
