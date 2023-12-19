@@ -20,13 +20,13 @@ class ProfileEmissionProvider extends ChangeNotifier {
       _emissionModel =
           await EmissionApi.getUserEmission(userId: userId);
     } on DioException catch (e) {
-      print('emission bad request token invalid : $e');
       _emissionModel = EmissionModel(
         code: 0,
         equivalentPoweringHouseInHours: 0,
         error: true,
         roundedTotalCarbonFootprint: 0,
       );
+      throw Exception(e);
     }
     _isLoading = false;
     notifyListeners();

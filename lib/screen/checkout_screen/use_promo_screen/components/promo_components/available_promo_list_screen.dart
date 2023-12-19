@@ -16,15 +16,14 @@ class AvailablePromoListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    CheckoutProvider checkoutProvider = Provider.of<CheckoutProvider>(context, listen: false);
-    return ListView.builder(
-      physics: const NeverScrollableScrollPhysics(),
-      itemCount: checkoutProvider.listAllPromo.length,
-      shrinkWrap: true,
-      itemBuilder: (context, index) {
-        Promo promoItem = checkoutProvider.listAllPromo[index];
-        return Consumer<CheckoutProvider>(
-          builder: (context, checkoutProvider, child) {
+    return Consumer<CheckoutProvider>(
+      builder: (context, checkoutProvider, child) {
+        return ListView.builder(
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: checkoutProvider.listAllPromo.length,
+          shrinkWrap: true,
+          itemBuilder: (context, index) {
+            Promo promoItem = checkoutProvider.listAllPromo[index];
             return Container(
               width: double.infinity,
               decoration: BoxDecoration(

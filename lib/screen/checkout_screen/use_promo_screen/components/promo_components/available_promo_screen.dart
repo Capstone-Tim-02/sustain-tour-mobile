@@ -11,11 +11,11 @@ class AvailablePromoScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<CheckoutProvider>(
       builder: (context, checkoutProvider, child) {
-        return checkoutProvider.isLoadingPromo
-        ? const Center(child: CircularProgressIndicator())
-        : checkoutProvider.isGetPromoSuccess
+        return checkoutProvider.isGetPromoSuccess
           ? const AvailablePromoListScreen()
-          : const PromoErrorScreen();
+          : checkoutProvider.isLoadingPromo
+            ? const SizedBox()
+            : const PromoErrorScreen();
       },
     );
   }

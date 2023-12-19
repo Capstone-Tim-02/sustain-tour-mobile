@@ -33,21 +33,21 @@ class CategoryWisata extends StatelessWidget {
                                         label: exploreScreenProvider
                                             .wisataCategory.keys
                                             .elementAt(index),
-                                        onPressed: () {
-                                          exploreScreenProvider
+                                        onPressed: () async {
+                                          await exploreScreenProvider
                                               .toggleButtonCategory(
                                                   index: index);
                                           if (exploreScreenProvider
                                                   .showSearchPage ==
                                               true) {
-                                            exploreScreenProvider
+                                            await exploreScreenProvider
                                                 .getWisataDataBySearch(
                                                     searchQuery:
                                                         exploreScreenProvider
                                                             .searchWisataController
                                                             .text);
                                           } else {
-                                            exploreScreenProvider
+                                            await exploreScreenProvider
                                                 .getWisataDataByFilter();
                                           }
                                         }),
@@ -56,20 +56,20 @@ class CategoryWisata extends StatelessWidget {
                                     label: exploreScreenProvider
                                         .wisataCategory.keys
                                         .elementAt(index),
-                                    onPressed: () {
-                                      exploreScreenProvider
+                                    onPressed: () async {
+                                      await exploreScreenProvider
                                           .toggleButtonCategory(index: index);
                                       if (exploreScreenProvider
                                               .showSearchPage ==
                                           true) {
-                                        exploreScreenProvider
+                                        await exploreScreenProvider
                                             .getWisataDataBySearch(
                                                 searchQuery:
                                                     exploreScreenProvider
                                                         .searchWisataController
                                                         .text);
                                       } else {
-                                        exploreScreenProvider
+                                        await exploreScreenProvider
                                             .getWisataDataByFilter();
                                       }
                                     }));

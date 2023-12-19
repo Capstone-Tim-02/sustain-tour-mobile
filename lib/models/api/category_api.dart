@@ -13,6 +13,9 @@ class CategoryApi {
 
       final response = await _dio.get(
         '$baseUrl/categories',
+      queryParameters: {
+        'per_page' : 50,
+      },
         options: Options(headers: {'Authorization': 'Bearer $token'}),
       );
 

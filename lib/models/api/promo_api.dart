@@ -3,13 +3,15 @@ import 'package:sustain_tour_mobile/constants/shared_preference_manager.dart';
 import 'package:sustain_tour_mobile/models/promo_models/promo_models.dart';
 
 class PromoApi {
-  Future<List<Promo>> getUserPromo() async {
+  Future<List<Promo>> getUserPromo({required int page, required List<Promo> listPromo}) async {
     String token = await SharedPreferenceManager.getToken() ?? '';
-    List<Promo> listPromo = [];
 
     final response = await Dio().get(
       'https://destimate.uc.r.appspot.com/user/promo/',
       options: Options(headers: {"authorization": "Bearer $token"}),
+      queryParameters: {
+        'page' : page,
+      },
     );
 
     if (response.statusCode == 200) {
@@ -17,10 +19,9 @@ class PromoApi {
       for (var element in responseModel.promos) {
         listPromo.add(element);
       }
+      return listPromo;
     } else {
       return listPromo = [];
     }
-
-    return listPromo;
   }
 }

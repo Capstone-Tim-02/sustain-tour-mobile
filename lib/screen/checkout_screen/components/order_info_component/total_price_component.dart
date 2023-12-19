@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sustain_tour_mobile/constants/currency_format_const.dart';
@@ -33,11 +35,14 @@ class TotalPriceComponent extends StatelessWidget {
                 ),
               ),
               Text(
-                CurrencyFormatConst.convertToIdr((
-                  (checkoutProvider.quantity * price) -
-                  ((checkoutProvider.discountPercentage / 100) * price * checkoutProvider.quantity) -
-                  (checkoutProvider.isPointUsed ? (userPoint * 1000) : 0)
-                ),0),
+                CurrencyFormatConst.convertToIdr(
+                  max((
+                    (checkoutProvider.quantity * price) -
+                    ((checkoutProvider.discountPercentage / 100) * price * checkoutProvider.quantity) -
+                    (checkoutProvider.isPointUsed ? (userPoint * 1000) : 0)
+                  ),0),
+                  0
+                ),
                 style: TextStyleWidget.bodyB1(
                   color: ColorThemeStyle.blue100,
                   fontWeight: FontWeight.w600

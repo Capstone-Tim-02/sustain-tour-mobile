@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sustain_tour_mobile/constants/routes.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/component/button_masuk.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/component/button_masuk_google.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/component/textfield_password.dart';
 import 'package:sustain_tour_mobile/screen/login_screen/component/textfield_username.dart';
+import 'package:sustain_tour_mobile/screen/login_screen/login_provider.dart';
 import 'package:sustain_tour_mobile/style/font_weight_style.dart';
 import 'package:sustain_tour_mobile/style/text_style_widget.dart';
 
@@ -49,44 +51,56 @@ class LoginScreen extends StatelessWidget {
                 const SizedBox(
                   height: 8,
                 ),
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [Text('Atau')],
+                Consumer<LoginProvider>(
+                  builder: (context, loginProvider, child) {
+                    return loginProvider.isLoadingLogin
+                      ? const SizedBox()
+                      : const Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [Text('Atau')],
+                        );
+                  },
                 ),
                 const SizedBox(
                   height: 8,
                 ),
-                ButtonMasukGoogle(),
+                const ButtonMasukGoogle(),
               ],
             ),
             const SizedBox(
               height: 32,
             ),
-            Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Row(
+            Consumer<LoginProvider>(
+              builder: (context, loginProvider, child) {
+                return loginProvider.isLoadingLogin
+                  ? const SizedBox()
+                  : Column(
                       children: [
-                        const Text('Belum Punya Akun?'),
-                        TextButton(
-                          onPressed: () {
-                            Navigator.pushReplacementNamed(
-                                context, Routes.registerScreen);
-                          },
-                          child: const Text(
-                            'Daftar',
-                            style: TextStyle(
-                              decoration: TextDecoration.underline,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Row(
+                              children: [
+                                const Text('Belum Punya Akun?'),
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.pushReplacementNamed(
+                                        context, Routes.registerScreen);
+                                  },
+                                  child: const Text(
+                                    'Daftar',
+                                    style: TextStyle(
+                                      decoration: TextDecoration.underline,
+                                    ),
+                                  ),
+                                )
+                              ],
                             ),
-                          ),
+                          ],
                         )
                       ],
-                    ),
-                  ],
-                )
-              ],
+                    );
+              },
             ),
           ],
         ),

@@ -45,7 +45,8 @@ class HomeScreenProvider with ChangeNotifier {
     notifyListeners();
 
     try {
-      _listPromo = await PromoApi().getUserPromo();
+      _listPromo = await PromoApi().getUserPromo(page: 1, listPromo: []);
+
       _isGetPromoSuccess = true;
       _isLoadingPromo = false;
       notifyListeners();

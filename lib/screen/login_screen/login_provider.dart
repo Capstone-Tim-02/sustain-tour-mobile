@@ -8,10 +8,12 @@ class LoginProvider with ChangeNotifier {
   String? _token;
   int? _userId;
   String? _message;
+  bool _isLoadingLogin = false;
 
   String get message => _message ?? '-';
   String? get token => _token;
   int? get userId => _userId;
+  bool get isLoadingLogin => _isLoadingLogin;
 
   LoginProvider() {
     loadData();
@@ -29,6 +31,9 @@ class LoginProvider with ChangeNotifier {
   }
 
   Future<bool> loginUser(String username, String password) async {
+    _isLoadingLogin = true;
+    notifyListeners();
+
     try {
       LoginModels response = await _apiProvider.login(username, password);
 
@@ -39,10 +44,12 @@ class LoginProvider with ChangeNotifier {
         SharedPreferences prefs = await SharedPreferences.getInstance();
         await prefs.setString('token', _token!);
         await prefs.setInt('id', _userId!);
-        notifyListeners();
       }
+      notifyListeners();
+
       return true;
     } catch (error) {
+      _isLoadingLogin = false;
       _message = error.toString();
       notifyListeners();
       return false;
@@ -50,6 +57,7 @@ class LoginProvider with ChangeNotifier {
   }
 
   void logout() async {
+    _isLoadingLogin = false;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.clear();
     _token = null;

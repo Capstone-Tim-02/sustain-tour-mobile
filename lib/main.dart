@@ -22,6 +22,7 @@ import 'package:sustain_tour_mobile/screen/profile_screen/component/profile_emis
 import 'package:sustain_tour_mobile/screen/profile_screen/profile_provider.dart';
 import 'package:sustain_tour_mobile/screen/home_screen/home_screen_provider.dart';
 import 'package:sustain_tour_mobile/screen/promo_screen/component/detail_promo_provider.dart';
+import 'package:sustain_tour_mobile/screen/promo_screen/promo_provider.dart';
 import 'package:sustain_tour_mobile/screen/pusat_bantuan_screen/faq/faq_screen_provider.dart';
 import 'package:sustain_tour_mobile/screen/register_screen/register_provider.dart';
 import 'package:sustain_tour_mobile/screen/register_screen/validator/form_confirm_password_screens.dart';
@@ -67,6 +68,8 @@ void main() async {
           create: (context) => ProfileEmissionProvider()),
       ChangeNotifierProvider<HomeScreenProvider>(
           create: (context) => HomeScreenProvider()),
+      ChangeNotifierProvider<PromoProvider>(
+          create: (context) => PromoProvider()),
       ChangeNotifierProvider<LoginProvider>(
           create: (context) => LoginProvider()),
       ChangeNotifierProvider<FromUsernameProvider>(

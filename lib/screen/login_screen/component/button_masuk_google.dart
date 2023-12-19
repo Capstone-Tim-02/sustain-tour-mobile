@@ -39,104 +39,110 @@ class _ButtonMasukGoogleState extends State<ButtonMasukGoogle> {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        ButtonWidget.defaultOutline(
-          svgIcon: Assets.assetsIconsGoogle,
-          text: 'Daftar Pakai Google',
-          onPressed: () async {
-            // GoogleSiginApi.signout();
-            try {
-              final user = await GoogleSiginApi.loginGoogle();
-              String randomNumber = generateRandomNumber(13);
-              if (user != null && mounted) {
-                print(user.displayName);
-                print(user.email);
-                print(user.uid);
-                print(
-                  (randomNumber),
-                );
-                print(user.emailVerified);
-                RegisterProvider authProvider =
-                    Provider.of<RegisterProvider>(context, listen: false);
-                authProvider.registerUser(
-                  user.displayName.toString(),
-                  user.displayName.toString(),
-                  'alterra5',
-                  'alterra5',
-                  user.email.toString(),
-                  randomNumber,
-                );
-                showBottomSheet(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return Padding(
-                      padding: const EdgeInsets.all(16),
-                      child: Container(
-                        child: Wrap(
-                          alignment: WrapAlignment.center,
-                          spacing: 16,
-                          children: [
-                            SizedBox(
-                                height: 200,
-                                width: 200,
-                                child: Image.asset(
-                                    Assets.assetsImagesSelamatDatang)),
-                            const SizedBox(
-                              height: 16,
-                            ),
-                            Text(
-                              'Silahkan cek email kamu untuk verifikasi akun',
-                              style: TextStyleWidget.bodyB1(
-                                  fontWeight: FontWeightStyle.light),
-                              textAlign: TextAlign.center,
-                            ),
-                            const SizedBox(
-                              height: 31,
-                            ),
-                            ButtonWidget.defaultContainer(
-                              text: 'Masuk',
-                              onPressed: () async {
-                                LoginProvider loginProvider =
-                                    Provider.of<LoginProvider>(context,
-                                        listen: false);
-                                loginProvider
-                                    .loginUser(
-                                        user.displayName.toString(), 'alterra5')
-                                    .then((logedIn) {
-                                  if (logedIn) {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                        SnackBarWidget.snackBarWidget(
-                                            message: loginProvider.message));
-                                    Navigator.of(context)
-                                        .pushNamedAndRemoveUntil(
-                                      Routes.matchmaking1Screen,
-                                      (route) => false,
-                                    );
-                                  } else {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                        SnackBarWidget.snackBarWidget(
-                                            message: authProvider.message));
-                                  }
-                                });
-                              },
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
+        Consumer<LoginProvider>(
+          builder: (context, loginProvider, child) {
+            return loginProvider.isLoadingLogin
+              ? const SizedBox()
+              : ButtonWidget.defaultOutline(
+                  svgIcon: Assets.assetsIconsGoogle,
+                  text: 'Daftar Pakai Google',
+                  onPressed: () async {
+                    // GoogleSiginApi.signout();
+                    try {
+                      final user = await GoogleSiginApi.loginGoogle();
+                      String randomNumber = generateRandomNumber(13);
+                      if (user != null && mounted) {
+                        print(user.displayName);
+                        print(user.email);
+                        print(user.uid);
+                        print(
+                          (randomNumber),
+                        );
+                        print(user.emailVerified);
+                        RegisterProvider authProvider =
+                            Provider.of<RegisterProvider>(context, listen: false);
+                        authProvider.registerUser(
+                          user.displayName.toString(),
+                          user.displayName.toString(),
+                          'alterra5',
+                          'alterra5',
+                          user.email.toString(),
+                          randomNumber,
+                        );
+                        showBottomSheet(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return Padding(
+                              padding: const EdgeInsets.all(16),
+                              child: Container(
+                                child: Wrap(
+                                  alignment: WrapAlignment.center,
+                                  spacing: 16,
+                                  children: [
+                                    SizedBox(
+                                        height: 200,
+                                        width: 200,
+                                        child: Image.asset(
+                                            Assets.assetsImagesSelamatDatang)),
+                                    const SizedBox(
+                                      height: 16,
+                                    ),
+                                    Text(
+                                      'Silahkan cek email kamu untuk verifikasi akun',
+                                      style: TextStyleWidget.bodyB1(
+                                          fontWeight: FontWeightStyle.light),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                    const SizedBox(
+                                      height: 31,
+                                    ),
+                                    ButtonWidget.defaultContainer(
+                                      text: 'Masuk',
+                                      onPressed: () async {
+                                        LoginProvider loginProvider =
+                                            Provider.of<LoginProvider>(context,
+                                                listen: false);
+                                        loginProvider
+                                            .loginUser(
+                                                user.displayName.toString(), 'alterra5')
+                                            .then((logedIn) {
+                                          if (logedIn) {
+                                            ScaffoldMessenger.of(context).showSnackBar(
+                                                SnackBarWidget.snackBarWidget(
+                                                    message: loginProvider.message));
+                                            Navigator.of(context)
+                                                .pushNamedAndRemoveUntil(
+                                              Routes.matchmaking1Screen,
+                                              (route) => false,
+                                            );
+                                          } else {
+                                            ScaffoldMessenger.of(context).showSnackBar(
+                                                SnackBarWidget.snackBarWidget(
+                                                    message: authProvider.message));
+                                          }
+                                        });
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          },
+                        );
+
+                        // Show BottomSheet
+                      }
+                    } on FirebaseAuthException catch (e) {
+                      print(e.message);
+                      ScaffoldMessenger.of(context)
+                          .showSnackBar(const SnackBar(content: Text('data')));
+                    } catch (error) {
+                      print(error);
+                    }
                   },
                 );
-
-                // Show BottomSheet
-              }
-            } on FirebaseAuthException catch (e) {
-              print(e.message);
-              ScaffoldMessenger.of(context)
-                  .showSnackBar(SnackBar(content: Text('data')));
-            } catch (error) {
-              print(error);
-            }
           },
-        ),
+        )
       ],
     );
   }

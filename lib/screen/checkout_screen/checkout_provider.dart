@@ -12,6 +12,12 @@ class CheckoutProvider extends ChangeNotifier {
   int _quantity = 1;
   int get quantity => _quantity;
 
+  int _currentPromoPage = 1;
+  int get currentPromoPage => _currentPromoPage;
+
+  bool _hasMorePromo = false;
+  bool get hasMorePromo => _hasMorePromo;
+
   bool _isPointUsed = false;
   bool get isPointUsed => _isPointUsed;
 
@@ -68,11 +74,20 @@ class CheckoutProvider extends ChangeNotifier {
 
   void getUserPromo() async {
     try {
+      _hasMorePromo = true;
       _isLoadingPromo = true;
       notifyListeners();
-      _listAllPromo = await PromoApi().getUserPromo();
+      _listAllPromo = await PromoApi().getUserPromo(page: _currentPromoPage, listPromo: _listAllPromo);
 
       _isGetPromoSuccess = true;
+
+      if(_listAllPromo.length < _currentPromoPage * 10){
+        _hasMorePromo = false;
+      } else {
+        _hasMorePromo = true;
+      }
+
+      _currentPromoPage++;
       _isLoadingPromo = false;
       notifyListeners();
     } catch (e) {
@@ -152,6 +167,8 @@ class CheckoutProvider extends ChangeNotifier {
     _quantity = 1;
     _isPointUsed = false;
     _isLoadingPromo = true;
+    _hasMorePromo = true;
+    _currentPromoPage = 1;
     _isGetPromoSuccess = false;
     _isPromoUsed = false;
     _usedPromoIndex = -1;

@@ -23,8 +23,8 @@ class DetailPromoProvider extends ChangeNotifier {
 
       _isErrorDetailPromo = false;
     } on DioException catch (e) {
-      print(e);
       _isErrorDetailPromo = true;
+      throw Exception(e);
     } finally {
       _isLoadingDetailPromo = false;
       notifyListeners();
