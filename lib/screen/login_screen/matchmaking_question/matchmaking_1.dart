@@ -8,6 +8,7 @@ import 'package:sustain_tour_mobile/screen/login_screen/login_provider.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/component/profile_emission_component/component/detail_emission_screen_component/component/travel_history_component/travel_history_provider.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/component/profile_emission_component/profile_emission_provider.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/profile_provider.dart';
+import 'package:sustain_tour_mobile/screen/promo_screen/promo_provider.dart';
 import 'package:sustain_tour_mobile/style/font_weight_style.dart';
 import 'package:sustain_tour_mobile/style/text_style_widget.dart';
 import 'package:sustain_tour_mobile/widget/button_widget.dart';
@@ -73,35 +74,35 @@ class Matchmaking1 extends StatelessWidget {
                           LoginProvider loginProvider =
                               Provider.of<LoginProvider>(context,
                                   listen: false);
-
                           HomeScreenProvider homeScreenProvider =
                               Provider.of<HomeScreenProvider>(context,
                                   listen: false);
                           ProfileProvider profileProvider =
                               Provider.of<ProfileProvider>(context,
                                   listen: false);
+                          PromoProvider promoProvider =
+                              Provider.of<PromoProvider>(context,
+                                  listen: false);
+                          TravelHistoryProvider travelHistoryProvider =
+                              Provider.of<TravelHistoryProvider>(context, listen: false);
+                          NotificationProvider notificationProvider =
+                              Provider.of<NotificationProvider>(context, listen: false);
+                          ProfileEmissionProvider profileEmissionProvider =
+                              Provider.of<ProfileEmissionProvider>(context,
+                                listen: false);
 
-                        homeScreenProvider.getRekomendasiWisata();
+                          homeScreenProvider.getRekomendasiWisata();
+                          promoProvider.getUserPromo();
+                          homeScreenProvider.getPromo();
+                          profileProvider.getUserData(
+                              userId: loginProvider.userId ?? 0);
 
-                        homeScreenProvider.getPromo();
+                          travelHistoryProvider.getBookingHistory();
+                          notificationProvider.getNotifications();
 
-                        profileProvider.getUserData(
-                            userId: loginProvider.userId ?? 0);
-
-                          Provider.of<TravelHistoryProvider>(context,
-                                  listen: false)
-                              .getBookingHistory();
-
-                        Provider.of<ProfileEmissionProvider>(context,
-                                listen: false)
-                            .getUserEmission(
-                          userId: loginProvider.userId ?? 0,
-                        );
-
-                          Provider.of<NotificationProvider>(context,
-                                  listen: false)
-                              .getNotifications();
-
+                          profileEmissionProvider.getUserEmission(
+                            userId: loginProvider.userId ?? 0,
+                          );
                           Navigator.pushNamedAndRemoveUntil(
                               context, Routes.mainScreen, (route) => false);
                         }),

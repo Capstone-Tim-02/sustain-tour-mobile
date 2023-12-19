@@ -66,7 +66,7 @@ class ExploreScreenProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void toggleButtonCategory({required int index}) {
+  Future<void> toggleButtonCategory({required int index}) async {
     _currentPage = 1;
     _listWisata = [];
     String key = _wisataCategory.keys.elementAt(index);
@@ -180,7 +180,7 @@ class ExploreScreenProvider with ChangeNotifier {
     }
   }
 
-  void getWisataDataByFilter() async {
+  Future<void> getWisataDataByFilter() async {
     _hasMoreWisata = true;
     notifyListeners();
 
@@ -222,7 +222,7 @@ class ExploreScreenProvider with ChangeNotifier {
     }
   }
 
-  void getWisataDataBySearch({required String searchQuery}) async {
+  Future<void> getWisataDataBySearch({required String searchQuery}) async {
     _hasMoreWisata = true;
     notifyListeners();
 

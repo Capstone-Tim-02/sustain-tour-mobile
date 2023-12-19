@@ -16,7 +16,7 @@ class CategoryProvider with ChangeNotifier {
       _categories = categoryModels.categories;
       notifyListeners();
     } catch (error) {
-      print('Error fetching categories: $error');
+      throw Exception(error);
     }
   }
 }

@@ -478,7 +478,7 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
                                                       ),
                                                     ],
                                                   ),
-                                                  SizedBox(
+                                                  const SizedBox(
                                                     height: 32,
                                                   ),
                                                   Row(
@@ -788,7 +788,7 @@ class _DetailWisataScreenState extends State<DetailWisataScreen> {
 
       fasilitasList = fasilitasString.split(', ').map((e) => e.trim()).toList();
     } catch (e) {
-      print('Error parsing fasilitas string: $e');
+      throw Exception(e);
     }
 
     return fasilitasList;

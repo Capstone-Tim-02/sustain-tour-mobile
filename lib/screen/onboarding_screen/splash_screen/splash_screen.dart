@@ -7,6 +7,7 @@ import 'package:sustain_tour_mobile/screen/login_screen/matchmaking_question/mat
 import 'package:sustain_tour_mobile/screen/main_screen/main_screen.dart';
 import 'package:sustain_tour_mobile/screen/onboarding_screen/onboarding_screen.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/component/profile_emission_component/component/detail_emission_screen_component/component/travel_history_component/travel_history_provider.dart';
+import 'package:sustain_tour_mobile/screen/promo_screen/promo_provider.dart';
 import 'package:sustain_tour_mobile/style/font_weight_style.dart';
 import 'package:sustain_tour_mobile/style/text_style_widget.dart';
 import 'package:sustain_tour_mobile/screen/profile_screen/component/profile_emission_component/profile_emission_provider.dart';
@@ -57,6 +58,9 @@ class _SplashScreenState extends State<SplashScreen> {
 
           Provider.of<HomeScreenProvider>(context, listen: false)
               .getPromo();
+
+          Provider.of<PromoProvider>(context, listen: false)
+              .getUserPromo();
 
           Provider.of<TravelHistoryProvider>(context, listen: false)
               .getBookingHistory();

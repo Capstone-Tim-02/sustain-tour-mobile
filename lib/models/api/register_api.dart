@@ -22,7 +22,6 @@ class RegisterApi {
 
       return RegisterModels.fromJson(response.data);
     } on DioException catch (error) {
-      print(error.response!.statusMessage);
       if (error.response?.statusCode == 401) {
         String errorMessage =
             error.response?.data['message'] ?? 'Invalid username or password';
