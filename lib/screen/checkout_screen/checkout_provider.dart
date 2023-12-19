@@ -72,7 +72,7 @@ class CheckoutProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void getUserPromo() async {
+  Future<void> getUserPromo() async {
     try {
       _hasMorePromo = true;
       _isLoadingPromo = true;
@@ -165,6 +165,7 @@ class CheckoutProvider extends ChangeNotifier {
 
   void checkoutProviderReset(){
     _quantity = 1;
+    _listAllPromo = [];
     _isPointUsed = false;
     _isLoadingPromo = true;
     _hasMorePromo = true;

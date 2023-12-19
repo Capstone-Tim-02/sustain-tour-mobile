@@ -9,7 +9,6 @@ import 'package:sustain_tour_mobile/style/font_weight_style.dart';
 import 'package:sustain_tour_mobile/style/text_style_widget.dart';
 
 class UsePromoScreen extends StatelessWidget {
-
   const UsePromoScreen({super.key});
 
   @override
@@ -17,15 +16,16 @@ class UsePromoScreen extends StatelessWidget {
     CheckoutProvider checkoutProvider = Provider.of<CheckoutProvider>(context, listen: false);
     final ScrollController scrollController = ScrollController();
 
-    void onScroll(){
+    void onScroll() async {
       double maxScroll = scrollController.position.maxScrollExtent;
       double currentScroll = scrollController.position.pixels;
 
-      if(currentScroll >= maxScroll && checkoutProvider.hasMorePromo){
-        checkoutProvider.getUserPromo();
+      if(currentScroll >= maxScroll && checkoutProvider.hasMorePromo && (checkoutProvider.isLoadingPromo == false)){
+        await checkoutProvider.getUserPromo();
       }
     }
     scrollController.addListener(onScroll);
+
     return Scaffold(
       appBar:  AppBar(
         title: Text(
@@ -55,7 +55,6 @@ class UsePromoScreen extends StatelessWidget {
                   SizedBox(height: 8),
                   AvailablePromoScreen(),
                   MorePromoUse(),
-                  SizedBox(height: 40)
                 ],
               ),
             ),
