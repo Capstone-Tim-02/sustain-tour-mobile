@@ -25,7 +25,7 @@ class UserDataApi {
         createdAt: DateTime.now());
 
     final response = await Dio().get(
-      '$baseUrl/$userId',
+      '$baseUrl/user/$userId',
       options: Options(headers: {"authorization": "Bearer $token"}),
     );
 
