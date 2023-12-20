@@ -25,7 +25,7 @@ class UserDataApi {
         createdAt: DateTime.now());
 
     final response = await Dio().get(
-      'https://destimate.uc.r.appspot.com/user/$userId',
+      '$baseUrl/$userId',
       options: Options(headers: {"authorization": "Bearer $token"}),
     );
 
@@ -38,8 +38,7 @@ class UserDataApi {
   }
 
   Future<bool> updateName(
-      {required int userId,
-      required String newName}) async {
+      {required int userId, required String newName}) async {
     try {
       String token = await SharedPreferenceManager.getToken() ?? '';
       await Dio().put('$baseUrl/user/$userId',
@@ -60,8 +59,7 @@ class UserDataApi {
   }
 
   Future<String> updateUsername(
-      {required int userId,
-      required String newUsername}) async {
+      {required int userId, required String newUsername}) async {
     try {
       String token = await SharedPreferenceManager.getToken() ?? '';
       final response = await Dio().put('$baseUrl/user/$userId',
@@ -84,8 +82,7 @@ class UserDataApi {
   }
 
   Future<bool> updateNoHandphone(
-      {required int userId,
-      required String newNoHp}) async {
+      {required int userId, required String newNoHp}) async {
     try {
       String token = await SharedPreferenceManager.getToken() ?? '';
       await Dio().put('$baseUrl/user/$userId',
@@ -106,8 +103,7 @@ class UserDataApi {
   }
 
   Future<bool> updateEmail(
-      {required int userId,
-      required String newEmail}) async {
+      {required int userId, required String newEmail}) async {
     try {
       String token = await SharedPreferenceManager.getToken() ?? '';
       await Dio().put('$baseUrl/user/$userId',
@@ -185,7 +181,7 @@ class UserDataApi {
     required int userId,
   }) async {
     try {
-    String token = await SharedPreferenceManager.getToken() ?? '';
+      String token = await SharedPreferenceManager.getToken() ?? '';
       await Dio().delete(
         '$baseUrl/user/photo/$userId',
         options: Options(
