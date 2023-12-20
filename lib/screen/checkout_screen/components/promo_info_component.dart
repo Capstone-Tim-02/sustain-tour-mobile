@@ -13,6 +13,7 @@ class PromoInfoComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    CheckoutProvider checkoutProvider = Provider.of<CheckoutProvider>(context, listen: false);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -26,7 +27,9 @@ class PromoInfoComponent extends StatelessWidget {
         const SizedBox(height: 8),
         GestureDetector(
           onTap: (){
-            Provider.of<CheckoutProvider>(context, listen: false).getUserPromo();
+            if(checkoutProvider.isPromoUsed == false){
+              checkoutProvider.getUserPromo();
+            }
             Navigator.pushNamed(
               context,
               Routes.usePromoScreen
