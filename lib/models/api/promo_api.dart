@@ -1,16 +1,18 @@
 import 'package:dio/dio.dart';
+import 'package:sustain_tour_mobile/constants/api_base_url.dart';
 import 'package:sustain_tour_mobile/constants/shared_preference_manager.dart';
 import 'package:sustain_tour_mobile/models/promo_models/promo_models.dart';
 
 class PromoApi {
-  Future<List<Promo>> getUserPromo({required int page, required List<Promo> listPromo}) async {
+  Future<List<Promo>> getUserPromo(
+      {required int page, required List<Promo> listPromo}) async {
     String token = await SharedPreferenceManager.getToken() ?? '';
 
     final response = await Dio().get(
-      'https://destimate.uc.r.appspot.com/user/promo/',
+      '$baseUrl/promo/',
       options: Options(headers: {"authorization": "Bearer $token"}),
       queryParameters: {
-        'page' : page,
+        'page': page,
       },
     );
 
